@@ -4,7 +4,8 @@
   "description": "FEC project",
   "main": "index.js",
   "scripts": {
-    "react-dev": "webpack --mode development --watch"
+    "react-dev": "webpack --mode development --watch",
+    "server-dev": "npx nodemon server/index.js"
   },
   "repository": {
     "type": "git",
