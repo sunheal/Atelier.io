@@ -11,12 +11,17 @@ class RR_app extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="ReviewContainer">
                 <h1>RATINGS &amp; Reviews</h1> 
-                <StarsAndBreakdown /> 
-                <ReviewList />
-                <button className="moreReview"> More Review </button>
-                <button className="addReview"> Add Review </button>
+                <div className="leftOfRR"> 
+                    <StarsAndBreakdown /> 
+                </div>
+                <div className="rightOfRR"> 
+                    <ReviewList />
+                    <button className="moreReview"> More Review </button>
+                    <button className="addReview"> Add Review </button>
+                </div>
+
             </div>  
         )
     }
