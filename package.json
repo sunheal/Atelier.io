@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kylekk812/Project-Atelier.git"
+    "url": "git+https://github.com/rpp34-fec-peru/Project-Atelier.git"
   },
   "author": "Kyle Kang, Nicole Li, Nicole Qi, Alan Li",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kylekk812/Project-Atelier/issues"
+    "url": "https://github.com/rpp34-fec-peru/Project-Atelier/issues"
   },
-  "homepage": "https://https://github.com/rpp34-fec-peru/Project-Atelier",
+  "homepage": "https://github.com/rpp34-fec-peru/Project-Atelier",
   "dependencies": {
     "axios": "^0.26.1",
     "express": "^4.17.3",
