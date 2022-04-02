@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import config from '../../../../config.js';
+import QuestionCard from './QuestionsList/QuestionCard_app.jsx'
 
 const host = ' https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 const headers = {
@@ -12,18 +13,22 @@ class QuestionsList extends Component {
   constructor(props){
     super(props);
     this.state= {
-      questions:{product_id:'', results:[]}
+      questions:{product_id:'', results:[]},
+      id:''
     }
   }
 
   componentDidMount() {
-    axios.get(host + '/qa/questions?product_id=50000', { headers })
+    axios.get(host + `/qa/questions?product_id=${this.props.product_id}`, { headers })
     .then((response) => {
-      console.log(response.data)
+      return response.data
+    })
+    .then((res)=>{
+      console.log(res)
       this.setState({
-        questions:response.data
+        questions:res,
+        id:res.product_id
       })
-
     })
     .catch((err) =>{
       console.log('GET request err from (QuestionsList.jsx) in line 31)', err);
@@ -32,7 +37,19 @@ class QuestionsList extends Component {
 
   render(){
     return (
-      <div>Here are the questions for this product:{this.state.questions.results.length}
+      <div>Here are the questions for this product:
+      {this.state.questions.results.length}
+
+      <h1>{this.state.id}</h1>
+      {this.state.questions.results.map(item => {
+        return (
+          <QuestionCard
+          {...item}
+            key={item.question_id}
+
+          />
+        )
+      })}
       </div>
     );
   }

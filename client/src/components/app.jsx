@@ -14,7 +14,7 @@ class App extends React.Component{
 
     render() {
         return (
-            <div>
+            <div className="app">
             <p id="logo"> Good Deals Only </p>
             <QandA/>
 
