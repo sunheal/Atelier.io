@@ -13,7 +13,7 @@ class App extends React.Component{
         return (
             <div> 
             <p id="logo"> Good Deals Only </p> 
-            <RR_app />
+            <RR_app /> 
             </div>
             )
     }
