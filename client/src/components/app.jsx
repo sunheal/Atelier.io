@@ -1,4 +1,4 @@
-
+import ListsWrapper from './RelatedProduct/ListsWrapper.jsx';
 import QandA from "./Q&A/QandA_app.jsx";
 
 import React from "react"
@@ -17,6 +17,7 @@ class App extends React.Component{
         return (
             <div className="app">
             <p id="logo"> Good Deals Only </p>
+            <ListsWrapper />
             <QandA/>
             <RR_app />
             </div>
