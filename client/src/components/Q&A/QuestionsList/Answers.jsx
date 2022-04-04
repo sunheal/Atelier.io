@@ -11,7 +11,7 @@ class Answers extends React.Component {
     answersArray.sort((a,b) => b.helpfulness - a.helpfulness)
     return <div>
       {answersArray.map(item => {
-        return <p key={item.id}>{item.body}</p>
+        return <p key={item.id}>A: {item.body}</p>
       })}
     </div>;
   }
