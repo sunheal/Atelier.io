@@ -1,0 +1,60 @@
+module.exports = [{
+    "review_id": 1135731,
+    "rating": 5,
+    "summary": "good product?",
+    "recommend": true,
+    "response": null,
+    "body": "it may be good i do not know, this is only a test and the product isnt real",
+    "date": "2022-02-20T00:00:00.000Z",
+    "reviewer_name": "joe",
+    "helpfulness": 3,
+    "photos": []
+  },
+  {
+    "review_id": 1135620,
+    "rating": 4,
+    "summary": "I really like",
+    "recommend": true,
+    "response": null,
+    "body": "Fits well, good quality, nice color, very comfortable",
+    "date": "2022-02-17T00:00:00.000Z",
+    "reviewer_name": "mer11",
+    "helpfulness": 1,
+    "photos": []
+  },
+  {
+    "review_id": 1135537,
+    "rating": 5,
+    "summary": "good product?",
+    "recommend": true,
+    "response": null,
+    "body": "it may be good i do not know, this is only a test and the product isnt real",
+    "date": "2022-02-12T00:00:00.000Z",
+    "reviewer_name": "joe",
+    "helpfulness": 1,
+    "photos": []
+  },
+  {
+    "review_id": 1135538,
+    "rating": 5,
+    "summary": "good product?",
+    "recommend": true,
+    "response": null,
+    "body": "it may be good i do not know, this is only a test and the product isnt real",
+    "date": "2022-02-12T00:00:00.000Z",
+    "reviewer_name": "joe",
+    "helpfulness": 1,
+    "photos": []
+  },
+  {
+    "review_id": 1135540,
+    "rating": 5,
+    "summary": "good product?",
+    "recommend": true,
+    "response": null,
+    "body": "it may be good i do not know, this is only a test and the product isnt real",
+    "date": "2022-02-12T00:00:00.000Z",
+    "reviewer_name": "joe",
+    "helpfulness": 1,
+    "photos": []
+  }];

@@ -20,3 +20,29 @@ body {
     float: right;
     width: 70%;
 }
+.individualReview_container{
+    border-bottom: solid;
+    margin-bottom: 15px;
+}
+.reviewsCount {
+    font-size: 28px;
+}
+.indiStar{
+    float: left;
+}
+.userAndPostdate{
+    float: right;
+}
+.reviewSpace {
+    height: 20px;
+}
+.reviewSummary{
+    font-weight: bold;
+}
+.spaceBetweenRev{
+    height: 10px;
+}
+.sortSelect{
+    margin: 1%;
+    font-size: 15px;
+}

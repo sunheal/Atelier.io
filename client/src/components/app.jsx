@@ -1,6 +1,5 @@
 
 import QandA from "./Q&A/QandA_app.jsx";
-
 import React from "react"
 import RR_app from "./Ratings&Reviews/RR_app.jsx";
 
