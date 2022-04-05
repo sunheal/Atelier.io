@@ -1,17 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-class Answers extends React.Component{
+class Answers extends React.Component {
   constructor(props) {
-      super(props);
-
+    super(props)
   }
 
   render() {
-    return (
-      <div>answers
+    let answersArray = Object.values(this.props.answersArray);
 
-      </div>
-    )
+    answersArray.sort((a,b) => b.helpfulness - a.helpfulness)
+    return <div>
+      {answersArray.map(item => {
+        return <p key={item.id}>A: {item.body}</p>
+      })}
+    </div>;
   }
 }
 

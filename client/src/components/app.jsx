@@ -1,8 +1,8 @@
 import ListsWrapper from './RelatedProduct/ListsWrapper.jsx';
 import QandA from "./Q&A/QandA_app.jsx";
-
 import React from "react"
 import RR_app from "./Ratings&Reviews/RR_app.jsx";
+import Overview from "./overview/Overview.jsx";
 
 
 class App extends React.Component{
@@ -18,6 +18,7 @@ class App extends React.Component{
             <div className="app">
             <p id="logo"> Good Deals Only </p>
             <ListsWrapper />
+            <Overview />
             <QandA/>
             <RR_app />
             </div>
