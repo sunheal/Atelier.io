@@ -17,7 +17,7 @@ class RR_app extends React.Component {
                     <StarsAndBreakdown /> 
                 </div>
                 <div className="rightOfRR"> 
-                    <ReviewList />
+                    <ReviewList id={this.props.id}/>
                 </div>
 
             </div>  

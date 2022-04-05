@@ -19,7 +19,7 @@ let getSingleProduct = (id) => {
 };
 
 let getProductStyle = (id) => {
-  let url = api + `/products/${id}/style`;
+  let url = api + `/products/${id}/styles`;
   return axios.get(url, options);
 };
 
@@ -27,10 +27,14 @@ let getRelatedProductsId = (id) => {
   let url = api + `/products/${id}/related`;
   return axios.get(url, options);
 };
-
+let getReview = (id) => {
+  let url = api + `/reviews?count=5&sort=newest&product_id=${id}`;
+  return axios.get(url, options);
+}
 module.exports = {
   getAllProducts,
   getSingleProduct,
   getProductStyle,
-  getRelatedProductsId
+  getRelatedProductsId,
+  getReview,
 }

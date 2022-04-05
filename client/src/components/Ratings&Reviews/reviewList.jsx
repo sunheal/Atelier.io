@@ -1,46 +1,45 @@
 import React from "react";
 import ReviewListView from "./reviewListView.jsx";
 import axios from "axios";
-import config from "../../../../config.js";
-import DefaultReviews from "./DefaultReviews.js";
+// import config from "../../../../config.js";
+// import DefaultReviews from "./DefaultReviews.js";
+// import productsAPI from '../../../../server/api/products.js';
 
-const host = ' https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
-const headers = {
-  'Authorization' : `${config.TOKEN}`
-};
+// const host = ' https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+// const headers = {
+//   'Authorization' : `${config.TOKEN}`
+// };
 
 class ReviewList extends React.Component{
     
     constructor(props) {
         super(props);
         this.state = {
-            productID : 64660,
+            // productID : 64660,
             currentReview : [],
             whatShowing : []
         }
-        this.getReview = this.getReview.bind(this);
+        this.getReviewinfo = this.getReviewinfo.bind(this);
         this.changeSort = this.changeSort.bind(this);
         this.appendReview = this.appendReview.bind(this);
     }
     componentDidMount() {
-        this.getReview();
-        console.log(this.state.currentReview, 'reviessssss')
+        this.getReviewinfo();
     }
 
-    getReview() {
-        axios.get(`${host}/reviews?count=5&sort='newest'&product_id=${this.state.productID}`, {headers})
+    getReviewinfo() {
+        axios.get(`/reviews/${this.props.id}`)
         .then((output)=> {
+            // console.log(output.data, 'received from API');
             this.setState({
-                currentReview : output.data.results,
-                whatShowing: output.data.results.slice(0,2)
+                currentReview : output.data,
+                whatShowing: output.data.slice(0,2)
             })
-            console.log(output.data.results, 'after getreview')
         })
         .catch(err => console.log(err));
     } 
     changeSort(event) {
         let input = event.target.value;
-        console.log(input, 'input');
         let sorted= [];
         if(input === 'newest') {
             sorted = this.state.currentReview.sort((a,b) => {
@@ -61,7 +60,7 @@ class ReviewList extends React.Component{
             });
         }
         if(input === 'Select Your Sort') {
-            this.getReview();
+            this.getReviewinfo();
             sorted = this.state.currentReview;
         }
         this.setState({
