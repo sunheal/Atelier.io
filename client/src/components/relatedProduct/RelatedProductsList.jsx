@@ -15,22 +15,35 @@ class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productIdOfCurrentPage: props.productID
+      productIdOfCurrentPage: props.productID,
+      relatedProducts: []
     };
   }
 
+  getSingleProduct (id) {
+    axios.get(`/products/${id}`)
+    .then((result) => {
+      console.log('single products info', result.data);
+    })
+    .catch((error) => {
+      console.log('Error fetching single product details in relatedProductsList', error);
+    });
+  }
+
+  getRelatedProductsID (id) {
+    axios.get(`/products/${id}/related`)
+    .then((result) => {
+      this.setState ({
+        relatedProducts: result.data
+      })
+    })
+    .catch((error) => {
+      console.log('Error fetching related products in relatedProductsList', error);
+    });
+  }
 
   componentDidMount() {
-    axios.get(`/products/${this.state.productIdOfCurrentPage}/related`)
-      .then((result) => {
-        console.log('related products',result.data);
-        // this.setState = ({
-        //   productOfCurrentPage: result.data.id
-        // })
-      })
-      .catch((error) => {
-        console.log('Error fetching product details in relatedProductsList', error);
-      });
+    this.getRelatedProductsID(this.state.productIdOfCurrentPage);
   }
 
   render() {

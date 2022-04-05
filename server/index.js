@@ -10,10 +10,8 @@ app.use(express.urlencoded({ extended: 'true' }));
 // GET a single product.
 app.get('/products/:product_id', (req, res) => {
   var id = parseInt(req.params.product_id);
-  // console.log('receive params', id)
   productsAPI.getSingleProduct(id)
     .then(result => {
-        // console.log('api data', result.data)
       res.status(201).send(result.data);
     })
     .catch(err => {
@@ -29,7 +27,7 @@ app.get('/products/:product_id/related', (req, res) => {
   productsAPI.getRelatedProductsId(id)
     .then(result => {
         console.log('api data', result.data)
-      // res.status(201).send(result.data);
+      res.status(201).send(result.data);
     })
     .catch(err => {
       console.log(err)
