@@ -10,7 +10,7 @@ const headers = {
 };
 
 class ReviewList extends React.Component{
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +24,7 @@ class ReviewList extends React.Component{
     }
     componentDidMount() {
         this.getReview();
-        console.log(this.state.currentReview, 'reviessssss')
+        // console.log(this.state.currentReview, 'reviessssss')
     }
 
     getReview() {
@@ -34,13 +34,13 @@ class ReviewList extends React.Component{
                 currentReview : output.data.results,
                 whatShowing: output.data.results.slice(0,2)
             })
-            console.log(output.data.results, 'after getreview')
+            // console.log(output.data.results, 'after getreview')
         })
         .catch(err => console.log(err));
-    } 
+    }
     changeSort(event) {
         let input = event.target.value;
-        console.log(input, 'input');
+        // console.log(input, 'input');
         let sorted= [];
         if(input === 'newest') {
             sorted = this.state.currentReview.sort((a,b) => {
@@ -51,7 +51,7 @@ class ReviewList extends React.Component{
             sorted = this.state.currentReview.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
             });
-        } 
+        }
         if(input === 'relevance') {
             sorted = this.state.currentReview.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
@@ -89,7 +89,7 @@ class ReviewList extends React.Component{
 
     render() {
         return (
-            <div> 
+            <div>
                 {(this.state.currentReview.length === 0) ? <div><button className="addReview"> Add Review </button> </div>
                 :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by
                         <select className="sortSelect" onChange={this.changeSort}>
@@ -98,12 +98,12 @@ class ReviewList extends React.Component{
                             <option value='newest'> newest </option>
                             <option value='helpful'> helpful </option>
                         </select>
-                    </p><ReviewListView reviews={this.state.whatShowing} /> 
+                    </p><ReviewListView reviews={this.state.whatShowing} />
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview"> Add Review </button>
                    </div>
  }
-            
+
             </div>
         )
     }

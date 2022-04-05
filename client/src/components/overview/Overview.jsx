@@ -22,10 +22,10 @@ class Overview extends React.Component {
   getProductInformation(product_id) {
     axios.get(`${uri}/products/${product_id}`, { headers })
       .then((data) => {
-        console.log('getProductInformation', data.data);
+        // console.log('getProductInformation', data.data);
       })
       .catch((err) => {
-        console.error('getProductInformation', err);
+        // console.error('getProductInformation', err);
       })
   }
 
