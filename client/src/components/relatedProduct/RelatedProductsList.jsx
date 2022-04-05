@@ -15,40 +15,52 @@ class RelatedProductsList extends React.Component {
     this.state = {
       productIdOfCurrentPage: props.productID,
       selectedProductID: null,
-      relatedProducts: []
+      relatedProductsID: [],
+      relatedProductsInfo: []
     };
   }
 
-  getSingleProduct (id) {
-    axios.get(`/products/${id}`)
-    .then((result) => {
-      console.log('single products info', result.data);
+  // navigate to product detail page when click
+  navigateToNewProductPage(e) {
+    this.setState({
+      productIdOfCurrentPage: e.target.id
     })
-    .catch((error) => {
-      console.log('Error fetching single product details in relatedProductsList', error);
-    });
   }
 
-  getRelatedProductsID (id) {
-    axios.get(`/products/${id}/related`)
-    .then((result) => {
-      this.setState ({
-        relatedProducts: result.data
+  putRelatedProductsInfoTogether(id) {
+     axios.get(`/products/${id}`)
+      .then((result) => {
+        this.state.relatedProductsInfo.push(result.data)
       })
-    })
-    .catch((error) => {
-      console.log('Error fetching related products in relatedProductsList', error);
-    });
+      .catch((error) => {
+        console.log('Error fetching single product details in relatedProductsList', error);
+      });
+  }
+
+  getRelatedProductsID(id) {
+    axios.get(`/products/${id}/related`)
+      .then((result) => {
+        this.setState({
+          relatedProductsID: result.data
+        }, () => {
+          this.state.relatedProductsID.map(id => {
+            this.putRelatedProductsInfoTogether(id);
+          })
+        })
+      })
+      .catch((error) => {
+        console.log('Error fetching related products in relatedProductsList', error);
+      });
   }
 
   getProductStyle(id) {
     axios.get(`/products/${id}/related`)
-    .then((result) => {
-      console.log('Product Style ==== ', result.data);
-    })
-    .catch((error) => {
-      console.log('Error fetching product style in relatedProductsList', error);
-    });
+      .then((result) => {
+        console.log('Product Style ==== ', result.data);
+      })
+      .catch((error) => {
+        console.log('Error fetching product style in relatedProductsList', error);
+      });
   }
 
   componentDidMount() {
@@ -57,11 +69,11 @@ class RelatedProductsList extends React.Component {
 
   render() {
     return (
-    <div id="relatedProductsList">
-      <h3>RELATED PRODUCTS</h3>
-      {this.state.productIdOfCurrentPage}
-      <ProductCard />
-    </div>
+      <div id="relatedProductsList">
+        <h3>RELATED PRODUCTS</h3>
+        {this.state.productIdOfCurrentPage}
+        <ProductCard relatedProductsInfo={this.state.relatedProductsInfo}/>
+      </div>
     );
   }
 }
