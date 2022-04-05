@@ -28,12 +28,12 @@ class ReviewList extends React.Component{
     }
 
     getReviewinfo() {
-        axios.get(`/reviews/${this.props.id}`)
+        axios.get(`/reviews/?product_id=${this.props.id}`)
         .then((output)=> {
             // console.log(output.data, 'received from API');
             this.setState({
-                currentReview : output.data,
-                whatShowing: output.data.slice(0,2)
+                currentReview : output.data.results,
+                whatShowing: output.data.results.slice(0,2)
             })
         })
         .catch(err => console.log(err));
