@@ -20,9 +20,9 @@ class Overview extends React.Component {
   }
 
   getProductInformation(product_id) {
-    axios.get(`${uri}/products/${product_id}`, { headers })
-      .then((data) => {
-        // console.log('getProductInformation', data.data);
+    axios.get(`/products/${product_id}`)
+      .then((res) => {
+        console.log('getProductInformation', res.data);
       })
       .catch((err) => {
         // console.error('getProductInformation', err);
@@ -31,7 +31,8 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="overview">
+        <h1>Overview</h1>
         <ImageGallery />
         <ProductInformation />
         <StyleSelector />
