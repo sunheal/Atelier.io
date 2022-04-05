@@ -14,6 +14,7 @@ class RelatedProductsList extends React.Component {
     super(props);
     this.state = {
       productIdOfCurrentPage: props.productID,
+      selectedProductID: null,
       relatedProducts: []
     };
   }
@@ -37,6 +38,16 @@ class RelatedProductsList extends React.Component {
     })
     .catch((error) => {
       console.log('Error fetching related products in relatedProductsList', error);
+    });
+  }
+
+  getProductStyle(id) {
+    axios.get(`/products/${id}/related`)
+    .then((result) => {
+      console.log('Product Style ==== ', result.data);
+    })
+    .catch((error) => {
+      console.log('Error fetching product style in relatedProductsList', error);
     });
   }
 
