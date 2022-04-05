@@ -6,13 +6,15 @@ import OutfitList from './OutfitList.jsx';
 class ListsWrapper extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      productID: 64620
+    };
   }
 
   render() {
     return (
       <div id="related_products">
-        <RelatedProductsList />
+        <RelatedProductsList productID={this.state.productID} />
         <OutfitList />
       </div>
     );

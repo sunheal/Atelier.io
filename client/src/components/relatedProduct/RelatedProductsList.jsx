@@ -9,22 +9,23 @@ import Carousel from './Carousel.jsx';
 // realted products list are the same each time load
 // action button - star icon => open modal window comparing the DETAILS of products (current page product vs selected product from the list)
 
-const productID = 64620;
+// const productID = 64620;
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productOfCurrentPage: ''
+      productIdOfCurrentPage: props.productID
     };
   }
 
+
   componentDidMount() {
-    axios.get(`products/${productID}`)
-      .then((data) => {
-        console.log('hello data',data.data);
+    axios.get(`/products/${this.state.productIdOfCurrentPage}/related`)
+      .then((result) => {
+        console.log('related products',result.data);
         // this.setState = ({
-        //   productOfCurrentPage: data
+        //   productOfCurrentPage: result.data.id
         // })
       })
       .catch((error) => {

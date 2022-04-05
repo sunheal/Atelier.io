@@ -10,20 +10,35 @@ app.use(express.urlencoded({ extended: 'true' }));
 // GET a single product.
 app.get('/products/:product_id', (req, res) => {
   var id = parseInt(req.params.product_id);
-  console.log('receive params', id)
+  // console.log('receive params', id)
   productsAPI.getSingleProduct(id)
     .then(result => {
-        console.log('api data', result.data)
+        // console.log('api data', result.data)
       res.status(201).send(result.data);
     })
     .catch(err => {
-        console.log(err)
+      console.log(err)
       res.status(500).send(err);
     })
-})
+});
+
+// GET related products
+app.get('/products/:product_id/related', (req, res) => {
+  var id = parseInt(req.params.product_id);
+  console.log('receive params', id)
+  productsAPI.getRelatedProductsId(id)
+    .then(result => {
+        console.log('api data', result.data)
+      // res.status(201).send(result.data);
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).send(err);
+    })
+});
 
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`);
-})
+});
 
 
