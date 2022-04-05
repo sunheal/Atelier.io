@@ -9,8 +9,6 @@ import Carousel from './Carousel.jsx';
 // realted products list are the same each time load
 // action button - star icon => open modal window comparing the DETAILS of products (current page product vs selected product from the list)
 
-// const productID = 64620;
-
 class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +48,7 @@ class RelatedProductsList extends React.Component {
     return (
     <div id="relatedProductsList">
       <h3>RELATED PRODUCTS</h3>
-      {this.state.productOfCurrentPage}
+      {this.state.productIdOfCurrentPage}
       <ProductCard />
     </div>
     );
