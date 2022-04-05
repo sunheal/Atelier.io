@@ -18,8 +18,6 @@ class RR_app extends React.Component {
                 </div>
                 <div className="rightOfRR"> 
                     <ReviewList />
-                    <button className="moreReview"> More Review </button>
-                    <button className="addReview"> Add Review </button>
                 </div>
 
             </div>  
