@@ -5,7 +5,7 @@ import Answers from "./Answers.jsx";
 class QuestionCard extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props.answers)
+    // console.log(props.answers)
     this.state= {
       showMoreAnswers: false,
       tempAnswers: Object.values(this.props.answers).slice(0,2)
@@ -22,7 +22,7 @@ class QuestionCard extends React.Component {
   render() {
     const { question_body, answers } = this.props;
     const {showMoreAnswers, tempAnswers} = this.state
-    console.log(tempAnswers);
+    // console.log(tempAnswers);
 
     return (
       <div>
