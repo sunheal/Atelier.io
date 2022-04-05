@@ -24,7 +24,7 @@ class QuestionsList extends Component {
       return response.data
     })
     .then((res)=>{
-      console.log(res)
+      // console.log(res)
       this.setState({
         questions:res,
         id:res.product_id
