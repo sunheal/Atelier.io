@@ -48,15 +48,15 @@ class RelatedProductsList extends React.Component {
   //     });
   // }
 
-  getProductStyle(id) {
-    axios.get(`/products/${id}/styles`)
-      .then((result) => {
-        console.log('Product Style ==== ', result.data);
-      })
-      .catch((error) => {
-        console.log('Error fetching product style in relatedProductsList', error);
-      });
-  }
+  // getProductStyle(id) {
+  //   axios.get(`/products/${id}/styles`)
+  //     .then((result) => {
+  //       console.log('Product Style ==== ', result.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error fetching product style in relatedProductsList', error);
+  //     });
+  // }
 
   render() {
     return (
