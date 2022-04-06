@@ -12,14 +12,14 @@ import React from "react";
     //         selectedOpt: input,
     //     })
     // }
-const ReviewListView =({reviews}) => {
+const ReviewListView =({reviews, starhelper,starsArr}) => {
     return (
         <div>
             {reviews.map((review,index) => {
                 return (
                 <div className="individualReview_container" key={index}>
                     <div className="starContainer">
-                        <div className="indiStar"> Star </div> 
+                        <div className="indiStar"> {starhelper(review.rating, starsArr)} </div> 
                         <div className="userAndPostdate"> {review.reviewer_name}, {review.date.slice(0,10)}</div>
                         <div className="spaceBetweenRev"> </div>
                     </div>

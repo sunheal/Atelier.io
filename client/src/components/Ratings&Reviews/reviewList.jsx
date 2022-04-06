@@ -97,7 +97,7 @@ class ReviewList extends React.Component{
                             <option value='newest'> newest </option>
                             <option value='helpful'> helpful </option>
                         </select>
-                    </p><ReviewListView reviews={this.state.whatShowing} /> 
+                    </p><ReviewListView reviews={this.state.whatShowing} starhelper={this.props.starhelper} starsArr={this.props.starsArr}/> 
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview"> Add Review </button>
                    </div>
