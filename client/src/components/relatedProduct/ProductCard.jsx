@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from './Modal.jsx';
+import PreviewImages from './ProductCard/PreviewImages.jsx';
+import Stars from './ProductCard/Stars.jsx';
 
 // expect props.list is an array of objects
 // each card displays info for a single product
@@ -12,7 +14,14 @@ class ProductCard extends React.Component {
     this.state = {
       productInfo: {},
       productStyle: {},
-      defaultStyle: '',
+      defaultStyle: {
+        photos: [
+          {
+            "thumbnail_url": null,
+            "url": null
+          }
+        ]
+      },
       productRating: null,
     };
   }
@@ -60,44 +69,47 @@ class ProductCard extends React.Component {
 
   getProductRatings() {
     axios.get(`/reviews/meta`, { params: { product_id: this.props.productID } })
-    .then((response) => {
-      // check if there is a rating
-      var ratings = response.data.ratings;
-      if (Object.keys(ratings).length > 0) {
-        var total = 0;
-        var amount = 0;
-        for( var key in ratings) {
-          total += (parseInt(key) * parseInt(ratings[key]));
-          amount += parseInt(ratings[key]);
+      .then((response) => {
+        // check if there is a rating
+        var ratings = response.data.ratings;
+        if (Object.keys(ratings).length > 0) {
+          var total = 0;
+          var amount = 0;
+          for (var key in ratings) {
+            total += (parseInt(key) * parseInt(ratings[key]));
+            amount += parseInt(ratings[key]);
+          }
+          var average = total / amount;
+          this.setState({
+            productRating: average.toFixed(2)
+          })
         }
-        var average = total/amount;
-        this.setState({
-          productRating: average.toFixed(2)
-        })
-      }
-    })
-    .catch((error) => {
-      console.log('Get product review failed...', error);
-    })
+      })
+      .catch((error) => {
+        console.log('Get product review failed...', error);
+      })
   }
 
 
   render() {
-    const { productInfo, productRating, defaultStyle, productStyle} = this.state;
+    const { productInfo, productRating, defaultStyle, productStyle } = this.state;
     const { productID, productInfoOfCurrentPage } = this.props;
     return (
-      <div >
-        <div className="preview-image"><img alt="Product"></img></div>
-        <br></br>
-        <span>{productInfo.category}</span>
-        <br></br>
-        <span>{productInfo.name}</span>
-        <br></br>
-        <span>${productInfo.default_price}</span>
-        <br></br>
-        <span>{productRating}</span>
-        <br></br>
+      <div className="productCard">
         <button> action button </button>
+        <PreviewImages currentStyle={defaultStyle} productID={productID} />
+        <br></br>
+        <div className="productInfo">
+          <span className="productInfo-category">{productInfo.category}</span>
+          <br></br>
+          <span className="productInfo-name">{productInfo.name}</span>
+          <br></br>
+          <span className="productInfo-price">${productInfo.default_price}</span>
+          <br></br>
+          <Stars rating={productRating} />
+          {/* <span className="productInfo-star">{productRating}</span> */}
+        </div>
+        <br></br>
       </div>
     );
   }
