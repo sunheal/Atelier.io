@@ -10,7 +10,7 @@ import React from "react";
     //     });
     //     this.setState({
     //         selectedOpt: input,
-    //     })
+    //     }) starhelper(review.rating, starsArr)
     // }
 const ReviewListView =({reviews, starhelper,starsArr}) => {
     return (

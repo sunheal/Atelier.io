@@ -59,7 +59,7 @@ class RR_app extends React.Component {
                 rating -= 0.5;
                 count += 1;
                 randomkey++;
-            }else if (rating >= 0.25 % rating < 1) {
+            }else if (rating >= 0.25 && rating < 1) {
                 result.push(<img src = {starsArr[1]} key={randomkey}/>);
                 rating -= 0.25;
                 count += 1;
