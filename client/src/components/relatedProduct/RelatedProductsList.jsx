@@ -15,43 +15,42 @@ class RelatedProductsList extends React.Component {
     this.state = {
       productIdOfCurrentPage: props.productID,
       selectedProductID: null,
-      relatedProductsID: [],
       relatedProductsInfo: []
     };
   }
 
   // navigate to product detail page when click
-  navigateToNewProductPage(e) {
-    this.setState({
-      productIdOfCurrentPage: e.target.id
-    })
-  }
+  // navigateToNewProductPage(e) {
+  //   this.setState({
+  //     productIdOfCurrentPage: e.target.id
+  //   })
+  // }
 
-  putRelatedProductsInfoTogether(id) {
-     axios.get(`/products/${id}`)
+  getSingleProductInfo(id) {
+    axios.get(`/products/${id}`)
       .then((result) => {
-        this.state.relatedProductsInfo.push(result.data)
+        return result.data;
+      })
+      .then(data => {
+        console.log('data', data)
+        return data;
       })
       .catch((error) => {
         console.log('Error fetching single product details in relatedProductsList', error);
       });
   }
 
-  getRelatedProductsID(id) {
-    axios.get(`/products/${id}/related`)
-      .then((result) => {
-        this.setState({
-          relatedProductsID: result.data
-        }, () => {
-          this.state.relatedProductsID.map(id => {
-            this.putRelatedProductsInfoTogether(id);
-          })
-        })
-      })
-      .catch((error) => {
-        console.log('Error fetching related products in relatedProductsList', error);
-      });
-  }
+  // getRelatedProductsID(id) {
+  //   axios.get(`/products/${id}/related`)
+  //     .then((result) => {
+  //       this.setState({
+  //         relatedProductsID: result.data
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error fetching related products in relatedProductsList', error);
+  //     });
+  // }
 
   getProductStyle(id) {
     axios.get(`/products/${id}/related`)
@@ -64,15 +63,20 @@ class RelatedProductsList extends React.Component {
   }
 
   componentDidMount() {
-    this.getRelatedProductsID(this.state.productIdOfCurrentPage);
+
   }
 
   render() {
+    this.props.relatedProductsID.map(id => {
+      console.log('id = ', id)
+      this.getSingleProductInfo(id);
+    })
+
     return (
       <div id="relatedProductsList">
         <h3>RELATED PRODUCTS</h3>
         {this.state.productIdOfCurrentPage}
-        <ProductCard relatedProductsInfo={this.state.relatedProductsInfo}/>
+
       </div>
     );
   }
