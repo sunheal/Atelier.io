@@ -13,9 +13,8 @@ class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productIdOfCurrentPage: props.productID,
-      selectedProductID: null,
-      relatedProductsInfo: []
+      productIdOfCurrentPage: this.props.productID,
+      comparedProductID: 64621
     };
   }
 
@@ -26,19 +25,16 @@ class RelatedProductsList extends React.Component {
   //   })
   // }
 
-  getSingleProductInfo(id) {
-    axios.get(`/products/${id}`)
-      .then((result) => {
-        return result.data;
-      })
-      .then(data => {
-        console.log('data', data)
-        return data;
-      })
-      .catch((error) => {
-        console.log('Error fetching single product details in relatedProductsList', error);
-      });
-  }
+  // getSingleProductInfo(id) {
+  //   axios.get(`/products/${id}`)
+  //     .then((result) => {
+  //       console.log(result.data);
+  //       // this.state.relatedProductsInfo.push(result.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error fetching single product details in relatedProductsList', error);
+  //     });
+  // }
 
   // getRelatedProductsID(id) {
   //   axios.get(`/products/${id}/related`)
@@ -53,7 +49,7 @@ class RelatedProductsList extends React.Component {
   // }
 
   getProductStyle(id) {
-    axios.get(`/products/${id}/related`)
+    axios.get(`/products/${id}/styles`)
       .then((result) => {
         console.log('Product Style ==== ', result.data);
       })
@@ -62,21 +58,14 @@ class RelatedProductsList extends React.Component {
       });
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
-    this.props.relatedProductsID.map(id => {
-      console.log('id = ', id)
-      this.getSingleProductInfo(id);
-    })
-
     return (
       <div id="relatedProductsList">
         <h3>RELATED PRODUCTS</h3>
         {this.state.productIdOfCurrentPage}
-
+        {this.props.relatedProductsIDs.map(productID => (
+          <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={this.props.selectedProductInfo} />
+        ))}
       </div>
     );
   }

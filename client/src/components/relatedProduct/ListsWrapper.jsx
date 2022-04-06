@@ -9,15 +9,15 @@ class ListsWrapper extends React.Component {
     super(props);
     this.state = {
       productID: props.productID,
-      relatedProductsID: []
+      relatedProductsIDs: []
     };
   }
 
-  getRelatedProductsID(id) {
+  getRelatedProductIDs(id) {
     axios.get(`/products/${id}/related`)
       .then((result) => {
         this.setState({
-          relatedProductsID: result.data
+          relatedProductsIDs: result.data
         })
       })
       .catch((error) => {
@@ -26,14 +26,14 @@ class ListsWrapper extends React.Component {
   }
 
   componentDidMount() {
-    this.getRelatedProductsID(this.state.productID);
+    this.getRelatedProductIDs(this.state.productID);
   }
 
 
   render() {
     return (
       <div id="related_products">
-        <RelatedProductsList relatedProductsID={this.state.relatedProductsID} productID={this.state.productID}/>
+        <RelatedProductsList relatedProductsIDs={this.state.relatedProductsIDs} productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo}/>
         <OutfitList />
       </div>
     );

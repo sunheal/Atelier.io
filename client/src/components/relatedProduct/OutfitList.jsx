@@ -23,7 +23,7 @@ class OutfitList extends React.Component {
     <div id="outfitList">
       <h3>YOUR OUTFIT</h3>
       <button> Add to Outfit </button>
-      <ProductCard />
+      {/* <ProductCard /> */}
     </div>
     );
   }
