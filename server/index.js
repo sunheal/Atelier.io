@@ -32,12 +32,7 @@ app.get('/*', (req, res) => {
 
 
 app.listen(PORT, () => {
-<<<<<<< HEAD
     console.log(`listening on localhost at ${PORT}`);
 })
-=======
-    console.log(`listening on ${PORT}`);
-});
->>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
 
 

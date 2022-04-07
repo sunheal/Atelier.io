@@ -15,7 +15,7 @@ class App extends React.Component {
             selectedProductInfo: {}
         }
     }
- 
+
 
     getAllProducts () {
         axios.get('/products/')
@@ -25,7 +25,7 @@ class App extends React.Component {
                 })
             })
             .catch((error) => {
-                console.log('Error fetching single product details in relatedProductsList', error);
+                console.log('Error fetching single product details in App', error);
             });
     }
 
@@ -37,7 +37,7 @@ class App extends React.Component {
                 })
             })
             .catch((error) => {
-                console.log('Error fetching single product details in relatedProductsList', error);
+                console.log('Error fetching single product details in App', error);
             });
     }
 
@@ -49,7 +49,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="app"
+            <div className="app">
             <p id="logo"> Good Deals Only </p>
             <Overview />
             <ListsWrapper productID={this.state.productID}  selectedProductInfo={this.state.selectedProductInfo}/>
