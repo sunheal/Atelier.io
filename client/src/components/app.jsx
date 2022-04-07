@@ -10,13 +10,9 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-<<<<<<< HEAD
-            product_id: 64620
-=======
             productID: 64620,
             allProducts: [],
             selectedProductInfo: {}
->>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
         }
     }
  
@@ -53,20 +49,12 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="app">
-<<<<<<< HEAD
+            <div className="app"
             <p id="logo"> Good Deals Only </p>
             <Overview />
-            <ListsWrapper />
+            <ListsWrapper productID={this.state.productID}  selectedProductInfo={this.state.selectedProductInfo}/>
             <QandA/>
-            <RR_app id={this.state.product_id}/>
-=======
-                <p id="logo"> Good Deals Only </p>
-                <Overview />
-                <ListsWrapper productID={this.state.productID}  selectedProductInfo={this.state.selectedProductInfo}/>
-                <QandA />
-                <RR_app />
->>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
+            <RR_app id={this.state.productID}/>
             </div>
         )
     }
