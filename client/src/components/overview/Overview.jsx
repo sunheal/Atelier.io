@@ -10,22 +10,57 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: 64620
+      id: 64620,
+      information: {},
+      styles: {},
+      ratings: '',
+      reviewsCount: ''
     }
   }
 
   componentDidMount() {
-    let product_id = this.state.product_id;
-    this.getProductInformation(product_id);
+    let id = this.state.id;
+    this.getProductInformation(id);
+    this.getProductStyles(id);
+    this.getProductRatings(id);
   }
 
-  getProductInformation(product_id) {
-    axios.get(`/products/${product_id}`)
+  getProductInformation = (id) => {
+    axios.get(`/products/${id}`)
       .then((res) => {
-        console.log('getProductInformation', res.data);
+        const information = res.data;
+        this.setState({ information });
       })
       .catch((err) => {
         console.error('getProductInformation', err);
+      })
+  }
+
+  getProductStyles = (id) => {
+    axios.get(`/products/${id}/styles`)
+      .then((res) => {
+        const styles = res.data;
+        this.setState({ styles });
+      })
+      .catch((err) => {
+        console.error('getProductStyles', err);
+      })
+  }
+
+  getProductReviews = (id) => {
+    aixos.get(`/reviews/?sort='newest'&product_id=${id}`)
+  }
+
+  getProductRatings = (id) => {
+    axios.get(`/reviews/meta/?product_id=${id}`)
+      .then((res) => {
+        console.log('getProductRatings', res.data.ratings['1']);
+        const reviewsCount = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
+        const ratings = ((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / reviewsCount).toFixed(2);
+        this.setState({ ratings, reviewsCount });
+      })
+      .catch((err) => {
+        console.error('getProductRatings', err);
       })
   }
 
@@ -34,7 +69,7 @@ class Overview extends React.Component {
       <div id="overview">
         <h1>Overview</h1>
         <ImageGallery />
-        <ProductInformation />
+        <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
         <StyleSelector />
         <AddToCart />
       </div>
