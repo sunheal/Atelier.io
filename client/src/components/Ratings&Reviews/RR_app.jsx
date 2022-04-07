@@ -29,12 +29,20 @@ class RR_app extends React.Component {
         .then((output)=> {
             console.log(output.data.results, 'received from API');
             let resArr = output.data.results;
-            let total_rating = resArr.reduce((prev, curr)=> prev + curr.rating, 0);
-            let avg = (total_rating/resArr.length).toFixed(2);
-            console.log(avg, 'avg');
-            this.setState({
-                rating: avg
-            })
+            if(resArr.length === 0) {
+                console.log('00000');
+                this.setState({
+                    rating : 0
+                })
+            }else {
+                let total_rating = resArr.reduce((prev, curr)=> prev + curr.rating, 0);
+                let avg = (total_rating/resArr.length).toFixed(2);
+                console.log(avg, 'avg');
+                this.setState({
+                    rating: avg
+                })
+            }
+           
         })
         .catch(err => console.log(err));
     }
