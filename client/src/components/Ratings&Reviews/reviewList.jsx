@@ -42,17 +42,17 @@ class ReviewList extends React.Component{
         let input = event.target.value;
         let sorted= [];
         if(input === 'newest') {
-            sorted = this.state.currentReview.sort((a,b) => {
+            sorted = this.state.whatShowing.sort((a,b) => {
                 return new Date(b.date) - new Date(a.date)
             });
         }
         if (input === 'helpful') {
-            sorted = this.state.currentReview.sort((a,b) => {
+            sorted = this.state.whatShowing.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
             });
         } 
         if(input === 'relevance') {
-            sorted = this.state.currentReview.sort((a,b) => {
+            sorted = this.state.whatShowing.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
             });
             sorted.sort((a,b) => {
@@ -61,10 +61,10 @@ class ReviewList extends React.Component{
         }
         if(input === 'Select Your Sort') {
             this.getReviewinfo();
-            sorted = this.state.currentReview;
+            sorted = this.state.whatShowing;
         }
         this.setState({
-            currentReview: sorted,
+            whatShowing: sorted,
         })
     }
     appendReview() {

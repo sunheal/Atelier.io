@@ -25,23 +25,39 @@ class RR_app extends React.Component {
     }
 
     getRating() {
-        axios.get(`/reviews/?product_id=${this.props.id}`)
+        axios.get(`/reviews/meta/?product_id=${this.props.id}`)
         .then((output)=> {
-            console.log(output.data.results, 'received from API');
-            let resArr = output.data.results;
-            if(resArr.length === 0) {
-                console.log('00000');
+            console.log(output.data.ratings, 'received from API Rating');
+            let resObj = output.data.ratings;
+            if(Object.keys(resObj).length === 0) {
                 this.setState({
                     rating : 0
                 })
             }else {
-                let total_rating = resArr.reduce((prev, curr)=> prev + curr.rating, 0);
-                let avg = (total_rating/resArr.length).toFixed(2);
-                console.log(avg, 'avg');
+                let total = 0, count = 0, avg = 0;
+                for(var keys in resObj) {
+                    total += resObj[keys] * Number(keys)
+                    count += Number(resObj[keys]);
+                }
+                avg = (total / count).toFixed(1);
                 this.setState({
                     rating: avg
                 })
             }
+            
+            // if(resArr.length === 0) {
+            //     console.log('00000');
+            //     this.setState({
+            //         rating : 0
+            //     })
+            // }else {
+            //     let total_rating = resArr.reduce((prev, curr)=> prev + curr.rating, 0);
+            //     let avg = (total_rating/resArr.length).toFixed(2);
+            //     console.log(avg, 'avg');
+            //     this.setState({
+            //         rating: avg
+            //     })
+            // }
            
         })
         .catch(err => console.log(err));
