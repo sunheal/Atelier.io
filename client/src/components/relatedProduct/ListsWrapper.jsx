@@ -31,9 +31,17 @@ class ListsWrapper extends React.Component {
 
 
   render() {
+    const containerStyle = {
+      'border-color': 'grey',
+      'border-style': 'solid',
+      'margin': '10px 5% 10px'
+    }
+
     return (
-      <div id="related_products">
+      <div style={containerStyle} id="related_products">
+        <h3>RELATED PRODUCTS</h3>
         <RelatedProductsList relatedProductsIDs={this.state.relatedProductsIDs} productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo}/>
+        <h3>YOUR OUTFIT</h3>
         <OutfitList />
       </div>
     );

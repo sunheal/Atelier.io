@@ -59,10 +59,13 @@ class RelatedProductsList extends React.Component {
   // }
 
   render() {
+    const containerStyle = {
+      'border-color': 'black',
+      'border-style': 'solid',
+      'margin': '10px 3% 10px'
+    }
     return (
-      <div id="relatedProductsList">
-        <h3>RELATED PRODUCTS</h3>
-        {this.state.productIdOfCurrentPage}
+      <div style={containerStyle} id="relatedProductsList">
         {this.props.relatedProductsIDs.map(productID => (
           <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={this.props.selectedProductInfo} />
         ))}

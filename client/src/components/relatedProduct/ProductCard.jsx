@@ -3,6 +3,7 @@ import axios from 'axios';
 import Modal from './Modal.jsx';
 import PreviewImages from './ProductCard/PreviewImages.jsx';
 import Stars from './ProductCard/Stars.jsx';
+// import './ProductCard/ProductCardStyle.css';
 
 // expect props.list is an array of objects
 // each card displays info for a single product
@@ -92,24 +93,32 @@ class ProductCard extends React.Component {
 
 
   render() {
+    const containerStyle = {
+      'display': 'inline-block',
+      'margin': '0px 10px',
+      'border-color': 'blue',
+      'border-style': 'solid'
+    }
+    const productInfoStyle = {
+      'display': 'block'
+    }
     const { productInfo, productRating, defaultStyle, productStyle } = this.state;
     const { productID, productInfoOfCurrentPage } = this.props;
     return (
-      <div className="productCard">
+      <div style={containerStyle} className="productCard">
         <button> action button </button>
+        <br></br>
         <PreviewImages currentStyle={defaultStyle} productID={productID} />
         <br></br>
-        <div className="productInfo">
+        <div style={productInfoStyle} className="productInfo">
           <span className="productInfo-category">{productInfo.category}</span>
           <br></br>
           <span className="productInfo-name">{productInfo.name}</span>
           <br></br>
-          <span className="productInfo-price">${productInfo.default_price}</span>
+          <span className="productInfo-price">${productInfo.defaspant_price}</span>
           <br></br>
           <Stars rating={productRating} />
-          {/* <span className="productInfo-star">{productRating}</span> */}
         </div>
-        <br></br>
       </div>
     );
   }

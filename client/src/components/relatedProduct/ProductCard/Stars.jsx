@@ -29,7 +29,7 @@ const Stars = (props) => {
     return null;
   } else {
     return (
-      <span style={containerStyle}>
+      <span className="productInfo-rating" style={containerStyle}>
         <span style={starStyle}>★★★★★</span>
         <span style={emptyStarStyle}>☆☆☆☆☆</span>
       </span>
