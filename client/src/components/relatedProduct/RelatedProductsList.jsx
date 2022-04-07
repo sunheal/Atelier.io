@@ -9,36 +9,27 @@ import Carousel from './Carousel.jsx';
 // realted products list are the same each time load
 // action button - star icon => open modal window comparing the DETAILS of products (current page product vs selected product from the list)
 
-const productID = 64620;
-
 class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productOfCurrentPage: ''
+      productIdOfCurrentPage: this.props.productID,
+      comparedProductID: 64621
     };
   }
 
-  componentDidMount() {
-    axios.get(`products/${productID}`)
-      .then((data) => {
-        console.log('hello data',data.data);
-        // this.setState = ({
-        //   productOfCurrentPage: data
-        // })
-      })
-      .catch((error) => {
-        console.log('Error fetching product details in relatedProductsList', error);
-      });
-  }
-
   render() {
+    const containerStyle = {
+      'border-color': 'black',
+      'border-style': 'solid',
+      'margin': '10px 3% 10px'
+    }
     return (
-    <div id="relatedProductsList">
-      <h3>RELATED PRODUCTS</h3>
-      {this.state.productOfCurrentPage}
-      <ProductCard />
-    </div>
+      <div style={containerStyle} id="relatedProductsList">
+        {this.props.relatedProductsIDs.map(productID => (
+          <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={this.props.selectedProductInfo} />
+        ))}
+      </div>
     );
   }
 }
