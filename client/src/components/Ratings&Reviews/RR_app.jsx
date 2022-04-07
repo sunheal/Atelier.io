@@ -23,7 +23,7 @@ class RR_app extends React.Component {
     componentDidMount() {
         this.getRating();
     }
-
+    
     getRating() {
         axios.get(`/reviews/meta/?product_id=${this.props.id}`)
         .then((output)=> {
