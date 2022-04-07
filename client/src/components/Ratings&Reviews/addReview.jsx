@@ -8,8 +8,14 @@ class AddReview extends React.Component {
 
     render() {
         return (
-            <Modal isOpen={this.props.show} ariaHideApp={false}>
+            <Modal className="reviewModal" isOpen={this.props.show} ariaHideApp={false}>
                 <h1> Hello </h1>
+                <form> 
+                    <label> Name: 
+                    <input type= 'text' />
+                    </label>
+                   
+                </form>
                 <button onClick={this.props.onShowModal}> Close </button>
             </Modal>
             )

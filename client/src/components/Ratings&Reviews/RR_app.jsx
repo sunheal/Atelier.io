@@ -1,4 +1,5 @@
 import React from "react";
+import Stars from "../Shared/Stars.jsx";
 import StarsAndBreakdown from "./stars&breakdown.jsx";
 import ReviewList from "./reviewList.jsx";
 import axios from "axios";
@@ -101,7 +102,10 @@ class RR_app extends React.Component {
             <div className="ReviewContainer">
                 <h1>RATINGS &amp; Reviews</h1> 
                 <div className="leftOfRR"> 
-                    <StarsAndBreakdown rating={this.state.rating} stars={() => this.arrangeStar(this.state.rating, this.state.stars)}/> 
+               <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > 
+                {/* <div > <p > {rating} </p> <Stars rating = {this.state.rating} /> </div> */}
+                    
+                    {/* <StarsAndBreakdown rating={this.state.rating} stars={() => this.arrangeStar(this.state.rating, this.state.stars)}/>  */}
                 </div>
                 <div className="rightOfRR"> 
                     <ReviewList id={this.props.id} starhelper={this.arrangeStar} starsArr={this.state.stars}/>

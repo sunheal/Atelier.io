@@ -49,3 +49,12 @@ body {
     margin: 1%;
     font-size: 15px;
 }
+.reviewModal{
+    height: 300px;
+    width: 500px;
+    background-color: aqua;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+}

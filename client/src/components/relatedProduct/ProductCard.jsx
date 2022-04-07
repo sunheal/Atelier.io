@@ -95,8 +95,8 @@ class ProductCard extends React.Component {
     const containerStyle = {
       'display': 'inline-block',
       'margin': '0px 10px',
-      'border-color': 'blue',
-      'border-style': 'solid'
+      'borderColor': 'blue',
+      'borderStyle': 'solid'
     }
     const productInfoStyle = {
       'display': 'block'
