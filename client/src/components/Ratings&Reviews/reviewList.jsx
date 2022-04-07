@@ -14,7 +14,7 @@ import AddReview from './/addReview.jsx';
 // };
 
 class ReviewList extends React.Component{
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +29,12 @@ class ReviewList extends React.Component{
         this.onShowModal = this.onShowModal.bind(this);
     }
     componentDidMount() {
+<<<<<<< HEAD
         this.getReviewinfo();
+=======
+        this.getReview();
+        // console.log(this.state.currentReview, 'reviessssss')
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
     }
 
     onShowModal() {
@@ -45,11 +50,19 @@ class ReviewList extends React.Component{
                 currentReview : output.data.results,
                 whatShowing: output.data.results.slice(0,2)
             })
+<<<<<<< HEAD
+=======
+            // console.log(output.data.results, 'after getreview')
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
         })
         .catch(err => console.log(err));
-    } 
+    }
     changeSort(event) {
         let input = event.target.value;
+<<<<<<< HEAD
+=======
+        // console.log(input, 'input');
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
         let sorted= [];
         if(input === 'newest') {
             sorted = this.state.whatShowing.sort((a,b) => {
@@ -60,7 +73,7 @@ class ReviewList extends React.Component{
             sorted = this.state.whatShowing.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
             });
-        } 
+        }
         if(input === 'relevance') {
             sorted = this.state.whatShowing.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
@@ -98,7 +111,7 @@ class ReviewList extends React.Component{
 
     render() {
         return (
-            <div> 
+            <div>
                 {(this.state.currentReview.length === 0) ? <div><button className="addReview"> Add Review </button> </div>
                 :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by
                         <select className="sortSelect" onChange={this.changeSort}>
@@ -107,7 +120,11 @@ class ReviewList extends React.Component{
                             <option value='newest'> newest </option>
                             <option value='helpful'> helpful </option>
                         </select>
+<<<<<<< HEAD
                     </p><ReviewListView reviews={this.state.whatShowing} starhelper={this.props.starhelper} starsArr={this.props.starsArr}/> 
+=======
+                    </p><ReviewListView reviews={this.state.whatShowing} />
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview" onClick={this.onShowModal}> Add Review </button>
                    {/* {this.state.showModal ? (<div> <AddReview show={this.state.showModal} /> 
@@ -121,7 +138,7 @@ class ReviewList extends React.Component{
 
                    </div>
  }
-            
+
             </div>
         )
     }

@@ -32,7 +32,7 @@ class Overview extends React.Component {
         this.setState({ information });
       })
       .catch((err) => {
-        console.error('getProductInformation', err);
+        // console.error('getProductInformation', err);
       })
   }
 
