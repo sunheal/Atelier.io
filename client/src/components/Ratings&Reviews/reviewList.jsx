@@ -1,59 +1,81 @@
 import React from "react";
 import ReviewListView from "./reviewListView.jsx";
 import axios from "axios";
-import config from "../../../../config.js";
-import DefaultReviews from "./DefaultReviews.js";
+import AddReview from './/addReview.jsx';
+// import Modal from 'react-modal';
 
-const host = ' https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
-const headers = {
-  'Authorization' : `${config.TOKEN}`
-};
+// import config from "../../../../config.js";
+// import DefaultReviews from "./DefaultReviews.js";
+// import productsAPI from '../../../../server/api/products.js';
+
+// const host = ' https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+// const headers = {
+//   'Authorization' : `${config.TOKEN}`
+// };
 
 class ReviewList extends React.Component{
-    
+
     constructor(props) {
         super(props);
         this.state = {
-            productID : 64660,
+            // productID : 64660,
+            showModal: false,
             currentReview : [],
             whatShowing : []
         }
-        this.getReview = this.getReview.bind(this);
+        this.getReviewinfo = this.getReviewinfo.bind(this);
         this.changeSort = this.changeSort.bind(this);
         this.appendReview = this.appendReview.bind(this);
+        this.onShowModal = this.onShowModal.bind(this);
     }
     componentDidMount() {
+<<<<<<< HEAD
+        this.getReviewinfo();
+=======
         this.getReview();
-        console.log(this.state.currentReview, 'reviessssss')
+        // console.log(this.state.currentReview, 'reviessssss')
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
     }
 
-    getReview() {
-        axios.get(`${host}/reviews?count=5&sort='newest'&product_id=${this.state.productID}`, {headers})
+    onShowModal() {
+        this.setState ({
+            showModal : !this.state.showModal
+        })
+    }
+    getReviewinfo() {
+        axios.get(`/reviews/?product_id=${this.props.id}`)
         .then((output)=> {
+            console.log(output.data.results, 'received from API');
             this.setState({
                 currentReview : output.data.results,
                 whatShowing: output.data.results.slice(0,2)
             })
-            console.log(output.data.results, 'after getreview')
+<<<<<<< HEAD
+=======
+            // console.log(output.data.results, 'after getreview')
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
         })
         .catch(err => console.log(err));
-    } 
+    }
     changeSort(event) {
         let input = event.target.value;
-        console.log(input, 'input');
+<<<<<<< HEAD
+=======
+        // console.log(input, 'input');
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
         let sorted= [];
         if(input === 'newest') {
-            sorted = this.state.currentReview.sort((a,b) => {
+            sorted = this.state.whatShowing.sort((a,b) => {
                 return new Date(b.date) - new Date(a.date)
             });
         }
         if (input === 'helpful') {
-            sorted = this.state.currentReview.sort((a,b) => {
+            sorted = this.state.whatShowing.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
             });
-        } 
+        }
         if(input === 'relevance') {
-            sorted = this.state.currentReview.sort((a,b) => {
+            sorted = this.state.whatShowing.sort((a,b) => {
                 return b.helpfulness - a.helpfulness
             });
             sorted.sort((a,b) => {
@@ -61,11 +83,11 @@ class ReviewList extends React.Component{
             });
         }
         if(input === 'Select Your Sort') {
-            this.getReview();
-            sorted = this.state.currentReview;
+            this.getReviewinfo();
+            sorted = this.state.whatShowing;
         }
         this.setState({
-            currentReview: sorted,
+            whatShowing: sorted,
         })
     }
     appendReview() {
@@ -89,7 +111,7 @@ class ReviewList extends React.Component{
 
     render() {
         return (
-            <div> 
+            <div>
                 {(this.state.currentReview.length === 0) ? <div><button className="addReview"> Add Review </button> </div>
                 :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by
                         <select className="sortSelect" onChange={this.changeSort}>
@@ -98,12 +120,25 @@ class ReviewList extends React.Component{
                             <option value='newest'> newest </option>
                             <option value='helpful'> helpful </option>
                         </select>
-                    </p><ReviewListView reviews={this.state.whatShowing} /> 
+<<<<<<< HEAD
+                    </p><ReviewListView reviews={this.state.whatShowing} starhelper={this.props.starhelper} starsArr={this.props.starsArr}/> 
+=======
+                    </p><ReviewListView reviews={this.state.whatShowing} />
+>>>>>>> 0a24f0a5b926b5cece304bfad54519ceb05cee5d
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
-                   <button className="addReview"> Add Review </button>
+                   <button className="addReview" onClick={this.onShowModal}> Add Review </button>
+                   {/* {this.state.showModal ? (<div> <AddReview show={this.state.showModal} /> 
+                                                  <button className="closeAdd" onClick={this.onShowModal}> close </button>
+                   </div>) :null}  */}
+                    {/* <Modal isOpen={this.state.showModal}> 
+                        <h2> here you go </h2>
+                        <button onClick={this.onShowModal}> Close </button>
+                    </Modal> */}
+                    <AddReview show={this.state.showModal} onShowModal={this.onShowModal}/>
+
                    </div>
  }
-            
+
             </div>
         )
     }

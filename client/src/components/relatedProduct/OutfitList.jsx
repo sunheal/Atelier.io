@@ -19,11 +19,15 @@ class OutfitList extends React.Component {
   }
 
   render() {
+    const containerStyle = {
+      'border-color': 'black',
+      'border-style': 'solid',
+      'margin': '10px 3% 10px'
+    }
     return (
-    <div id="outfitList">
-      <h3>YOUR OUTFIT</h3>
+    <div style={containerStyle} id="outfitList">
       <button> Add to Outfit </button>
-      <ProductCard />
+      {/* <ProductCard /> */}
     </div>
     );
   }

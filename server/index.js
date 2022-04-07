@@ -7,6 +7,7 @@ const axios = require("axios");
 
 app.use(cors());
 app.use(express.json());
+
 app.use(express.static((__dirname = "./client/dist")));
 app.use(express.urlencoded({ extended: "true" }));
 
@@ -35,7 +36,6 @@ app.get("/*", (req, res) => {
 
 app.put("/*", (req, res) => {
   let url = `${uri}${req.url}`;
-
   console.log(url);
   axios
     .put(url, req.body, options)

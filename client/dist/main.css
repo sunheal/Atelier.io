@@ -27,6 +27,9 @@ body {
 .reviewsCount {
     font-size: 28px;
 }
+.ratingHeader_star {
+    font-size: 28px;
+}
 .indiStar{
     float: left;
 }
