@@ -1,43 +1,50 @@
 const express = require("express");
 const app = express();
 const PORT = 3111;
-const productsAPI = require("./api/products.js");
-const qaApi = require("./api/QA")
+const config = require("../config.js");
 const cors = require("cors");
+const axios = require("axios");
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static((__dirname = "./client/dist")));
 app.use(express.urlencoded({ extended: "true" }));
 
+// Wildcard routing
+const uri = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp";
+const options = {
+  headers: {
+    Authorization: config.TOKEN,
+  },
+};
 
-// GET a single product.
-app.get("/products/:product_id", (req, res) => {
-  var id = parseInt(req.params.product_id);
-  // console.log("receive params", id);
-  productsAPI
-    .getSingleProduct(id)
+app.get("/*", (req, res) => {
+  console.log(req.url);
+  let url = `${uri}${req.url}`;
+  axios
+    .get(url, options)
     .then((result) => {
-      // console.log("api data", result.data);
+      console.log("api data", "result.data");
       res.status(201).send(result.data);
     })
     .catch((err) => {
-      // console.log(err);
+      console.error("err");
       res.status(500).send(err);
     });
 });
 
-app.get("/qa/questions/:product_id", (req, res) => {
-  var id = parseInt(req.params.product_id);
-  console.log("qa32", id);
-  qaApi
-    .getQAList(id)
+app.put("/*", (req, res) => {
+  let url = `${uri}${req.url}`;
+
+  console.log(url);
+  axios
+    .put(url, req.body, options)
     .then((result) => {
       console.log("api data", result.data);
       res.status(201).send(result.data);
     })
     .catch((err) => {
-      console.log('err');
+      console.error("err");
       res.status(500).send(err);
     });
 });
