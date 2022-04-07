@@ -2,8 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Modal from './Modal.jsx';
 import PreviewImages from './ProductCard/PreviewImages.jsx';
-import Stars from './ProductCard/Stars.jsx';
-// import './ProductCard/ProductCardStyle.css';
+import Stars from '../Shared/Stars.jsx';
 
 // expect props.list is an array of objects
 // each card displays info for a single product

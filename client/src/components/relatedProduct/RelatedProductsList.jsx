@@ -18,46 +18,6 @@ class RelatedProductsList extends React.Component {
     };
   }
 
-  // navigate to product detail page when click
-  // navigateToNewProductPage(e) {
-  //   this.setState({
-  //     productIdOfCurrentPage: e.target.id
-  //   })
-  // }
-
-  // getSingleProductInfo(id) {
-  //   axios.get(`/products/${id}`)
-  //     .then((result) => {
-  //       console.log(result.data);
-  //       // this.state.relatedProductsInfo.push(result.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error fetching single product details in relatedProductsList', error);
-  //     });
-  // }
-
-  // getRelatedProductsID(id) {
-  //   axios.get(`/products/${id}/related`)
-  //     .then((result) => {
-  //       this.setState({
-  //         relatedProductsID: result.data
-  //       })
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error fetching related products in relatedProductsList', error);
-  //     });
-  // }
-
-  // getProductStyle(id) {
-  //   axios.get(`/products/${id}/styles`)
-  //     .then((result) => {
-  //       console.log('Product Style ==== ', result.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error fetching product style in relatedProductsList', error);
-  //     });
-  // }
-
   render() {
     const containerStyle = {
       'border-color': 'black',
