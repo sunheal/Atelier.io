@@ -31,7 +31,7 @@ class QuestionsList extends Component {
       })
     })
     .catch((err) =>{
-      console.log('GET request err from (QuestionsList.jsx) in line 31)', err);
+      // console.log('GET request err from (QuestionsList.jsx) in line 31)', err);
     },[]);
   }
 
