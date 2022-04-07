@@ -9,18 +9,19 @@ class App extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-
+            product_id: 64620
         }
     }
+ 
 
     render() {
         return (
             <div className="app">
             <p id="logo"> Good Deals Only </p>
-            <ListsWrapper />
             <Overview />
+            <ListsWrapper />
             <QandA/>
-            <RR_app />
+            <RR_app id={this.state.product_id}/>
             </div>
             )
     }

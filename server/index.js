@@ -5,7 +5,7 @@ const axios = require('axios');
 const config = require('../config.js');
 
 app.use(express.json());
-app.use(express.static(__dirname = './client/dist'));
+app.use(express.static(__dirname + '/../client/dist'));
 app.use(express.urlencoded({ extended: 'true' }));
 
 // Wildcard routing
@@ -17,11 +17,11 @@ const options = {
 };
 
 app.get('/*', (req, res) => {
-  console.log(req.url);
+  // console.log(req.url, 'req.url');
   let url = `${uri}${req.url}`;
   axios.get(url, options)
     .then((result) => {
-      console.log('api data', result.data);
+      // console.log('api data', result.data);
       res.status(201).send(result.data);
     })
     .catch((err) => {
@@ -32,7 +32,7 @@ app.get('/*', (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`listening on ${PORT}`);
+    console.log(`listening on localhost at ${PORT}`);
 })
 
 
