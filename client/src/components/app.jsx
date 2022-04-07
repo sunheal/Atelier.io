@@ -17,8 +17,8 @@ class App extends React.Component{
         return (
             <div className="app">
             <p id="logo"> Good Deals Only </p>
-            <ListsWrapper />
             <Overview />
+            <ListsWrapper />
             <QandA/>
             <RR_app />
             </div>

@@ -46,3 +46,42 @@ body {
     margin: 1%;
     font-size: 15px;
 }
+
+
+.question{
+    display: flex;
+    justify-content: space-between;
+}
+
+.question .right{
+    display: flex;
+}
+
+.question h3{
+    margin: 0;
+}
+
+.question .right .right_item{
+    padding-right: 6px;
+    margin-right: 6px;
+    border-right: 2px solid #222;
+    color: #222;
+    cursor: pointer;
+}
+
+#window{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+}
