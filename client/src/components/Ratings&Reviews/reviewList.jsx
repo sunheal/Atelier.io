@@ -100,7 +100,7 @@ class ReviewList extends React.Component{
         return (
             <div>
                 {(this.state.currentReview.length === 0) ? <div><button className="addReview"> Add Review </button> </div>
-                :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by
+                :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by </p>
                         <select className="sortSelect" onChange={this.changeSort}>
                             <option value='Select Your Sort'> Select Your Sort</option>
                             <option value='relevance'> relevance </option>

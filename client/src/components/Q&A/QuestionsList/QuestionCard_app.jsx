@@ -6,14 +6,9 @@ import "./QuestionCard.css";
 
 class QuestionCard extends React.Component {
   constructor(props) {
-<<<<<<< HEAD
-    super(props);
-    this.state = {
-=======
     super(props)
     // console.log(props.answers)
     this.state= {
->>>>>>> 94bec895d952eb0839950366f1f43978a02565a8
       showMoreAnswers: false,
       tempAnswers: Object.values(this.props.answers).slice(0, 2),
       question: this.props,
