@@ -49,7 +49,34 @@ body {
     margin: 1%;
     font-size: 15px;
 }
+.reviewModal{
+    height:fit-content;
+    width: 100%;
+    background-color: darkcyan;
+    z-index: '1000'; 
+   justify-content: 'center';
+    /* top: 50%;
+    left: 50%;  */
+    align-items: center;
+}
+.innerModal{
+    background-color: darkcyan;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+.emptyStarStyle{
+    z-index: '1';
+    color: 'gold';
+    position: 'absolute';
+    left: '0';
+    font-Size: 'large';
+  }
 
+label{
+    margin: 10%;
+    text-align: left;
+}
 
 .question{
     display: flex;
