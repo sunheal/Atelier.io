@@ -71,13 +71,12 @@ class Answers extends React.Component {
                 <span className="right_item" onClick={() => this.onVote(index) }>
                   Helpful? Yes&nbsp;({item.helpfulness})&nbsp;
                 </span>
-                <a className="right_item">add Answer</a> &nbsp;
                 <a className="right_item" onClick={() => this.onReport(index)}>{this.state.reportState}</a>
               </div>
               <br/>
 
               {item.photos.length != 0 && (
-                <div style={{ display: "flex" }}>
+                <div className="answerImage" style={{ display: "flex" }}>
                   {item.photos.map((photo, index) => {
                     return (
                       <img onClick={()=>this.pop(photo)}
