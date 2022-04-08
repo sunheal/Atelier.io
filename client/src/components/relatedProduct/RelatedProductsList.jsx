@@ -18,16 +18,13 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    const containerStyle = {
-      'borderColor': 'black',
-      'borderStyle': 'solid',
-      'margin': '10px 3% 10px'
-    }
     return (
-      <div style={containerStyle} id="relatedProductsList">
+      <div id="relatedProductsList">
+        <button className="lefty paddle" id="left-button"> 1 </button>
         {this.props.relatedProductsIDs.map(productID => (
           <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={this.props.selectedProductInfo} />
         ))}
+        <button className="righty paddle" id="right-button"> 2 </button>
       </div>
     );
   }

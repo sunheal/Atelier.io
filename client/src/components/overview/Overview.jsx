@@ -54,7 +54,7 @@ class Overview extends React.Component {
   getProductRatings = (id) => {
     axios.get(`/reviews/meta/?product_id=${id}`)
       .then((res) => {
-        console.log('getProductRatings', res.data.ratings['1']);
+        // console.log('getProductRatings', res.data.ratings['1']);
         const reviewsCount = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
         const ratings = ((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / reviewsCount).toFixed(2);
         this.setState({ ratings, reviewsCount });

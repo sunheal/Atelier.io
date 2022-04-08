@@ -99,36 +99,18 @@ class ProductCard extends React.Component {
     })
   }
 
-  // handleClose() {
-  //   var modal = document.getElementById('id01');
-  //   // When the user clicks anywhere outside of the modal, close it
-  //   window.onclick = function (event) {
-  //     if (event.target == modal) {
-  //       modal.style.display = "none";
-  //     }
-  //   }
-  // }
-
   render() {
-    const containerStyle = {
-      'display': 'inline-block',
-      'margin': '0px 10px',
-      'borderColor': 'blue',
-      'borderStyle': 'solid'
-    }
-    const productInfoStyle = {
-      'display': 'block'
-    }
-    const { productInfo, productRating, defaultStyle, productStyle, showComparison} = this.state;
+
+    const { productInfo, productRating, defaultStyle, productStyle, showComparison } = this.state;
     const { productID, productInfoOfCurrentPage } = this.props;
     return (
-      <div style={containerStyle} className="productCard">
+      <div className="productCard">
         <button onClick={this.showModal}> action button </button>
-        <Modal show={showComparison} onClose={this.showModal}/>
+        <Modal show={showComparison} onClose={this.showModal} />
         <br></br>
         <PreviewImages currentStyle={defaultStyle} productID={productID} />
         <br></br>
-        <div style={productInfoStyle} className="productInfo">
+        <div className="productInfo">
           <span className="productInfo-category">{productInfo.category}</span>
           <br></br>
           <span className="productInfo-name">{productInfo.name}</span>
