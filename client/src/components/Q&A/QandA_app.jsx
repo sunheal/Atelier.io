@@ -6,7 +6,7 @@ class QandA extends Component {
   constructor(props){
     super(props)
     this.state={
-      product_id:50000
+      product_id:64620
     }
   }
   render() {
