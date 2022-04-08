@@ -4,7 +4,27 @@
   border-color: grey;
   border-style: solid;
   border-radius: 3px;
-  margin : 10px 5% 10px;
+  margin : 10px 15% 10px;
+}
+
+/* Carousel */
+.container{
+  display: flex;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.paddle {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height:20px;
+}
+.lefty {
+  left: 0;
+}
+.righty{
+  right: 0;
 }
 
 /* RelatedProductList */
@@ -17,24 +37,28 @@
 /* ProductCard */
 .productCard{
   width: 210px;
-  height: 300px;
+  height: 310px;
   display: inline-block;
   margin: 13px 15px;
   border-style: groove;
+  flex: 0 0 25%;
 }
 
 .productInfo{
   display: block;
+  height: auto;
+  padding-left: 20px;
 }
 
 .preview-image {
   width: 100%;
   height: 180px;
   text-align: center;
+  background-color: rgb(243, 240, 237);
 }
 
 .product-image{
   max-width:100%;
   max-height:100%;
-  /* vertical-align: middle; */
+  vertical-align: middle;
 }
