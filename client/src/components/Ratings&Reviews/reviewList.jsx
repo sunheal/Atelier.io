@@ -107,13 +107,12 @@ class ReviewList extends React.Component{
                             <option value='newest'> newest </option>
                             <option value='helpful'> helpful </option>
                         </select>
-                    </p><ReviewListView reviews={this.state.whatShowing} starhelper={this.props.starhelper} starsArr={this.props.starsArr}/> 
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview" onClick={this.onShowModal}> Add Review </button>
-                   {/* {this.state.showModal ? (<div> <AddReview show={this.state.showModal} /> 
+                   {/* {this.state.showModal ? (<div> <AddReview show={this.state.showModal} />
                                                   <button className="closeAdd" onClick={this.onShowModal}> close </button>
                    </div>) :null}  */}
-                    {/* <Modal isOpen={this.state.showModal}> 
+                    {/* <Modal isOpen={this.state.showModal}>
                         <h2> here you go </h2>
                         <button onClick={this.onShowModal}> Close </button>
                     </Modal> */}
