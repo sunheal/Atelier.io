@@ -114,7 +114,11 @@ class ProductCard extends React.Component {
           <br></br>
           <span className="productInfo-name">{productInfo.name}</span>
           <br></br>
-          <span className="productInfo-price">${productInfo.defaspant_price}</span>
+          {defaultStyle.original_price && defaultStyle.sale_price ?
+            <span className="productInfo-pricev sale">${defaultStyle.sale_price} ${defaultStyle.original_price}</span>
+            :
+            <span className="productInfo-price">${defaultStyle.original_price}</span>
+          }
           <br></br>
           <Stars rating={productRating} />
         </div>
@@ -122,7 +126,5 @@ class ProductCard extends React.Component {
     );
   }
 };
-
-//  scr={this.state.defaultStyle.photos[0].thumbnail_url}
 
 export default ProductCard;

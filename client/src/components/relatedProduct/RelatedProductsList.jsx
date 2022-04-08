@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ProductCard from './ProductCard.jsx';
 import Modal from './Modal.jsx';
