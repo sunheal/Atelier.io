@@ -100,13 +100,14 @@ class ReviewList extends React.Component{
         return (
             <div>
                 {(this.state.currentReview.length === 0) ? <div><button className="addReview"> Add Review </button> </div>
-                :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by </p>
+                :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by
                         <select className="sortSelect" onChange={this.changeSort}>
                             <option value='Select Your Sort'> Select Your Sort</option>
                             <option value='relevance'> relevance </option>
                             <option value='newest'> newest </option>
                             <option value='helpful'> helpful </option>
-                        </select>
+                        </select> </p>
+                        <ReviewListView reviews={this.state.whatShowing} />
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview" onClick={this.onShowModal}> Add Review </button>
                    {/* {this.state.showModal ? (<div> <AddReview show={this.state.showModal} />
