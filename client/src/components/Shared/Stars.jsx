@@ -18,7 +18,7 @@ const Stars = (props) => {
   }
 
   const emptyStarStyle = {
-    'z-Index': '1',
+    // 'z-Index': '1',
     'color': 'gold',
     'position': 'absolute',
     'left': '0',
