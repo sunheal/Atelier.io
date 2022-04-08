@@ -6,7 +6,7 @@ class QandA extends Component {
   constructor(props){
     super(props)
     this.state={
-      product_id:50000
+      product_id:64620
     }
   }
   render() {
@@ -15,6 +15,7 @@ class QandA extends Component {
       <h1>Questions & Answers</h1>
       <SearchBar/>
       {/*<QuestionsList product_id={this.state.product_id}/>*/}
+
       <QuestionsList product_id={40356}/>
     </div>
   );

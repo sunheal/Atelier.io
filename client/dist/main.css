@@ -1,5 +1,5 @@
 body {
-    background-color: bisque;
+    background-color: #f6f6f6;
 }
 
 .moreReview {
@@ -20,3 +20,82 @@ body {
     float: right;
     width: 70%;
 }
+.individualReview_container{
+    border-bottom: solid;
+    margin-bottom: 15px;
+}
+.reviewsCount {
+    font-size: 28px;
+}
+.ratingHeader_star {
+    font-size: 28px;
+}
+.indiStar{
+    float: left;
+}
+.userAndPostdate{
+    float: right;
+}
+.reviewSpace {
+    height: 20px;
+}
+.reviewSummary{
+    font-weight: bold;
+}
+.spaceBetweenRev{
+    height: 10px;
+}
+.sortSelect{
+    margin: 1%;
+    font-size: 15px;
+}
+.reviewModal{
+    height:fit-content;
+    width: 100%;
+    background-color: darkcyan;
+    z-index: '1000'; 
+   justify-content: 'center';
+    /* top: 50%;
+    left: 50%;  */
+    align-items: center;
+}
+.innerModal{
+    background-color: darkcyan;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+.emptyStarStyle{
+    z-index: '1';
+    color: 'gold';
+    position: 'absolute';
+    left: '0';
+    font-Size: 'large';
+  }
+
+label{
+    margin: 10%;
+    text-align: left;
+}
+
+.question{
+    display: flex;
+    justify-content: space-between;
+}
+
+.question .right{
+    display: flex;
+}
+
+.question h3{
+    margin: 0;
+}
+
+.question .right .right_item{
+    padding-right: 6px;
+    margin-right: 6px;
+    border-right: 2px solid #222;
+    color: #222;
+    cursor: pointer;
+}
+
