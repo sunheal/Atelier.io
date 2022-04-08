@@ -25,7 +25,7 @@ class App extends React.Component {
                 })
             })
             .catch((error) => {
-                console.log('Error fetching single product details in relatedProductsList', error);
+                console.log('Error fetching single product details in App', error);
             });
     }
 
@@ -37,7 +37,7 @@ class App extends React.Component {
                 })
             })
             .catch((error) => {
-                console.log('Error fetching single product details in relatedProductsList', error);
+                console.log('Error fetching single product details in App', error);
             });
     }
 

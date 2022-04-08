@@ -23,7 +23,10 @@ class ProductCard extends React.Component {
         ]
       },
       productRating: null,
+      showComparison: false
     };
+
+    this.showModal = this.showModal.bind(this);
   }
 
   componentDidMount() {
@@ -90,22 +93,38 @@ class ProductCard extends React.Component {
       })
   }
 
+  showModal() {
+    this.setState({
+      showComparison: !this.state.showComparison
+    })
+  }
+
+  // handleClose() {
+  //   var modal = document.getElementById('id01');
+  //   // When the user clicks anywhere outside of the modal, close it
+  //   window.onclick = function (event) {
+  //     if (event.target == modal) {
+  //       modal.style.display = "none";
+  //     }
+  //   }
+  // }
 
   render() {
     const containerStyle = {
       'display': 'inline-block',
       'margin': '0px 10px',
-      'border-color': 'blue',
-      'border-style': 'solid'
+      'borderColor': 'blue',
+      'borderStyle': 'solid'
     }
     const productInfoStyle = {
       'display': 'block'
     }
-    const { productInfo, productRating, defaultStyle, productStyle } = this.state;
+    const { productInfo, productRating, defaultStyle, productStyle, showComparison} = this.state;
     const { productID, productInfoOfCurrentPage } = this.props;
     return (
       <div style={containerStyle} className="productCard">
-        <button> action button </button>
+        <button onClick={this.showModal}> action button </button>
+        <Modal show={showComparison} onClose={this.showModal}/>
         <br></br>
         <PreviewImages currentStyle={defaultStyle} productID={productID} />
         <br></br>
@@ -114,7 +133,11 @@ class ProductCard extends React.Component {
           <br></br>
           <span className="productInfo-name">{productInfo.name}</span>
           <br></br>
-          <span className="productInfo-price">${productInfo.defaspant_price}</span>
+          {defaultStyle.original_price && defaultStyle.sale_price ?
+            <span className="productInfo-pricev sale">${defaultStyle.sale_price} ${defaultStyle.original_price}</span>
+            :
+            <span className="productInfo-price">${defaultStyle.original_price}</span>
+          }
           <br></br>
           <Stars rating={productRating} />
         </div>
@@ -122,7 +145,5 @@ class ProductCard extends React.Component {
     );
   }
 };
-
-//  scr={this.state.defaultStyle.photos[0].thumbnail_url}
 
 export default ProductCard;

@@ -29,8 +29,7 @@ class ReviewList extends React.Component{
         this.onShowModal = this.onShowModal.bind(this);
     }
     componentDidMount() {
-        this.getReview();
-        // console.log(this.state.currentReview, 'reviessssss')
+        this.getReviewinfo();
     }
 
     onShowModal() {
@@ -46,13 +45,11 @@ class ReviewList extends React.Component{
                 currentReview : output.data.results,
                 whatShowing: output.data.results.slice(0,2)
             })
-            // console.log(output.data.results, 'after getreview')
         })
         .catch(err => console.log(err));
     }
     changeSort(event) {
         let input = event.target.value;
-        // console.log(input, 'input');
         let sorted= [];
         if(input === 'newest') {
             sorted = this.state.whatShowing.sort((a,b) => {
@@ -109,8 +106,8 @@ class ReviewList extends React.Component{
                             <option value='relevance'> relevance </option>
                             <option value='newest'> newest </option>
                             <option value='helpful'> helpful </option>
-                        </select>
-                    </p><ReviewListView reviews={this.state.whatShowing} />
+                        </select> </p>
+                        <ReviewListView reviews={this.state.whatShowing} />
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview" onClick={this.onShowModal}> Add Review </button>
                    {/* {this.state.showModal ? (<div> <AddReview show={this.state.showModal} />

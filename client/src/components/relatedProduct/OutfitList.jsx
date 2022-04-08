@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Modal from './Modal.jsx';
 import Carousel from './Carousel.jsx';
@@ -20,8 +19,8 @@ class OutfitList extends React.Component {
 
   render() {
     const containerStyle = {
-      'border-color': 'black',
-      'border-style': 'solid',
+      'borderColor': 'black',
+      'borderStyle': 'solid',
       'margin': '10px 3% 10px'
     }
     return (
