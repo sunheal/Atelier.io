@@ -49,7 +49,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="app"
+            <div className="app">
             <p id="logo"> Good Deals Only </p>
             <Overview />
             <ListsWrapper productID={this.state.productID}  selectedProductInfo={this.state.selectedProductInfo}/>
