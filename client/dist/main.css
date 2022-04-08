@@ -64,8 +64,15 @@ body {
     text-align: center;
     overflow-y: auto;
     max-height: 100vh;
-
 }
+.emptyStarStyle{
+    z-index: '1';
+    color: 'gold';
+    position: 'absolute';
+    left: '0';
+    font-Size: 'large';
+  }
+
 label{
     margin: 10%;
     text-align: left;
