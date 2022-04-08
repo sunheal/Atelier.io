@@ -19,8 +19,8 @@ class RelatedProductsList extends React.Component {
 
   render() {
     const containerStyle = {
-      'border-color': 'black',
-      'border-style': 'solid',
+      'borderColor': 'black',
+      'borderStyle': 'solid',
       'margin': '10px 3% 10px'
     }
     return (

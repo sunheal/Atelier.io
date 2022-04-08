@@ -31,8 +31,8 @@ class ListsWrapper extends React.Component {
 
   render() {
     const containerStyle = {
-      'border-color': 'grey',
-      'border-style': 'solid',
+      'borderColor': 'grey',
+      'borderStyle': 'solid',
       'margin': '10px 5% 10px'
     }
 
