@@ -1,5 +1,5 @@
 body {
-    background-color: darkcyan;
+    background-color: #f6f6f6;
 }
 
 .moreReview {
@@ -49,3 +49,26 @@ body {
     margin: 1%;
     font-size: 15px;
 }
+
+
+.question{
+    display: flex;
+    justify-content: space-between;
+}
+
+.question .right{
+    display: flex;
+}
+
+.question h3{
+    margin: 0;
+}
+
+.question .right .right_item{
+    padding-right: 6px;
+    margin-right: 6px;
+    border-right: 2px solid #222;
+    color: #222;
+    cursor: pointer;
+}
+
