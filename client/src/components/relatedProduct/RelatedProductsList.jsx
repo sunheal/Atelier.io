@@ -44,14 +44,18 @@ class RelatedProductsList extends React.Component {
   render() {
     return (
       <div id="relatedProductsList" className="container">
-        <button className="lefty paddle" id="left-button" onClick={this.handlePreviousButton()}> 1 </button>
+        <button className="lefty paddle" id="left-button"> 1 </button>
         {this.props.relatedProductsIDs.map(productID => (
           <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={this.props.selectedProductInfo} />
         ))}
-        <button className="righty paddle" id="right-button" onClick={this.handleNextButton()}> 2 </button>
+        <button className="righty paddle" id="right-button"> 2 </button>
       </div>
     );
   }
 }
 
 export default RelatedProductsList;
+
+
+// onClick={this.handlePreviousButton()}
+// onClick={this.handleNextButton()}

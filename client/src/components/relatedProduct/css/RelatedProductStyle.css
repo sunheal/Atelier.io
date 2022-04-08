@@ -27,6 +27,23 @@
   right: 0;
 }
 
+/* Action buttons */
+.productInfo-upper{
+  position: relative;
+}
+.action-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(226, 24, 24);
+  color: white;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
 /* RelatedProductList */
 #relatedProductsList{
   border-color: rgba(71, 128, 179, 0.893);

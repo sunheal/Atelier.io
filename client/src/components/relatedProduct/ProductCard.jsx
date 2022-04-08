@@ -105,10 +105,12 @@ class ProductCard extends React.Component {
     const { productID, productInfoOfCurrentPage } = this.props;
     return (
       <div className="productCard">
-        <button onClick={this.showModal}> action button </button>
+        <div className="productInfo-upper">
+        <button className="action-btn" onClick={this.showModal}> action button </button>
         <Modal show={showComparison} onClose={this.showModal} />
-        <br></br>
+        {/* <br></br> */}
         <PreviewImages currentStyle={defaultStyle} productID={productID} />
+        </div>
         <br></br>
         <div className="productInfo">
           <span className="productInfo-category">{productInfo.category}</span>
