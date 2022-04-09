@@ -1,12 +1,19 @@
 import React from 'react';
 import axios from 'axios';
+import Carousel from 'react-elastic-carousel';
 import ProductCard from './ProductCard.jsx';
 import Modal from './Modal.jsx';
-import Carousel from './Carousel.jsx';
 
 // related products are same for every customer(display associated with the current product)
 // realted products list are the same each time load
 // action button - star icon => open modal window comparing the DETAILS of products (current page product vs selected product from the list)
+
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 }
+];
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
@@ -14,41 +21,21 @@ class RelatedProductsList extends React.Component {
     this.state = {
       productIdOfCurrentPage: this.props.productID,
       comparedProductID: 64621,
-      scrollStep: 300,
       previousButton: 'hidden',
       nextButton: 'visible'
     };
   }
 
-  handlePreviousButton() {
-    var list = document.getElementById('relatedProductsList');
-    var sl = list.scrollLeft;
-    if ((sl - this.state.scrollStep) <= 0) {
-      list.scrollTo(0,0);
-    } else {
-      list.scrollTo((sl - this.state.scrollStep),0);
-    }
-  }
-
-  handleNextButton() {
-    var list = document.getElementById('relatedProductsList');
-    var sl = list.scrollLeft;
-    var sw = list.scrollWidth;
-    if ((sl + this.state.scrollStep) >= sw) {
-      list.scrollTo(sw,0);
-    } else {
-      list.scrollTo((sl + this.state.scrollStep),0);
-    }
-  }
-
   render() {
+    const {previousButton, nextButton} = this.state;
+    const {relatedProductsIDs, selectedProductInfo} = this.props;
     return (
       <div id="relatedProductsList" className="container">
-        <button className="lefty paddle" id="left-button"> 1 </button>
-        {this.props.relatedProductsIDs.map(productID => (
-          <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={this.props.selectedProductInfo} />
+      <Carousel breakPoints={breakPoints}>
+        {relatedProductsIDs.map(productID => (
+          <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} />
         ))}
-        <button className="righty paddle" id="right-button"> 2 </button>
+      </Carousel>
       </div>
     );
   }
