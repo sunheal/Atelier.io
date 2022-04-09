@@ -17,15 +17,39 @@ class Modal extends React.Component {
     };
   }
 
-  render() {
-    const { show, onClose } = this.props;
+  hanldTableData () {
+    Object.entries(this.props.comparison).forEach(entry => {
+      console.log('??????', entry)
+      var [key, value] = entry;
+      console.log('key ===',key)
+      console.log(value.currentPage)
+     return ( <tr>
+        <td>{value.currentPage}</td>
+        <td>{key}</td>
+        <td>{value.selected}</td>
+      </tr>)
+    })
+  }
 
+  render() {
+    const { show, onClose, comparison, products } = this.props;
     if (!show) {
       return null;
     }
     return (<div>
       <h4>Comparing</h4>
-      <table></table>
+      <table>
+        <thead>
+          <tr>
+            <th>{products.currentPage}</th>
+            <th></th>
+            <th>{products.selected}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {this.hanldTableData()}
+        </tbody>
+      </table>
       <button onClick={onClose}> Close </button>
     </div>);
   }

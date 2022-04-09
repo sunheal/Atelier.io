@@ -38,7 +38,7 @@ class ListsWrapper extends React.Component {
         <h3>RELATED PRODUCTS</h3>
         <RelatedProductsList relatedProductsIDs={this.state.relatedProductsIDs} productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo}/>
         <h3>YOUR OUTFIT</h3>
-        <OutfitList />
+        <OutfitList productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo} />
       </div>
     );
   }

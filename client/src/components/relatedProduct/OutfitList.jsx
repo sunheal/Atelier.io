@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Modal from './Modal.jsx';
 import Carousel from 'react-elastic-carousel';
 import ProductCard from './ProductCard.jsx';
 
@@ -14,17 +13,15 @@ import ProductCard from './ProductCard.jsx';
 class OutfitList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      addOutfit: false
+
+    };
   }
 
   render() {
-    const containerStyle = {
-      'borderColor': 'black',
-      'borderStyle': 'solid',
-      'margin': '10px 3% 10px'
-    }
     return (
-    <div style={containerStyle} id="outfitList">
+    <div id="outfitList" className="container">
       <button> Add to Outfit </button>
       {/* <ProductCard /> */}
     </div>

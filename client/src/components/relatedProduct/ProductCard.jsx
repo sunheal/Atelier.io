@@ -23,7 +23,11 @@ class ProductCard extends React.Component {
         ]
       },
       productRating: null,
-      showComparison: false
+      showComparison: false,
+      productName: {},
+      commonFeatures: {
+        feature1: { value1: null, value2: null }
+      }
     };
 
     this.showModal = this.showModal.bind(this);
@@ -94,21 +98,49 @@ class ProductCard extends React.Component {
   }
 
   showModal() {
+    this.mergeFeatures();
     this.setState({
       showComparison: !this.state.showComparison
     })
   }
 
-  render() {
+  mergeFeatures() {
+    var commonFeatures = {};
+    this.props.productInfoOfCurrentPage.features.forEach(item => {
+      commonFeatures[item.feature] = {
+        currentPage: item.value,
+        selected: null
+      }
+    })
+    this.state.productInfo.features.forEach(item => {
+      if (commonFeatures[item.feature]) {
+        commonFeatures[item.feature].selected = item.value;
+      } else {
+        commonFeatures[item.feature] = {
+          currentPage: null,
+          selected: item.value
+        }
+      }
+    })
+    var productName = {
+      currentPage: this.props.productInfoOfCurrentPage.name,
+      selected: this.state.productInfo.name
+    }
+    this.setState({
+      productName : productName,
+      commonFeatures: commonFeatures
+    })
+  }
 
-    const { productInfo, productRating, defaultStyle, productStyle, showComparison } = this.state;
+  render() {
+    const { productInfo, productRating, defaultStyle, productStyle, showComparison, commonFeatures, productName } = this.state;
     const { productID, productInfoOfCurrentPage } = this.props;
     return (
       <div className="productCard">
         <div className="productInfo-upper">
-        <button className="action-btn" onClick={this.showModal}>{"\u2606"}</button>
-        <Modal show={showComparison} onClose={this.showModal} />
-        <PreviewImages currentStyle={defaultStyle} productID={productID} />
+          <button className="action-btn" onClick={this.showModal}>{"\u2606"}</button>
+          <Modal show={showComparison} onClose={this.showModal} comparison={commonFeatures} products={productName} />
+          <PreviewImages currentStyle={defaultStyle} productID={productID} />
         </div>
         <br></br>
         <div className="productInfo">
@@ -117,7 +149,11 @@ class ProductCard extends React.Component {
           <span className="productInfo-name">{productInfo.name}</span>
           <br></br>
           {defaultStyle.original_price && defaultStyle.sale_price ?
-            <span className="productInfo-pricev sale">${defaultStyle.sale_price} ${defaultStyle.original_price}</span>
+            <div>
+              <span className="productInfo-pricev sale">${defaultStyle.sale_price}</span>
+              <span className="productInfo-pricev sale">${defaultStyle.original_price}</span>
+
+            </div>
             :
             <span className="productInfo-price">${defaultStyle.original_price}</span>
           }
