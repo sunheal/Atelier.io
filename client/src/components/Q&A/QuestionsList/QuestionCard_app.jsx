@@ -91,19 +91,22 @@ class QuestionCard extends React.Component {
           {this.state.answerForm && (
             <Window onClick={this.onClick}>
               <div className="windowWrap">
-              <h2>Ask a New Question</h2>
-                <form id="questionForm">
-                  <label className="form">Question:</label>
-                  <textarea className="popFormQ same" type="text"></textarea>
-                  <br></br>
-                  <label className="form">Nickname:</label>
-                  <input className="popFormNickname same" type="text"></input>
-                  <br></br>
-                  <label className="form">Email:</label>
-                  <input className="popFormEmail same" type="text"></input>
-                  <br></br>
-                  <button>Submit</button>
-                </form>
+                <h2 className="title">Ask a New Question</h2>
+                <br></br>
+                <div>
+                  <form id="questionForm">
+                    <label className="form">Question:</label>
+                    <textarea className="popFormQ same" type="text"></textarea>
+                    <br></br>
+                    <label className="form">Nickname:</label>
+                    <input className="popFormNickname same" type="text"></input>
+                    <br></br>
+                    <label className="form">Email:</label>
+                    <input className="popFormEmail same" type="text"></input>
+                    <br></br>
+                    <button className="formButton">Submit</button>
+                  </form>
+                </div>
               </div>
             </Window>
           )}
