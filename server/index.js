@@ -20,12 +20,12 @@ const options = {
 };
 
 app.get("/*", (req, res) => {
-  console.log(req.url);
+  // console.log(req.url);
   let url = `${uri}${req.url}`;
   axios
     .get(url, options)
     .then((result) => {
-      console.log("api data", "result.data");
+      // console.log("api data", "result.data");
       res.status(201).send(result.data);
     })
     .catch((err) => {
@@ -40,7 +40,7 @@ app.put("/*", (req, res) => {
   axios
     .put(url, req.body, options)
     .then((result) => {
-      console.log("api data", result.data);
+      // console.log("api data", result.data);
       res.status(201).send(result.data);
     })
     .catch((err) => {

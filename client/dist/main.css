@@ -54,7 +54,7 @@ body {
     width: 100%;
     background-color: darkcyan;
     z-index: '1000'; 
-   justify-content: 'center';
+   justify-content: center;
     /* top: 50%;
     left: 50%;  */
     align-items: center;
@@ -98,4 +98,15 @@ label{
     color: #222;
     cursor: pointer;
 }
-
+input[name='rating'] {
+    /* display:none; */
+    opacity: 15%;
+    margin-right: 0;
+}
+label[name='rating'] {
+    margin: 0;
+    margin-right: 0;
+}
+a[name='ratingtxt'] {
+    text-align: center;
+}

@@ -1,13 +1,8 @@
 import React from "react";
 import Stars from "../Shared/Stars.jsx";
-// import StarsAndBreakdown from "./stars&breakdown.jsx";
 import ReviewList from "./reviewList.jsx";
 import axios from "axios";
-// import EmptyStar from '../fa-icons/EmptyStar.svg';
-// import FullStar from '../fa-icons/FullStar.svg';
-// import HalfStar from '../fa-icons/HalfStar.svg';
-// import OneQStar from '../fa-icons/OneQStar.svg';
-// import ThreeQStar from '../fa-icons/ThreeQStar.svg';
+
 
 
 
@@ -16,10 +11,8 @@ class RR_app extends React.Component {
         super(props);
         this.state = {
             rating: 0,
-            // stars: [EmptyStar,OneQStar,HalfStar,ThreeQStar,FullStar]
         }
         this.getRating = this.getRating.bind(this);
-        // this.arrangeStar = this.arrangeStar.bind(this);
     }
     componentDidMount() {
         this.getRating();
@@ -103,9 +96,6 @@ class RR_app extends React.Component {
                 <h1>RATINGS &amp; Reviews</h1> 
                 <div className="leftOfRR"> 
                <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > 
-                {/* <div > <p > {rating} </p> <Stars rating = {this.state.rating} /> </div> */}
-                    
-                    {/* <StarsAndBreakdown rating={this.state.rating} stars={() => this.arrangeStar(this.state.rating, this.state.stars)}/>  */}
                 </div>
                 <div className="rightOfRR"> 
                     <ReviewList id={this.props.id}/>
