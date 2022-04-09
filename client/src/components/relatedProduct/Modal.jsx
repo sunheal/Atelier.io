@@ -17,20 +17,6 @@ class Modal extends React.Component {
     };
   }
 
-  hanldTableData () {
-    Object.entries(this.props.comparison).forEach(entry => {
-      console.log('??????', entry)
-      var [key, value] = entry;
-      console.log('key ===',key)
-      console.log(value.currentPage)
-     return ( <tr>
-        <td>{value.currentPage}</td>
-        <td>{key}</td>
-        <td>{value.selected}</td>
-      </tr>)
-    })
-  }
-
   render() {
     const { show, onClose, comparison, products } = this.props;
     if (!show) {
@@ -47,7 +33,15 @@ class Modal extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {this.hanldTableData()}
+          {
+            Object.keys(comparison).map((feature, index) => (
+                <tr key={index}>
+                  <td>{comparison[feature].currentPage? "\u2713" : '   '}</td>
+                  <td>{feature}</td>
+                  <td>{comparison[feature].selected? "\u2713" : '   '}</td>
+                </tr>
+            ))
+          }
         </tbody>
       </table>
       <button onClick={onClose}> Close </button>
