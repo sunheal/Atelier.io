@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './window.css'
+import './window.css';
 
 class Window extends Component {
   constructor(props) {

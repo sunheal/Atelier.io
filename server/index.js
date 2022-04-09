@@ -29,7 +29,7 @@ app.get("/*", (req, res) => {
       res.status(201).send(result.data);
     })
     .catch((err) => {
-      console.error("err");
+      // console.error("err");
       res.status(500).send(err);
     });
 });
