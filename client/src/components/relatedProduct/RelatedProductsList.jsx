@@ -21,8 +21,6 @@ class RelatedProductsList extends React.Component {
     this.state = {
       productIdOfCurrentPage: this.props.productID,
       comparedProductID: 64621,
-      previousButton: 'hidden',
-      nextButton: 'visible'
     };
   }
 
@@ -42,7 +40,3 @@ class RelatedProductsList extends React.Component {
 }
 
 export default RelatedProductsList;
-
-
-// onClick={this.handlePreviousButton()}
-// onClick={this.handleNextButton()}

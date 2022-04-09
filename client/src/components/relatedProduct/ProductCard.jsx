@@ -106,9 +106,8 @@ class ProductCard extends React.Component {
     return (
       <div className="productCard">
         <div className="productInfo-upper">
-        <button className="action-btn" onClick={this.showModal}> action button </button>
+        <button className="action-btn" onClick={this.showModal}>{"\u2606"}</button>
         <Modal show={showComparison} onClose={this.showModal} />
-        {/* <br></br> */}
         <PreviewImages currentStyle={defaultStyle} productID={productID} />
         </div>
         <br></br>
