@@ -29,10 +29,11 @@ class Overview extends React.Component {
     axios.get(`/products/${id}`)
       .then((res) => {
         const information = res.data;
+        console.log(information);
         this.setState({ information });
       })
       .catch((err) => {
-        // console.error('getProductInformation', err);
+        console.error('getProductInformation', err);
       })
   }
 

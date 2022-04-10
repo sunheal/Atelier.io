@@ -95,6 +95,7 @@ class QuestionCard extends React.Component {
                 <br></br>
                 <div>
                   <form id="questionForm">
+                    <input type="file"placeholder="122" />
                     <label className="form">Question:</label>
                     <textarea className="popFormQ same" type="text"></textarea>
                     <br></br>
