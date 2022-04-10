@@ -1,0 +1,14 @@
+import React from "react";
+import '@testing-library/jest-dom'
+import { render, screen, waitFor } from '@testing-library/react';
+import App from './app.jsx';
+import regeneratorRuntime from "regenerator-runtime";
+
+
+describe('App', () => {
+  it('should have "Good Deals Only" Logo', async () => {
+    render(<App />);
+    const logo = await waitFor(() => screen.getByText('Good Deals Only'));
+    expect(logo).toBeInTheDocument();
+  })
+});
