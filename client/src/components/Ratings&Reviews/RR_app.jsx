@@ -24,11 +24,11 @@ class RR_app extends React.Component {
     componentDidMount() {
         this.getRating();
     }
-    
+
     getRating() {
         axios.get(`/reviews/meta/?product_id=${this.props.id}`)
         .then((output)=> {
-            console.log(output.data.ratings, 'received from API Rating');
+            // console.log(output.data.ratings, 'received from API Rating');
             let resObj = output.data.ratings;
             if(Object.keys(resObj).length === 0) {
                 this.setState({
@@ -45,7 +45,7 @@ class RR_app extends React.Component {
                     rating: avg
                 })
             }
-            
+
             // if(resArr.length === 0) {
             //     console.log('00000');
             //     this.setState({
@@ -59,7 +59,7 @@ class RR_app extends React.Component {
             //         rating: avg
             //     })
             // }
-           
+
         })
         .catch(err => console.log(err));
     }
@@ -100,18 +100,18 @@ class RR_app extends React.Component {
     render() {
         return (
             <div className="ReviewContainer">
-                <h1>RATINGS &amp; Reviews</h1> 
-                <div className="leftOfRR"> 
-               <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > 
+                <h1>RATINGS &amp; Reviews</h1>
+                <div className="leftOfRR">
+               <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p >
                 {/* <div > <p > {rating} </p> <Stars rating = {this.state.rating} /> </div> */}
-                    
+
                     {/* <StarsAndBreakdown rating={this.state.rating} stars={() => this.arrangeStar(this.state.rating, this.state.stars)}/>  */}
                 </div>
-                <div className="rightOfRR"> 
+                <div className="rightOfRR">
                     <ReviewList id={this.props.id}/>
                 </div>
 
-            </div>  
+            </div>
         )
     }
 }

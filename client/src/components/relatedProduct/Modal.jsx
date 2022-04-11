@@ -18,14 +18,32 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { show, onClose } = this.props;
-
+    const { show, onClose, comparison, products } = this.props;
     if (!show) {
       return null;
     }
     return (<div>
       <h4>Comparing</h4>
-      <table></table>
+      <table>
+        <thead>
+          <tr>
+            <th>{products.currentPage}</th>
+            <th></th>
+            <th>{products.selected}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            Object.keys(comparison).map((feature, index) => (
+                <tr key={index}>
+                  <td>{comparison[feature].currentPage? "\u2713" : '   '}</td>
+                  <td>{feature}</td>
+                  <td>{comparison[feature].selected? "\u2713" : '   '}</td>
+                </tr>
+            ))
+          }
+        </tbody>
+      </table>
       <button onClick={onClose}> Close </button>
     </div>);
   }

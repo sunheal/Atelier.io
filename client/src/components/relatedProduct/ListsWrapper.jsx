@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import './css/RelatedProductStyle.css';
 import RelatedProductsList from './RelatedProductsList.jsx';
 import OutfitList from './OutfitList.jsx';
+
 
 class ListsWrapper extends React.Component {
   constructor(props) {
@@ -30,18 +32,13 @@ class ListsWrapper extends React.Component {
 
 
   render() {
-    const containerStyle = {
-      'borderColor': 'grey',
-      'borderStyle': 'solid',
-      'margin': '10px 5% 10px'
-    }
 
     return (
-      <div style={containerStyle} id="related_products">
+      <div id="related_products">
         <h3>RELATED PRODUCTS</h3>
         <RelatedProductsList relatedProductsIDs={this.state.relatedProductsIDs} productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo}/>
         <h3>YOUR OUTFIT</h3>
-        <OutfitList />
+        <OutfitList productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo} />
       </div>
     );
   }

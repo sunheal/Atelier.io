@@ -23,7 +23,11 @@ class ProductCard extends React.Component {
         ]
       },
       productRating: null,
-      showComparison: false
+      showComparison: false,
+      productName: {},
+      commonFeatures: {
+        feature1: { value1: null, value2: null }
+      }
     };
 
     this.showModal = this.showModal.bind(this);
@@ -94,47 +98,62 @@ class ProductCard extends React.Component {
   }
 
   showModal() {
+    this.mergeFeatures();
     this.setState({
       showComparison: !this.state.showComparison
     })
   }
 
-  // handleClose() {
-  //   var modal = document.getElementById('id01');
-  //   // When the user clicks anywhere outside of the modal, close it
-  //   window.onclick = function (event) {
-  //     if (event.target == modal) {
-  //       modal.style.display = "none";
-  //     }
-  //   }
-  // }
+  mergeFeatures() {
+    var commonFeatures = {};
+    this.props.productInfoOfCurrentPage.features.forEach(item => {
+      commonFeatures[item.feature] = {
+        currentPage: item.value,
+        selected: null
+      }
+    })
+    this.state.productInfo.features.forEach(item => {
+      if (commonFeatures[item.feature]) {
+        commonFeatures[item.feature].selected = item.value;
+      } else {
+        commonFeatures[item.feature] = {
+          currentPage: null,
+          selected: item.value
+        }
+      }
+    })
+    var productName = {
+      currentPage: this.props.productInfoOfCurrentPage.name,
+      selected: this.state.productInfo.name
+    }
+    this.setState({
+      productName : productName,
+      commonFeatures: commonFeatures
+    })
+  }
 
   render() {
-    const containerStyle = {
-      'display': 'inline-block',
-      'margin': '0px 10px',
-      'borderColor': 'blue',
-      'borderStyle': 'solid'
-    }
-    const productInfoStyle = {
-      'display': 'block'
-    }
-    const { productInfo, productRating, defaultStyle, productStyle, showComparison} = this.state;
+    const { productInfo, productRating, defaultStyle, productStyle, showComparison, commonFeatures, productName } = this.state;
     const { productID, productInfoOfCurrentPage } = this.props;
     return (
-      <div style={containerStyle} className="productCard">
-        <button onClick={this.showModal}> action button </button>
-        <Modal show={showComparison} onClose={this.showModal}/>
+      <div className="productCard">
+        <div className="productInfo-upper">
+          <button className="action-btn" onClick={this.showModal}>{"\u2606"}</button>
+          <Modal show={showComparison} onClose={this.showModal} comparison={commonFeatures} products={productName} />
+          <PreviewImages currentStyle={defaultStyle} productID={productID} />
+        </div>
         <br></br>
-        <PreviewImages currentStyle={defaultStyle} productID={productID} />
-        <br></br>
-        <div style={productInfoStyle} className="productInfo">
+        <div className="productInfo">
           <span className="productInfo-category">{productInfo.category}</span>
           <br></br>
           <span className="productInfo-name">{productInfo.name}</span>
           <br></br>
           {defaultStyle.original_price && defaultStyle.sale_price ?
-            <span className="productInfo-pricev sale">${defaultStyle.sale_price} ${defaultStyle.original_price}</span>
+            <div>
+              <span className="productInfo-pricev sale">${defaultStyle.sale_price}</span>
+              <span className="productInfo-pricev sale">${defaultStyle.original_price}</span>
+
+            </div>
             :
             <span className="productInfo-price">${defaultStyle.original_price}</span>
           }
