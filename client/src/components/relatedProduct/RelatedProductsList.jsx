@@ -32,7 +32,7 @@ class RelatedProductsList extends React.Component {
         <p className="list-title">RELATED PRODUCTS</p>
         <Carousel breakPoints={breakPoints}>
           {relatedProductsIDs.map(productID => (
-            <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} />
+            <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} />
           ))}
         </Carousel>
       </div>

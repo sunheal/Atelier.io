@@ -10,12 +10,40 @@ import ProductCard from './ProductCard.jsx';
 // a product can only be added to an outfit ONCE
 // action Buttton 'X': remove the product from the Outfit list
 
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 }
+];
+
 class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addOutfit: false
+      addOutfit: false,
+      outfitList: [],
     };
+    this.addOutfit = this.addOutfit.bind(this);
+    this.removeOutfit = this.removeOutfit.bind(this);
+  }
+
+  addOutfit() {
+    var list = this.state.outfitList;
+    list.push(this.props.selectedProductInfo);
+    this.setState({
+      addOutfit: true,
+      outfitList: list
+    })
+  }
+
+  removeOutfit () {
+    var list = this.state.outfitList;
+    list.pop();
+    this.setState({
+      addOutfit: false,
+      outfitList: list
+    })
   }
 
   render() {
@@ -24,9 +52,11 @@ class OutfitList extends React.Component {
     return (
     <div id="outfitList" className="container">
       <p className="list-title">YOUR OUTFIT</p>
-      <Carousel>
-      <div role="button" id="add-outfit"> Add to Outfit </div>
-      {!addOutfit ? null : <ProductCard />}
+      <Carousel breakPoints={breakPoints}>
+      <div>
+      <button id="add-outfit" onClick={this.addOutfit}> Add to Outfit </button>
+      </div>
+      {!addOutfit ? null : <ProductCard productID={productID} productInfoOfCurrentPage={selectedProductInfo} removeOutfit={this.removeOutfit} />}
       </Carousel>
     </div>
     );

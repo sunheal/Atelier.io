@@ -40,7 +40,7 @@
 }
 
 .productCard:hover {
-  box-shadow: 0 10px 20px 0 rgb(237, 226, 204);
+  box-shadow: 0 10px 20px 0 rgb(81, 79, 74);
 }
 
 .productInfo{
@@ -85,6 +85,10 @@
   cursor: pointer;
 }
 
+#of{
+  color: rgb(31, 30, 30);
+}
+
 /* Modal */
 table {
   background-color: aliceblue;
@@ -116,6 +120,10 @@ tbody tr:nth-child(even) {
   background-color: #eee;
 }
 
+.characteristics{
+  padding: 0px 20px;
+}
+
 #modal{
   position: fixed;
   top: 0;
@@ -136,6 +144,3 @@ tbody tr:nth-child(even) {
   position: relative;
 }
 
-.characteristics{
-  padding: 0px 20px;
-}
