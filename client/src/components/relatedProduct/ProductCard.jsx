@@ -137,11 +137,13 @@ class ProductCard extends React.Component {
     const { productID, productInfoOfCurrentPage, action, removeOutfit } = this.props;
     return (
       <div className="productCard">
+
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn" onClick={this.showModal}>{"\u2606"}</button> : <button className="action-btn" id="of" onClick={removeOutfit}> X </button>}
           {showComparison && <Modal show={showComparison} onClose={this.showModal} comparison={commonFeatures} products={productName} />}
           <PreviewImages currentStyle={defaultStyle} productID={productID} />
         </div>
+
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
           <div className="productInfo-name">{productInfo.name}</div>

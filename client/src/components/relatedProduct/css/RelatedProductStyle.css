@@ -63,13 +63,32 @@
 
 /* ------ RelatedProductList ------ */
 
+
+
 /* ------ Outfit List ------ */
-#add-outfit {
-  width: 100%;
+.outfit-container{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-outfit-card {
+  width: 25%;
   height: 300px;
   margin: 13px 8px;
   border-style: groove;
 }
+
+.add-outfit-btn{
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, .25);
+  margin: var(--img-gap) 0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 150ms ease-in-out;
+}
+
 
 /* ------ ProductCard ------ */
 .productCard{
@@ -88,7 +107,8 @@
 .productInfo{
   display: block;
   height: auto;
-  padding-left: 14%;
+  margin-top: .75rem;
+  padding-left: 11%;
 }
 
 .preview-image {

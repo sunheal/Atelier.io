@@ -63,29 +63,29 @@ class OutfitList extends React.Component {
 
   render() {
     const { productID, selectedProductInfo } = this.props;
-    const { addOutfit, currentPosition, positionIndex } = this.state;
+    const { addOutfit, outfitList, currentPosition, positionIndex } = this.state;
     return (
       <div id="outfitList" className="list-container">
-
         <div className="list-header">
           <h3 className="list-title">YOUR OUTFIT</h3>
         </div>
-
-        <div className="carousel-container">
-
-          <div >
-            <button id="add-outfit" onClick={this.addOutfit}> Add to Outfit </button>
+        <div className="outfit-container">
+          <div id="add-outfit-card">
+            <button className="add-outfit-btn" onClick={this.addOutfit}> Add to Outfit </button>
           </div>
+          <div className="carousel-container">
+            {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
+            <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
+              {!addOutfit ? null : <ProductCard productID={productID} productInfoOfCurrentPage={selectedProductInfo} removeOutfit={this.removeOutfit} />}
+              {/* {outfitList.map(productID => (
+              <ProductCard key={productID} productID={productID} removeOutfit={this.removeOutfit}  />
+            ))} */}
+            </div>
+            {outfitList.length < 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
 
-          {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
-          <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-            {!addOutfit ? null : <ProductCard productID={productID} productInfoOfCurrentPage={selectedProductInfo} removeOutfit={this.removeOutfit} />}
+            {/* <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> */}
           </div>
-
-          <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>
-
         </div>
-
       </div>
     );
   }
