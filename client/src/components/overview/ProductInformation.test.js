@@ -5,7 +5,7 @@ import ProductInformation from './ProductInformation.jsx';
 import regeneratorRuntime from "regenerator-runtime";
 
 
-describe.only('ProductInformation', () => {
+describe('ProductInformation', () => {
   it('should have "ProductInformation" Title', () => {
     const information = {
       "id": 64620,

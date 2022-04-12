@@ -12,7 +12,8 @@ class Overview extends React.Component {
     this.state = {
       id: 64620,
       information: {},
-      styles: {},
+      styles: [],
+      selectedStyle: '',
       ratings: '',
       reviewsCount: ''
     }
@@ -40,7 +41,8 @@ class Overview extends React.Component {
   getProductStyles = (id) => {
     axios.get(`/products/${id}/styles`)
       .then((res) => {
-        const styles = res.data;
+        const styles = res.data.results;
+        console.log('styles', res.data);
         this.setState({ styles });
       })
       .catch((err) => {
@@ -55,9 +57,9 @@ class Overview extends React.Component {
   getProductRatings = (id) => {
     axios.get(`/reviews/meta/?product_id=${id}`)
       .then((res) => {
-        console.log('getProductRatings', res.data.ratings['1']);
+        // console.log('getProductRatings', res.data.ratings['1']);
         const reviewsCount = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
-        const ratings = ((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / reviewsCount).toFixed(2);
+        const ratings = ((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / reviewsCount).toFixed(1);
         this.setState({ ratings, reviewsCount });
       })
       .catch((err) => {
@@ -71,7 +73,7 @@ class Overview extends React.Component {
         <h1>Overview</h1>
         <ImageGallery />
         <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
-        <StyleSelector />
+        <StyleSelector styles={this.state.styles} />
         <AddToCart />
       </div>
     );

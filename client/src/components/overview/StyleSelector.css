@@ -1,0 +1,80 @@
+/* .styleDiv {
+  position: relative;
+  width: auto;
+  height: 50px;
+  float: left;
+  margin-left: 10px;
+}
+
+.styleThumbnail {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%
+}
+
+.styleCheckbox {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+} */
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  padding: 3px;
+  display: block;
+  position: relative;
+  margin: 3px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+}
+
+/* check mark */
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  right: 0px;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  line-height: 20px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "✓";
+  color: grey;
+  font-size: 14px;
+  background-color: transparent;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  /* box-shadow: 0 0 5px #333; */
+  z-index: -1;
+}
