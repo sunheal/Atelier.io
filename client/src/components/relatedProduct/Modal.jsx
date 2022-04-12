@@ -12,9 +12,6 @@ import React from 'react';
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showContent: props.show
-    };
   }
 
   render() {
@@ -22,30 +19,32 @@ class Modal extends React.Component {
     if (!show) {
       return null;
     }
-    return (<div>
-      <h4>Comparing</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>{products.currentPage}</th>
-            <th></th>
-            <th>{products.selected}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            Object.keys(comparison).map((feature, index) => (
+    return (
+      <div id="modal" onClick={onClose}>
+        <table className="comparision">
+          <caption> Comparing </caption>
+          <thead>
+            <tr>
+              <th>{products.currentPage}</th>
+              <th></th>
+                <th>{products.selected}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              Object.keys(comparison).map((feature, index) => (
                 <tr key={index}>
-                  <td>{comparison[feature].currentPage? "\u2713" : '   '}</td>
-                  <td>{feature}</td>
-                  <td>{comparison[feature].selected? "\u2713" : '   '}</td>
+                  <td>{comparison[feature].currentPage ? "\u2713" : '   '}</td>
+                  <td className="characteristics">{feature}</td>
+                  <td>{comparison[feature].selected ? "\u2713" : '   '}</td>
                 </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      <button onClick={onClose}> Close </button>
-    </div>);
+              ))
+            }
+          </tbody>
+        </table>
+        <br></br>
+        {/* <button onClick={onClose}> Close </button> */}
+      </div>);
   }
 };
 

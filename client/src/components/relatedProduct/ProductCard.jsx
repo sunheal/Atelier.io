@@ -139,7 +139,7 @@ class ProductCard extends React.Component {
       <div className="productCard">
         <div className="productInfo-upper">
           <button className="action-btn" onClick={this.showModal}>{"\u2606"}</button>
-          <Modal show={showComparison} onClose={this.showModal} comparison={commonFeatures} products={productName} />
+          {showComparison && <Modal show={showComparison} onClose={this.showModal} comparison={commonFeatures} products={productName} />}
           <PreviewImages currentStyle={defaultStyle} productID={productID} />
         </div>
         <br></br>
@@ -152,7 +152,6 @@ class ProductCard extends React.Component {
             <div>
               <span className="productInfo-pricev sale">${defaultStyle.sale_price}</span>
               <span className="productInfo-pricev sale">${defaultStyle.original_price}</span>
-
             </div>
             :
             <span className="productInfo-price">${defaultStyle.original_price}</span>
