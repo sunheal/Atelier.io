@@ -9,11 +9,15 @@
   flex-direction: column;
 }
 
-#questionForm label{
+.question {
+  height:36px;
+}
+
+#answerForm label{
   display: flex;
   width:140px;
   margin:4px 0;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .popFormQ {
@@ -25,4 +29,8 @@
 }
 
 
+.question-wrap {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding:10px 0 10px;
+}
 

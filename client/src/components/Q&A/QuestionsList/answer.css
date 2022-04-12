@@ -1,0 +1,22 @@
+.answerImage img {
+  margin-right: 6px;
+  border: black solid;
+  padding: 20px 0;
+}
+
+.answer_item .right{
+  color: #666;
+  margin-top: 6px;
+  margin-left: 20px;
+}
+
+.answer_line {
+  margin-top: 1px;
+  margin-bottom: 6px;
+}
+
+.answerer_info{
+  color:black;
+  font-weight:100;
+
+}

@@ -42,16 +42,14 @@ class QuestionsList extends Component {
     this.setState({
       currentQuestions
     })
-    console.log(currentQuestions);
+    console.log(currentQuestions, '----------------');
   };
 
   render() {
+    console.log(this.state.currentQuestions, '---------------------------')
     return (
       <div>
         <SearchBar onSearch={this.onSearch}></SearchBar>
-        Here are the questions for this product:
-        {this.state.questions.results.length}
-        <h1>{this.state.id}</h1>
         {this.state.currentQuestions.map((item) => {
           return <QuestionCard {...item} key={item.question_id} />;
         })}
