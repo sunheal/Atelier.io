@@ -97,6 +97,14 @@ tbody td {
   padding: 5px 0px;
 }
 
+tbody tr:nth-child(odd) {
+  background-color: aliceblue;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+
 #modal{
   position: fixed;
   top: 0;
