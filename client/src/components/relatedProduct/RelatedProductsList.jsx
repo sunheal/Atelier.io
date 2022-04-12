@@ -22,26 +22,19 @@ class RelatedProductsList extends React.Component {
       productIdOfCurrentPage: this.props.productID,
       comparedProductID: 64621,
     };
-    // this.changeComparedProduct = this.changeComparedProduct.bind(this);
   }
 
-  // changeComparedProduct(e) {
-  //   console.log('eeee', e);
-  //   // this.setState({
-  //   //   comparedProductID: e.target.id
-  //   // })
-  // }
-
   render() {
-    const {previousButton, nextButton} = this.state;
-    const {relatedProductsIDs, selectedProductInfo} = this.props;
+    const { previousButton, nextButton } = this.state;
+    const { relatedProductsIDs, selectedProductInfo } = this.props;
     return (
       <div id="relatedProductsList" className="container">
-      <Carousel breakPoints={breakPoints}>
-        {relatedProductsIDs.map(productID => (
-          <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} />
-        ))}
-      </Carousel>
+        <p className="list-title">RELATED PRODUCTS</p>
+        <Carousel breakPoints={breakPoints}>
+          {relatedProductsIDs.map(productID => (
+            <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} />
+          ))}
+        </Carousel>
       </div>
     );
   }

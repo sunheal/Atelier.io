@@ -15,15 +15,19 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       addOutfit: false
-
     };
   }
 
   render() {
+    const {productID, selectedProductInfo} = this.props;
+    const {addOutfit} = this.state;
     return (
     <div id="outfitList" className="container">
-      <button> Add to Outfit </button>
-      {/* <ProductCard /> */}
+      <p className="list-title">YOUR OUTFIT</p>
+      <Carousel>
+      <div role="button" id="add-outfit"> Add to Outfit </div>
+      {!addOutfit ? null : <ProductCard />}
+      </Carousel>
     </div>
     );
   }
