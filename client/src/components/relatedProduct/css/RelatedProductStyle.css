@@ -1,5 +1,13 @@
+*, * ::after, *::before {
+  box-sizing: border-box;
+}
 
-/* ListWrapper */
+:root {
+  --handle-size: 3rem;
+  --img-gap: .25rem;
+}
+
+/* ------ ListWrapper ------ */
 #related_products{
   border-color: grey;
   border-style: solid;
@@ -7,36 +15,70 @@
   margin : 10px 15% 10px;
 }
 /* for two lists */
-.container{
+.list-container{
   border-color: rgba(71, 128, 179, 0.893);
   border-style: solid;
   margin: 10px 3% 10px;
 }
 
-.list-title {
-  padding-left: 5%;
+.list-header {
+  padding-left: 3%;
 }
 
-/* Carousel */
-.rec.rec-arrow:disabled {
-  visibility: hidden;
+/* ------ Carousel ------ */
+
+.carousel-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-slider{
+  --items-per-screen: 3;
+  width: 95%;
+  display: flex;
+  flex-grow: 1;
+}
+
+.carousel-slider > .productCard {
+  flex: 0 0 calc(101% / var(--items-per-screen));
+}
+
+.handles{
+  border: none;
+  border-radius: 1rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, .25);
+  z-index: 10;
+  margin: var(--img-gap) 0;
+  width: var(--handle-size);
+  cursor: pointer;
+  font-size: 5rem;
+  color: white;
+  transition: background-color 150ms ease-in-out;
 }
 
 
-/* RelatedProductList */
-/* Outfit List */
+/* ------ RelatedProductList ------ */
+
+/* ------ Outfit List ------ */
 #add-outfit {
   width: 100%;
   height: 300px;
   margin: 13px 8px;
   border-style: groove;
 }
-/* ProductCard */
+
+/* ------ ProductCard ------ */
 .productCard{
   width: 100%;
   height: 300px;
   margin: 13px 8px;
   border-style: groove;
+  cursor: pointer;
+  padding: .25rem;
 }
 
 .productCard:hover {
@@ -46,13 +88,15 @@
 .productInfo{
   display: block;
   height: auto;
-  padding-left: 16%;
+  padding-left: 14%;
 }
 
 .preview-image {
   width: 100%;
-  height: 200px;
-  text-align: center;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(183, 111, 39);
 }
 
@@ -68,7 +112,7 @@
   text-decoration: line-through;
 }
 
-/* Action buttons */
+/* ------ Action buttons ------ */
 .productInfo-upper{
   position: relative;
 }
@@ -89,7 +133,7 @@
   color: rgb(31, 30, 30);
 }
 
-/* Modal */
+/* ------ Modal ------ */
 table {
   background-color: aliceblue;
   padding: 20px 20px;

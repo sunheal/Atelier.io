@@ -142,21 +142,17 @@ class ProductCard extends React.Component {
           {showComparison && <Modal show={showComparison} onClose={this.showModal} comparison={commonFeatures} products={productName} />}
           <PreviewImages currentStyle={defaultStyle} productID={productID} />
         </div>
-        <br></br>
         <div className="productInfo">
-          <span className="productInfo-category">{productInfo.category}</span>
-          <br></br>
-          <span className="productInfo-name">{productInfo.name}</span>
-          <br></br>
+          <div className="productInfo-category">{productInfo.category}</div>
+          <div className="productInfo-name">{productInfo.name}</div>
           {defaultStyle.original_price && defaultStyle.sale_price ?
             <div>
-              <span className="productInfo-pricev sale">${defaultStyle.sale_price}</span>
-              <span className="productInfo-pricev sale">${defaultStyle.original_price}</span>
+              <div className="productInfo-pricev sale">${defaultStyle.sale_price}</div>
+              <div className="productInfo-pricev sale">${defaultStyle.original_price}</div>
             </div>
             :
-            <span className="productInfo-price">${defaultStyle.original_price}</span>
+            <div className="productInfo-price">${defaultStyle.original_price}</div>
           }
-          <br></br>
           <Stars rating={productRating} />
         </div>
       </div>
