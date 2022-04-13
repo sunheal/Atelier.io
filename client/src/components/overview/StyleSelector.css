@@ -1,12 +1,11 @@
-/* .styleDiv {
+.styleDiv {
   position: relative;
   width: auto;
   height: 50px;
   float: left;
-  margin-left: 10px;
 }
 
-.styleThumbnail {
+/* .styleThumbnail {
   height: 40px;
   width: 40px;
   border-radius: 50%
@@ -41,7 +40,7 @@ label:before {
   content: " ";
   display: block;
   border-radius: 50%;
-  border: 1px solid grey;
+  border: 1px solid #ddd;
   position: absolute;
   top: -5px;
   right: 0px;

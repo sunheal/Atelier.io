@@ -13,7 +13,9 @@ class Overview extends React.Component {
       id: 64620,
       information: {},
       styles: [],
-      selectedStyle: '',
+      selectedStyle: {},
+      selectedSize: '',
+      selectedQuantity: '',
       ratings: '',
       reviewsCount: ''
     }
@@ -67,14 +69,32 @@ class Overview extends React.Component {
       })
   }
 
+  onStyleClick = (e) => {
+    const checkboxes = document.getElementsByClassName("checkbox");
+    for (let checkbox of checkboxes) {
+      checkbox.checked = false;
+    }
+    const styles = [...this.state.styles];
+    const selectedCheckbox = e.target;
+    selectedCheckbox.checked = true;
+    const selectedStyle = styles[selectedCheckbox.id];
+    this.setState({selectedStyle});
+  }
+
+  onSizeChange = (e) => {
+    const selectedSize = e.target.value;
+    this.setState({selectedSize});
+  }
+
   render() {
     return (
       <div id="overview">
         <h1>Overview</h1>
         <ImageGallery />
         <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
-        <StyleSelector styles={this.state.styles} />
+        <StyleSelector styles={this.state.styles} onStyleClick={this.onStyleClick} selectedStyle={this.state.selectedStyle} selectedSize={this.state.selectedSize} onSizeChange={this.onSizeChange}/>
         <AddToCart />
+        <br></br>
       </div>
     );
   }
