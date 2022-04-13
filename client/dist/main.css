@@ -110,3 +110,6 @@ label[name='rating'] {
 a[name='ratingtxt'] {
     text-align: center;
 }
+rect{
+    float: left;
+    }

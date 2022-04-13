@@ -117,7 +117,7 @@ class ReviewList extends React.Component{
                         <h2> here you go </h2>
                         <button onClick={this.onShowModal}> Close </button>
                     </Modal> */}
-                    <AddReview show={this.state.showModal} onShowModal={this.onShowModal}/>
+                    <AddReview show={this.state.showModal} onShowModal={this.onShowModal} id={this.props.id}/>
 
                    </div>
  }

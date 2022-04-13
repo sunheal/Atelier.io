@@ -2,7 +2,7 @@ import React from "react";
 import Stars from "../Shared/Stars.jsx";
 import ReviewList from "./reviewList.jsx";
 import axios from "axios";
-
+import BarChart from "./breakdowns.jsx";
 
 
 
@@ -11,6 +11,7 @@ class RR_app extends React.Component {
         super(props);
         this.state = {
             rating: 0,
+            recommend: 0,
         }
         this.getRating = this.getRating.bind(this);
     }
@@ -23,12 +24,26 @@ class RR_app extends React.Component {
         .then((output)=> {
             console.log(output.data.ratings, 'received from API Rating');
             let resObj = output.data.ratings;
+            let recObj = output.data.recommended;
+            if(Object.keys(recObj).length === 0) {
+                this.setState({
+                    recommend: 0
+                })
+            }else {
+                let recOnly=Number(Object.values(recObj)[1]), totalRec=0;
+                totalRec = recOnly + Number(Object.values(recObj)[0]);
+                recOnly = ((recOnly/totalRec) * 100).toFixed(0)
+                this.setState({
+                    recommend : recOnly
+                })
+            }
             if(Object.keys(resObj).length === 0) {
                 this.setState({
                     rating : 0
                 })
             }else {
                 let total = 0, count = 0, avg = 0;
+
                 for(var keys in resObj) {
                     total += resObj[keys] * Number(keys)
                     count += Number(resObj[keys]);
@@ -93,9 +108,11 @@ class RR_app extends React.Component {
     render() {
         return (
             <div className="ReviewContainer">
-                <h1>RATINGS &amp; Reviews</h1> 
+                <h1>Ratings &amp; Reviews</h1> 
                 <div className="leftOfRR"> 
                <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > 
+               <p> {this.state.recommend}% of reviews recommended this product</p>
+               <BarChart />
                 </div>
                 <div className="rightOfRR"> 
                     <ReviewList id={this.props.id}/>
