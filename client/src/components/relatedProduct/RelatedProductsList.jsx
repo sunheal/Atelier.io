@@ -14,7 +14,7 @@ class RelatedProductsList extends React.Component {
     this.state = {
       comparedProductID: 64621,
       showModal: false,
-      modalArray: [],
+      comparisionArray: [],
       currentPosition: 0,
       positionIndex: 0
     };
@@ -42,11 +42,10 @@ class RelatedProductsList extends React.Component {
     });
   }
 
-  updateModal(currentProduct, relatedProduct) {
-    // console.log('clicked')
+  updateModal(currentProductInfo, relatedProductInfo) {
     this.setState({
       showModal: true,
-      modalArray: [currentProduct, relatedProduct],
+      comparisionArray: [currentProductInfo, relatedProductInfo],
     });
   }
 
@@ -57,7 +56,7 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    const { comparedProductID, showModal, modalArray, currentPosition, positionIndex } = this.state;
+    const { comparedProductID, showModal, comparisionArray, currentPosition, positionIndex } = this.state;
     const { relatedProductsIDs, selectedProductInfo, productID } = this.props;
 
     return (
@@ -70,12 +69,12 @@ class RelatedProductsList extends React.Component {
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
             {relatedProductsIDs.map(productID => (
-              <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} modalArray={modalArray}  showModal={showModal} updateModal={this.updateModal} closeModal={this.closeModal}/>
+              <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'}  updateModal={this.updateModal}/>
             ))}
           </div>
           {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
         </div>
-
+          {showModal ? <Modal onClose={this.closeModal} comparisionArray={comparisionArray} /> : null}
       </div>
     );
   }
