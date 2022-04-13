@@ -12,38 +12,58 @@ import React from 'react';
 class Modal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      commonFeatures: {
+        feature1: { value1: null, value2: null }
+      }
+    }
   }
 
   render() {
-    const { show, onClose, comparison, products } = this.props;
-    if (!show) {
-      return null;
-    }
+    const { onClose, comparisionArray} = this.props;
+    let commonFeatures = {};
+    comparisionArray[0].features.forEach(item => {
+      commonFeatures[item.feature] = {
+        currentPage: item.value,
+        selected: null
+      }
+    })
+    comparisionArray[1].features.forEach(item => {
+      if (commonFeatures[item.feature]) {
+        commonFeatures[item.feature].selected = item.value;
+      } else {
+        commonFeatures[item.feature] = {
+          currentPage: null,
+          selected: item.value
+        }
+      }
+    })
+
     return (
       <div id="modal" onClick={onClose}>
         <table className="comparision">
           <caption> Comparing </caption>
           <thead>
             <tr>
-              <th>{products.currentPage}</th>
+              <th>{comparisionArray[0].name}</th>
               <th></th>
-                <th>{products.selected}</th>
+                <th>{comparisionArray[1].name}</th>
             </tr>
           </thead>
           <tbody>
             {
-              Object.keys(comparison).map((feature, index) => (
+              Object.keys(commonFeatures).map((feature, index) => (
                 <tr key={index}>
-                  <td>{comparison[feature].currentPage ? "\u2713" : '   '}</td>
+                  <td>{commonFeatures[feature].currentPage ? "\u2713" : '   '}</td>
                   <td className="characteristics">{feature}</td>
-                  <td>{comparison[feature].selected ? "\u2713" : '   '}</td>
+                  <td>{commonFeatures[feature].selected ? "\u2713" : '   '}</td>
                 </tr>
               ))
             }
           </tbody>
         </table>
         <br></br>
-        {/* <button onClick={onClose}> Close </button> */}
+        <button onClick={onClose}> Close </button>
       </div>);
   }
 };
