@@ -79,6 +79,7 @@ class Overview extends React.Component {
     selectedCheckbox.checked = true;
     const selectedStyle = styles[selectedCheckbox.id];
     this.setState({selectedStyle});
+    this.setState({selectedSize: ''});
   }
 
   onSizeChange = (e) => {
