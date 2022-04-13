@@ -13,15 +13,19 @@ class RelatedProductsList extends React.Component {
     super(props);
     this.state = {
       comparedProductID: 64621,
+      showModal: false,
+      modalArray: [],
       currentPosition: 0,
       positionIndex: 0
     };
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
+    this.updateModal = this.updateModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 238;
+    var newPosition = this.state.currentPosition - 45;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -30,7 +34,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 238;
+    var newPosition = this.state.currentPosition + 45;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
@@ -38,8 +42,22 @@ class RelatedProductsList extends React.Component {
     });
   }
 
+  updateModal(currentProduct, relatedProduct) {
+    // console.log('clicked')
+    this.setState({
+      showModal: true,
+      modalArray: [currentProduct, relatedProduct],
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      showModal: false,
+    });
+  }
+
   render() {
-    const { comparedProductID, currentPosition, positionIndex } = this.state;
+    const { comparedProductID, showModal, modalArray, currentPosition, positionIndex } = this.state;
     const { relatedProductsIDs, selectedProductInfo, productID } = this.props;
 
     return (
@@ -50,12 +68,12 @@ class RelatedProductsList extends React.Component {
 
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
-          <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
+          <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
             {relatedProductsIDs.map(productID => (
-              <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} />
+              <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} modalArray={modalArray}  showModal={showModal} updateModal={this.updateModal} closeModal={this.closeModal}/>
             ))}
           </div>
-          <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>
+          {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
         </div>
 
       </div>

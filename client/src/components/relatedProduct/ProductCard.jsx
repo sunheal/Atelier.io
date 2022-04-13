@@ -22,15 +22,10 @@ class ProductCard extends React.Component {
           }
         ]
       },
-      productRating: null,
-      showComparison: false,
-      productName: {},
-      commonFeatures: {
-        feature1: { value1: null, value2: null }
-      }
+      productRating: null
     };
 
-    this.showModal = this.showModal.bind(this);
+    // this.showModal = this.showModal.bind(this);
   }
 
   componentDidMount() {
@@ -97,51 +92,56 @@ class ProductCard extends React.Component {
       })
   }
 
-  showModal() {
-    this.mergeFeatures();
-    this.setState({
-      showComparison: !this.state.showComparison
-    })
+  showModal1() {
+    console.log('clicked')
+    this.props.updateModal(this.props.productInfoOfCurrentPage, this.state.productInfo);
   }
 
-  mergeFeatures() {
-    var commonFeatures = {};
-    this.props.productInfoOfCurrentPage.features.forEach(item => {
-      commonFeatures[item.feature] = {
-        currentPage: item.value,
-        selected: null
-      }
-    })
-    this.state.productInfo.features.forEach(item => {
-      if (commonFeatures[item.feature]) {
-        commonFeatures[item.feature].selected = item.value;
-      } else {
-        commonFeatures[item.feature] = {
-          currentPage: null,
-          selected: item.value
-        }
-      }
-    })
-    var productName = {
-      currentPage: this.props.productInfoOfCurrentPage.name,
-      selected: this.state.productInfo.name
-    }
-    this.setState({
-      productName : productName,
-      commonFeatures: commonFeatures
-    })
-  }
+  // showModal() {
+  //   this.mergeFeatures();
+  //   this.setState({
+  //     showComparison: !this.state.showComparison
+  //   })
+  // }
+
+  // mergeFeatures() {
+  //   var commonFeatures = {};
+  //   this.props.productInfoOfCurrentPage.features.forEach(item => {
+  //     commonFeatures[item.feature] = {
+  //       currentPage: item.value,
+  //       selected: null
+  //     }
+  //   })
+  //   this.state.productInfo.features.forEach(item => {
+  //     if (commonFeatures[item.feature]) {
+  //       commonFeatures[item.feature].selected = item.value;
+  //     } else {
+  //       commonFeatures[item.feature] = {
+  //         currentPage: null,
+  //         selected: item.value
+  //       }
+  //     }
+  //   })
+  //   var productName = {
+  //     currentPage: this.props.productInfoOfCurrentPage.name,
+  //     selected: this.state.productInfo.name
+  //   }
+  //   this.setState({
+  //     productName : productName,
+  //     commonFeatures: commonFeatures
+  //   })
+  // }
 
   render() {
-    const { productInfo, productRating, defaultStyle, productStyle, showComparison, commonFeatures, productName } = this.state;
-    const { productID, productInfoOfCurrentPage, action, removeOutfit } = this.props;
+    const { productInfo, productRating, defaultStyle,  productStyle} = this.state;
+    const { productID, productInfoOfCurrentPage, action, removeOutfit, closeModal, showModal, updateModal, modalArray } = this.props;
     return (
       <div className="productCard">
 
         <div className="productInfo-upper">
-          {action === 'relatedProducts' ? <button className="action-btn" onClick={this.showModal}>{"\u2606"}</button> : <button className="action-btn" id="of" onClick={removeOutfit}> X </button>}
-          {showComparison && <Modal show={showComparison} onClose={this.showModal} comparison={commonFeatures} products={productName} />}
-          <PreviewImages currentStyle={defaultStyle} productID={productID} />
+          {action === 'relatedProducts' ? <button className="action-btn" onClick={this.showModal1.bind(this)}>{"\u2606"}</button> : <button className="action-btn" id="of" onClick={removeOutfit}> X </button>}
+          {<Modal show={showModal} onClose={closeModal} modalArray={modalArray}/>}
+          <PreviewImages currentStyle={defaultStyle} productID={productID}/>
         </div>
 
         <div className="productInfo">

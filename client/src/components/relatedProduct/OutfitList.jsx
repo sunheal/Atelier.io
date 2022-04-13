@@ -27,11 +27,13 @@ class OutfitList extends React.Component {
 
   addOutfit() {
     var list = this.state.outfitList;
-    list.push(this.props.selectedProductInfo);
-    this.setState({
-      addOutfit: true,
-      outfitList: list
-    })
+    if (!this.state.addOutfit) {
+      list.unshift(this.props.selectedProductInfo);
+      this.setState({
+        addOutfit: true,
+        outfitList: list
+      })
+    }
   }
 
   removeOutfit() {
@@ -81,9 +83,7 @@ class OutfitList extends React.Component {
               <ProductCard key={productID} productID={productID} removeOutfit={this.removeOutfit}  />
             ))} */}
             </div>
-            {outfitList.length < 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
-
-            {/* <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> */}
+            {outfitList.length < 3 || positionIndex ===  outfitList.lenght - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
           </div>
         </div>
       </div>
