@@ -12,6 +12,8 @@ class RR_app extends React.Component {
         this.state = {
             rating: 0,
             recommend: 0,
+            ratings: {},
+            count:0,
         }
         this.getRating = this.getRating.bind(this);
     }
@@ -34,12 +36,13 @@ class RR_app extends React.Component {
                 totalRec = recOnly + Number(Object.values(recObj)[0]);
                 recOnly = ((recOnly/totalRec) * 100).toFixed(0)
                 this.setState({
-                    recommend : recOnly
+                    recommend : recOnly,
                 })
             }
             if(Object.keys(resObj).length === 0) {
                 this.setState({
-                    rating : 0
+                    rating : 0,
+                    ratings: resObj,
                 })
             }else {
                 let total = 0, count = 0, avg = 0;
@@ -50,7 +53,9 @@ class RR_app extends React.Component {
                 }
                 avg = (total / count).toFixed(1);
                 this.setState({
-                    rating: avg
+                    rating: avg,
+                    ratings: resObj,
+                    count: count,
                 })
             }
             
@@ -112,7 +117,7 @@ class RR_app extends React.Component {
                 <div className="leftOfRR"> 
                <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > 
                <p> {this.state.recommend}% of reviews recommended this product</p>
-               <BarChart />
+               <BarChart ratings={this.state.ratings} count={this.state.count}/>
                 </div>
                 <div className="rightOfRR"> 
                     <ReviewList id={this.props.id}/>
