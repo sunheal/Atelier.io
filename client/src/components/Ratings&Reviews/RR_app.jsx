@@ -20,11 +20,11 @@ class RR_app extends React.Component {
     componentDidMount() {
         this.getRating();
     }
-    
+
     getRating() {
         axios.get(`/reviews/meta/?product_id=${this.props.id}`)
         .then((output)=> {
-            console.log(output.data.ratings, 'received from API Rating');
+            // console.log(output.data.ratings, 'received from API Rating');
             let resObj = output.data.ratings;
             let recObj = output.data.recommended;
             if(Object.keys(recObj).length === 0) {
@@ -58,7 +58,7 @@ class RR_app extends React.Component {
                     count: count,
                 })
             }
-            
+
             // if(resArr.length === 0) {
             //     console.log('00000');
             //     this.setState({
@@ -72,7 +72,7 @@ class RR_app extends React.Component {
             //         rating: avg
             //     })
             // }
-           
+
         })
         .catch(err => console.log(err));
     }
@@ -119,11 +119,11 @@ class RR_app extends React.Component {
                <p> {this.state.recommend}% of reviews recommended this product</p>
                <BarChart ratings={this.state.ratings} count={this.state.count}/>
                 </div>
-                <div className="rightOfRR"> 
+                <div className="rightOfRR">
                     <ReviewList id={this.props.id}/>
                 </div>
 
-            </div>  
+            </div>
         )
     }
 }

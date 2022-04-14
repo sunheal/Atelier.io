@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Modal from './Modal.jsx';
 import PreviewImages from './ProductCard/PreviewImages.jsx';
 import Stars from '../Shared/Stars.jsx';
 
@@ -22,11 +21,9 @@ class ProductCard extends React.Component {
           }
         ]
       },
-      productRating: null,
-      showComparison: false
+      productRating: null
     };
-
-    this.showModal = this.showModal.bind(this);
+    this.handleModalClick = this.handleModalClick.bind(this);
   }
 
   componentDidMount() {
@@ -93,52 +90,32 @@ class ProductCard extends React.Component {
       })
   }
 
-  showModal() {
-    this.setState({
-      showComparison: !this.state.showComparison
-    })
+  handleModalClick() {
+    this.props.updateModal(this.props.productInfoOfCurrentPage, this.state.productInfo);
   }
 
-  // handleClose() {
-  //   var modal = document.getElementById('id01');
-  //   // When the user clicks anywhere outside of the modal, close it
-  //   window.onclick = function (event) {
-  //     if (event.target == modal) {
-  //       modal.style.display = "none";
-  //     }
-  //   }
-  // }
-
   render() {
-    const containerStyle = {
-      'display': 'inline-block',
-      'margin': '0px 10px',
-      'borderColor': 'blue',
-      'borderStyle': 'solid'
-    }
-    const productInfoStyle = {
-      'display': 'block'
-    }
-    const { productInfo, productRating, defaultStyle, productStyle, showComparison} = this.state;
-    const { productID, productInfoOfCurrentPage } = this.props;
+    const { productInfo, productRating, defaultStyle, productStyle} = this.state;
+    const { productID, productInfoOfCurrentPage, action, removeOutfit } = this.props;
     return (
-      <div style={containerStyle} className="productCard">
-        <button onClick={this.showModal}> action button </button>
-        <Modal show={showComparison} onClose={this.showModal}/>
-        <br></br>
-        <PreviewImages currentStyle={defaultStyle} productID={productID} />
-        <br></br>
-        <div style={productInfoStyle} className="productInfo">
-          <span className="productInfo-category">{productInfo.category}</span>
-          <br></br>
-          <span className="productInfo-name">{productInfo.name}</span>
-          <br></br>
+      <div className="productCard">
+
+        <div className="productInfo-upper">
+          {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn" id="of" onClick={removeOutfit}> X </button>}
+          <PreviewImages currentStyle={defaultStyle} productID={productID} />
+        </div>
+
+        <div className="productInfo">
+          <div className="productInfo-category">{productInfo.category}</div>
+          <div className="productInfo-name">{productInfo.name}</div>
           {defaultStyle.original_price && defaultStyle.sale_price ?
-            <span className="productInfo-pricev sale">${defaultStyle.sale_price} ${defaultStyle.original_price}</span>
+            <div>
+              <div className="productInfo-pricev sale">${defaultStyle.sale_price}</div>
+              <div className="productInfo-pricev sale">${defaultStyle.original_price}</div>
+            </div>
             :
-            <span className="productInfo-price">${defaultStyle.original_price}</span>
+            <div className="productInfo-price">${defaultStyle.original_price}</div>
           }
-          <br></br>
           <Stars rating={productRating} />
         </div>
       </div>

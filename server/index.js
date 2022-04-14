@@ -36,7 +36,7 @@ app.get("/*", (req, res) => {
 
 app.put("/*", (req, res) => {
   let url = `${uri}${req.url}`;
-  console.log(url);
+  // console.log(url);
   axios
     .put(url, req.body, options)
     .then((result) => {
