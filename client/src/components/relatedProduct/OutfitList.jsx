@@ -65,6 +65,18 @@ class OutfitList extends React.Component {
   render() {
     const { productID, selectedProductInfo } = this.props;
     const { addOutfit, outfitList, currentPosition, positionIndex } = this.state;
+
+    // if (outfitList.length === 0) {
+    //   return (
+    //     <div id="relatedProductsList" className="list-container">
+    //       <div className="list-header">
+    //         <h3 className="list-title">YOUR OUTFIT</h3>
+    //       </div>
+    //       <div>Add Your First Outfit</div>
+    //     </div>
+    //   );
+    // }
+
     return (
       <div id="outfitList" className="list-container">
         <div className="list-header">
@@ -79,9 +91,10 @@ class OutfitList extends React.Component {
             {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
             <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
               {!addOutfit ? null : <ProductCard productID={productID} productInfo={selectedProductInfo} removeOutfit={this.removeOutfit} />}
-              {/* {outfitList.map(productID => (
-              <ProductCard key={productID} productID={productID} removeOutfit={this.removeOutfit}  />
-            ))} */}
+              {outfitList.length === 0 ?
+                  <div>Add Your First Outfit</div>
+                : <div>yeah!</div>
+              }
             </div>
             {outfitList.length < 3 || positionIndex === outfitList.lenght - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
           </div>

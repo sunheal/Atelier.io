@@ -58,6 +58,17 @@ class RelatedProductsList extends React.Component {
     const { comparedProductID, showModal, comparisionArray, currentPosition, positionIndex } = this.state;
     const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo } = this.props;
 
+    if (relatedProductsInfo.length === 0) {
+      return (
+        <div id="relatedProductsList" className="list-container">
+          <div className="list-header">
+            <h3 className="list-title">RELATED PRODUCTS</h3>
+          </div>
+          <div>Loading...</div>
+        </div>
+        );
+    }
+
     return (
       <div id="relatedProductsList" className="list-container">
         <div className="list-header">
@@ -67,12 +78,12 @@ class RelatedProductsList extends React.Component {
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
             {relatedProductsInfo.map(productInfo => (
-              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'}  updateModal={this.updateModal}/>
+              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} />
             ))}
           </div>
           {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
         </div>
-          {showModal ? <Modal onClose={this.closeModal} comparisionArray={comparisionArray} /> : null}
+        {showModal ? <Modal onClose={this.closeModal} comparisionArray={comparisionArray} /> : null}
       </div>
     );
   }
