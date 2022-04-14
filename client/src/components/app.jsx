@@ -24,12 +24,6 @@ class App extends React.Component {
 
     componentDidMount() {
         this.getAllProducts();
-        // this.getSelectedProduct(64620);
-        // this.getProductStyle(64620);
-        // this.getRelatedProduct(64620);
-        // this.getMetaData(64620);
-        // this.getProductReviews(64620);
-        // this.getProductQuestions(64620);
         this.getProductInfo(64620)
     }
 
@@ -45,93 +39,6 @@ class App extends React.Component {
             });
     }
 
-    // getSelectedProduct(id) {
-    //     axios.get(`/products/${id}`)
-    //         .then((result) => {
-    //             this.setState({
-    //                 selectedProductInfo: result.data
-    //             })
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error fetching single product details in App', error);
-    //         });
-    // }
-
-    // getProductStyle(id) {
-    //     axios.get(`/products/${id}/styles`)
-    //         .then((result) => {
-    //             this.setState({
-    //                 productStyle: result.data
-    //             })
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error fetching product style in App', error);
-    //         });
-    // }
-
-    // getRelatedProduct(id) {
-    //     axios.get(`/products/${id}/related`)
-    //         .then((result) => {
-    //             this.setState({
-    //                 relatedProductsIDs: result.data
-    //             })
-    //             return result.data
-    //         })
-    //         .then((relatedIDs) => {
-    //             var arrayOfPromises = [];
-    //             relatedIDs.forEach((relatedId) => {
-    //                 arrayOfPromises.push(axios.get(`/products/${relatedId}`));
-    //             })
-    //             return Promise.all(arrayOfPromises);
-    //         })
-    //         .then((arrayOfPromisesData) => {
-    //             var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
-    //             // console.log('relatedProductsInfo', relatedProductsInfo)
-    //             this.setState ({
-    //                 relatedProductsInfo: relatedProductsInfo
-    //             })
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error fetching related products in App', error);
-    //         });
-    // }
-
-    // getMetaData(id) {
-    //     axios.get(`/reviews/meta`, { params: { product_id: id } })
-    //         .then((response) => {
-    //             this.setState({
-    //                 meta: response.data
-    //             })
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error fetching reviews meta in App', error);
-    //         })
-    // }
-
-    // getProductReviews(id, sort = 'relevant') {
-    //     axios.get(`/reviews`, { params: {product_id: id, sort: sort } })
-    //     .then((response) => {
-    //         this.setState({
-    //             reviews: response.data
-    //         })
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error fetching reviews in App', error);
-    //     })
-    // }
-
-    // getProductQuestions(id, page = 1, count = 5) {
-    //     axios.get(`/qa/questions`, { params: {product_id: id, page: page, count: count } })
-    //     .then((response) => {
-    //         this.setState({
-    //             questions: response.data
-    //         })
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error fetching QA questions in App', error);
-    //     })
-    // }
-
     getProductInfo(id) {
         axios.get(`/products/${id}`)
         .then((result) => {
@@ -141,14 +48,12 @@ class App extends React.Component {
             allPromises.push(axios.get(`/reviews/meta`, { params: { product_id: id } }));
             allPromises.push(axios.get(`/reviews`, { params: {product_id: id, count: 5000 } }));
             allPromises.push(axios.get(`/qa/questions`, { params: {product_id: id} }));
-            // console.log('allPromises', allPromises);
             this.setState({
                 selectedProductInfo: result.data
             })
             return Promise.all(allPromises);
         })
         .then((allPromisesData) => {
-            // console.log('allPromisesData', allPromisesData);
             this.setState({
                 productStyle: allPromisesData[0].data,
                 relatedProductsIDs: allPromisesData[1].data,
@@ -167,7 +72,6 @@ class App extends React.Component {
         })
         .then((arrayOfPromisesData) => {
             var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
-            console.log('relatedProductsInfo', relatedProductsInfo)
             this.setState ({
                 relatedProductsInfo: relatedProductsInfo
             })
@@ -181,13 +85,11 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
                 <RelatedProducts productID={this.state.productID} selectedProductInfo={this.state.selectedProductInfo} />
                 <QandA />
                 <RR_app id={this.state.productID} />
-
             </div>
         )
     }
