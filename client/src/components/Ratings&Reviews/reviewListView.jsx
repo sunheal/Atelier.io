@@ -13,7 +13,7 @@ const ReviewListView =({reviews}) => {
                         <div className="userAndPostdate"> {review.reviewer_name}, {review.date.slice(0,10)}</div>
                         <div className="spaceBetweenRev"> </div>
                     </div>
-            <div className="reviewSpace"> </div>
+            <div className="reviewSpace" key={index+1}> </div>
                     <div className="reviewSummary"> {review.summary}</div>
                     <div className="spaceBetweenRev"> </div>
                     <div className="reviewBody"> {review.body}</div>
