@@ -83,13 +83,14 @@ class App extends React.Component {
     }
 
     render() {
+        const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions} = this.state;
         return (
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
-                <RelatedProducts productID={this.state.productID} selectedProductInfo={this.state.selectedProductInfo} />
+                <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo}/>
                 <QandA />
-                <RR_app id={this.state.productID} />
+                <RR_app id={productID} />
             </div>
         )
     }

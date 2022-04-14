@@ -78,7 +78,7 @@ class OutfitList extends React.Component {
           <div className="carousel-container">
             {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
             <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-              {!addOutfit ? null : <ProductCard productID={productID} productInfoOfCurrentPage={selectedProductInfo} removeOutfit={this.removeOutfit} />}
+              {!addOutfit ? null : <ProductCard productID={productID} productInfo={selectedProductInfo} removeOutfit={this.removeOutfit} />}
               {/* {outfitList.map(productID => (
               <ProductCard key={productID} productID={productID} removeOutfit={this.removeOutfit}  />
             ))} */}

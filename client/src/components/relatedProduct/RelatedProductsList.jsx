@@ -56,19 +56,18 @@ class RelatedProductsList extends React.Component {
 
   render() {
     const { comparedProductID, showModal, comparisionArray, currentPosition, positionIndex } = this.state;
-    const { relatedProductsIDs, selectedProductInfo, productID } = this.props;
+    const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo } = this.props;
 
     return (
       <div id="relatedProductsList" className="list-container">
         <div className="list-header">
           <h3 className="list-title">RELATED PRODUCTS</h3>
         </div>
-
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
-            {relatedProductsIDs.map(productID => (
-              <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'}  updateModal={this.updateModal}/>
+            {relatedProductsInfo.map(productInfo => (
+              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'}  updateModal={this.updateModal}/>
             ))}
           </div>
           {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}

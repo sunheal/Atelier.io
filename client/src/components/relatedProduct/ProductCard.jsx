@@ -11,7 +11,7 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productInfo: {},
+      // productInfo: {},
       productStyle: {},
       defaultStyle: {
         photos: [
@@ -27,25 +27,12 @@ class ProductCard extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductInfo();
     this.getProductStyle();
     this.getProductRatings();
   }
 
-  getProductInfo() {
-    axios.get(`/products/${this.props.productID}`)
-      .then((result) => {
-        this.setState({
-          productInfo: result.data
-        })
-      })
-      .catch((error) => {
-        console.log('Error fetching single product details in Product Card', error);
-      });
-  }
-
   getProductStyle() {
-    axios.get(`/products/${this.props.productID}/styles`)
+    axios.get(`/products/${this.props.productInfo.id}/styles`)
       .then((result) => {
         var results = result.data.results;
         var defaultStyle = '';
@@ -68,7 +55,7 @@ class ProductCard extends React.Component {
   }
 
   getProductRatings() {
-    axios.get(`/reviews/meta`, { params: { product_id: this.props.productID } })
+    axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
       .then((response) => {
         // check if there is a rating
         var ratings = response.data.ratings;
@@ -91,20 +78,18 @@ class ProductCard extends React.Component {
   }
 
   handleModalClick() {
-    this.props.updateModal(this.props.productInfoOfCurrentPage, this.state.productInfo);
+    this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
   }
 
   render() {
-    const { productInfo, productRating, defaultStyle, productStyle} = this.state;
-    const { productID, productInfoOfCurrentPage, action, removeOutfit } = this.props;
+    const { productRating, defaultStyle, productStyle} = this.state;
+    const { productInfo, productInfoOfCurrentPage, action, removeOutfit } = this.props;
     return (
       <div className="productCard">
-
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn" id="of" onClick={removeOutfit}> X </button>}
-          <PreviewImages currentStyle={defaultStyle} productID={productID} />
+          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id} />
         </div>
-
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
           <div className="productInfo-name">{productInfo.name}</div>
