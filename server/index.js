@@ -20,7 +20,7 @@ const options = {
 };
 
 app.get("/*", (req, res) => {
-  // console.log(req.url);
+  console.log(req.url);
   let url = `${uri}${req.url}`;
   axios
     .get(url, options)

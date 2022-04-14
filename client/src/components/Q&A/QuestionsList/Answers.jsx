@@ -9,13 +9,18 @@ import "./answer.css";
 class Answers extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props, "===============");
     this.state = {
       answersArray: [...Object.values(props.answersArray)],
       reportState: props.reported ? "Reported" : "Report",
       showImgWindow: false,
       imgUrl: "",
     };
+  }
+
+  static getDerivedStateFromProps(props, state){
+    return {
+      answersArray:  props.answersArray
+    }
   }
 
   onVote = (index) => {
