@@ -38,9 +38,9 @@ class ReviewList extends React.Component{
         })
     }
     getReviewinfo() {
-        axios.get(`/reviews/?product_id=${this.props.id}`)
+        axios.get(`/reviews/?product_id=${this.props.id}&count=5000`)
         .then((output)=> {
-            console.log(output.data.results, 'received from API');
+            console.log(output.data.results.length, 'received from API');
             this.setState({
                 currentReview : output.data.results,
                 whatShowing: output.data.results.slice(0,2)
@@ -117,7 +117,7 @@ class ReviewList extends React.Component{
                         <h2> here you go </h2>
                         <button onClick={this.onShowModal}> Close </button>
                     </Modal> */}
-                    <AddReview show={this.state.showModal} onShowModal={this.onShowModal}/>
+                    <AddReview show={this.state.showModal} onShowModal={this.onShowModal} id={this.props.id}/>
 
                    </div>
  }

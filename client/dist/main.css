@@ -109,7 +109,28 @@ label {
   color:black;
   cursor: pointer;
 }
+input[name='rating'] {
+    /* display:none; */
+    opacity: 15%;
+    margin-right: 0;
+}
+label[name='rating'] {
+    margin: 0;
+    margin-right: 0;
+}
+a[name='ratingtxt'] {
+    text-align: center;
+}
+.green{  
+    z-index: 1;
+    }
 
+.grey{
+    z-index: -1;
+}
+.name-label {
+    font-size: 1em;;
+    fill: #333;
 .ReactModal__Content {
   border: none !important;
 }

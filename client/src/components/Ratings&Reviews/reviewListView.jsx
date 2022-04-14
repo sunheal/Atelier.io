@@ -1,20 +1,8 @@
 import React from "react";
 import Stars from "../Shared/Stars.jsx";
-// const options = [<option value='relevance'></option>,'newest','helpful']
+import HelpfulAndReport from "./Helpful&Report.jsx";
 
-
-
-    // changeSort(event) {
-    //     let input = event.target.value;
-    //     this.props.reviews = this.props.reviews.sort((a,b) => {
-    //         return new Date(a.date) - new Date(b.date)
-    //     });
-    //     this.setState({
-    //         selectedOpt: input,
-    //     }) starhelper(review.rating, starsArr)
-    // }
-    //{starhelper(review.rating, starsArr)}
-const ReviewListView =({reviews, starhelper,starsArr}) => {
+const ReviewListView =({reviews}) => {
     return (
         <div>
             {reviews.map((review,index) => {
@@ -32,10 +20,9 @@ const ReviewListView =({reviews, starhelper,starsArr}) => {
                     <div className="spaceBetweenRev"> </div>
                     {review.recommend ? <span className="checkmark">&#10003; I recommend this product </span> : null}
                     <div className="spaceBetweenRev"> </div>
-                <div className="helpfulOrNot"> Helpful? Yes ({review.helpfulness}) | Report
+                    <HelpfulAndReport review={review} />
                 <div className="spaceBetweenRev"> </div>
                 </div>
-                    </div>
                 )
             })}
             </div>
