@@ -45,22 +45,6 @@ app.put("/*", (req, res) => {
     })
     .catch((err) => {
       console.log(req.body);
-      console.log(res);
-      res.status(500).send(err);
-    });
-});
-
-app.post("/*", (req, res) => {
-  let url = `${uri}${req.url}`;
-  console.log(url);
-  axios.post(url, req.body, options)
-    .then((result) => {
-      // console.log("api data", result.data);
-      console.log('yessss');
-      res.status(201).send(result.data);
-    })
-    .catch((err) => {
-      console.log(req.body);
       console.log(err.response.status);
       res.status(500).send(err);
     });
