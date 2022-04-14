@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Carousel from 'react-elastic-carousel';
 import ProductCard from './ProductCard.jsx';
 
 // ONE outfit list per customer (should remain the same list regardless of which product detail page they are viewing)

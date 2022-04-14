@@ -9,7 +9,7 @@ import "./answer.css";
 class Answers extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props, "===============");
+    // console.log(props, "===============");
     this.state = {
       answersArray: [...Object.values(props.answersArray)],
       reportState: props.reported ? "Reported" : "Report",
