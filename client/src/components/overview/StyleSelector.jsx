@@ -11,7 +11,7 @@ const StyleSelector = (props) => {
           return (
             <div key={index} className="styleDiv" onClick={props.onStyleClick} >
               <input type="checkbox" className="checkbox" id={index} />
-              <label htmlFor={index}><img src={style.photos[0].thumbnail_url} alt={style.name} /></label>
+              <label htmlFor={index} className="label-style"><img className="img-style" src={style.photos[0].thumbnail_url} alt={style.name} /></label>
             </div>
           );
         })}

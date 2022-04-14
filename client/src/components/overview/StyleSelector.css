@@ -1,27 +1,15 @@
 .styleDiv {
   position: relative;
-  width: auto;
+  width: 50px;
   height: 50px;
   float: left;
 }
-
-/* .styleThumbnail {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%
-}
-
-.styleCheckbox {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-} */
 
 input[type="checkbox"] {
   display: none;
 }
 
-label {
+.label-style {
   border: 1px solid #fff;
   border-radius: 50%;
   padding: 3px;
@@ -34,7 +22,7 @@ label {
 }
 
 /* check mark */
-label:before {
+.label-style:before {
   background-color: white;
   color: white;
   content: " ";
@@ -52,19 +40,20 @@ label:before {
   transform: scale(0);
 }
 
-label img {
+.img-style {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
+  float: left;
 }
 
-:checked + label {
+:checked + .label-style {
   border-color: #ddd;
 }
 
-:checked + label:before {
+:checked + .label-style:before {
   content: "✓";
   color: grey;
   font-size: 14px;
@@ -72,8 +61,9 @@ label img {
   transform: scale(1);
 }
 
-:checked + label img {
+:checked + .label-style .img-style {
   transform: scale(0.9);
   /* box-shadow: 0 0 5px #333; */
   z-index: -1;
+  position: relative;
 }
