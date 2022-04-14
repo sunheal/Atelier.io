@@ -1,7 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import Overview from "./overview/Overview.jsx";
-import ListsWrapper from './RelatedProduct/ListsWrapper.jsx';
+import RelatedProducts from './RelatedProduct/RelatedProducts.jsx';
 import QandA from "./Q&A/QandA_app.jsx";
 import RR_app from "./Ratings&Reviews/RR_app.jsx";
 
@@ -85,7 +85,7 @@ class App extends React.Component {
             })
             .then((arrayOfPromisesData) => {
                 var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
-                console.log('relatedProductsInfo', relatedProductsInfo)
+                // console.log('relatedProductsInfo', relatedProductsInfo)
                 this.setState ({
                     relatedProductsInfo: relatedProductsInfo
                 })
@@ -137,7 +137,7 @@ class App extends React.Component {
 
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
-                <ListsWrapper productID={this.state.productID} selectedProductInfo={this.state.selectedProductInfo} />
+                <RelatedProducts productID={this.state.productID} selectedProductInfo={this.state.selectedProductInfo} />
                 <QandA />
                 <RR_app id={this.state.productID} />
 

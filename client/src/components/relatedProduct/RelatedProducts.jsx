@@ -5,7 +5,7 @@ import RelatedProductsList from './RelatedProductsList.jsx';
 import OutfitList from './OutfitList.jsx';
 
 
-class ListsWrapper extends React.Component {
+class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,4 +44,4 @@ class ListsWrapper extends React.Component {
   }
 }
 
-export default ListsWrapper;
+export default RelatedProducts;
