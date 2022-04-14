@@ -18,7 +18,16 @@ const ReviewListView =({reviews}) => {
                     <div className="spaceBetweenRev"> </div>
                     <div className="reviewBody"> {review.body}</div>
                     <div className="spaceBetweenRev"> </div>
-                    {review.recommend ? <span className="checkmark">&#10003; I recommend this product </span> : null}
+                    <div className="reviewPhotos"> {review.photos.map(photo => {
+                        return (
+                            <div className="RR_photos"> 
+                        <img src={photo.url} width='150' height='150'/> &nbsp;
+                            </div>
+                        )
+                        })
+                    }</div>
+                    {console.log(review.photos, 'sfsfsfssff')}
+                    {review.recommend ? <span className="checkmark"> ✓ I recommend this product </span> : null}
                     <div className="spaceBetweenRev"> </div>
                     <HelpfulAndReport review={review} />
                 <div className="spaceBetweenRev"> </div>

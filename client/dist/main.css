@@ -135,3 +135,7 @@ a[name='ratingtxt'] {
 .ReactModal__Content {
   border: none !important;
 }
+.reviewPhotos {
+   display: flex;
+    margin-right: 5px;
+}
