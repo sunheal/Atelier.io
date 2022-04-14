@@ -116,7 +116,7 @@ class RR_app extends React.Component {
                 <h1>Ratings &amp; Reviews</h1> 
                 <div className="leftOfRR"> 
                <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > 
-               <BarChart ratings={this.state.ratings} count={this.state.count} recommend={this.state.recommend}/>
+               <BarChart ratings={this.state.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta}/>
                 </div>
                 <div className="rightOfRR">
                     <ReviewList id={this.props.id}/>

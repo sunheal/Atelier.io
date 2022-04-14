@@ -32,7 +32,7 @@ class ListsWrapper extends React.Component {
 
 
   render() {
-
+    console.log(this.props.selectedProductInfo, 'info in listwrapper')
     return (
       <div id="related_products">
         {/* <h3>RELATED PRODUCTS</h3> */}

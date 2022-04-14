@@ -30,10 +30,18 @@ class App extends React.Component {
         this.getMetaData(64620);
         this.getProductReviews(64620);
         this.getProductQuestions(64620);
+        var arrPr = [ this.getAllProducts(),
+            this.getSelectedProduct(64620),
+            this.getProductStyle(64620),
+            this.getRelatedProduct(64620),
+            this.getMetaData(64620),
+            this.getProductReviews(64620),
+            this.getProductQuestions(64620)];
+        return Promise.all(arrPr);
     }
 
     getAllProducts() {
-        axios.get('/products/')
+       return axios.get('/products/')
             .then((result) => {
                 this.setState({
                     allProducts: result.data
@@ -45,7 +53,7 @@ class App extends React.Component {
     }
 
     getSelectedProduct(id) {
-        axios.get(`/products/${id}`)
+       return axios.get(`/products/${id}`)
             .then((result) => {
                 this.setState({
                     selectedProductInfo: result.data
@@ -57,7 +65,7 @@ class App extends React.Component {
     }
 
     getProductStyle(id) {
-        axios.get(`/products/${id}/styles`)
+        return axios.get(`/products/${id}/styles`)
             .then((result) => {
                 this.setState({
                     productStyle: result.data
@@ -69,7 +77,7 @@ class App extends React.Component {
     }
 
     getRelatedProduct(id) {
-        axios.get(`/products/${id}/related`)
+       return axios.get(`/products/${id}/related`)
             .then((result) => {
                 this.setState({
                     relatedProductsIDs: result.data
@@ -96,7 +104,7 @@ class App extends React.Component {
     }
 
     getMetaData(id) {
-        axios.get(`/reviews/meta`, { params: { product_id: id } })
+        return axios.get(`/reviews/meta?product_id= ${id}`)
             .then((response) => {
                 this.setState({
                     meta: response.data
@@ -108,7 +116,7 @@ class App extends React.Component {
     }
 
     getProductReviews(id, sort = 'relevant') {
-        axios.get(`/reviews`, { params: {product_id: id, sort: sort } })
+        return axios.get(`/reviews`, { params: {product_id: id, sort: sort } })
         .then((response) => {
             this.setState({
                 reviews: response.data
@@ -120,7 +128,7 @@ class App extends React.Component {
     }
 
     getProductQuestions(id, page = 1, count = 5) {
-        axios.get(`/qa/questions`, { params: {product_id: id, page: page, count: count } })
+       return axios.get(`/qa/questions`, { params: {product_id: id, page: page, count: count } })
         .then((response) => {
             this.setState({
                 questions: response.data
@@ -132,6 +140,7 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.state.meta, 'meta from app')
         return (
             <div className="app">
 
@@ -139,7 +148,7 @@ class App extends React.Component {
                 <Overview />
                 <ListsWrapper productID={this.state.productID} selectedProductInfo={this.state.selectedProductInfo} />
                 <QandA />
-                <RR_app id={this.state.productID} />
+                <RR_app id={this.state.productID} meta={this.state.meta? this.state.meta : null} />
 
             </div>
         )
