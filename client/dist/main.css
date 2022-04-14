@@ -131,6 +131,7 @@ a[name='ratingtxt'] {
 .name-label {
     font-size: 1em;;
     fill: #333;
+}
 .ReactModal__Content {
   border: none !important;
 }

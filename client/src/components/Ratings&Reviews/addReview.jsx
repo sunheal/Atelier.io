@@ -33,10 +33,9 @@ class AddReview extends React.Component {
         this.revBody = this.revBody.bind(this);
         this.emailChange = this.emailChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.onSelectRating = this.onSelectRating.bind(this);        // this.onHovering = this.onHovering.bind(this);
+
     }   
-        this.createStarDiv = this.createStarDiv.bind(this);
-    }
+    
     componentDidMount() {
         //find out the character id of this product and set them to the state to see if size and comfort exist 
          axios.get(`/reviews/meta/?product_id=${this.props.id}`)
@@ -106,8 +105,6 @@ class AddReview extends React.Component {
         })
     }
     onImagefileChange(event) {
-        let src = URL.createObjectURL(event.target.files[0]);
-        // let temp = <img src={src} alt='photo' height = '100' />
         const files = event.target.files[0];
         var form = new FormData();
         form.append("image", files);
@@ -204,7 +201,7 @@ class AddReview extends React.Component {
                         const ratingVal = i+1;
 
                         return (
-                                <>
+                            <> 
                                 <input
                                     type='radio'
                                     name='rating'
@@ -215,12 +212,11 @@ class AddReview extends React.Component {
                                     /><FaStar
                                     className="star"
                                     size='20'
-                                    color={ratingVal <= this.state.rating ? 'gold' : 'white'} /></>
+                                    color={ratingVal <= this.state.rating ? 'gold' : 'white'} />
+                            </>
                         )
                     })}
-                    </label>
-                  
-                   <FaStar size='20' color="gold"/>
+                    </label>                  
                         <br></br>
                      <a name='ratingtxt'> {this.state.rating > 0 ? <p> 1 star - “Poor” 2 stars - “Fair” 3 stars - “Average” 4 stars - “Good” 5 stars - “Great” </p> :null } </a>
                     <br></br>
@@ -258,20 +254,8 @@ class AddReview extends React.Component {
                     </label>  <br></br>
                     <label> Email Address: 
                     <input type='email' value={this.state.email} onChange={this.emailChange} required/>
-                    <label> Review Summary:
-                        <textarea rows='4' cols='50' maxLength='60' />
                     </label>
                     <br></br>
-                    <label> Review Body:
-                    <textarea rows='4' cols='50' maxLength='1000' />
-                    </label>
-                    <br></br>
-                    <label> Upload Photo:
-                    <input type='file' />
-                    </label>  <br></br>
-                    <label> Email Address:
-                    <input type='email' />
-                    </label>  <br></br>
                     <input type='submit' onClick={this.handleSubmit}/>
                 </form>
                 <button onClick={this.props.onShowModal}> Close </button>
