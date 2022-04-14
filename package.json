@@ -33,6 +33,7 @@
     "express": "^4.17.3",
     "identity-obj-proxy": "^3.0.0",
     "mongoose": "^6.2.9",
+    "msw": "^0.39.2",
     "nodemon": "^2.0.15",
     "package": "^1.0.1",
     "react": "^18.0.0",

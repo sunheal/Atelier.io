@@ -1,6 +1,9 @@
 import React from "react";
+import {rest} from 'msw';
+import {setupServer} from 'msw/node';
+
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react';
+import { render,fireEvent, screen, waitFor } from '@testing-library/react';
 import App from './app.jsx';
 import regeneratorRuntime from "regenerator-runtime";
 

@@ -112,18 +112,18 @@ class QuestionCard extends React.Component {
                     <label className="form">Answer:</label>
                     <textarea className="popFormQ same" type="text"></textarea>
                     <br></br>
-                    <label className="imgUpload">
+                    <button className="imgUpload">
                       <ReactCoreImageUpload
-                        text="Upload Your Image(5max)"
+                        text="Upload Your Image (5 max)"
                         url="https://api.imgbb.com/1/upload"
                         imageUploaded={() => this.imageUploaded()}
                       ></ReactCoreImageUpload>
-                    </label>
+                    </button>
                     <label className="form">Nickname:</label>
-                    <input className="popFormNickname same" type="text"></input>
+                    <input className="popFormNickname same" type="text" placeholder="Nickname "></input>
                     <br></br>
                     <label className="form">Email:</label>
-                    <input className="popFormEmail same" type="text"></input>
+                    <input className="popFormEmail same" type="text" placeholder="Email"></input>
                     <br></br>
                     <button className="formButton">Submit</button>
                   </form>

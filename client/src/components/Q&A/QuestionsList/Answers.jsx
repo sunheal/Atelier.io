@@ -59,7 +59,6 @@ class Answers extends React.Component {
 
   render() {
     let answersArray = this.state.answersArray;
-
     answersArray.sort((a, b) => b.helpfulness - a.helpfulness);
     return (
       <div>
@@ -70,7 +69,7 @@ class Answers extends React.Component {
               <p className="answer_line">
                 A: _{item.body}  <br></br>
                 <br></br>
-                <div className="answerer_info" font-weight='200'>
+                <div className="answerer_info" fontWeight='150'>
                   by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
                 </div>
               </p>
