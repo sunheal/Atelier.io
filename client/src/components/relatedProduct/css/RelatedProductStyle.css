@@ -1,0 +1,216 @@
+*, * ::after, *::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --handle-size: 3rem;
+  --img-gap: .25rem;
+}
+
+/* ------ ListWrapper ------ */
+#related_products{
+  border-color: grey;
+  border-style: solid;
+  border-radius: 3px;
+  margin : 10px 15% 10px;
+}
+/* for two lists */
+.list-container{
+  border-color: rgba(71, 128, 179, 0.893);
+  border-style: solid;
+  margin: 10px 3% 10px;
+  align-items: left;
+}
+
+.list-header {
+  padding-left: 9px;
+}
+
+.list-title {
+  margin: 0;
+}
+
+/* ------ Carousel ------ */
+
+.carousel-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-slider{
+  --items-per-screen: 3;
+  width: 95%;
+  display: flex;
+  flex-grow: 1;
+}
+
+.carousel-slider > .productCard {
+  flex: 0 0 calc(100% / var(--items-per-screen));
+}
+
+.handles{
+  border: none;
+  border-radius: 1rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, .25);
+  z-index: 10;
+  margin: var(--img-gap) 0;
+  width: var(--handle-size);
+  cursor: pointer;
+  font-size: 5rem;
+  color: white;
+  transition: background-color 150ms ease-in-out;
+}
+
+
+/* ------ RelatedProductList ------ */
+
+
+
+/* ------ Outfit List ------ */
+.outfit-container{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-outfit-card {
+  width: 25%;
+  height: 300px;
+  margin: 13px 8px;
+  border-style: groove;
+  text-align: center;
+  display: grid;
+  align-items: center;
+  cursor: pointer;
+}
+
+.plus-icon{
+  font-size: 3rem;
+}
+
+
+/* ------ ProductCard ------ */
+.productCard{
+  width: 100%;
+  height: 300px;
+  margin: 13px 8px;
+  border-style: groove;
+  cursor: pointer;
+  padding: .25rem;
+}
+
+.productCard:hover {
+  box-shadow: 0 10px 20px 0 rgb(81, 79, 74);
+}
+
+.productInfo{
+  display: block;
+  height: auto;
+  margin-top: .75rem;
+  padding-left: 11%;
+}
+
+.preview-image {
+  width: 100%;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(183, 111, 39);
+}
+
+.product-image{
+  max-width:100%;
+  max-height:100%;
+}
+
+.sale-price{
+  color: red;
+}
+.original-price{
+  text-decoration: line-through;
+}
+
+/* ------ Action buttons ------ */
+.productInfo-upper{
+  position: relative;
+}
+
+.action-btn{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: gold;
+  font-size: 19px;
+  border: none;
+  background-color: transparent;
+  font-weight:300;
+  cursor: pointer;
+}
+
+#of{
+  color: rgb(31, 30, 30);
+}
+
+/* ------ Modal ------ */
+table {
+  background-color: aliceblue;
+  padding: 20px 20px;
+}
+
+caption {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 15px;
+  background:aliceblue;
+}
+
+thead th {
+  border-bottom: solid;
+  color: #333;
+  padding: 0px 10px 5px;
+}
+
+tbody td {
+  padding: 5px 0px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: aliceblue;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.characteristics{
+  padding: 0px 20px;
+}
+
+#modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* width: calc(100vw - 20px); */
+  /* overflow-y:auto; */
+  background-color: rgba(0,0,0,0.4);
+}
+
+.comparision {
+  position: relative;
+}
+

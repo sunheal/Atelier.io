@@ -26,7 +26,6 @@ const ReviewListView =({reviews}) => {
                         )
                         })
                     }</div>
-                    {console.log(review.photos, 'sfsfsfssff')}
                     {review.recommend ? <span className="checkmark"> ✓ I recommend this product </span> : null}
                     <div className="spaceBetweenRev"> </div>
                     <HelpfulAndReport review={review} />

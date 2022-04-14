@@ -15,6 +15,7 @@ import React from "react"
         const aa = 30;
         return (
             <div> 
+             <p> {this.props.recommend}% of reviews recommended this product</p>
                 <div className="starBreakDown_RR">
                 {[...Array(5)].map((bar, index)=>{
                     const order = 5 - (index);
