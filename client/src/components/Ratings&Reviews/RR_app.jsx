@@ -1,13 +1,8 @@
 import React from "react";
 import Stars from "../Shared/Stars.jsx";
-// import StarsAndBreakdown from "./stars&breakdown.jsx";
 import ReviewList from "./reviewList.jsx";
 import axios from "axios";
-// import EmptyStar from '../fa-icons/EmptyStar.svg';
-// import FullStar from '../fa-icons/FullStar.svg';
-// import HalfStar from '../fa-icons/HalfStar.svg';
-// import OneQStar from '../fa-icons/OneQStar.svg';
-// import ThreeQStar from '../fa-icons/ThreeQStar.svg';
+import BarChart from "./breakdowns.jsx";
 
 
 
@@ -16,10 +11,11 @@ class RR_app extends React.Component {
         super(props);
         this.state = {
             rating: 0,
-            // stars: [EmptyStar,OneQStar,HalfStar,ThreeQStar,FullStar]
+            recommend: 0,
+            ratings: {},
+            count:0,
         }
         this.getRating = this.getRating.bind(this);
-        // this.arrangeStar = this.arrangeStar.bind(this);
     }
     componentDidMount() {
         this.getRating();
@@ -30,19 +26,36 @@ class RR_app extends React.Component {
         .then((output)=> {
             // console.log(output.data.ratings, 'received from API Rating');
             let resObj = output.data.ratings;
+            let recObj = output.data.recommended;
+            if(Object.keys(recObj).length === 0) {
+                this.setState({
+                    recommend: 0
+                })
+            }else {
+                let recOnly=Number(Object.values(recObj)[1]), totalRec=0;
+                totalRec = recOnly + Number(Object.values(recObj)[0]);
+                recOnly = ((recOnly/totalRec) * 100).toFixed(0)
+                this.setState({
+                    recommend : recOnly,
+                })
+            }
             if(Object.keys(resObj).length === 0) {
                 this.setState({
-                    rating : 0
+                    rating : 0,
+                    ratings: resObj,
                 })
             }else {
                 let total = 0, count = 0, avg = 0;
+
                 for(var keys in resObj) {
                     total += resObj[keys] * Number(keys)
                     count += Number(resObj[keys]);
                 }
                 avg = (total / count).toFixed(1);
                 this.setState({
-                    rating: avg
+                    rating: avg,
+                    ratings: resObj,
+                    count: count,
                 })
             }
 
@@ -100,12 +113,11 @@ class RR_app extends React.Component {
     render() {
         return (
             <div className="ReviewContainer">
-                <h1>RATINGS &amp; Reviews</h1>
-                <div className="leftOfRR">
-               <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p >
-                {/* <div > <p > {rating} </p> <Stars rating = {this.state.rating} /> </div> */}
-
-                    {/* <StarsAndBreakdown rating={this.state.rating} stars={() => this.arrangeStar(this.state.rating, this.state.stars)}/>  */}
+                <h1>Ratings &amp; Reviews</h1> 
+                <div className="leftOfRR"> 
+               <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > 
+               <p> {this.state.recommend}% of reviews recommended this product</p>
+               <BarChart ratings={this.state.ratings} count={this.state.count}/>
                 </div>
                 <div className="rightOfRR">
                     <ReviewList id={this.props.id}/>

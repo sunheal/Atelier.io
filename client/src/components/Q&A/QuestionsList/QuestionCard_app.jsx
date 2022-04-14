@@ -3,23 +3,27 @@ import Answers from "./Answers.jsx";
 import { voteHelpfulness, reportRequest } from "../../../service/index.js";
 import Window from "../window.jsx";
 import "./QuestionCard.css";
+import ReactCoreImageUpload from "react-core-image-upload";
 
 class QuestionCard extends React.Component {
   constructor(props) {
-    super(props)
-    // console.log(props.answers)
-    this.state= {
+    super(props);
+    this.state = {
       showMoreAnswers: false,
       tempAnswers: Object.values(this.props.answers).slice(0, 2),
       question: this.props,
-      reportState: props.reported ? "reported" : "report",
+      reportState: props.reported ? "Reported" : "Report",
       answerForm: false,
     };
   }
 
   onSeeMoreAnswersClick = () => {
-    this.setState({ tempAnswers: this.props.answers });
+    console.log(this.state.tempAnswers, this.props.answers);
+    this.setState({ tempAnswers: Object.values(this.props.answers) }, () => {
+      console.log(this.state.tempAnswers);
+    });
   };
+
   onCollapseAnswersClick = () => {
     this.setState({
       tempAnswers: Object.values(this.props.answers).slice(0, 2),
@@ -38,7 +42,6 @@ class QuestionCard extends React.Component {
       question_helpfulness: question.question_helpfulness + 1,
     };
     voteHelpfulness(question.question_id);
-    // console.log("line35 ", question.question_id);
     this.setState({
       question,
     });
@@ -49,7 +52,7 @@ class QuestionCard extends React.Component {
     reportRequest(question.question_id);
     this.setState({
       reportState:
-        this.state.reportState === "reported" ? "report" : "reported",
+        this.state.reportState === "Reported" ? "Report" : "Reported",
     });
   };
 
@@ -66,23 +69,33 @@ class QuestionCard extends React.Component {
     });
   };
 
+  imageUploaded(res) {
+    if (res.errcode == 0) {
+      this.setState({
+        src: res.data.src,
+      });
+    }
+    console.log("res:", res);
+  }
+
   render() {
     const { question_body, answers, question_helpfulness } = this.props;
-    const { showMoreAnswers, tempAnswers, question, reportState } = this.state;
+    const { showMoreAnswers, tempAnswers, question, reportState, showAnswer } =
+      this.state;
     const formStyle = {
       width: "400px",
     };
 
     return (
-      <div>
+      <div className="question-wrap">
         <div className="question">
-          <h3>Q: {question.question_body}</h3>
-          <div className="right">
+          <h4>Q: {question.question_body}</h4>
+          <div className="right" >
             <span className="right_item" onClick={this.onVote}>
-              Helpful? Yes ({question.question_helpfulness})
+              Helpful? Yes ({question.question_helpfulness}) |
             </span>
             <a className="right_item" onClick={() => this.addAnswerForm()}>
-              add Answer
+              add Answer |
             </a>
             <a className="right_item" onClick={this.onReport}>
               {reportState}
@@ -92,19 +105,29 @@ class QuestionCard extends React.Component {
           {this.state.answerForm && (
             <Window onClick={this.onClick}>
               <div className="windowWrap">
-              <h2>Ask a New Question</h2>
-                <form id="questionForm">
-                  <label className="form">Question:</label>
-                  <textarea className="popFormQ same" type="text"></textarea>
-                  <br></br>
-                  <label className="form">Nickname:</label>
-                  <input className="popFormNickname same" type="text"></input>
-                  <br></br>
-                  <label className="form">Email:</label>
-                  <input className="popFormEmail same" type="text"></input>
-                  <br></br>
-                  <button>Submit</button>
-                </form>
+                <h2 className="title">Submit an Answer</h2>
+                <br></br>
+                <div>
+                  <form id="answerForm">
+                    <label className="form">Answer:</label>
+                    <textarea className="popFormQ same" type="text"></textarea>
+                    <br></br>
+                    <button className="imgUpload">
+                      <ReactCoreImageUpload
+                        text="Upload Your Image (5 max)"
+                        url="https://api.imgbb.com/1/upload"
+                        imageUploaded={() => this.imageUploaded()}
+                      ></ReactCoreImageUpload>
+                    </button>
+                    <label className="form">Nickname:</label>
+                    <input className="popFormNickname same" type="text" placeholder="Nickname "></input>
+                    <br></br>
+                    <label className="form">Email:</label>
+                    <input className="popFormEmail same" type="text" placeholder="Email"></input>
+                    <br></br>
+                    <button className="formButton">Submit</button>
+                  </form>
+                </div>
               </div>
             </Window>
           )}
