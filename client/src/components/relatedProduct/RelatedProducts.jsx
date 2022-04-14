@@ -4,7 +4,6 @@ import './css/RelatedProductStyle.css';
 import RelatedProductsList from './RelatedProductsList.jsx';
 import OutfitList from './OutfitList.jsx';
 
-
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
