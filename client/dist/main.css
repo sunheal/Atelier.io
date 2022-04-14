@@ -1,102 +1,113 @@
+#logo {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2cm;
+  font-weight: bold;
+  text-align: center;
+  color: rgb(108, 122, 228);
+  text-shadow: 2px 2px #ff0000;
+}
+
 body {
-    background-color: #f6f6f6;
+  background-color: #f6f6f6;
 }
 
 .moreReview {
-    /* margin-left: 15px; */
-    margin: 5% ;
+  /* margin-left: 15px; */
+  margin: 5%;
 }
 .addReview {
-    /* margin-right: 15px; */
-    margin: 0.5%;
+  /* margin-right: 15px; */
+  margin: 0.5%;
 }
 
 .leftOfRR {
-    float: left;
-    width: 30%;
+  float: left;
+  width: 30%;
 }
 
 .rightOfRR {
-    float: right;
-    width: 70%;
+  float: right;
+  width: 70%;
 }
-.individualReview_container{
-    border-bottom: solid;
-    margin-bottom: 15px;
+.individualReview_container {
+  border-bottom: solid;
+  margin-bottom: 15px;
 }
 .reviewsCount {
-    font-size: 28px;
+  font-size: 28px;
 }
 .ratingHeader_star {
-    font-size: 28px;
+  font-size: 28px;
 }
-.indiStar{
-    float: left;
+.indiStar {
+  float: left;
 }
-.userAndPostdate{
-    float: right;
+.userAndPostdate {
+  float: right;
 }
 .reviewSpace {
-    height: 20px;
+  height: 20px;
 }
-.reviewSummary{
-    font-weight: bold;
+.reviewSummary {
+  font-weight: bold;
 }
-.spaceBetweenRev{
-    height: 10px;
+.spaceBetweenRev {
+  height: 10px;
 }
-.sortSelect{
-    margin: 1%;
-    font-size: 15px;
+.sortSelect {
+  margin: 1%;
+  font-size: 15px;
 }
-.reviewModal{
-    height:fit-content;
-    width: 100%;
-    background-color: darkcyan;
-    z-index: '1000'; 
-   justify-content: center;
-    /* top: 50%;
+.reviewModal {
+  height: fit-content;
+  width: 100%;
+  background-color: darkcyan;
+  z-index: "1000";
+  justify-content: "center";
+  /* top: 50%;
     left: 50%;  */
-    align-items: center;
+  align-items: center;
 }
-.innerModal{
-    background-color: darkcyan;
-    text-align: center;
-    overflow-y: auto;
-    max-height: 100vh;
+.innerModal {
+  background-color: darkcyan;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 100vh;
 }
-.emptyStarStyle{
-    z-index: 1;
-    color: 'gold';
-    position: 'absolute';
-    left: '0';
-    font-Size: 'large';
-  }
-
-label{
-    margin: 10%;
-    text-align: left;
+.emptyStarStyle {
+  z-index: "1";
+  color: "gold";
+  position: "absolute";
+  left: "0";
+  font-size: "large";
 }
 
-.question{
-    display: flex;
-    justify-content: space-between;
+label {
+  margin: 10%;
+  text-align: left;
 }
 
-.question .right{
-    display: flex;
+/* Q&A ///////////////////////////////////////////////////////////////*/
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.question h3{
-    margin: 0;
+
+.question .right {
+  display: flex;
 }
 
-.question .right .right_item{
-    padding-right: 6px;
-    margin-right: 6px;
-    border-right: 2px solid #222;
-    color: #222;
-    cursor: pointer;
+.question h3 {
+  margin: 0;
+}
+
+.question .right .right_item {
+  padding-right: 4px;
+  margin-right: 6px;
+  color:black;
+  cursor: pointer;
 }
 input[name='rating'] {
     /* display:none; */
@@ -120,4 +131,6 @@ a[name='ratingtxt'] {
 .name-label {
     font-size: 1em;;
     fill: #333;
+.ReactModal__Content {
+  border: none !important;
 }

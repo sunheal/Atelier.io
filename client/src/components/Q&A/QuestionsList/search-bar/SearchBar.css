@@ -1,3 +1,21 @@
+.search {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  height:35px;
+  padding:auto;
+}
+
+.search input {
+  margin-right: 100px;
+  width: 1200px;
+  height: 30px;
+}
+
+.search button{
+  height: 30px;
+}
+
 .windowWrap {
   width: 250px;
   background-color: #f6f6f6;
@@ -9,15 +27,11 @@
   flex-direction: column;
 }
 
-.question {
-  height:36px;
-}
-
-#answerForm label{
+#questionForm label{
   display: flex;
   width:140px;
   margin:4px 0;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 .popFormQ {
@@ -26,14 +40,4 @@
 
 .title{
   text-overflow: clip;
-}
-
-
-.question-wrap {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding:10px 0 10px;
-}
-
-.imgUpload {
-  margin-top: 7px;
 }
