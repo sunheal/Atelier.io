@@ -31,9 +31,9 @@ class QuestionsList extends Component {
   }
 
   onSearch = (value) => {
-    console.log(value, "父组件");
+    // console.log(value, "父组件");
     const { questions } = this.state;
-    console.log(questions)
+    // console.log(questions)
     const currentQuestions = questions.results.filter((item) => {
       if (item.question_body.includes(value)) {
         return item;
@@ -42,11 +42,11 @@ class QuestionsList extends Component {
     this.setState({
       currentQuestions
     })
-    console.log(currentQuestions, '----------------');
+    // console.log(currentQuestions, '----------------');
   };
 
   render() {
-    console.log(this.state.currentQuestions, '---------------------------')
+    // console.log(this.state.currentQuestions, '---------------------------')
     return (
       <div>
         <SearchBar onSearch={this.onSearch}></SearchBar>
