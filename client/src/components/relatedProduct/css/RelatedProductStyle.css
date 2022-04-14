@@ -78,20 +78,19 @@
   align-items: center;
 }
 
-#add-outfit-card {
+.add-outfit-card {
   width: 25%;
   height: 300px;
   margin: 13px 8px;
   border-style: groove;
+  text-align: center;
+  display: grid;
+  align-items: center;
+  cursor: pointer;
 }
 
-.add-outfit-btn{
-  border-radius: 1rem;
-  background-color: rgba(255, 255, 255, .25);
-  margin: var(--img-gap) 0;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 150ms ease-in-out;
+.plus-icon{
+  font-size: 3rem;
 }
 
 

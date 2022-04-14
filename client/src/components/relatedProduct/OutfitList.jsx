@@ -72,8 +72,9 @@ class OutfitList extends React.Component {
           <h3 className="list-title">YOUR OUTFIT</h3>
         </div>
         <div className="outfit-container">
-          <div id="add-outfit-card">
-            <button className="add-outfit-btn" onClick={this.addOutfit}> Add to Outfit </button>
+          <div className="add-outfit-card" role="button" onClick={this.addOutfit}>
+            <div className="plus-icon">&#43;</div>
+            <div className="add-to-Oufit">Add to Outfit</div>
           </div>
           <div className="carousel-container">
             {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
@@ -83,7 +84,7 @@ class OutfitList extends React.Component {
               <ProductCard key={productID} productID={productID} removeOutfit={this.removeOutfit}  />
             ))} */}
             </div>
-            {outfitList.length < 3 || positionIndex ===  outfitList.lenght - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
+            {outfitList.length < 3 || positionIndex === outfitList.lenght - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // this.getAllProducts();
+        this.getAllProducts();
         this.getSelectedProduct(64620);
         this.getProductStyle(64620);
         this.getRelatedProduct(64620);
