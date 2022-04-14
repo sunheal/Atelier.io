@@ -74,10 +74,11 @@ class Answers extends React.Component {
               <p className="answer_line">
                 A: _{item.body}  <br></br>
                 <br></br>
+              </p>
                 <div className="answerer_info" fontWeight='150'>
                   by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
                 </div>
-              </p>
+
               {item.photos.length != 0 && (
                 <div className="answerImage" style={{ display: "flex" }}>
                   {item.photos.map((photo, index) => {
