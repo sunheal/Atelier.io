@@ -45,14 +45,13 @@ class App extends React.Component {
     componentDidMount() {
         this.getAllProducts();
         this.getSelectedProduct();
+        // <ListsWrapper productID={this.state.productID}  selectedProductInfo={this.state.selectedProductInfo}/>
     }
 
     render() {
         return (
             <div className="app">
-            <p id="logo"> Good Deals Only </p>
-            <Overview />
-            <ListsWrapper productID={this.state.productID}  selectedProductInfo={this.state.selectedProductInfo}/>
+            <h1 id="logo"> Good Deals Only </h1>
             <QandA/>
             <RR_app id={this.state.productID}/>
             </div>

@@ -1,3 +1,18 @@
+.QA_line {
+  display:inline-flex;
+  width:100%;
+  height:auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right {
+  margin:20px;
+  float:right;
+  text-decoration: underline;
+}
+
 #window{
   position: fixed;
   top: 0;
@@ -15,8 +30,6 @@
   background-color: rgba(0,0,0,0.4);
 }
 
-
-
 .windowBox {
   position: relative;
 }
@@ -26,7 +39,6 @@
   top: -10px;
   right: -10px;
   z-index: 9;
-
   width: 30px;
   height: 30px;
   font-size: 16px;
@@ -35,4 +47,13 @@
   line-height: 30px;
   text-align: center;
   border-radius: 50%;
+}
+
+
+.answerImage {
+  margin-right: 5px;
+}
+
+.popFormEmail {
+  margin-bottom: 7px;
 }
