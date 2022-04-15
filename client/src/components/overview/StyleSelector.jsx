@@ -16,22 +16,6 @@ const StyleSelector = (props) => {
           );
         })}
       </div>
-      <br></br>
-      <div id="size">
-        <select name="size" id="size" value={props.selectedSize} onChange={props.onSizeChange}>
-          <option value="SELECT SIZE" hidden>SELECT SIZE</option>
-          {Object.keys(props.selectedStyle?.skus || {}).map((sku, index) => {
-            return (
-              <option key={index} value={props.selectedStyle.skus[sku].size}>{props.selectedStyle.skus[sku].size}</option>
-            );
-          })}
-        </select>
-      </div>
-      <div id="quantity">
-        <select name="quantity" id="quantity">
-          <option value="" selected disabled hidden>SELECT Quantity</option>
-        </select>
-      </div>
     </div>
   );
 }
