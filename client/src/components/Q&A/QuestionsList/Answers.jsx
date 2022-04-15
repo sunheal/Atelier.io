@@ -67,12 +67,13 @@ class Answers extends React.Component {
           return (
             <div key={item.id} className="answer_item">
               <p className="answer_line">
-                A: _{item.body}  <br></br>
+                A: _{item.body} <br></br>
                 <br></br>
-                <div className="answerer_info" fontWeight='150'>
-                  by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
-                </div>
               </p>
+              <div className="answerer_info" fontWeight="150">
+                by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
+              </div>
+
               {item.photos.length != 0 && (
                 <div className="answerImage" style={{ display: "flex" }}>
                   {item.photos.map((photo, index) => {
@@ -90,7 +91,7 @@ class Answers extends React.Component {
               )}
               <div className="right">
                 <span className="right_item" onClick={() => this.onVote(index)}>
-                  Helpful? Yes&nbsp;({(item.helpfulness)})&nbsp;|&nbsp;
+                  Helpful? Yes&nbsp;({item.helpfulness})&nbsp;|&nbsp;
                 </span>
                 <a className="right_item" onClick={() => this.onReport(index)}>
                   {this.state.reportState}

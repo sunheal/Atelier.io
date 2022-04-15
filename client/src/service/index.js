@@ -26,6 +26,9 @@ export const reportAnswerRequest = (answer_id) => {
   return axios.put(url);
 }
 
+export const uploadImage = (options) => {
+  return axios(options);
+}
 
 
 

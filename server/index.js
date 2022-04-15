@@ -26,11 +26,11 @@ app.get("/*", (req, res) => {
     .get(url, options)
     .then((result) => {
       // console.log("api data", "result.data");
-      res.status(201).send(result.data);
+      res.status(result.status).send(result.data)
     })
     .catch((err) => {
       // console.error("err");
-      res.status(500).send(err);
+      res.send(err);
     });
 });
 
@@ -40,13 +40,13 @@ app.put("/*", (req, res) => {
   axios
     .put(url, req.body, options)
     .then((result) => {
-      // console.log("api data", result.data);
-      res.status(201).send(result.data);
+      console.log("api data", result.status);
+      res.status(result.status).send(result.data)
     })
     .catch((err) => {
       console.log(req.body);
       console.log(err.response.status);
-      res.status(500).send(err);
+      res.send(err);
     });
 });
 

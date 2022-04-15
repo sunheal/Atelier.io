@@ -1,9 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Answers from "./Answers.jsx";
-import { voteHelpfulness, reportRequest } from "../../../service/index.js";
+import {
+  voteHelpfulness,
+  reportRequest,
+  uploadImage as uploadImgFetch,
+} from "../../../service/index.js";
 import Window from "../window.jsx";
 import "./QuestionCard.css";
 import ReactCoreImageUpload from "react-core-image-upload";
+const config = require("../../../../../config.js");
 
 class QuestionCard extends React.Component {
   constructor(props) {
@@ -14,7 +19,9 @@ class QuestionCard extends React.Component {
       question: this.props,
       reportState: props.reported ? "Reported" : "Report",
       answerForm: false,
+      imgUrlList: [],
     };
+    this.uplaodImgEL = createRef();
   }
 
   onSeeMoreAnswersClick = () => {
@@ -78,6 +85,39 @@ class QuestionCard extends React.Component {
     console.log("res:", res);
   }
 
+  uploadImg(event) {
+    const files = event.target.files;
+    if (files.length > 5) {
+      alert("can only upload 5 images!");
+    } else {
+      this.setState({
+        imgUrlList: files,
+      });
+    }
+  }
+
+  uploadMultipleImage(imgUrlArray) {
+    let options = {
+      url: `https://api.imgbb.com/1/upload?key=${config.imgbbToken}`,
+      method: "POST",
+      timeout: 0,
+      processData: false,
+      mimeType: "multipart/form-data",
+      contentType: false,
+    };
+
+    const imgFetchList = imgUrlArray.map((file) => {
+      const form = new FormData();
+      form.append("image", file);
+      options.data = form;
+      return uploadImgFetch(options);
+    });
+
+    Promise.all(imgFetchList).then((res) => {
+      console.log(res);
+    });
+  }
+
   render() {
     const { question_body, answers, question_helpfulness } = this.props;
     const { showMoreAnswers, tempAnswers, question, reportState, showAnswer } =
@@ -90,7 +130,7 @@ class QuestionCard extends React.Component {
       <div className="question-wrap">
         <div className="question">
           <h4>Q: {question.question_body}</h4>
-          <div className="right" >
+          <div className="right">
             <span className="right_item" onClick={this.onVote}>
               Helpful? Yes ({question.question_helpfulness}) |
             </span>
@@ -112,18 +152,25 @@ class QuestionCard extends React.Component {
                     <label className="form">Answer:</label>
                     <textarea className="popFormQ same" type="text"></textarea>
                     <br></br>
-                    <button className="imgUpload">
-                      <ReactCoreImageUpload
-                        text="Upload Your Image (5 max)"
-                        url="https://api.imgbb.com/1/upload"
-                        imageUploaded={() => this.imageUploaded()}
-                      ></ReactCoreImageUpload>
-                    </button>
+                    <input
+                      type="file"
+                      placeholder="Upload Your Img"
+                      multiple
+                      onChange={this.uploadImg}
+                    ></input>
                     <label className="form">Nickname:</label>
-                    <input className="popFormNickname same" type="text" placeholder="Nickname "></input>
+                    <input
+                      className="popFormNickname same"
+                      type="text"
+                      placeholder="Nickname "
+                    ></input>
                     <br></br>
                     <label className="form">Email:</label>
-                    <input className="popFormEmail same" type="text" placeholder="Email"></input>
+                    <input
+                      className="popFormEmail same"
+                      type="text"
+                      placeholder="Email"
+                    ></input>
                     <br></br>
                     <button className="formButton">Submit</button>
                   </form>
