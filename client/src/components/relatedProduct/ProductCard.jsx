@@ -87,7 +87,7 @@ class ProductCard extends React.Component {
     return (
       <div className="productCard">
         <div className="productInfo-upper">
-          {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn" id="of" onClick={removeOutfit}> X </button>}
+          {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
           <PreviewImages currentStyle={defaultStyle} productID={productInfo.id} />
         </div>
         <div className="productInfo">
