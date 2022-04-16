@@ -1,9 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Answers from "./Answers.jsx";
-import { voteHelpfulness, reportRequest } from "../../../service/index.js";
+import {
+  voteHelpfulness,
+  reportRequest,
+  uploadImage as uploadImgFetch,
+  addAnswer,
+} from "../../../service/index.js";
 import Window from "../window.jsx";
 import "./QuestionCard.css";
 import ReactCoreImageUpload from "react-core-image-upload";
+const config = require("../../../../../config.js");
 
 class QuestionCard extends React.Component {
   constructor(props) {
@@ -14,7 +20,16 @@ class QuestionCard extends React.Component {
       question: this.props,
       reportState: props.reported ? "Reported" : "Report",
       answerForm: false,
+      imgUrlList: [],
+      form: {
+        body: "",
+        name: "",
+        email: "",
+        photos: [],
+      },
+      preViewImgList: [],
     };
+    this.uplaodImgEL = createRef();
   }
 
   onSeeMoreAnswersClick = () => {
@@ -78,6 +93,79 @@ class QuestionCard extends React.Component {
     console.log("res:", res);
   }
 
+  uploadImg = (event) => {
+    const files = Object.values(event.target.files);
+    console.log("line 97 -----", files);
+    if (files.length > 5) {
+      alert("can only upload 5 images!");
+    } else {
+      this.setState({
+        imgUrlList: files,
+        // preViewImgList: files.map(async (file) => await this.getImgUrl(file)),
+      });
+    }
+  };
+
+  // getImgUrl = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = (result) => {
+  //       resolve(result);
+  //     };
+  //   });
+  // };
+
+  uploadMultipleImage(imgUrlArray) {
+    let options = {
+      url: `https://api.imgbb.com/1/upload?key=${config.imgbbToken}`,
+      method: "POST",
+      timeout: 0,
+      processData: false,
+      mimeType: "multipart/form-data",
+      contentType: false,
+    };
+
+    const imgFetchList = imgUrlArray.map((file) => {
+      const form = new FormData();
+      form.append("image", file);
+      options.data = form;
+      return uploadImgFetch(options);
+    });
+
+    return Promise.all(imgFetchList);
+  }
+
+  inputChange = (e, type) => {
+    console.log(e, type);
+    const { form } = this.state;
+    form[type] = e.target.value;
+    this.setState({
+      form,
+    });
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(this.state.form);
+    let { form, imgUrlList, question } = this.state;
+    let photos = [],
+      tempPhotos = [];
+    if (imgUrlList.length) {
+      tempPhotos = await this.uploadMultipleImage(imgUrlList);
+    }
+    photos = tempPhotos.map((item) => item.data.data.image.url);
+    form.photos = photos;
+    addAnswer(question.question_id, form).then((res) => {
+      if (res.status === 201) {
+        this.setState({
+          answerForm: false,
+        });
+      }
+      console.log(res, "*******");
+    });
+  };
+
   render() {
     const { question_body, answers, question_helpfulness } = this.props;
     const { showMoreAnswers, tempAnswers, question, reportState, showAnswer } =
@@ -90,7 +178,7 @@ class QuestionCard extends React.Component {
       <div className="question-wrap">
         <div className="question">
           <h4>Q: {question.question_body}</h4>
-          <div className="right" >
+          <div className="right">
             <span className="right_item" onClick={this.onVote}>
               Helpful? Yes ({question.question_helpfulness}) |
             </span>
@@ -108,22 +196,44 @@ class QuestionCard extends React.Component {
                 <h2 className="title">Submit an Answer</h2>
                 <br></br>
                 <div>
-                  <form id="answerForm">
+                  <form id="answerForm" onSubmit={this.handleSubmit}>
                     <label className="form">Answer:</label>
-                    <textarea className="popFormQ same" type="text"></textarea>
+                    <textarea
+                      className="popFormQ same"
+                      type="text"
+                      required
+                      value={this.state.form.body}
+                      onChange={(e) => this.inputChange(e, "body")}
+                      name="body"
+                    ></textarea>
                     <br></br>
-                    <button className="imgUpload">
-                      <ReactCoreImageUpload
-                        text="Upload Your Image (5 max)"
-                        url="https://api.imgbb.com/1/upload"
-                        imageUploaded={() => this.imageUploaded()}
-                      ></ReactCoreImageUpload>
-                    </button>
+                    <input
+                      type="file"
+                      placeholder="Upload Your Img"
+                      multiple
+                      onChange={this.uploadImg}
+                    ></input>
                     <label className="form">Nickname:</label>
-                    <input className="popFormNickname same" type="text" placeholder="Nickname "></input>
+                    <input
+                      className="popFormNickname same"
+                      type="text"
+                      placeholder="Nickname "
+                      required
+                      value={this.state.form.name}
+                      onChange={(e) => this.inputChange(e, "name")}
+                      name="name"
+                    ></input>
                     <br></br>
                     <label className="form">Email:</label>
-                    <input className="popFormEmail same" type="text" placeholder="Email"></input>
+                    <input
+                      className="popFormEmail same"
+                      type="text"
+                      placeholder="Email"
+                      required
+                      value={this.state.form.email}
+                      onChange={(e) => this.inputChange(e, "email")}
+                      name="email"
+                    ></input>
                     <br></br>
                     <button className="formButton">Submit</button>
                   </form>

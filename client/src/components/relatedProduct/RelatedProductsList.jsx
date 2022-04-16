@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Carousel from 'react-elastic-carousel';
 import ProductCard from './ProductCard.jsx';
 import Modal from './Modal.jsx';
 

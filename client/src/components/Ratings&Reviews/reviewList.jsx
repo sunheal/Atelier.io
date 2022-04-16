@@ -40,7 +40,7 @@ class ReviewList extends React.Component{
     getReviewinfo() {
         axios.get(`/reviews/?product_id=${this.props.id}&count=5000`)
         .then((output)=> {
-            console.log(output.data.results.length, 'received from API');
+            // console.log(output.data.results.length, 'received from API');
             this.setState({
                 currentReview : output.data.results,
                 whatShowing: output.data.results.slice(0,2)

@@ -32,7 +32,7 @@ class Overview extends React.Component {
     axios.get(`/products/${id}`)
       .then((res) => {
         const information = res.data;
-        console.log(information);
+        // console.log(information);
         this.setState({ information });
       })
       .catch((err) => {
@@ -44,7 +44,7 @@ class Overview extends React.Component {
     axios.get(`/products/${id}/styles`)
       .then((res) => {
         const styles = res.data.results;
-        console.log('styles', res.data);
+        // console.log('styles', res.data);
         this.setState({ styles });
       })
       .catch((err) => {
