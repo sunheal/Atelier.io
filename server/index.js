@@ -50,6 +50,22 @@ app.put("/*", (req, res) => {
     });
 });
 
+app.post("/*", (req, res) => {
+  let url =`${uri}${req.url}`;
+  axios
+  .post(url, req.body, options)
+  .then((result) => {
+    console.log(result.data)
+    console.log("api data", result.status);
+    res.status(result.status).send(result.data)
+  })
+  .catch((err) => {
+    console.log(req.body);
+    console.log(err.response.status);
+    res.send(err);
+  });
+})
+
 app.listen(PORT, () => {
     console.log(`listening on localhost at ${PORT}`);
 });

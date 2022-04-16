@@ -4,6 +4,7 @@ import {
   voteHelpfulness,
   reportRequest,
   uploadImage as uploadImgFetch,
+  addAnswer,
 } from "../../../service/index.js";
 import Window from "../window.jsx";
 import "./QuestionCard.css";
@@ -26,6 +27,7 @@ class QuestionCard extends React.Component {
         email: "",
         photos: [],
       },
+      preViewImgList: [],
     };
     this.uplaodImgEL = createRef();
   }
@@ -93,15 +95,26 @@ class QuestionCard extends React.Component {
 
   uploadImg = (event) => {
     const files = Object.values(event.target.files);
-    console.log(files);
+    console.log("line 97 -----", files);
     if (files.length > 5) {
       alert("can only upload 5 images!");
     } else {
       this.setState({
         imgUrlList: files,
+        // preViewImgList: files.map(async (file) => await this.getImgUrl(file)),
       });
     }
   };
+
+  // getImgUrl = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = (result) => {
+  //       resolve(result);
+  //     };
+  //   });
+  // };
 
   uploadMultipleImage(imgUrlArray) {
     let options = {
@@ -135,14 +148,22 @@ class QuestionCard extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     console.log(this.state.form);
-    let { form, imgUrlList } = this.state;
+    let { form, imgUrlList, question } = this.state;
     let photos = [],
       tempPhotos = [];
     if (imgUrlList.length) {
       tempPhotos = await this.uploadMultipleImage(imgUrlList);
     }
     photos = tempPhotos.map((item) => item.data.data.image.url);
-    console.log(photos);
+    form.photos = photos;
+    addAnswer(question.question_id, form).then((res) => {
+      if (res.status === 201) {
+        this.setState({
+          answerForm: false,
+        });
+      }
+      console.log(res, "*******");
+    });
   };
 
   render() {
