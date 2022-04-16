@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Carousel from 'react-elastic-carousel';
 import ProductCard from './ProductCard.jsx';
 import Modal from './Modal.jsx';
 
@@ -12,7 +11,6 @@ class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comparedProductID: 64621,
       showModal: false,
       comparisionArray: [],
       currentPosition: 0,
@@ -56,25 +54,35 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    const { comparedProductID, showModal, comparisionArray, currentPosition, positionIndex } = this.state;
-    const { relatedProductsIDs, selectedProductInfo, productID } = this.props;
+    const { showModal, comparisionArray, currentPosition, positionIndex } = this.state;
+    const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo, updateProduct } = this.props;
+
+    if (relatedProductsInfo.length === 0) {
+      return (
+        <div id="relatedProductsList" className="list-container">
+          <div className="list-header">
+            <h3 className="list-title">RELATED PRODUCTS</h3>
+          </div>
+          <div>Loading...</div>
+        </div>
+        );
+    }
 
     return (
       <div id="relatedProductsList" className="list-container">
         <div className="list-header">
           <h3 className="list-title">RELATED PRODUCTS</h3>
         </div>
-
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
-            {relatedProductsIDs.map(productID => (
-              <ProductCard key={productID} productID={productID} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'}  updateModal={this.updateModal}/>
+            {relatedProductsInfo.map(productInfo => (
+              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} onClick={updateProduct} />
             ))}
           </div>
           {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
         </div>
-          {showModal ? <Modal onClose={this.closeModal} comparisionArray={comparisionArray} /> : null}
+        {showModal ? <Modal onClose={this.closeModal} comparisionArray={comparisionArray} /> : null}
       </div>
     );
   }

@@ -40,13 +40,12 @@
     "react-core-image-upload": "^2.2.3",
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
-    "react-elastic-carousel": "^0.11.5",
     "react-modal": "^3.14.4",
-    "react-uuid": "^1.0.2",
-    "styled-components": "^5.3.5"
+    "react-uuid": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@testing-library/jest-dom": "^5.16.4",

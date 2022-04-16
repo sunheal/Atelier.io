@@ -20,17 +20,17 @@ const options = {
 };
 
 app.get("/*", (req, res) => {
-  // console.log(req.url);
+  console.log(req.url);
   let url = `${uri}${req.url}`;
   axios
     .get(url, options)
     .then((result) => {
       // console.log("api data", "result.data");
-      res.status(201).send(result.data);
+      res.status(result.status).send(result.data)
     })
     .catch((err) => {
       // console.error("err");
-      res.status(500).send(err);
+      res.send(err);
     });
 });
 
@@ -40,15 +40,31 @@ app.put("/*", (req, res) => {
   axios
     .put(url, req.body, options)
     .then((result) => {
-      // console.log("api data", result.data);
-      res.status(201).send(result.data);
+      console.log("api data", result.status);
+      res.status(result.status).send(result.data)
     })
     .catch((err) => {
       console.log(req.body);
       console.log(err.response.status);
-      res.status(500).send(err);
+      res.send(err);
     });
 });
+
+app.post("/*", (req, res) => {
+  let url =`${uri}${req.url}`;
+  axios
+  .post(url, req.body, options)
+  .then((result) => {
+    console.log(result.data)
+    console.log("api data", result.status);
+    res.status(result.status).send(result.data)
+  })
+  .catch((err) => {
+    console.log(req.body);
+    console.log(err.response.status);
+    res.send(err);
+  });
+})
 
 app.listen(PORT, () => {
     console.log(`listening on localhost at ${PORT}`);

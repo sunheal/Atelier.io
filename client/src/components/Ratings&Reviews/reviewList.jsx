@@ -40,7 +40,7 @@ class ReviewList extends React.Component{
     getReviewinfo() {
         axios.get(`/reviews/?product_id=${this.props.id}&count=5000`)
         .then((output)=> {
-            console.log(output.data.results.length, 'received from API');
+            // console.log(output.data.results.length, 'received from API');
             this.setState({
                 currentReview : output.data.results,
                 whatShowing: output.data.results.slice(0,2)
@@ -101,7 +101,7 @@ class ReviewList extends React.Component{
             <div>
                 {(this.state.currentReview.length === 0) ? <div><button className="addReview"> Add Review </button> </div>
                 :<div><p className="reviewsCount"> {this.state.currentReview.length} Reviews, sorted by
-                        <select className="sortSelect" onChange={this.changeSort}>
+                        <select className="sortSelect" onChange={this.changeSort} value="relevance">
                             <option value='Select Your Sort'> Select Your Sort</option>
                             <option value='relevance'> relevance </option>
                             <option value='newest'> newest </option>

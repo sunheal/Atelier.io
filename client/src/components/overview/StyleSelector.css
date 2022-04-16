@@ -9,6 +9,7 @@ input[type="checkbox"] {
   display: none;
 }
 
+
 .label-style {
   border: 1px solid #fff;
   border-radius: 50%;
@@ -60,6 +61,7 @@ input[type="checkbox"] {
   background-color: transparent;
   transform: scale(1);
 }
+
 
 :checked + .label-style .img-style {
   transform: scale(0.9);
