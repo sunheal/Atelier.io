@@ -28,8 +28,8 @@ const StyleSelector = (props) => {
         </select>
       </div>
       <div id="quantity">
-        <select name="quantity" id="quantity">
-          <option value="" selected disabled hidden>SELECT Quantity</option>
+        <select name="quantity" id="quantity" value="SELECT">
+          <option value="SELECT" selected disabled hidden>SELECT Quantity</option>
         </select>
       </div>
     </div>

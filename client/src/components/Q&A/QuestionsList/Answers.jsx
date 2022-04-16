@@ -9,13 +9,18 @@ import "./answer.css";
 class Answers extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(props, "===============");
     this.state = {
       answersArray: [...Object.values(props.answersArray)],
       reportState: props.reported ? "Reported" : "Report",
       showImgWindow: false,
       imgUrl: "",
     };
+  }
+
+  static getDerivedStateFromProps(props, state){
+    return {
+      answersArray:  props.answersArray
+    }
   }
 
   onVote = (index) => {
@@ -70,9 +75,12 @@ class Answers extends React.Component {
                 A: _{item.body} <br></br>
                 <br></br>
               </p>
+
               <div className="answerer_info" fontWeight="150">
                 by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
               </div>
+
+
 
               {item.photos.length != 0 && (
                 <div className="answerImage" style={{ display: "flex" }}>
