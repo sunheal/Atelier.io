@@ -69,25 +69,27 @@ class Answers extends React.Component {
               <p className="answer_line">
                 A: _{item.body}  <br></br>
                 <br></br>
+              </p>
                 <div className="answerer_info" fontWeight='150'>
                   by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
-                </div>
-              </p>
-              {item.photos.length != 0 && (
-                <div className="answerImage" style={{ display: "flex" }}>
-                  {item.photos.map((photo, index) => {
-                    return (
-                      <img
-                        onClick={() => this.pop(photo)}
-                        key={index}
-                        width="100"
-                        height="68"
-                        src={photo}
-                      ></img>
-                    );
-                  })}
-                </div>
-              )}
+            </div>
+              {
+            item.photos.length != 0 && (
+              <div className="answerImage" style={{ display: "flex" }}>
+                {item.photos.map((photo, index) => {
+                  return (
+                    <img
+                      onClick={() => this.pop(photo)}
+                      key={index}
+                      width="100"
+                      height="68"
+                      src={photo}
+                    ></img>
+                  );
+                })}
+              </div>
+            )
+          }
               <div className="right">
                 <span className="right_item" onClick={() => this.onVote(index)}>
                   Helpful? Yes&nbsp;({(item.helpfulness)})&nbsp;|&nbsp;
@@ -97,15 +99,18 @@ class Answers extends React.Component {
                 </a>
               </div>
               <br />
-              {this.state.showImgWindow && (
-                <Window onClick={this.onClick}>
-                  <img width="600" height="600" src={this.state.imgUrl}></img>
-                </Window>
-              )}
+          {
+            this.state.showImgWindow && (
+              <Window onClick={this.onClick}>
+                <img width="600" height="600" src={this.state.imgUrl}></img>
+              </Window>
+            )
+          }
             </div>
-          );
-        })}
-      </div>
+    );
+  })
+}
+      </div >
     );
   }
 }
