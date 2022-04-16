@@ -24,7 +24,6 @@ class RR_app extends React.Component {
     getRating() {
         axios.get(`/reviews/meta/?product_id=${this.props.id}`)
         .then((output)=> {
-            // console.log(output.data.ratings, 'received from API Rating');
             let resObj = output.data.ratings;
             let recObj = output.data.recommended;
             if(Object.keys(recObj).length === 0) {
@@ -59,57 +58,10 @@ class RR_app extends React.Component {
                 })
             }
 
-            // if(resArr.length === 0) {
-            //     console.log('00000');
-            //     this.setState({
-            //         rating : 0
-            //     })
-            // }else {
-            //     let total_rating = resArr.reduce((prev, curr)=> prev + curr.rating, 0);
-            //     let avg = (total_rating/resArr.length).toFixed(2);
-            //     console.log(avg, 'avg');
-            //     this.setState({
-            //         rating: avg
-            //     })
-            // }
-
         })
         .catch(err => console.log(err));
     }
-    // arrangeStar(rating, starsArr) {
-    //     let randomkey = 0
-    //     let count = 0;
-    //     let result = [];
-    //      while (count < 5) {
-    //         if (rating >= 1) {
-    //             result.push(<img src = {starsArr[4]} key={randomkey}/>);
-    //             rating --;
-    //             count += 1;
-    //             randomkey++;
-    //             // console.log(rating, 'current rating');
-    //         }else if (rating >= 0.75 && rating < 1) {
-    //             result.push(<img src = {starsArr[3]} key={randomkey}/>);
-    //             rating -= 0.75;
-    //             count += 1;
-    //             randomkey++;
-    //         } else if (rating >= 0.5 && rating < 1) {
-    //             result.push(<img src = {starsArr[2]} key={randomkey}/>);
-    //             rating -= 0.5;
-    //             count += 1;
-    //             randomkey++;
-    //         }else if (rating >= 0.25 && rating < 1) {
-    //             result.push(<img src = {starsArr[1]} key={randomkey}/>);
-    //             rating -= 0.25;
-    //             count += 1;
-    //             randomkey++;
-    //         } else {
-    //             result.push(<img src = {starsArr[0]} key={randomkey}/>);
-    //             count += 1;
-    //             randomkey++;
-    //         }
-    //   }
-    //   return result;
-    // }
+  
     render() {
         return (
             <div className="ReviewContainer">

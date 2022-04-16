@@ -29,7 +29,7 @@ import React from "react"
                     )
                 })}
                 </div>
-                {!this.props.meta.characteristics  ? null: (!this.props.meta.characteristics.size ? null : 
+                {!this.props.meta.characteristics  ? null: (!this.props.meta.characteristics.Size ? null : 
                 <svg width='300' height='80'> 
                 <text className="charcteristic-label" x='0' y='15'> Size </text>
                 <polygon points="0,0 10,0 5,10" transform={`translate(${this.props.meta.characteristics.Size.value/5*100} 25)`}/>
