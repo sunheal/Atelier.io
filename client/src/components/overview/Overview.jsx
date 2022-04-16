@@ -110,12 +110,10 @@ class Overview extends React.Component {
       const sizeAlert = document.getElementsByClassName('sizeAlert');
       sizeAlert[0].removeAttribute('hidden');
       const sizeDropdown = document.getElementById('sizeDropdown');
-      console.log(sizeDropdown);
-      const sizeSelection = Object.keys(selectedStyle.skus).length || 1;
-      sizeDropdown.setAttribute('size', `${sizeSelection}`);
+      // const sizeSelection = Object.keys(selectedStyle.skus).length || 1;
+      // sizeDropdown.setAttribute('size', `${sizeSelection}`);
+      sizeDropdown.setAttribute('size', `3`);
     }
-    // sizeDropdown.classList.toggle('show');
-    // console.log({sizeDropdown});
   }
 
   render() {
