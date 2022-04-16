@@ -11,13 +11,13 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    const {productID, productStyle, relatedProductsIDs, relatedProductsInfo, selectedProductInfo} = this.props;
+    const {productID, productStyle, relatedProductsIDs, relatedProductsInfo, selectedProductInfo, updateProduct} = this.props;
     return (
       <div id="related_products">
         {/* <h3>RELATED PRODUCTS</h3> */}
-        <RelatedProductsList relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} productID={productID} selectedProductInfo={selectedProductInfo}/>
+        <RelatedProductsList relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} productID={productID} selectedProductInfo={selectedProductInfo} updateProduct={updateProduct} />
         {/* <h3>YOUR OUTFIT</h3> */}
-        <OutfitList productID={productID} selectedProductInfo={selectedProductInfo} />
+        <OutfitList productID={productID} selectedProductInfo={selectedProductInfo} updateProduct={updateProduct} />
       </div>
     );
   }

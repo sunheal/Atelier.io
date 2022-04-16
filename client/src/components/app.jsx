@@ -20,11 +20,12 @@ class App extends React.Component {
             reviews: {},
             questions: {},
         }
+        this.updateProduct = this.updateProduct.bind(this);
     }
 
     componentDidMount() {
         this.getAllProducts();
-        this.getProductInfo(64620)
+        this.getProductInfo(this.state.productID);
     }
 
     getAllProducts() {
@@ -56,12 +57,12 @@ class App extends React.Component {
         .then((allPromisesData) => {
             this.setState({
                 productStyle: allPromisesData[0].data,
-                relatedProductsIDs: allPromisesData[1].data,
+                relatedProductsIDs: [... new Set(allPromisesData[1].data)],
                 meta: allPromisesData[2].data,
                 reviews: allPromisesData[3].data,
                 questions: allPromisesData[4].data
             })
-            return allPromisesData[1].data;
+            return [... new Set(allPromisesData[1].data)];
         })
         .then((relatedIDs) => {
             var arrayOfPromises = [];
@@ -79,7 +80,14 @@ class App extends React.Component {
         .catch((error) => {
             console.log('Error fetching product info in App', error);
         });
+    }
 
+    updateProduct(e) {
+        var id = e.target;
+        console.log('clicked product = ', id)
+        // this.setState({
+        //     productID: id
+        // })
     }
 
     render() {
@@ -88,7 +96,7 @@ class App extends React.Component {
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
-                <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo}/>
+                <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
                 <QandA />
                 <RR_app id={productID} />
             </div>

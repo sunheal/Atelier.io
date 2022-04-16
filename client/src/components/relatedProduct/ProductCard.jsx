@@ -11,7 +11,6 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productInfo: {},
       productStyle: {},
       defaultStyle: {
         photos: [
@@ -39,6 +38,7 @@ class ProductCard extends React.Component {
         for (var i = 0; i < results.length; i++) {
           if (results[i]['default?']) {
             defaultStyle = results[i];
+            break;
           }
         }
         if (defaultStyle === '') {
@@ -77,13 +77,14 @@ class ProductCard extends React.Component {
       })
   }
 
-  handleModalClick() {
+  handleModalClick(e) {
+    console.log(e.target)
     this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
   }
 
   render() {
     const { productRating, defaultStyle, productStyle} = this.state;
-    const { productInfo, productInfoOfCurrentPage, action, removeOutfit } = this.props;
+    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal } = this.props;
     return (
       <div className="productCard">
         <div className="productInfo-upper">

@@ -28,10 +28,14 @@ class OutfitList extends React.Component {
     var list = this.state.outfitList;
     if (!this.state.addOutfit && !list.includes(this.props.selectedProductInfo.id.toString())) {
       localStorage.setItem(this.props.selectedProductInfo.id, JSON.stringify(this.props.selectedProductInfo))
-      list.unshift(this.props.selectedProductInfo.id);
+      list.unshift(this.props.selectedProductInfo.id.toString());
       this.setState({
         addOutfit: true,
         outfitList: list
+      })
+    } else {
+      this.setState({
+        addOufit: true
       })
     }
   }
@@ -67,13 +71,12 @@ class OutfitList extends React.Component {
   }
 
   render() {
-    const { productID, selectedProductInfo } = this.props;
+    const { productID, selectedProductInfo, updateProduct } = this.props;
     const { addOutfit, outfitList, currentPosition, positionIndex } = this.state;
-    console.log('outfitList', outfitList.length)
+    // console.log('outfitList', outfitList.length)
     let outfits = [];
     outfitList.map(productID => {
       var productObj = JSON.parse(localStorage.getItem(productID));
-      // console.log('productObj', productObj);
       outfits.push(productObj);
     })
     // console.log('outfits', outfits);
@@ -98,14 +101,8 @@ class OutfitList extends React.Component {
               {outfits.map(productObj => (
                 <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} />
               ))}
-
-              {/* {outfitList.map(productID => {
-                var productObj = JSON.parse(localStorage.getItem(productID));
-                console.log('productObj', productObj);
-                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} />
-              })} */}
             </div>
-            {outfitList.length < 3 || positionIndex === outfitList.lenght - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
+            {positionIndex === outfitList.lenght - 3 || outfitList.length < 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
           </div>
         </div>
       </div>

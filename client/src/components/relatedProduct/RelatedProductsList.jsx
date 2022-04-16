@@ -11,7 +11,6 @@ class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comparedProductID: 64621,
       showModal: false,
       comparisionArray: [],
       currentPosition: 0,
@@ -55,8 +54,8 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    const { comparedProductID, showModal, comparisionArray, currentPosition, positionIndex } = this.state;
-    const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo } = this.props;
+    const { showModal, comparisionArray, currentPosition, positionIndex } = this.state;
+    const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo, updateProduct } = this.props;
 
     if (relatedProductsInfo.length === 0) {
       return (
@@ -78,7 +77,7 @@ class RelatedProductsList extends React.Component {
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
             {relatedProductsInfo.map(productInfo => (
-              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} />
+              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} onClick={updateProduct} />
             ))}
           </div>
           {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
