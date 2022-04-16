@@ -121,6 +121,7 @@ class Overview extends React.Component {
       <div id="overview">
         <h1>Overview</h1>
         <ImageGallery />
+        <br></br>
         <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
         <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
         <br></br>
