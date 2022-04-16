@@ -92,11 +92,30 @@ class Overview extends React.Component {
     const selectedSize = selectedStyle.skus[selectedSKU].size;
     const maxQuantity = selectedStyle.skus[selectedSKU].quantity;
     this.setState({selectedSKU, selectedSize, maxQuantity});
+    const sizeDropdown = document.getElementById('sizeDropdown');
+    sizeDropdown.removeAttribute('size');
+    const sizeAlert = document.getElementsByClassName('sizeAlert');
+    sizeAlert[0].setAttribute('hidden', 'hidden');
   }
 
   onQuantityChange = (e) => {
     const selectedQuantity = e.target.value;
     this.setState({selectedQuantity})
+  }
+
+  onAddToCartClick = (e) => {
+    const selectedStyle = { ...this.state.selectedStyle };
+    const selectedSize = this.state.selectedSize;
+    if (Object.keys(selectedStyle).length > 0 && selectedSize === '') {
+      const sizeAlert = document.getElementsByClassName('sizeAlert');
+      sizeAlert[0].removeAttribute('hidden');
+      const sizeDropdown = document.getElementById('sizeDropdown');
+      console.log(sizeDropdown);
+      const sizeSelection = Object.keys(selectedStyle.skus).length || 1;
+      sizeDropdown.setAttribute('size', `${sizeSelection}`);
+    }
+    // sizeDropdown.classList.toggle('show');
+    // console.log({sizeDropdown});
   }
 
   render() {
@@ -109,7 +128,7 @@ class Overview extends React.Component {
         <br></br>
         <br></br>
         <br></br>
-        <AddToCart selectedStyle={this.state.selectedStyle} selectedSKU = {this.state.selectedSKU} maxQuantity = {this.state.maxQuantity} selectedQuantity={this.state.selectedQuantity} selectedSKU={this.state.selectedSKU} onSizeChange={this.onSizeChange} onQuantityChange={this.onQuantityChange}/>
+        <AddToCart selectedStyle={this.state.selectedStyle} selectedSKU = {this.state.selectedSKU} maxQuantity = {this.state.maxQuantity} selectedQuantity={this.state.selectedQuantity} selectedSKU={this.state.selectedSKU} onSizeChange={this.onSizeChange} onQuantityChange={this.onQuantityChange} onAddToCartClick={this.onAddToCartClick} />
         <br></br>
       </div>
     );
