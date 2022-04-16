@@ -8,7 +8,7 @@
 
 .search input {
   margin-right: 100px;
-  width: 1200px;
+  min-width: 1200px;
   height: 30px;
 }
 

@@ -29,7 +29,6 @@ class QuestionCard extends React.Component {
       },
       preViewImgList: [],
     };
-    this.uplaodImgEL = createRef();
   }
 
   onSeeMoreAnswersClick = () => {
@@ -84,20 +83,11 @@ class QuestionCard extends React.Component {
     });
   };
 
-  imageUploaded(res) {
-    if (res.errcode == 0) {
-      this.setState({
-        src: res.data.src,
-      });
-    }
-    console.log("res:", res);
-  }
-
   uploadImg = (event) => {
     const files = Object.values(event.target.files);
-    console.log("line 97 -----", files);
+    // console.log("line 97 -----", files);
     if (files.length > 5) {
-      alert("can only upload 5 images!");
+      alert("You can only upload 5 images!");
     } else {
       this.setState({
         imgUrlList: files,
@@ -137,7 +127,7 @@ class QuestionCard extends React.Component {
   }
 
   inputChange = (e, type) => {
-    console.log(e, type);
+    // console.log(e, type);
     const { form } = this.state;
     form[type] = e.target.value;
     this.setState({
@@ -147,7 +137,7 @@ class QuestionCard extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state.form);
+    // console.log(this.state.form);
     let { form, imgUrlList, question } = this.state;
     let photos = [],
       tempPhotos = [];
@@ -162,7 +152,7 @@ class QuestionCard extends React.Component {
           answerForm: false,
         });
       }
-      console.log(res, "*******");
+      // console.log(res, "*******");
     });
   };
 
@@ -177,7 +167,7 @@ class QuestionCard extends React.Component {
     return (
       <div className="question-wrap">
         <div className="question">
-          <h4>Q: {question.question_body}</h4>
+          <h4 style={{width: '800px'}}>Q: {question.question_body}</h4>
           <div className="right">
             <span className="right_item" onClick={this.onVote}>
               Helpful? Yes ({question.question_helpfulness}) |
@@ -207,12 +197,14 @@ class QuestionCard extends React.Component {
                       name="body"
                     ></textarea>
                     <br></br>
+
                     <input
                       type="file"
-                      placeholder="Upload Your Img"
+                      placeholder="Upload Your Image Here"
                       multiple
                       onChange={this.uploadImg}
                     ></input>
+
                     <label className="form">Nickname:</label>
                     <input
                       className="popFormNickname same"
@@ -227,7 +219,7 @@ class QuestionCard extends React.Component {
                     <label className="form">Email:</label>
                     <input
                       className="popFormEmail same"
-                      type="text"
+                      type="email"
                       placeholder="Email"
                       required
                       value={this.state.form.email}

@@ -33,3 +33,8 @@ export const addAnswer = (question_id, data) => {
   const url = `${baseUrl}/qa/questions/${question_id}/answers`;
   return axios.post(url, data);
 };
+
+export const addQuestion = (data) => {
+  const url = `${baseUrl}/qa/questions`;
+  return axios.post(url, data);
+}
