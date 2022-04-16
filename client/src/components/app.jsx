@@ -92,7 +92,7 @@ class App extends React.Component {
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
                 <RelatedProducts productID={this.state.productID} selectedProductInfo={this.state.selectedProductInfo} />
-                <QandA />
+                <QandA productID={this.state.productID}/>
                 <RR_app id={this.state.productID} />
 
             </div>
