@@ -14,8 +14,10 @@ class Overview extends React.Component {
       information: {},
       styles: [],
       selectedStyle: {},
+      selectedSKU: '',
       selectedSize: '',
       selectedQuantity: '',
+      maxQuantity: '',
       ratings: '',
       reviewsCount: ''
     }
@@ -32,7 +34,6 @@ class Overview extends React.Component {
     axios.get(`/products/${id}`)
       .then((res) => {
         const information = res.data;
-        // console.log(information);
         this.setState({ information });
       })
       .catch((err) => {
@@ -44,7 +45,6 @@ class Overview extends React.Component {
     axios.get(`/products/${id}/styles`)
       .then((res) => {
         const styles = res.data.results;
-        // console.log('styles', res.data);
         this.setState({ styles });
       })
       .catch((err) => {
@@ -59,7 +59,6 @@ class Overview extends React.Component {
   getProductRatings = (id) => {
     axios.get(`/reviews/meta/?product_id=${id}`)
       .then((res) => {
-        // console.log('getProductRatings', res.data.ratings['1']);
         const reviewsCount = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
         const ratings = ((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / reviewsCount).toFixed(1);
         this.setState({ ratings, reviewsCount });
@@ -78,13 +77,43 @@ class Overview extends React.Component {
     const selectedCheckbox = e.target;
     selectedCheckbox.checked = true;
     const selectedStyle = styles[selectedCheckbox.id];
-    this.setState({selectedStyle});
-    this.setState({selectedSize: ''});
+    this.setState({
+      selectedStyle,
+      selectedSKU: '',
+      maxQuantity: '',
+      selectedQuantity: '',
+      selectedSize: ''
+    });
   }
 
   onSizeChange = (e) => {
-    const selectedSize = e.target.value;
-    this.setState({selectedSize});
+    const selectedSKU = e.target.value;
+    const selectedStyle = {...this.state.selectedStyle};
+    const selectedSize = selectedStyle.skus[selectedSKU].size;
+    const maxQuantity = selectedStyle.skus[selectedSKU].quantity;
+    this.setState({selectedSKU, selectedSize, maxQuantity});
+    const sizeDropdown = document.getElementById('sizeDropdown');
+    sizeDropdown.removeAttribute('size');
+    const sizeAlert = document.getElementsByClassName('sizeAlert');
+    sizeAlert[0].setAttribute('hidden', 'hidden');
+  }
+
+  onQuantityChange = (e) => {
+    const selectedQuantity = e.target.value;
+    this.setState({selectedQuantity})
+  }
+
+  onAddToCartClick = (e) => {
+    const selectedStyle = { ...this.state.selectedStyle };
+    const selectedSize = this.state.selectedSize;
+    if (Object.keys(selectedStyle).length > 0 && selectedSize === '') {
+      const sizeAlert = document.getElementsByClassName('sizeAlert');
+      sizeAlert[0].removeAttribute('hidden');
+      const sizeDropdown = document.getElementById('sizeDropdown');
+      // const sizeSelection = Object.keys(selectedStyle.skus).length || 1;
+      // sizeDropdown.setAttribute('size', `${sizeSelection}`);
+      sizeDropdown.setAttribute('size', `3`);
+    }
   }
 
   render() {
@@ -93,8 +122,11 @@ class Overview extends React.Component {
         <h1>Overview</h1>
         <ImageGallery />
         <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
-        <StyleSelector styles={this.state.styles} onStyleClick={this.onStyleClick} selectedStyle={this.state.selectedStyle} selectedSize={this.state.selectedSize} onSizeChange={this.onSizeChange}/>
-        <AddToCart />
+        <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
+        <br></br>
+        <br></br>
+        <br></br>
+        <AddToCart selectedStyle={this.state.selectedStyle} selectedSKU = {this.state.selectedSKU} maxQuantity = {this.state.maxQuantity} selectedQuantity={this.state.selectedQuantity} selectedSKU={this.state.selectedSKU} onSizeChange={this.onSizeChange} onQuantityChange={this.onQuantityChange} onAddToCartClick={this.onAddToCartClick} />
         <br></br>
       </div>
     );

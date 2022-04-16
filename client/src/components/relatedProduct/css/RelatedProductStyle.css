@@ -1,6 +1,6 @@
-*, * ::after, *::before {
+/* *, * ::after, *::before {
   box-sizing: border-box;
-}
+} */
 
 :root {
   --handle-size: 3rem;
