@@ -3,36 +3,68 @@ import QuestionsList from "./QuestionsList.jsx";
 import ReactCoreImageUpload from "react-core-image-upload";
 import Window from "../Q&A/window.jsx";
 import "../Q&A/window.css";
+const config = require("../../../../config.js");
+import {addQuestion} from "../../service/index.js";
 
 class QandA extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: 64620,
-      questionForm:false,
+      product_id: props.productID,
+      questionForm: false,
+      form: {
+        body:"",
+        name:"",
+        email:"",
+        product_id: props.productID
+      },
     };
   }
 
-  ask =() => {
+  ask = () => {
     this.setState({
-      questionForm:true,
+      questionForm: true,
     });
   };
 
-  onClick =() => {
+  onClick = () => {
     this.setState({
       questionForm: false,
     });
+  };
+
+  inputChange = (e, type) => {
+    const {form} = this.state;
+    form[type] = e.target.value;
+    this.setState({
+      form
+    });
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    let {form, question} = this.state;
+    console.log(form)
+    addQuestion(form).then((res) => {
+      console.log(res)
+      if(res.status === 201) {
+        this.setState({
+          questionForm: false
+        });
+      }
+    })
   }
 
   render() {
     return (
-      <div id="QandA" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div id="QandA" style={{ minWidth: "1200px", margin: "0 auto" }}>
         <div className="QA_line">
           <h2 className="left">Questions & Answers</h2>
-          <button className="right" onClick={()=> this.ask()}>Ask a Question</button>
+          <button className="right" onClick={() => this.ask()}>
+            Ask a Question
+          </button>
         </div>
-        <QuestionsList product_id={40356} />
+        <QuestionsList product_id = {this.state.product_id} />
 
         {this.state.questionForm && (
           <Window onClick={this.onClick}>
@@ -40,22 +72,40 @@ class QandA extends Component {
               <h2 className="title">Submit a Question</h2>
               <br></br>
               <div>
-                <form id="questionForm">
-                  <label className="form" >Question:</label>
-                  <textarea className="popFormQ same" type="text" required></textarea>
+                <form id="questionForm" onSubmit={this.handleSubmit}>
+                  <label className="form">Question:</label>
+                  <textarea
+                    className="popFormQ same"
+                    type="text"
+                    required
+                    value={this.state.form.body}
+                    onChange={(e)=> this.inputChange(e, "body")}
+                    name="body"
+                  ></textarea>
                   <br></br>
-                  <button className="imgUpload">
-                    <ReactCoreImageUpload
-                      text="Upload Your Image (5 max)"
-                      url="https://api.imgbb.com/1/upload"
-                      imageUploaded={() => this.imageUploaded()}
-                    ></ReactCoreImageUpload>
-                  </button>
+
+
                   <label className="form">Nickname:</label>
-                  <input className="popFormNickname same" type="text" placeholder="Nickname" required></input>
+                  <input
+                    className="popFormNickname same"
+                    type="text"
+                    placeholder="Nickname"
+                    required
+                    value={this.state.form.name}
+                    onChange={(e) => this.inputChange(e, "name")}
+                    name="name"
+                  ></input>
                   <br></br>
                   <label className="form">Email:</label>
-                  <input className="popFormEmail same" type="email" placeholder="Email" required></input>
+                  <input
+                    className="popFormEmail same"
+                    type="email"
+                    placeholder="Email"
+                    required
+                    value={this.state.form.email}
+                    onChange={(e)=> this.inputChange(e, "email")}
+                    name="email"
+                  ></input>
                   <br></br>
                   <button className="formButton">Submit</button>
                 </form>

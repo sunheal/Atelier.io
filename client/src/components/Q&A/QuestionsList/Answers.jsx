@@ -9,13 +9,18 @@ import "./answer.css";
 class Answers extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(props, "===============");
     this.state = {
       answersArray: [...Object.values(props.answersArray)],
       reportState: props.reported ? "Reported" : "Report",
       showImgWindow: false,
       imgUrl: "",
     };
+  }
+
+  static getDerivedStateFromProps(props, state){
+    return {
+      answersArray:  props.answersArray
+    }
   }
 
   onVote = (index) => {
@@ -67,50 +72,49 @@ class Answers extends React.Component {
           return (
             <div key={item.id} className="answer_item">
               <p className="answer_line">
-                A: _{item.body}  <br></br>
+                A: _{item.body} <br></br>
                 <br></br>
               </p>
-                <div className="answerer_info" fontWeight='150'>
-                  by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
-            </div>
-              {
-            item.photos.length != 0 && (
-              <div className="answerImage" style={{ display: "flex" }}>
-                {item.photos.map((photo, index) => {
-                  return (
-                    <img
-                      onClick={() => this.pop(photo)}
-                      key={index}
-                      width="100"
-                      height="68"
-                      src={photo}
-                    ></img>
-                  );
-                })}
+
+              <div className="answerer_info" fontWeight="150">
+                by:{item.answerer_name}&nbsp; | Date: {date} <br></br>
               </div>
-            )
-          }
+
+
+
+              {item.photos.length != 0 && (
+                <div className="answerImage" style={{ display: "flex" }}>
+                  {item.photos.map((photo, index) => {
+                    return (
+                      <img
+                        onClick={() => this.pop(photo)}
+                        key={index}
+                        width="100"
+                        height="68"
+                        src={photo}
+                      ></img>
+                    );
+                  })}
+                </div>
+              )}
               <div className="right">
                 <span className="right_item" onClick={() => this.onVote(index)}>
-                  Helpful? Yes&nbsp;({(item.helpfulness)})&nbsp;|&nbsp;
+                  Helpful? Yes&nbsp;({item.helpfulness})&nbsp;|&nbsp;
                 </span>
                 <a className="right_item" onClick={() => this.onReport(index)}>
                   {this.state.reportState}
                 </a>
               </div>
               <br />
-          {
-            this.state.showImgWindow && (
-              <Window onClick={this.onClick}>
-                <img width="600" height="600" src={this.state.imgUrl}></img>
-              </Window>
-            )
-          }
+              {this.state.showImgWindow && (
+                <Window onClick={this.onClick}>
+                  <img width="600" height="600" src={this.state.imgUrl}></img>
+                </Window>
+              )}
             </div>
-    );
-  })
-}
-      </div >
+          );
+        })}
+      </div>
     );
   }
 }

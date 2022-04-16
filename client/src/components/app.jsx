@@ -26,6 +26,7 @@ class App extends React.Component {
     componentDidMount() {
         this.getAllProducts();
         this.getProductInfo(this.state.productID);
+
     }
 
     getAllProducts() {
@@ -96,8 +97,9 @@ class App extends React.Component {
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
+
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
-                <QandA />
+                 <QandA productID={this.state.productID}/>
                 <RR_app id={productID} meta={meta} />
 
             </div>
