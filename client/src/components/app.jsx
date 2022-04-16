@@ -20,15 +20,17 @@ class App extends React.Component {
             reviews: {},
             questions: {},
         }
+        this.updateProduct = this.updateProduct.bind(this);
     }
 
     componentDidMount() {
         this.getAllProducts();
-        this.getProductInfo(64620)
+        this.getProductInfo(this.state.productID);
+
     }
 
     getAllProducts() {
-        axios.get('/products/')
+       return axios.get('/products/')
             .then((result) => {
                 this.setState({
                     allProducts: result.data
@@ -48,22 +50,20 @@ class App extends React.Component {
             allPromises.push(axios.get(`/reviews/meta`, { params: { product_id: id } }));
             allPromises.push(axios.get(`/reviews`, { params: {product_id: id, count: 5000 } }));
             allPromises.push(axios.get(`/qa/questions`, { params: {product_id: id} }));
-            // console.log('allPromises', allPromises);
             this.setState({
                 selectedProductInfo: result.data
             })
             return Promise.all(allPromises);
         })
         .then((allPromisesData) => {
-            // console.log('allPromisesData', allPromisesData);
             this.setState({
                 productStyle: allPromisesData[0].data,
-                relatedProductsIDs: allPromisesData[1].data,
+                relatedProductsIDs: [... new Set(allPromisesData[1].data)],
                 meta: allPromisesData[2].data,
                 reviews: allPromisesData[3].data,
                 questions: allPromisesData[4].data
             })
-            return allPromisesData[1].data;
+            return [... new Set(allPromisesData[1].data)];
         })
         .then((relatedIDs) => {
             var arrayOfPromises = [];
@@ -74,7 +74,6 @@ class App extends React.Component {
         })
         .then((arrayOfPromisesData) => {
             var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
-            console.log('relatedProductsInfo', relatedProductsInfo)
             this.setState ({
                 relatedProductsInfo: relatedProductsInfo
             })
@@ -82,18 +81,26 @@ class App extends React.Component {
         .catch((error) => {
             console.log('Error fetching product info in App', error);
         });
+    }
 
+    updateProduct(e) {
+        var id = e.target;
+        console.log('clicked product = ', id)
+        // this.setState({
+        //     productID: id
+        // })
     }
 
     render() {
+        const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions} = this.state;
         return (
             <div className="app">
-
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
-                <RelatedProducts productID={this.state.productID} selectedProductInfo={this.state.selectedProductInfo} />
-                <QandA productID={this.state.productID}/>
-                <RR_app id={this.state.productID} />
+
+                <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
+                 <QandA productID={this.state.productID}/>
+                <RR_app id={productID} meta={meta} />
 
             </div>
         )

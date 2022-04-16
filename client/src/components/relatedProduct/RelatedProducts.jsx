@@ -7,37 +7,17 @@ import OutfitList from './OutfitList.jsx';
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      productID: props.productID,
-      relatedProductsIDs: []
-    };
+    this.state = {};
   }
-
-  getRelatedProductIDs(id) {
-    axios.get(`/products/${id}/related`)
-      .then((result) => {
-        this.setState({
-          relatedProductsIDs: result.data
-        })
-      })
-      .catch((error) => {
-        console.log('Error fetching related products in ListsWrapper', error);
-      });
-  }
-
-  componentDidMount() {
-    this.getRelatedProductIDs(this.state.productID);
-  }
-
 
   render() {
-
+    const {productID, productStyle, relatedProductsIDs, relatedProductsInfo, selectedProductInfo, updateProduct} = this.props;
     return (
       <div id="related_products">
         {/* <h3>RELATED PRODUCTS</h3> */}
-        <RelatedProductsList relatedProductsIDs={this.state.relatedProductsIDs} productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo}/>
+        <RelatedProductsList relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} productID={productID} selectedProductInfo={selectedProductInfo} updateProduct={updateProduct} />
         {/* <h3>YOUR OUTFIT</h3> */}
-        <OutfitList productID={this.state.productID} selectedProductInfo={this.props.selectedProductInfo} />
+        <OutfitList productID={productID} selectedProductInfo={selectedProductInfo} updateProduct={updateProduct} />
       </div>
     );
   }

@@ -14,7 +14,7 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       addOutfit: false,
-      outfitList: [],
+      outfitList: Object.keys(localStorage) || [], // save IDs
       currentPosition: 0,
       positionIndex: 0
     };
@@ -26,18 +26,26 @@ class OutfitList extends React.Component {
 
   addOutfit() {
     var list = this.state.outfitList;
-    if (!this.state.addOutfit) {
-      list.unshift(this.props.selectedProductInfo);
+    if (!this.state.addOutfit && !list.includes(this.props.selectedProductInfo.id.toString())) {
+      localStorage.setItem(this.props.selectedProductInfo.id, JSON.stringify(this.props.selectedProductInfo))
+      list.unshift(this.props.selectedProductInfo.id.toString());
       this.setState({
         addOutfit: true,
         outfitList: list
       })
+    } else {
+      this.setState({
+        addOufit: true
+      })
     }
   }
 
-  removeOutfit() {
+  removeOutfit(e) {
+    var id = e.target.id;
     var list = this.state.outfitList;
-    list.pop();
+    var index = list.indexOf(id);
+    list.splice(index, 1);
+    localStorage.removeItem(id);
     this.setState({
       addOutfit: false,
       outfitList: list
@@ -63,8 +71,16 @@ class OutfitList extends React.Component {
   }
 
   render() {
-    const { productID, selectedProductInfo } = this.props;
+    const { productID, selectedProductInfo, updateProduct } = this.props;
     const { addOutfit, outfitList, currentPosition, positionIndex } = this.state;
+    // console.log('outfitList', outfitList.length)
+    let outfits = [];
+    outfitList.map(productID => {
+      var productObj = JSON.parse(localStorage.getItem(productID));
+      outfits.push(productObj);
+    })
+    // console.log('outfits', outfits);
+
     return (
       <div id="outfitList" className="list-container">
         <div className="list-header">
@@ -78,12 +94,15 @@ class OutfitList extends React.Component {
           <div className="carousel-container">
             {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
             <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-              {!addOutfit ? null : <ProductCard productID={productID} productInfoOfCurrentPage={selectedProductInfo} removeOutfit={this.removeOutfit} />}
-              {/* {outfitList.map(productID => (
-              <ProductCard key={productID} productID={productID} removeOutfit={this.removeOutfit}  />
-            ))} */}
+              {outfitList.length === 0 ?
+                <div>Add Your First Outfit</div>
+                : null
+              }
+              {outfits.map(productObj => (
+                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} />
+              ))}
             </div>
-            {outfitList.length < 3 || positionIndex === outfitList.lenght - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
+            {positionIndex === outfitList.lenght - 3 || outfitList.length < 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
           </div>
         </div>
       </div>

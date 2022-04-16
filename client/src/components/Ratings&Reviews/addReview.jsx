@@ -144,6 +144,7 @@ class AddReview extends React.Component {
       let temp = this.state.sizeId.toString();
       toSend.characteristics[temp] = Number(this.state.sizePt);
     }
+
     if (this.state.comfortId !== "") {
       let temp = this.state.comfortId.toString();
       toSend.characteristics[temp] = Number(this.state.comfortPt);
@@ -157,23 +158,7 @@ class AddReview extends React.Component {
       .then((res) => console.log("successed", res))
       .catch((err) => console.log(err));
   }
-  // createStarDiv(rating) {
-  //     let count = 5;
-  //     let empty = count - rating;
-  //     let updated = [];
-  //     while (count > 0) {
-  //         while(rating > 0) {
-  //             updated.push(<ion-icon name="star"></ion-icon>);
-  //             rating --;
-  //         }
-  //         while(empty > 0) {
-  //             updated.push(<ion-icon name="star-outline"></ion-icon>);
-  //             empty --;
-  //         }
-  //         count --;
-  //     }
-  //     return updated;
-  // }
+
 
   render() {
     return (
@@ -216,6 +201,91 @@ class AddReview extends React.Component {
               Overall Rating:
               {[...Array(5)].map((star, i) => {
                 const ratingVal = i + 1;
+
+
+    render() {
+        let a = 0;
+        return (
+            <div className="reviewModal">
+             <Modal className='innerModal' isOpen={this.props.show} ariaHideApp={false}>
+                <h1> Add Your Review </h1>
+                <form>
+                    <label name='AddReview_Name'> Name:
+                    <input type= 'text' onChange={this.nameChange} required/>
+                    </label>
+                    <br></br>
+                    <label > Do you recommend this product?:
+                        <input name= 'recommend' type= 'radio' value='true' onClick={this.recommendChange}required/> Yes
+                        <input name='recommend' type='radio' value='false' onClick={this.recommendChange}/> No
+                    </label>
+                    <br></br>
+                    <label name='rating'> Overall Rating:
+                    {[...Array(5)].map((star,i) => {
+                        const ratingVal = i+1;
+
+                        return (
+                            <a key={ratingVal}>
+                                <input
+                                    type='radio'
+                                    name='rating'
+                                    value={ratingVal}
+                                    key={ratingVal}
+                                    onClick={this.onRatingChange}
+                                    required
+                                    /><FaStar
+                                    className="star"
+                                    size='20'
+                                    key={ratingVal}
+                                    color={ratingVal <= this.state.rating ? 'gold' : 'white'} />
+                            </a>
+                        )
+                    })}
+                    </label>
+                        <br></br>
+                     <a name='ratingtxt'> {this.state.rating > 0 ? <p> 1 star - “Poor” 2 stars - “Fair” 3 stars - “Average” 4 stars - “Good” 5 stars - “Great” </p> :null } </a>
+                    <br></br>
+                    <label> How do you like the size?:
+                        <input name='PRSize' type= 'radio' value= '1' onClick={this.onSizeChange} /> 1
+                        <input name='PRSize' type='radio' value= '2' onClick={this.onSizeChange}/> 2
+                        <input name='PRSize' type='radio' value= '3' onClick={this.onSizeChange}/> 3
+                        <input name='PRSize' type='radio' value= '4' onClick={this.onSizeChange}/> 4
+                        <input name='PRSize' type='radio' value= '5' onClick={this.onSizeChange}/> 5
+                    </label>
+                    <br></br>
+                    <a name='sizetxt'> {this.state.sizePt > 0 ? <p> 1 star - “A size too small” 2 stars - “½ a size too small” 3 stars - “Perfect” 4 stars - “½ a size too big” 5 stars - “A size too wide”</p> : null}</a>
+                    <br></br>
+                    <label> How do you like the comfortness?:
+                        <input name='PRComfort'type= 'radio' value= '1' onClick={this.onComfortChange}/> 1
+                        <input name='PRComfort' type='radio' value= '2' onClick={this.onComfortChange}/> 2
+                        <input name='PRComfort' type='radio' value= '3' onClick={this.onComfortChange}/> 3
+                        <input name='PRComfort' type='radio' value= '4' onClick={this.onComfortChange}/> 4
+                        <input name='PRComfort' type='radio' value= '5' onClick={this.onComfortChange}/> 5
+                    </label>
+                    <br></br>
+                    <a name='comforttxt'> {this.state.comfortPt > 0 ? <p> 1 star - “Uncomfortable” 2 stars - “Slightly uncomfortable” 3 stars - “Ok” 4 stars - “Comfortable” 5 stars - “Perfect”</p> : null}</a>
+                    <br></br>
+                    <label> Review Summary:
+                        <textarea rows='4' cols='50' maxLength='60' value={this.state.summary} onChange={this.revSum} />
+                    </label>
+                    <br></br>
+                    <label> Review Body:
+                    <textarea rows='4' cols='50' maxLength='1000' value={this.state.body} onChange={this.revBody} required/>
+                    </label>
+                    <br></br>
+                    <label> Upload Photo:
+                    <input type='file' onChange={this.onImagefileChange}/>
+                    {/* <button onClick={this.onImagefileChange}> Upload </button>  */}
+                    </label>  <br></br>
+                    <label> Email Address:
+                    <input type='email' value={this.state.email} onChange={this.emailChange} required/>
+                    </label>
+                    <br></br>
+                    <input type='submit' onClick={this.handleSubmit}/>
+                </form>
+                <button onClick={this.props.onShowModal}> Close </button>
+            </Modal>
+            </div>
+
 
                 return (
                   <>
