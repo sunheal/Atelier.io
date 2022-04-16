@@ -21,7 +21,7 @@ input[type="checkbox"] {
   display: none;
 }
 
-label {
+.OverView_label {
   border: 1px solid #fff;
   border-radius: 50%;
   padding: 3px;
@@ -34,7 +34,7 @@ label {
 }
 
 /* check mark */
-label:before {
+.OverView_label:before {
   background-color: white;
   color: white;
   content: " ";
@@ -52,7 +52,7 @@ label:before {
   transform: scale(0);
 }
 
-label img {
+.OverView_label img {
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -60,11 +60,11 @@ label img {
   transform-origin: 50% 50%;
 }
 
-:checked + label {
+:checked + .OverView_label {
   border-color: #ddd;
 }
 
-:checked + label:before {
+:checked + .OverView_label:before {
   content: "✓";
   color: grey;
   font-size: 14px;
@@ -72,7 +72,7 @@ label img {
   transform: scale(1);
 }
 
-:checked + label img {
+:checked + .OverView_label img {
   transform: scale(0.9);
   /* box-shadow: 0 0 5px #333; */
   z-index: -1;

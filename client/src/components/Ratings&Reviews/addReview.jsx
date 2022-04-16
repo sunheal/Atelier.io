@@ -182,6 +182,7 @@ class AddReview extends React.Component {
 
 
     render() {
+        let a = 0;
         return (
             <div className="reviewModal">
              <Modal className='innerModal' isOpen={this.props.show} ariaHideApp={false}>
@@ -191,7 +192,7 @@ class AddReview extends React.Component {
                     <input type= 'text' onChange={this.nameChange} required/>
                     </label>
                     <br></br>
-                    <label> Do you recommend this product?:
+                    <label > Do you recommend this product?:
                         <input name= 'recommend' type= 'radio' value='true' onClick={this.recommendChange}required/> Yes
                         <input name='recommend' type='radio' value='false' onClick={this.recommendChange}/> No
                     </label>
@@ -201,7 +202,7 @@ class AddReview extends React.Component {
                         const ratingVal = i+1;
 
                         return (
-                            <>
+                            <a key={ratingVal}>
                                 <input
                                     type='radio'
                                     name='rating'
@@ -212,8 +213,9 @@ class AddReview extends React.Component {
                                     /><FaStar
                                     className="star"
                                     size='20'
+                                    key={ratingVal}
                                     color={ratingVal <= this.state.rating ? 'gold' : 'white'} />
-                            </>
+                            </a>
                         )
                     })}
                     </label>

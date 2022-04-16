@@ -29,7 +29,7 @@ class App extends React.Component {
     }
 
     getAllProducts() {
-        axios.get('/products/')
+       return axios.get('/products/')
             .then((result) => {
                 this.setState({
                     allProducts: result.data
@@ -98,7 +98,8 @@ class App extends React.Component {
                 <Overview />
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
                 <QandA />
-                <RR_app id={productID} />
+                <RR_app id={productID} meta={meta} />
+
             </div>
         )
     }
