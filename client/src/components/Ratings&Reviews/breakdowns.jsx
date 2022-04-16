@@ -20,11 +20,12 @@ import React from "react"
                 <div className="starBreakDown_RR">
                 {[...Array(5)].map((bar, index)=>{
                     const order = 5 - (index);
+                    console.log(this.props.ratings)
                     return (
                         <svg height='30' width="300" key={order}> 
                             <text className="name-label" x="0" y="15">{order} Stars</text>
                             <rect className='grey' width='100' height='10' x='90' y='5'fill="grey" opacity='0.25'/>
-                            <rect className='green' width={((this.props.ratings[order]/this.props.count)*100).toString()} height='10'  x='90' y='5' fill="green" />
+                           {this.props.ratings[order] ? <rect className='green' width={((this.props.ratings[order]/this.props.count)*100).toString()} height='10'  x='90' y='5' fill="green" /> : null} 
                         </svg>
                     )
                 })}
