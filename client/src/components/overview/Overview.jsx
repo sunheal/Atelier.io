@@ -30,6 +30,10 @@ class Overview extends React.Component {
     this.getProductRatings(id);
   }
 
+  componentDidUpdate() {
+    this.showSlides(0);
+  }
+
   getProductInformation = (id) => {
     axios.get(`/products/${id}`)
       .then((res) => {
@@ -116,11 +120,28 @@ class Overview extends React.Component {
     }
   }
 
+  showSlides = (n) => {
+    let slideIndex;
+    const slides = document.getElementsByClassName('mySlides');
+    // if (n > slides.length - 1) {
+    //   slideIndex = 0
+    // };
+    // if (n < 0) {
+    //   slideIndex = slides.lenght - 1;
+    // }
+    // for (let i = 0; i < slides.length)
+
+    if (slides.length > 0) {
+      slides.forEach(slide => slide.style.display = 'none');
+      slides[n].style.display = 'block';
+    }
+  }
+
   render() {
     return (
       <div id="overview">
         <h1>Overview</h1>
-        <ImageGallery />
+        <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle}/>
         <br></br>
         <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
         <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
