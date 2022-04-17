@@ -19,7 +19,8 @@ class Overview extends React.Component {
       selectedQuantity: '',
       maxQuantity: '',
       ratings: '',
-      reviewsCount: ''
+      reviewsCount: '',
+      slideIndex: 0
     }
   }
 
@@ -31,7 +32,8 @@ class Overview extends React.Component {
   }
 
   componentDidUpdate() {
-    this.showSlides(0);
+    const slideIndex = this.state.slideIndex;
+    this.showSlides(slideIndex);
   }
 
   getProductInformation = (id) => {
@@ -86,7 +88,8 @@ class Overview extends React.Component {
       selectedSKU: '',
       maxQuantity: '',
       selectedQuantity: '',
-      selectedSize: ''
+      selectedSize: '',
+      slideIndex: 0
     });
   }
 
@@ -120,8 +123,7 @@ class Overview extends React.Component {
     }
   }
 
-  showSlides = (n) => {
-    let slideIndex;
+  showSlides = (slideIndex) => {
     const slides = document.getElementsByClassName('mySlides');
     // if (n > slides.length - 1) {
     //   slideIndex = 0
@@ -133,15 +135,33 @@ class Overview extends React.Component {
 
     if (slides.length > 0) {
       slides.forEach(slide => slide.style.display = 'none');
-      slides[n].style.display = 'block';
+      slides[slideIndex].style.display = 'block';
     }
+  }
+
+  onPrevClick = (e) => {
+    let slideIndex = this.state.slideIndex - 1;
+    const slides = document.getElementsByClassName('mySlides');
+    if (slideIndex < 0) {
+      slideIndex = slides.length - 1;
+    };
+    this.setState({slideIndex});
+  }
+
+  onNextClick = (e) => {
+    let slideIndex = this.state.slideIndex + 1;
+    const slides = document.getElementsByClassName('mySlides');
+    if (slideIndex > slides.length - 1) {
+      slideIndex = 0;
+    };
+    this.setState({slideIndex});
   }
 
   render() {
     return (
       <div id="overview">
         <h1>Overview</h1>
-        <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle}/>
+        <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} />
         <br></br>
         <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
         <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />

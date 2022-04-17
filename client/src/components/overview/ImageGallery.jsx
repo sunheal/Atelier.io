@@ -27,8 +27,8 @@ const ImageGallery = (props) => {
               );
             })
         }
-        <a className="prev"  >&#10094;</a>
-        <a className="next"  >&#10095;</a>
+        <a className="prev" onClick={props.onPrevClick} >&#10094;</a>
+        <a className="next" onClick={props.onNextClick} >&#10095;</a>
       </div>
       <br></br>
       <div   >
