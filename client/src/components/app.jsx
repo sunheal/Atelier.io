@@ -97,7 +97,6 @@ class App extends React.Component {
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
-
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
                  <QandA productID={this.state.productID}/>
                 <RR_app id={productID} meta={meta} />
