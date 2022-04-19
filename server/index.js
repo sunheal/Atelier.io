@@ -20,7 +20,7 @@ const options = {
 };
 
 app.get("/*", (req, res) => {
-  console.log(req.url);
+  // console.log(req.url);
   let url = `${uri}${req.url}`;
   axios
     .get(url, options)
@@ -40,12 +40,12 @@ app.put("/*", (req, res) => {
   axios
     .put(url, req.body, options)
     .then((result) => {
-      console.log("api data", result.status);
+      // console.log("api data", result.status);
       res.status(result.status).send(result.data)
     })
     .catch((err) => {
-      console.log(req.body);
-      console.log(err.response.status);
+      // console.log(req.body);
+      // console.log(err.response.status);
       res.send(err);
     });
 });
@@ -55,13 +55,13 @@ app.post("/*", (req, res) => {
   axios
   .post(url, req.body, options)
   .then((result) => {
-    console.log(result.data)
-    console.log("api data", result.status);
+    // console.log(result.data)
+    // console.log("api data", result.status);
     res.status(result.status).send(result.data)
   })
   .catch((err) => {
-    console.log(req.body);
-    console.log(err.response.status);
+    // console.log(req.body);
+    // console.log(err.response.status);
     res.send(err);
   });
 })

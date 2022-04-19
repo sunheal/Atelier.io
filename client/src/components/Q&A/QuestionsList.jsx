@@ -21,6 +21,9 @@ class QuestionsList extends Component {
 
   componentDidMount() {
     getQAList(this.props.product_id).then((res) => {
+      // console.log(res.data, '+++++++++++++++++++++++')
+      const tempData= res.data.results.filter(item => !item.reported)
+      // console.log(tempData)
       this.setState({
         questions: res.data,
         id: res.data.product_id,

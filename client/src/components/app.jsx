@@ -116,7 +116,6 @@ class App extends React.Component {
       <div className="app">
         <p id="logo"> Good Deals Only </p>
         <Overview />
-
         <RelatedProducts
           productID={productID}
           selectedProductInfo={selectedProductInfo}
