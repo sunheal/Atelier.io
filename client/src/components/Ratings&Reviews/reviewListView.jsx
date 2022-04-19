@@ -4,7 +4,7 @@ import HelpfulAndReport from "./Helpful&Report.jsx";
 
 const ReviewListView =({reviews}) => {
     return (
-        <div>
+        <div className="bigReview_container">
             {reviews.map((review,index) => {
                 return (
                 <div className="individualReview_container" key={index}>

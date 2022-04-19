@@ -7,13 +7,18 @@ import React from "react"
         this.state = {
             totalRating: 0,
         }
+        this.onFilterChange = this.onFilterChange.bind(this);
+    }
+    onFilterChange(event) {
+        let temp = event.target[Object.keys(event.target)[1]]
+        console.log(Object.keys(temp)[6], 'coming from barchart to change reviews filter')
+        console.log(temp.value)
+        this.props.filter(temp.value);
     }
 
 
     render() {
-        // console.log(this.props.meta, 'inside barchart')
-        // const characObj = this.props.meta.characteristics;
-        const aa = 30;
+        // console.log(this.props, 'meta in barchart')
         return (
             <div>
             <p> {this.props.recommend}% of reviews recommended this product</p>

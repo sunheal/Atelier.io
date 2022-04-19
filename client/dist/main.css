@@ -29,6 +29,10 @@ body {
   float: right;
   width: 70%;
 }
+.bigReview_container {
+    height: 500px;
+    overflow-y:auto;
+}
 .individualReview_container {
   border-bottom: solid;
   margin-bottom: 15px;
