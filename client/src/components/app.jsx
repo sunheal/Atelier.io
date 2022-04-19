@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64624,
+            productID: 64625,
             allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
@@ -26,8 +26,8 @@ class App extends React.Component {
     componentDidMount() {
         this.getAllProducts();
         this.getProductInfo(this.state.productID);
-
     }
+
 
     getAllProducts() {
        return axios.get('/products/')
@@ -56,15 +56,18 @@ class App extends React.Component {
             return Promise.all(allPromises);
         })
         .then((allPromisesData) => {
+            var filtered = allPromisesData[1].data.filter(id => id !== this.state.productID);
+            filtered = [...new Set(filtered)];
+            console.log('filtered', filtered);
             this.setState({
                 productStyle: allPromisesData[0].data,
-                relatedProductsIDs: [... new Set(allPromisesData[1].data)],
+                relatedProductsIDs: filtered,
                 meta: allPromisesData[2].data,
                 reviews: allPromisesData[3].data,
                 questions: allPromisesData[4].data
             })
 
-            return [... new Set(allPromisesData[1].data)];
+            return filtered;
         })
         .then((relatedIDs) => {
             var arrayOfPromises = [];
@@ -84,12 +87,12 @@ class App extends React.Component {
         });
     }
 
-    updateProduct(e) {
-        var id = e.target;
-        console.log('clicked product = ', id)
-        // this.setState({
-        //     productID: id
-        // })
+    updateProduct(id) {
+        console.log('pass in here = ', id)
+        this.getProductInfo(id);
+        this.setState({
+            productID: id
+        })
     }
 
 

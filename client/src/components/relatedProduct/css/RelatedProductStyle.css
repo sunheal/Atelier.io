@@ -7,20 +7,21 @@
   --img-gap: .25rem;
 }
 
-/* ------ ListWrapper ------ */
+/* ------ RelatedProducts ------ */
 #related_products{
   border-color: grey;
   border-style: solid;
   border-radius: 3px;
-  margin : 10px 15% 10px;
-  min-width: 1100px;
+  margin : 10px 20% 10px;
+  align-items: center;
 }
 /* for two lists */
 .list-container{
   border-color: rgba(71, 128, 179, 0.893);
   border-style: solid;
-  margin: 10px 3% 10px;
-  align-items: left;
+  margin: 10px auto 10px;
+  /* align-items: left; */
+  max-width: 1200px;
 }
 
 .list-header {
@@ -40,14 +41,10 @@
 }
 
 .carousel-slider{
-  /* --items-per-screen: 3; */
+  /* --items-per-screen: 4; */
   width: 95%;
   display: flex;
   flex-grow: 1;
-}
-
-.carousel-slider > .productCard {
-  flex: 0 0 calc(100% / var(--items-per-screen));
 }
 
 .handles{
@@ -61,9 +58,17 @@
   width: var(--handle-size);
   cursor: pointer;
   font-size: 5rem;
-  color: white;
+  color: rgb(174, 171, 171);
   transition: background-color 150ms ease-in-out;
 }
+/* .left-handle {
+padding-left: .25rem;
+} */
+
+/* .carousel-slider .productCard {
+  flex: 0 0 calc(100% / var(--items-per-screen));
+} */
+
 
 
 /* ------ RelatedProductList ------ */
@@ -90,6 +95,7 @@
   align-items: center;
   cursor: pointer;
 }
+
 .add-outfit-card:hover {
   box-shadow: 0 10px 20px 0 rgb(81, 79, 74);
 }
@@ -104,17 +110,32 @@
 
 
 /* ------ ProductCard ------ */
+
+ /* .productCard {
+  position: relative;
+} */
+
 .productCard{
   min-width: 280px;
   width: 280px;
   height: 320px;
   margin: 13px 8px;
+  padding: .25rem;
   border-style: groove;
   cursor: pointer;
-  padding: .25rem;
-  min-width: 300px;
+  position: relative;
+
+}
+ button.action-btn{
+  /* position: absolute; */
+  display: block;
+  z-index: 1;
 }
 
+ .productCard button.action-btn::after{
+  position: absolute;
+  background: palegreen;
+}
 .productCard:hover {
   box-shadow: 0 10px 20px 0 rgb(81, 79, 74);
 }
@@ -128,7 +149,7 @@
 
 .preview-image {
   width: 100%;
-  height: 190px;
+  height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,6 +164,7 @@
 .sale-price{
   color: red;
 }
+
 .original-price{
   text-decoration: line-through;
 }

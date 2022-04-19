@@ -23,7 +23,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 45;
+    var newPosition = this.state.currentPosition - 345;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -32,7 +32,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 45;
+    var newPosition = this.state.currentPosition + 345;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
@@ -75,12 +75,12 @@ class RelatedProductsList extends React.Component {
         </div>
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
-          <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
+          <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
             {relatedProductsInfo.map(productInfo => (
-              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} onClick={updateProduct} />
+              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProduct={updateProduct} />
             ))}
           </div>
-          {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
+          {relatedProductsIDs.length > 4 && positionIndex < (relatedProductsIDs.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
         </div>
         {showModal ? <Modal onClose={this.closeModal} comparisionArray={comparisionArray} /> : null}
       </div>

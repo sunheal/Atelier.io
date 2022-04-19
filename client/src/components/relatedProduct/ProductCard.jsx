@@ -23,6 +23,7 @@ class ProductCard extends React.Component {
       productRating: null
     };
     this.handleModalClick = this.handleModalClick.bind(this);
+    this.handleProductCard = this.handleProductCard.bind(this);
   }
 
   componentDidMount() {
@@ -55,10 +56,12 @@ class ProductCard extends React.Component {
   }
 
   getProductRatings() {
+    // console.log('product id', this.props.productInfo.id)
     axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
       .then((response) => {
         // check if there is a rating
         var ratings = response.data.ratings;
+        // console.log('ratings', ratings)
         if (Object.keys(ratings).length > 0) {
           var total = 0;
           var amount = 0;
@@ -78,15 +81,20 @@ class ProductCard extends React.Component {
   }
 
   handleModalClick(e) {
-    console.log(e.target)
     this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
+  }
+
+  handleProductCard(e) {
+    var id = this.props.productInfo.id;
+    // console.log('clicked product = ', this.props.productInfo)
+    this.props.updateProduct(id);
   }
 
   render() {
     const { productRating, defaultStyle, productStyle} = this.state;
-    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal } = this.props;
+    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProduct } = this.props;
     return (
-      <div className="productCard">
+      <div className="productCard" id={productInfo.id} onClick={this.handleProductCard}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
           <PreviewImages currentStyle={defaultStyle} productID={productInfo.id} />
