@@ -1,9 +1,8 @@
 .search {
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
   height:35px;
-  padding:auto;
+  padding: 20px;
 }
 
 .search input {
@@ -17,9 +16,9 @@
 }
 
 .windowWrap {
-  width: 250px;
+  width: 300px;
   background-color: #f6f6f6;
-  padding: 20px 200px;
+  padding: 20px 100px 40px;
   border-radius: 5px;
   position: relative;
   z-index: 1;
@@ -30,14 +29,24 @@
 #questionForm label{
   display: flex;
   width:140px;
-  margin:4px 0;
+  margin:12px 0 10px 0;
   font-weight: bold;
+  height: max-content;
 }
 
 .popFormQ {
   height: 200px;
+  width: 100%;
 }
 
 .title{
-  text-overflow: clip;
+  text-align: center;
+}
+
+.windowWrap input {
+  width: 100%;
+}
+
+.formButton{
+  margin-top: 10px;
 }
