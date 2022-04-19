@@ -13,7 +13,7 @@
   "scripts": {
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/index.js",
-    "test": "jest"
+    "test": "jest --collect-coverage"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "env": "^0.0.2",
     "express": "^4.17.3",
     "identity-obj-proxy": "^3.0.0",
+    "jest-cli": "^27.5.1",
     "mongoose": "^6.2.9",
     "msw": "^0.39.2",
     "nodemon": "^2.0.15",

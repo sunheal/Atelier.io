@@ -1,7 +1,7 @@
 .windowWrap {
-  width: 250px;
+  width: 600px;
   background-color: #f6f6f6;
-  padding: 20px 200px;
+  padding: 20px 100px;
   border-radius: 5px;
   position: relative;
   z-index: 1;
@@ -25,7 +25,7 @@
 }
 
 .title{
-  text-overflow: clip;
+  text-align: center;
 }
 
 
@@ -36,4 +36,16 @@
 
 .imgUpload {
   margin-top: 7px;
+}
+
+.imgPreviewWrap {
+  margin: 10px 0;
+}
+
+.imgPreviewWrap img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  margin-right: 6px;
+  margin-bottom: 6px;
 }
