@@ -27,15 +27,23 @@ const ImageGallery = (props) => {
               );
             })
         }
-        <a className="prev"  >&#10094;</a>
-        <a className="next"  >&#10095;</a>
+        <a className="prev" onClick={props.onPrevClick} >&#10094;</a>
+        <a className="next" onClick={props.onNextClick} >&#10095;</a>
+        <div className="thumbnail-slider">
+          {!displayStyle?.photos
+              ? <div>loading...</div>
+              : displayStyle.photos.map((photoObj, index) => {
+                  return (
+                    <div className="thumbnail-div" key={index} onClick={props.onThumbnailClick} id={index}>
+                    <img className="thumbnail-img" src={photoObj.thumbnail_url} id={index}></img>
+                    </div>
+                  );
+              })
+          }
+          <a className="down" >&#65088;</a>
+        </div>
       </div>
       <br></br>
-      <div   >
-        <span className="dot"  ></span>
-        <span className="dot"  ></span>
-        <span className="dot"  ></span>
-      </div>
     </div>
   );
 }
