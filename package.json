@@ -13,7 +13,7 @@
   "scripts": {
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/index.js",
-    "test": "jest --collect-coverage"
+    "test": "jest --collect-coverage --silent"
   },
   "repository": {
     "type": "git",

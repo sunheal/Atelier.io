@@ -9,7 +9,6 @@ const host = "localhost:3111";
 const headers = {
   Authorization: `${config.TOKEN}`,
 };
-
 class QuestionsList extends Component {
   constructor(props) {
     super(props);
@@ -22,13 +21,13 @@ class QuestionsList extends Component {
 
   componentDidMount() {
     getQAList(this.props.product_id).then((res) => {
-      console.log(res.data, '+++++++++++++++++++++++')
+      // console.log(res.data, '+++++++++++++++++++++++')
       const tempData= res.data.results.filter(item => !item.reported)
-      console.log(tempData)
+      // console.log(tempData)
       this.setState({
-        questions: tempData,
-        id: tempData.product_id,
-        currentQuestions: tempData,
+        questions: res.data,
+        id: res.data.product_id,
+        currentQuestions: res.data.results,
       });
     });
   }
@@ -36,7 +35,7 @@ class QuestionsList extends Component {
   onSearch = (value) => {
     // console.log(value, "父组件");
     const { questions } = this.state;
-    // console.log(questions)
+    console.log(questions)
     const currentQuestions = questions.results.filter((item) => {
       if (item.question_body.includes(value)) {
         return item;
@@ -45,14 +44,15 @@ class QuestionsList extends Component {
     this.setState({
       currentQuestions
     })
-    // console.log(currentQuestions, '----------------');
+    // console.log(currentQuestions);
   };
 
   render() {
-    // console.log(this.state.currentQuestions, '---------------------------')
     return (
       <div>
         <SearchBar onSearch={this.onSearch}></SearchBar>
+        Here are the questions for this product:
+        {this.state.questions.results.length}
         {this.state.currentQuestions.map((item) => {
           return <QuestionCard {...item} key={item.question_id} />;
         })}
@@ -60,5 +60,4 @@ class QuestionsList extends Component {
     );
   }
 }
-
 export default QuestionsList;

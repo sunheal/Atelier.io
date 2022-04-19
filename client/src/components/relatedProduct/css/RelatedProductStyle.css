@@ -13,6 +13,7 @@
   border-style: solid;
   border-radius: 3px;
   margin : 10px 15% 10px;
+  min-width: 1100px;
 }
 /* for two lists */
 .list-container{
@@ -31,7 +32,6 @@
 }
 
 /* ------ Carousel ------ */
-
 .carousel-container {
   display: flex;
   width: 100%;
@@ -40,7 +40,7 @@
 }
 
 .carousel-slider{
-  --items-per-screen: 3;
+  /* --items-per-screen: 3; */
   width: 95%;
   display: flex;
   flex-grow: 1;
@@ -79,29 +79,40 @@
 }
 
 .add-outfit-card {
-  width: 25%;
-  height: 300px;
+  min-width: 280px;
+  width: 280px;
+  height: 320px;
   margin: 13px 8px;
+  padding: .25rem;
   border-style: groove;
   text-align: center;
   display: grid;
   align-items: center;
   cursor: pointer;
 }
+.add-outfit-card:hover {
+  box-shadow: 0 10px 20px 0 rgb(81, 79, 74);
+}
 
 .plus-icon{
   font-size: 3rem;
 }
 
+.carousel-slider{
+ margin-left: 2px;
+}
+
 
 /* ------ ProductCard ------ */
 .productCard{
-  width: 100%;
-  height: 300px;
+  min-width: 280px;
+  width: 280px;
+  height: 320px;
   margin: 13px 8px;
   border-style: groove;
   cursor: pointer;
   padding: .25rem;
+  min-width: 300px;
 }
 
 .productCard:hover {
@@ -121,7 +132,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(183, 111, 39);
+  background-color: rgb(199, 198, 196);
 }
 
 .product-image{
