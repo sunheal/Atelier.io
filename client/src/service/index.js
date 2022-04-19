@@ -38,3 +38,13 @@ export const addQuestion = (data) => {
   const url = `${baseUrl}/qa/questions`;
   return axios.post(url, data);
 }
+
+
+/**
+* param {date: '2022-1-1', data: ?, tag: button }
+ */
+
+// export submitUserAction(data) {
+//   const url = `${baseUrl}/qa/submitUserAction`;
+//   return axios.post(url, data);
+// }

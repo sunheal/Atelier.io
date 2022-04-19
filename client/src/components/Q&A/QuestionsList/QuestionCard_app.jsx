@@ -73,7 +73,6 @@ class QuestionCard extends React.Component {
   addAnswerForm = () => {
     this.setState({
       answerForm: true,
-      // answerForm: !this.state.answerForm 问一下
     });
   };
 
@@ -85,24 +84,31 @@ class QuestionCard extends React.Component {
 
   uploadImg = (event) => {
     const files = Object.values(event.target.files);
-    // console.log("line 97 -----", files);
     if (files.length > 5) {
       alert("You can only upload 5 images!");
     } else {
+      let preViewImgList = [];
+      files.forEach((file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (result) => {
+          preViewImgList = [...preViewImgList, result.currentTarget.result];
+          this.setState({ preViewImgList });
+        };
+      });
       this.setState({
         imgUrlList: files,
-        // preViewImgList: files.map(async (file) => await this.getImgUrl(file)),
       });
     }
   };
 
   // getImgUrl = (file) => {
   //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = (result) => {
-  //       resolve(result);
-  //     };
+  // const reader = new FileReader();
+  // reader.readAsDataURL(file);
+  // reader.onload = (result) => {
+  //   resolve(result);
+  // };
   //   });
   // };
 
@@ -167,7 +173,7 @@ class QuestionCard extends React.Component {
     return (
       <div className="question-wrap">
         <div className="question">
-          <h4 style={{width: '800px'}}>Q: {question.question_body}</h4>
+          <h4 style={{ width: "800px" }}>Q: {question.question_body}</h4>
           <div className="right">
             <span className="right_item" onClick={this.onVote}>
               Helpful? Yes ({question.question_helpfulness}) |
@@ -184,7 +190,6 @@ class QuestionCard extends React.Component {
             <Window onClick={this.onClick}>
               <div className="windowWrap">
                 <h2 className="title">Submit an Answer</h2>
-                <br></br>
                 <div>
                   <form id="answerForm" onSubmit={this.handleSubmit}>
                     <label className="form">Answer:</label>
@@ -204,7 +209,13 @@ class QuestionCard extends React.Component {
                       multiple
                       onChange={this.uploadImg}
                     ></input>
-
+                    {!!this.state.preViewImgList.length && (
+                      <div className="imgPreviewWrap">
+                        {this.state.preViewImgList.map((img) => (
+                          <img src={img}></img>
+                        ))}
+                      </div>
+                    )}
                     <label className="form">Nickname:</label>
                     <input
                       className="popFormNickname same"
