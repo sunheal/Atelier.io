@@ -44,11 +44,6 @@ const ImageGallery = (props) => {
         </div>
       </div>
       <br></br>
-      {/* <div   >
-        <span className="dot"  ></span>
-        <span className="dot"  ></span>
-        <span className="dot"  ></span>
-      </div> */}
     </div>
   );
 }
