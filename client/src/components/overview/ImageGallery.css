@@ -7,6 +7,7 @@ body {
 }
 .mySlides {
   display: none;
+  background-color: #EEEEEE;
 }
 .styleImage {
   display: block;
@@ -52,7 +53,7 @@ body {
 }
 
 .prev {
-  left: 80px;
+  left: 90px;
 }
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover,
@@ -62,18 +63,18 @@ body {
 
 .thumbnail-slider {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
 }
 
 .thumbnail-div {
-  width: 80px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-width: 1px;
-  border-color: grey;
+  border-color: rgb(176, 167, 167);
   border-style: solid;
   position: relative;
-  margin: 1px;
+  margin: 2px;
   overflow: hidden;
 }
 
@@ -81,7 +82,7 @@ body {
   display: block;
   /* cursor: pointer;
   max-width: 100%; */
-  max-height: 58px;
+  max-height: 66px;
   margin-left: auto;
   margin-right: auto;
   transition: background-color 0.6s ease;
@@ -89,7 +90,10 @@ body {
 
 .active,
 .thumbnail-div:hover {
-  background-color: #111111;
+  /* background-color: #CCCCCC; */
+  border-bottom: thick;
+  border-style: double;
+  border-bottom-color: black;
 }
 
 .down {

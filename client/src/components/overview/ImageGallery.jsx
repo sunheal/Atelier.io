@@ -34,8 +34,8 @@ const ImageGallery = (props) => {
               ? <div>loading...</div>
               : displayStyle.photos.map((photoObj, index) => {
                   return (
-                    <div className="thumbnail-div" key={index}>
-                    <img className="thumbnail-img" src={photoObj.thumbnail_url}   ></img>
+                    <div className="thumbnail-div" key={index} onClick={props.onThumbnailClick} id={index}>
+                    <img className="thumbnail-img" src={photoObj.thumbnail_url} id={index}></img>
                     </div>
                   );
               })
