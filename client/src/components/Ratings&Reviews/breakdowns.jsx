@@ -7,25 +7,29 @@ import React from "react"
         this.state = {
             totalRating: 0,
         }
+        this.onFilterChange = this.onFilterChange.bind(this);
+    }
+    onFilterChange(event) {
+        let temp = event.target[Object.keys(event.target)[1]]
+        console.log(Object.keys(temp)[6], 'coming from barchart to change reviews filter')
+        console.log(temp.value)
+        this.props.filter(temp.value);
     }
     
     
     render() {
-        // console.log(this.props.meta, 'inside barchart')
-        // const characObj = this.props.meta.characteristics;
-        const aa = 30;
+        // console.log(this.props, 'meta in barchart')
         return (
             <div> 
              <p> {this.props.recommend}% of reviews recommended this product</p>
                 <div className="starBreakDown_RR">
                 {[...Array(5)].map((bar, index)=>{
                     const order = 5 - (index);
-                    console.log(this.props.ratings)
                     return (
                         <svg height='30' width="300" key={order}> 
                             <text className="name-label" x="0" y="15">{order} Stars</text>
                             <rect className='grey' width='100' height='10' x='90' y='5'fill="grey" opacity='0.25'/>
-                           {this.props.ratings[order] ? <rect className='green' width={((this.props.ratings[order]/this.props.count)*100).toString()} height='10'  x='90' y='5' fill="green" /> : null} 
+                           {this.props.ratings[order] ? <rect className='green' width={((this.props.ratings[order]/this.props.count)*100).toString()} height='10'  x='90' y='5' fill="green" value={order} onClick={this.onFilterChange}/> : null} 
                         </svg>
                     )
                 })}

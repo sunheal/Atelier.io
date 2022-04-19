@@ -63,6 +63,7 @@ class App extends React.Component {
                 reviews: allPromisesData[3].data,
                 questions: allPromisesData[4].data
             })
+
             return [... new Set(allPromisesData[1].data)];
         })
         .then((relatedIDs) => {
@@ -91,8 +92,9 @@ class App extends React.Component {
         // })
     }
 
+
     render() {
-        const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions} = this.state;
+        const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;
         return (
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
@@ -100,8 +102,7 @@ class App extends React.Component {
 
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
                  <QandA productID={this.state.productID}/>
-                <RR_app id={productID} meta={meta} />
-
+               {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />} 
             </div>
         )
     }

@@ -38,15 +38,11 @@ class ReviewList extends React.Component{
         })
     }
     getReviewinfo() {
-        axios.get(`/reviews/?product_id=${this.props.id}&count=5000`)
-        .then((output)=> {
-            // console.log(output.data.results.length, 'received from API');
-            this.setState({
-                currentReview : output.data.results,
-                whatShowing: output.data.results.slice(0,2)
+      this.setState({
+                currentReview : this.props.reviews,
+                whatShowing: this.props.reviews.slice(0,2)
             })
-        })
-        .catch(err => console.log(err));
+
     }
     changeSort(event) {
         let input = event.target.value;
@@ -95,6 +91,8 @@ class ReviewList extends React.Component{
             })
         }
     }
+
+
 
     render() {
         return (
