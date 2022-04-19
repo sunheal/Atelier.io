@@ -43,6 +43,11 @@ class QandA extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+    // submitUserAction({
+    //   date: new Date(),
+    //   tag: 'buttom',
+
+    // })
     let {form, question} = this.state;
     console.log(form)
     addQuestion(form).then((res) => {
@@ -70,7 +75,6 @@ class QandA extends Component {
           <Window onClick={this.onClick}>
             <div className="windowWrap">
               <h2 className="title">Submit a Question</h2>
-              <br></br>
               <div>
                 <form id="questionForm" onSubmit={this.handleSubmit}>
                   <label className="form">Question:</label>
