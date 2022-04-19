@@ -57,13 +57,24 @@ class RelatedProductsList extends React.Component {
     const { showModal, comparisionArray, currentPosition, positionIndex } = this.state;
     const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo, updateProduct } = this.props;
 
-    if (relatedProductsInfo.length === 0) {
+    if (!relatedProductsIDs) {
       return (
         <div id="relatedProductsList" className="list-container">
           <div className="list-header">
             <h3 className="list-title">RELATED PRODUCTS</h3>
           </div>
-          <div>Loading...</div>
+          <div className="carousel-container">Loading...</div>
+        </div>
+        );
+    }
+
+    if (relatedProductsIDs.length === 0) {
+      return (
+        <div id="relatedProductsList" className="list-container">
+          <div className="list-header">
+            <h3 className="list-title">RELATED PRODUCTS</h3>
+          </div>
+          <div className="carousel-container">Sorry. No related products found.</div>
         </div>
         );
     }

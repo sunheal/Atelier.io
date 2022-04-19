@@ -10,11 +10,11 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64625,
+            productID: 64631,
             allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
-            relatedProductsIDs: [],
+            relatedProductsIDs: null,
             relatedProductsInfo: [],
             meta: {},
             reviews: {},
@@ -58,7 +58,6 @@ class App extends React.Component {
         .then((allPromisesData) => {
             var filtered = allPromisesData[1].data.filter(id => id !== this.state.productID);
             filtered = [...new Set(filtered)];
-            console.log('filtered', filtered);
             this.setState({
                 productStyle: allPromisesData[0].data,
                 relatedProductsIDs: filtered,
