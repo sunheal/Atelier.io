@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64620,
+            productID: 64624,
             allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
@@ -99,10 +99,9 @@ class App extends React.Component {
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
-
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
-                 <QandA productID={this.state.productID}/>
-               {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />} 
+                <QandA productID={this.state.productID}/>
+               {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
             </div>
         )
     }
