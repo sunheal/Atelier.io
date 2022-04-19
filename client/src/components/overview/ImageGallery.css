@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box
+}
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0
+}
+.mySlides {
+  display: none;
+  background-color: #EEEEEE;
+}
+.styleImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* background-color: bisque; */
+  /* vertical-align: middle; */
+  /* max-height: 100%; */
+  /* max-height: 450px; */
+  /* width:100%; */
+  max-height: 600px;
+}
+.slideshow-container {
+  /* max-width: 500px; */
+  width: 800px;
+  height: 600px;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+}
+
+ /* Next & previous buttons */
+ .prev,
+ .next {
+   cursor: pointer;
+   position: absolute;
+   top: 50%;
+   width: auto;
+   padding: 16px;
+   margin-top: -22px;
+   color: rgb(165, 161, 161);
+   font-weight: bold;
+   font-size: 18px;
+   transition: 0.6s ease;
+   border-radius: 0 3px 3px 0;
+   user-select: none;
+ }
+
+ /* Position the "next button" to the right */
+ .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev {
+  left: 90px;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.thumbnail-slider {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.thumbnail-div {
+  width: 70px;
+  height: 70px;
+  border-width: 1px;
+  border-color: rgb(176, 167, 167);
+  border-style: solid;
+  position: relative;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.thumbnail-img {
+  display: block;
+  /* cursor: pointer;
+  max-width: 100%; */
+  max-height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.thumbnail-div:hover {
+  /* background-color: #CCCCCC; */
+  border-bottom: thick;
+  border-style: double;
+  border-bottom-color: black;
+}
+
+.down {
+  display: block;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 20%;
+  /* left: 50%; */
+  width: 50px;
+  height: 35px;
+  padding: 5px;
+  color: rgb(165, 161, 161);
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  /* border-radius: 0 3px 3px 0; */
+  user-select: none;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@-webkit-keyframes fade {
+  from {
+    opacity: .4
+  }
+  to {
+    opacity: 1
+  }
+}
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+  to {
+    opacity: 1
+  }
+}
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev,
+  .next,
+  .text {
+    font-size: 11px
+  }
+}
