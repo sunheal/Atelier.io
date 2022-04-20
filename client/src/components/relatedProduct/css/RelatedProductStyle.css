@@ -190,7 +190,7 @@ padding-left: .25rem;
 }
 
 .image-carousel-button{
-  display: none;
+  opacity: 0;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -198,6 +198,9 @@ padding-left: .25rem;
   border: 0;
   color: #eee;
   cursor: pointer;
+}
+.productInfo-upper:hover .image-carousel-button {
+  opacity: 1;
 }
 
 .carousel-button-left{
