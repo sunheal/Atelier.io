@@ -10,7 +10,7 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 64620,
+      id: 64624,
       information: {},
       styles: [],
       selectedStyle: {},
@@ -20,7 +20,9 @@ class Overview extends React.Component {
       maxQuantity: '',
       ratings: '',
       reviewsCount: '',
-      slideIndex: 0
+      slideIndex: 0,
+      thumbnailPos: 0,
+      thumbnailIndex: 0
     }
   }
 
@@ -157,10 +159,21 @@ class Overview extends React.Component {
     this.setState({slideIndex});
   }
 
+  onUpClick = (e) => {
+    let thumbnailPos = this.state.thumbnailPos + 14;
+    let thumbnailIndex = this.state.thumbnailIndex - 1;
+    this.setState({thumbnailPos, thumbnailIndex});
+  }
+
+  onDownClick = (e) => {
+    let thumbnailPos = this.state.thumbnailPos - 14;
+    let thumbnailIndex = this.state.thumbnailIndex + 1;
+    this.setState({thumbnailPos, thumbnailIndex});
+  }
   render() {
     return (
       <div id="overview">
-        <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} />
+        <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} />
         <br></br>
         <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
         <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />

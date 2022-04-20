@@ -61,10 +61,67 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.thumbnail-slider {
+.thumbnail-container {
   position: absolute;
-  top: 5px;
+  top: 0px;
   left: 5px;
+  width: 80px;
+  height: 600px;
+  overflow: hidden;
+  display: block;
+}
+
+.up {
+  z-index: 5;
+  /* display: block; */
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  /* margin: auto; */
+  /* position: relative; */
+  position: relative;
+  top: 0px;
+  bottom: 50px;
+  width: 50px;
+  /* height: 35px; */
+  padding: 5px;
+  color: rgb(165, 161, 161);
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  /* border-radius: 0 3px 3px 0; */
+  user-select: none;
+  overflow: hidden;
+}
+
+.down {
+  z-index: 5;
+  display: block;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  /* position: absolute; */
+  bottom: 25px;
+  width: 50px;
+  /* height: 35px; */
+  padding: 5px;
+  color: rgb(165, 161, 161);
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  /* border-radius: 0 3px 3px 0; */
+  user-select: none;
+}
+
+.thumbnail-sliderbar {
+  position: relative;
+  top: -20px;
+  /* left: 5px; */
+  width: 80px;
+  height: 546px;
+  overflow: hidden;
 }
 
 .thumbnail-div {
@@ -74,6 +131,8 @@ body {
   border-color: rgb(176, 167, 167);
   border-style: solid;
   position: relative;
+  top: 20px;
+  /* bottom: 20px; */
   margin: 5px;
   overflow: hidden;
 }
@@ -94,25 +153,6 @@ body {
   border-bottom: thick;
   border-style: double;
   border-bottom-color: black;
-}
-
-.down {
-  display: block;
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  top: 20%;
-  /* left: 50%; */
-  width: 50px;
-  height: 35px;
-  padding: 5px;
-  color: rgb(165, 161, 161);
-  font-weight: bold;
-  font-size: 40px;
-  transition: 0.6s ease;
-  /* border-radius: 0 3px 3px 0; */
-  user-select: none;
 }
 
 /* Fading animation */
