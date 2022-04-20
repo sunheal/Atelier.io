@@ -29,7 +29,21 @@ class ProductCard extends React.Component {
   componentDidMount() {
     this.getProductStyle();
     this.getProductRatings();
+    // this.getProductStyleAndRatings();
   }
+
+  // getProductStyleAndRatings() {
+  //   axios.get(`/products/${this.props.productInfo.id}/styles`)
+  //   .then(response => {
+  //     var results = response.data.results;
+  //     console.log('styles results',results)
+  //     return axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
+  //   })
+  //   .then(response => {
+  //     var ratings = response.data.ratings;
+  //     console.log('ratings', ratings)
+  //   })
+  // }
 
   getProductStyle() {
     axios.get(`/products/${this.props.productInfo.id}/styles`)
@@ -87,7 +101,7 @@ class ProductCard extends React.Component {
   handleProductCard(e) {
     var id = this.props.productInfo.id;
     // console.log('clicked product = ', this.props.productInfo)
-    this.props.updateProduct(id);
+    // this.props.updateProduct(id);
   }
 
   render() {
@@ -97,7 +111,7 @@ class ProductCard extends React.Component {
       <div className="productCard" id={productInfo.id} onClick={this.handleProductCard}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
-          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id} />
+          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id}/>
         </div>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>

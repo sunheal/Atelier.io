@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64786,
+            productID: 64620,
             allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
@@ -86,14 +86,21 @@ class App extends React.Component {
         });
     }
 
+    // updateProduct(id) {
+    //     console.log('pass in here = ', id)
+    //     this.setState({
+    //         productID: id
+    //     }, ()=> {
+    //         console.log('in callback', id)
+    //         // this.getProductInfo(id);
+    //     })
+    // }
     updateProduct(id) {
         console.log('pass in here = ', id)
-        // this.getProductInfo(id);
-        this.setState({
-            productID: id
-        })
+        // this.setState({
+        //     productID: id
+        // })
     }
-
 
     render() {
         const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;

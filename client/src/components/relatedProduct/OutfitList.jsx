@@ -84,13 +84,11 @@ class OutfitList extends React.Component {
   render() {
     const { productID, selectedProductInfo, updateProduct } = this.props;
     const { addOutfit, outfitList, currentPosition, positionIndex, storageCount } = this.state;
-    // console.log('outfitList', outfitList.length)
     let outfits = [];
     outfitList.map(productID => {
       var productObj = JSON.parse(localStorage.getItem(productID));
       outfits.push(productObj);
     })
-    // console.log('outfits', outfits);
 
     return (
       <div id="outfitList" className="list-container">
