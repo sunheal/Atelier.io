@@ -103,9 +103,9 @@ class ProductCard extends React.Component {
           <div className="productInfo-category">{productInfo.category}</div>
           <div className="productInfo-name">{productInfo.name}</div>
           {defaultStyle.original_price && defaultStyle.sale_price ?
-            <div>
-              <div className="productInfo-pricev sale">${defaultStyle.sale_price}</div>
-              <div className="productInfo-pricev sale">${defaultStyle.original_price}</div>
+            <div className="productInfo-price">
+              <div className="sale">${defaultStyle.sale_price}</div>
+              <div className="original">${defaultStyle.original_price}</div>
             </div>
             :
             <div className="productInfo-price">${defaultStyle.original_price}</div>

@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64631,
+            productID: 64786,
             allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
@@ -88,7 +88,7 @@ class App extends React.Component {
 
     updateProduct(id) {
         console.log('pass in here = ', id)
-        this.getProductInfo(id);
+        // this.getProductInfo(id);
         this.setState({
             productID: id
         })
