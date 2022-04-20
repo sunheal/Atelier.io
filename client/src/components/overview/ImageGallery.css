@@ -13,11 +13,6 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  /* background-color: bisque; */
-  /* vertical-align: middle; */
-  /* max-height: 100%; */
-  /* max-height: 450px; */
-  /* width:100%; */
   max-height: 600px;
 }
 .slideshow-container {
@@ -73,26 +68,22 @@ body {
 
 .up {
   z-index: 5;
-  /* display: block; */
+  display: block;
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
-  /* margin: auto; */
-  /* position: relative; */
-  position: relative;
+  position: absolute;
   top: 0px;
-  bottom: 50px;
+  left: 15px;
   width: 50px;
-  /* height: 35px; */
-  padding: 5px;
+  height: 35px;
+  /* padding: 5px; */
   color: rgb(165, 161, 161);
   font-weight: bold;
   font-size: 40px;
   transition: 0.6s ease;
   /* border-radius: 0 3px 3px 0; */
   user-select: none;
-  overflow: hidden;
 }
 
 .down {
@@ -101,12 +92,12 @@ body {
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
-  /* position: absolute; */
-  bottom: 25px;
+  position: absolute;
+  bottom: 40px;
+  left: 15px;
   width: 50px;
-  /* height: 35px; */
-  padding: 5px;
+  height: 35px;
+  /* padding: 5px; */
   color: rgb(165, 161, 161);
   font-weight: bold;
   font-size: 40px;
@@ -116,22 +107,24 @@ body {
 }
 
 .thumbnail-sliderbar {
-  position: relative;
-  top: -20px;
+  position: absolute;
+  top: 60px;
   /* left: 5px; */
+  bottom: 50px;
   width: 80px;
-  height: 546px;
+  height: 459px;
   overflow: hidden;
 }
 
 .thumbnail-div {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-width: 1px;
   border-color: rgb(176, 167, 167);
   border-style: solid;
   position: relative;
-  top: 20px;
+  top: 0px;
+  bottom: 0px;
   /* bottom: 20px; */
   margin: 5px;
   overflow: hidden;
@@ -142,6 +135,7 @@ body {
   /* cursor: pointer;
   max-width: 100%; */
   max-height: 60px;
+  /* max-width: 60px; */
   margin-left: auto;
   margin-right: auto;
   transition: background-color 0.6s ease;

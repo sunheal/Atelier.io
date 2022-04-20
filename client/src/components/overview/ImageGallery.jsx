@@ -30,7 +30,7 @@ const ImageGallery = (props) => {
         {!displayStyle?.photos
           ? <div>loading...</div>
           : <div className="thumbnail-container">
-              {props.thumbnailIndex === 0? null : <a className="up" onClick={props.onUpClick}>&#65087;</a>}
+              {props.thumbnailIndex === 0? null : <a className="up" onClick={props.onUpClick}> &#65087;</a>}
               {/* <a className="up" onClick={props.onUpClick}>&#65087;</a> */}
                 <div className="thumbnail-sliderbar" >
                   {!displayStyle?.photos

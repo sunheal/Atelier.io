@@ -160,13 +160,13 @@ class Overview extends React.Component {
   }
 
   onUpClick = (e) => {
-    let thumbnailPos = this.state.thumbnailPos + 14;
+    let thumbnailPos = this.state.thumbnailPos + 110;
     let thumbnailIndex = this.state.thumbnailIndex - 1;
     this.setState({thumbnailPos, thumbnailIndex});
   }
 
   onDownClick = (e) => {
-    let thumbnailPos = this.state.thumbnailPos - 14;
+    let thumbnailPos = this.state.thumbnailPos - 110;
     let thumbnailIndex = this.state.thumbnailIndex + 1;
     this.setState({thumbnailPos, thumbnailIndex});
   }
