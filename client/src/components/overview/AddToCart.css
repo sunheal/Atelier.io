@@ -1,7 +1,36 @@
-/* .show {
-  display: block;
-} */
+.size-quantity {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
 
-/* select {
-  overflow: auto;
-} */
+#sizeDropdown {
+  height: 50px;
+  width: 210px;
+  font-size: 15px;
+}
+
+#quantity {
+  height: 50px;
+  width: 90px;
+  font-size: 15px;
+}
+
+.addToBag-star {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+#addToBagButton {
+  height: 50px;
+  width: 250px;
+  font-size: 15px;
+}
+
+#starButton {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  color: gold;
+}

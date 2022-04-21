@@ -3,8 +3,7 @@ import './StyleSelector.css';
 
 const StyleSelector = (props) => {
   return (
-    <div>
-      <h4>StyleSelector</h4>
+    <div className='style-selector'>
       <div id='style'>STYLE > {props.selectedStyle?.name}</div>
       <div id="selectStyle">
         {props.styles?.map((style, index) => {
