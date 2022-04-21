@@ -31,6 +31,14 @@ class ReviewList extends React.Component{
     componentDidMount() {
         this.getReviewinfo();
     }
+    componentDidUpdate(prevProps) {
+        if(this.props.reviews !== prevProps.reviews) {
+            this.setState({
+                currentReview : this.props.reviews,
+                whatShowing: this.props.reviews.slice(0,2)
+            })
+        }
+    }
 
     onShowModal() {
         this.setState ({
@@ -108,13 +116,6 @@ class ReviewList extends React.Component{
                         <ReviewListView reviews={this.state.whatShowing} />
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview" onClick={this.onShowModal}> Add Review </button>
-                   {/* {this.state.showModal ? (<div> <AddReview show={this.state.showModal} />
-                                                  <button className="closeAdd" onClick={this.onShowModal}> close </button>
-                   </div>) :null}  */}
-                    {/* <Modal isOpen={this.state.showModal}>
-                        <h2> here you go </h2>
-                        <button onClick={this.onShowModal}> Close </button>
-                    </Modal> */}
                     <AddReview show={this.state.showModal} onShowModal={this.onShowModal} id={this.props.id}/>
 
                    </div>

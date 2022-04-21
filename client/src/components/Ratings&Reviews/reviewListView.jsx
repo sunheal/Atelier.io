@@ -28,6 +28,8 @@ const ReviewListView =({reviews}) => {
                     }</div>
                     {review.recommend ? <span className="checkmark"> ✓ I recommend this product </span> : null}
                     <div className="spaceBetweenRev" key={index+3}> </div>
+                    {review.response ? <span className="response_RR"> {review.response} </span> : null}
+                    <div className="spaceBetweenRev" key={index+3}> </div>
                     <HelpfulAndReport review={review} />
                 <div className="spaceBetweenRev" key={index+4}> </div>
                 </div>
