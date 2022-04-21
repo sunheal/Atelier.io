@@ -1,13 +1,13 @@
 import React from 'react';
-import Star from '../Shared/Stars.jsx'
+import StarsOW from '../Shared/StarsOW.jsx'
 import './ProductInformation.css';
 
 const ProductInformation = (props) => {
   return (
-    <div>
+    <div className='ProductInformation'>
       <div className='stars-reviews'>
-        <div className='stars-div'>
-          <Star rating={props.ratings}/>
+        <div>
+          <StarsOW rating={props.ratings} className='stars-div'/>
         </div>
         <div className='reviews-div'>Read All {props.reviewsCount} Reviews</div>
       </div>

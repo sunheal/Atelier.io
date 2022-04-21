@@ -1,13 +1,19 @@
+.ProductInformation {
+  display: flex;
+  flex-direction: column;
+}
+
 .stars-reviews {
   display: flex;
+  gap: 5px;
 }
 
-.stars-div {
-  display: inline-block;
-}
+/* .stars-div {
+  vertical-align: bottom;
+} */
 
 .reviews-div {
-  display: inline-block;
+  align-self: flex-end;
 }
 
 .category {

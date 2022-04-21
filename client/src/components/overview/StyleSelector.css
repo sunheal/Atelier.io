@@ -1,3 +1,8 @@
+#selectStyle {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .styleDiv {
   position: relative;
   width: 80px;
