@@ -61,7 +61,7 @@ class RelatedProductsList extends React.Component {
       return (
         <div id="relatedProductsList" className="list-container">
           <div className="list-header">
-            <h3 className="list-title">RELATED PRODUCTS</h3>
+            <h2 className="list-title">YOU MAY ALSO LIKE</h2>
           </div>
           <div className="carousel-container">Loading...</div>
         </div>
@@ -72,7 +72,7 @@ class RelatedProductsList extends React.Component {
       return (
         <div id="relatedProductsList" className="list-container">
           <div className="list-header">
-            <h3 className="list-title">RELATED PRODUCTS</h3>
+            <h2 className="list-title">YOU MAY ALSO LIKE</h2>
           </div>
           <div className="carousel-container">Sorry. No related products found.</div>
         </div>
@@ -82,7 +82,7 @@ class RelatedProductsList extends React.Component {
     return (
       <div id="relatedProductsList" className="list-container">
         <div className="list-header">
-          <h3 className="list-title">RELATED PRODUCTS</h3>
+          <h2 className="list-title">YOU MAY ALSO LIKE</h2>
         </div>
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}

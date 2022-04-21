@@ -37,7 +37,7 @@ class OutfitList extends React.Component {
       })
     } else {
       this.setState({
-        addOufit: true
+        addOutfit: true
       })
     }
   }
@@ -93,7 +93,7 @@ class OutfitList extends React.Component {
     return (
       <div id="outfitList" className="list-container">
         <div className="list-header">
-          <h3 className="list-title">YOUR OUTFIT</h3>
+          <h2 className="list-title">YOUR OUTFIT</h2>
         </div>
         <div className="outfit-container">
           <div className="add-outfit-card" role="button" onClick={this.addOutfit}>
@@ -108,7 +108,7 @@ class OutfitList extends React.Component {
                 <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} updateProduct={updateProduct} />
               ))}
             </div>
-            {storageCount > 3 && (storageCount - 3 > positionIndex) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
+            {addOutfit.length > 4 && positionIndex < (addOutfit.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
           </div>
         </div>
       </div>
