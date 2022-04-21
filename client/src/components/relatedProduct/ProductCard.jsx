@@ -23,12 +23,27 @@ class ProductCard extends React.Component {
       productRating: null
     };
     this.handleModalClick = this.handleModalClick.bind(this);
+    this.handleProductCard = this.handleProductCard.bind(this);
   }
 
   componentDidMount() {
     this.getProductStyle();
     this.getProductRatings();
+    // this.getProductStyleAndRatings();
   }
+
+  // getProductStyleAndRatings() {
+  //   axios.get(`/products/${this.props.productInfo.id}/styles`)
+  //   .then(response => {
+  //     var results = response.data.results;
+  //     console.log('styles results',results)
+  //     return axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
+  //   })
+  //   .then(response => {
+  //     var ratings = response.data.ratings;
+  //     console.log('ratings', ratings)
+  //   })
+  // }
 
   getProductStyle() {
     axios.get(`/products/${this.props.productInfo.id}/styles`)
@@ -55,10 +70,12 @@ class ProductCard extends React.Component {
   }
 
   getProductRatings() {
+    // console.log('product id', this.props.productInfo.id)
     axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
       .then((response) => {
         // check if there is a rating
         var ratings = response.data.ratings;
+        // console.log('ratings', ratings)
         if (Object.keys(ratings).length > 0) {
           var total = 0;
           var amount = 0;
@@ -78,26 +95,31 @@ class ProductCard extends React.Component {
   }
 
   handleModalClick(e) {
-    console.log(e.target)
     this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
+  }
+
+  handleProductCard(e) {
+    var id = this.props.productInfo.id;
+    // console.log('clicked product = ', this.props.productInfo)
+    // this.props.updateProduct(id);
   }
 
   render() {
     const { productRating, defaultStyle, productStyle} = this.state;
-    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal } = this.props;
+    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProduct } = this.props;
     return (
-      <div className="productCard">
+      <div className="productCard" id={productInfo.id} onClick={this.handleProductCard}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
-          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id} />
+          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id}/>
         </div>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
           <div className="productInfo-name">{productInfo.name}</div>
           {defaultStyle.original_price && defaultStyle.sale_price ?
-            <div>
-              <div className="productInfo-pricev sale">${defaultStyle.sale_price}</div>
-              <div className="productInfo-pricev sale">${defaultStyle.original_price}</div>
+            <div className="productInfo-price">
+              <div className="sale">${defaultStyle.sale_price}</div>
+              <div className="original">${defaultStyle.original_price}</div>
             </div>
             :
             <div className="productInfo-price">${defaultStyle.original_price}</div>
