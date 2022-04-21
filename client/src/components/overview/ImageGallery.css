@@ -13,11 +13,6 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  /* background-color: bisque; */
-  /* vertical-align: middle; */
-  /* max-height: 100%; */
-  /* max-height: 450px; */
-  /* width:100%; */
   max-height: 600px;
 }
 .slideshow-container {
@@ -61,19 +56,76 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.thumbnail-slider {
+.thumbnail-container {
   position: absolute;
-  top: 5px;
+  top: 0px;
   left: 5px;
+  width: 80px;
+  height: 600px;
+  overflow: hidden;
+  display: block;
+}
+
+.up {
+  z-index: 5;
+  display: block;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  width: 50px;
+  height: 35px;
+  /* padding: 5px; */
+  color: rgb(165, 161, 161);
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  /* border-radius: 0 3px 3px 0; */
+  user-select: none;
+}
+
+.down {
+  z-index: 5;
+  display: block;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  bottom: 40px;
+  left: 15px;
+  width: 50px;
+  height: 35px;
+  /* padding: 5px; */
+  color: rgb(165, 161, 161);
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  /* border-radius: 0 3px 3px 0; */
+  user-select: none;
+}
+
+.thumbnail-sliderbar {
+  position: absolute;
+  top: 60px;
+  /* left: 5px; */
+  bottom: 50px;
+  width: 80px;
+  height: 459px;
+  overflow: hidden;
 }
 
 .thumbnail-div {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-width: 1px;
   border-color: rgb(176, 167, 167);
   border-style: solid;
   position: relative;
+  top: 0px;
+  bottom: 0px;
+  /* bottom: 20px; */
   margin: 5px;
   overflow: hidden;
 }
@@ -83,6 +135,7 @@ body {
   /* cursor: pointer;
   max-width: 100%; */
   max-height: 60px;
+  /* max-width: 60px; */
   margin-left: auto;
   margin-right: auto;
   transition: background-color 0.6s ease;
@@ -94,25 +147,6 @@ body {
   border-bottom: thick;
   border-style: double;
   border-bottom-color: black;
-}
-
-.down {
-  display: block;
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  top: 20%;
-  /* left: 50%; */
-  width: 50px;
-  height: 35px;
-  padding: 5px;
-  color: rgb(165, 161, 161);
-  font-weight: bold;
-  font-size: 40px;
-  transition: 0.6s ease;
-  /* border-radius: 0 3px 3px 0; */
-  user-select: none;
 }
 
 /* Fading animation */

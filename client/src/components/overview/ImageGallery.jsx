@@ -2,10 +2,6 @@ import React from 'react';
 import './ImageGallery.css';
 
 const ImageGallery = (props) => {
-  // if (!props.styles && !props.selectedStyle) {
-  //   console.log(111111);
-  //   return <div>loading...</div>;
-  // }
   let displayStyle;
   if (props.selectedStyle) {
     if (Object.keys(props.selectedStyle).length === 0) {
@@ -14,6 +10,7 @@ const ImageGallery = (props) => {
       displayStyle = props.selectedStyle;
     }
   }
+
   return (
     <div>
       <div className="slideshow-container">
@@ -29,19 +26,28 @@ const ImageGallery = (props) => {
         }
         <a className="prev" onClick={props.onPrevClick} >&#10094;</a>
         <a className="next" onClick={props.onNextClick} >&#10095;</a>
-        <div className="thumbnail-slider">
-          {!displayStyle?.photos
-              ? <div>loading...</div>
-              : displayStyle.photos.map((photoObj, index) => {
-                  return (
-                    <div className="thumbnail-div" key={index} onClick={props.onThumbnailClick} id={index}>
-                    <img className="thumbnail-img" src={photoObj.thumbnail_url} id={index}></img>
-                    </div>
-                  );
-              })
-          }
-          <a className="down" >&#65088;</a>
-        </div>
+
+        {!displayStyle?.photos
+          ? <div>loading...</div>
+          : <div className="thumbnail-container">
+              {props.thumbnailIndex === 0? null : <a className="up" onClick={props.onUpClick}> &#65087;</a>}
+              {/* <a className="up" onClick={props.onUpClick}>&#65087;</a> */}
+                <div className="thumbnail-sliderbar" >
+                  {!displayStyle?.photos
+                      ? <div>loading...</div>
+                      : displayStyle.photos.map((photoObj, index) => {
+                          return (
+                            <div className="thumbnail-div" key={index} onClick={props.onThumbnailClick} id={index} style={{ transform: `translateY(${props.thumbnailPos}%)` }}>
+                            <img className="thumbnail-img" src={photoObj.thumbnail_url} id={index}></img>
+                            </div>
+                          );
+                      })
+                  }
+                </div>
+              {displayStyle.photos.length <= 7
+                ? null
+                : (props.thumbnailIndex === displayStyle.photos.length - 7 ? null : <a className="down" onClick={props.onDownClick}>&#65088;</a>)}
+            </div>}
       </div>
       <br></br>
     </div>

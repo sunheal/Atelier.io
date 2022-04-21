@@ -5,12 +5,13 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import {headers, uri} from '../../../../config.js';
 import axios from 'axios';
+import './Overview.css';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 64620,
+      id: 64624,
       information: {},
       styles: [],
       selectedStyle: {},
@@ -20,7 +21,9 @@ class Overview extends React.Component {
       maxQuantity: '',
       ratings: '',
       reviewsCount: '',
-      slideIndex: 0
+      slideIndex: 0,
+      thumbnailPos: 0,
+      thumbnailIndex: 0
     }
   }
 
@@ -157,18 +160,33 @@ class Overview extends React.Component {
     this.setState({slideIndex});
   }
 
+  onUpClick = (e) => {
+    let thumbnailPos = this.state.thumbnailPos + 110;
+    let thumbnailIndex = this.state.thumbnailIndex - 1;
+    this.setState({thumbnailPos, thumbnailIndex});
+  }
+
+  onDownClick = (e) => {
+    let thumbnailPos = this.state.thumbnailPos - 110;
+    let thumbnailIndex = this.state.thumbnailIndex + 1;
+    this.setState({thumbnailPos, thumbnailIndex});
+  }
   render() {
     return (
-      <div id="overview">
-        <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} />
-        <br></br>
-        <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
-        <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
-        <br></br>
-        <br></br>
-        <br></br>
-        <AddToCart selectedStyle={this.state.selectedStyle} selectedSKU = {this.state.selectedSKU} maxQuantity = {this.state.maxQuantity} selectedQuantity={this.state.selectedQuantity} selectedSKU={this.state.selectedSKU} onSizeChange={this.onSizeChange} onQuantityChange={this.onQuantityChange} onAddToCartClick={this.onAddToCartClick} />
-        <br></br>
+      <div id="overview" className="container1">
+        <div className="container1-1">
+          <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} />
+          <br></br>
+        </div>
+        <div className="container1-2">
+          <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
+          <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
+          <br></br>
+          <br></br>
+          <br></br>
+          <AddToCart selectedStyle={this.state.selectedStyle} selectedSKU = {this.state.selectedSKU} maxQuantity = {this.state.maxQuantity} selectedQuantity={this.state.selectedQuantity} selectedSKU={this.state.selectedSKU} onSizeChange={this.onSizeChange} onQuantityChange={this.onQuantityChange} onAddToCartClick={this.onAddToCartClick} />
+          <br></br>
+        </div>
       </div>
     );
   }
