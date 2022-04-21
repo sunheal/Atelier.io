@@ -44,10 +44,10 @@ const ImageGallery = (props) => {
                       })
                   }
                 </div>
-              {props.thumbnailIndex === displayStyle.photos.length - 7 ? null : <a className="down" onClick={props.onDownClick}>&#65088;</a>}
-              {/* <a className="down" onClick={props.onDownClick}>&#65088;</a> */}
+              {displayStyle.photos.length <= 7
+                ? null
+                : (props.thumbnailIndex === displayStyle.photos.length - 7 ? null : <a className="down" onClick={props.onDownClick}>&#65088;</a>)}
             </div>}
-
       </div>
       <br></br>
     </div>

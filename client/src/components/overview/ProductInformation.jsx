@@ -10,7 +10,7 @@ const ProductInformation = (props) => {
       <div>Category: {props.information.category}</div>
       <div>Title: {props.information.name}</div>
       <div>Price: {props.information.default_price}</div>
-      <div>Product Overview: {props.information.description}</div>
+      {/* <div>Product Overview: {props.information.description}</div> */}
     </div>
   );
 }
