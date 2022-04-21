@@ -3,6 +3,8 @@ import Modal from "react-modal";
 import { FaStar } from "react-icons/fa";
 import config from "../../../../config";
 import axios from "axios";
+import "../Ratings&Reviews/rr.css";
+
 
 const initialState = {
   name: "",

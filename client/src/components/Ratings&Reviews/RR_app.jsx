@@ -1,8 +1,8 @@
 import React from "react";
 import Stars from "../Shared/Stars.jsx";
 import ReviewList from "./reviewList.jsx";
-import axios from "axios";
 import BarChart from "./breakdowns.jsx";
+import "../Ratings&Reviews/rr.css";
 
 
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import "../Ratings&Reviews/rr.css";
+
 
 const Stars = (props) => {
   const percent = props.rating / 5 * 100;

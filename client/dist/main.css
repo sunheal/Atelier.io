@@ -18,12 +18,10 @@ body {
   background-color: #f6f6f6;
 }
 
-.moreReview {
-  /* margin-left: 15px; */
+/* .moreReview {
   margin: 5%;
 }
 .addReview {
-  /* margin-right: 15px; */
   margin: 0.5%;
 }
 
@@ -101,7 +99,7 @@ label {
   cursor: pointer;
   height: 40px;
   width: 40px;
-}
+} */
 
 /* Q&A ///////////////////////////////////////////////////////////////*/
 /* .question {
@@ -129,12 +127,11 @@ label {
   margin:200px;
 }
 
-input[name="rating"] {
-  /* display:none; */
+/* input[name="rating"] {
   opacity: 15%;
   margin-right: 0;
 }
-label[name="rating"] {
+ label[name="rating"] {
   margin: 0;
   margin-right: 0;
 }
@@ -151,11 +148,9 @@ a[name="ratingtxt"] {
 .name-label {
   font-size: 1em;
   fill: #333;
-}
-/* .ReactModal__Content {
-  border: none !important;
 } */
-.reviewPhotos {
+
+/* .reviewPhotos {
   display: flex;
   margin-right: 5px;
-}
+}  */
