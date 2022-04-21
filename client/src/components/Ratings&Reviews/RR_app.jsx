@@ -22,11 +22,11 @@ class RR_app extends React.Component {
     componentDidMount() {
         this.getRating();
     }
-   
+
     getRating() {
         let resObj = this.props.meta.ratings;
         let recObj = this.props.meta.recommended;
-        console.log(resObj, recObj, 'afafafaegg4g4')
+        // console.log(resObj, recObj, 'afafafaegg4g4')
         if(Object.keys(recObj).length === 0) {
             this.setState({
                 recommend: 0
@@ -64,11 +64,13 @@ class RR_app extends React.Component {
         if(this.state.reviews === this.props.reviews) {
             temp = [];
         }else {
+            // console.log('hhfeh')
             temp = this.state.reviews.slice();
         }
         filtered = this.props.reviews.filter(review => review.rating === num);
-        console.log(filtered, temp, ' otttttt')
+        // console.log(filtered, temp, ' otttttt')
         temp= temp.concat(filtered);
+        // console.log(temp, 'after it ')
         this.setState({
             reviews : temp
         }, ()=> console.log(this.state.reviews,'after adding')
@@ -76,17 +78,17 @@ class RR_app extends React.Component {
     }
 
 
-  
+
     render() {
         return (
             <div className="ReviewContainer">
-                <h1>Ratings &amp; Reviews</h1> 
-                <div className="leftOfRR"> 
+                <h1>Ratings &amp; Reviews</h1>
+                <div className="leftOfRR">
                 {Object.keys(this.props.meta).length !== 0 ? <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > : null}
-              {Object.keys(this.props.meta).length !== 0 ? <BarChart ratings={this.state.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta} filter={this.filter}/> : null} 
+                {Object.keys(this.props.meta).length !== 0 ? <BarChart ratings={this.state.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta} filter={this.filter}/> : null}
                 </div>
                 <div className="rightOfRR">
-                   {Object.keys(this.state.reviews).length === 0 ? null : <ReviewList id={this.props.id} reviews={this.state.reviews} />} 
+                {Object.keys(this.state.reviews).length === 0 ? null : <ReviewList id={this.props.id} reviews={this.state.reviews} />}
                 </div>
 
             </div>

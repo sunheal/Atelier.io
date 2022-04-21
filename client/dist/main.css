@@ -1,3 +1,10 @@
+.app {
+  min-width: 1200px;
+  margin: 50px 150px;
+  font-family: 'Helvetica','Arial',sans-serif;
+  
+}
+
 #logo {
   font-family: "Courier New", Courier, monospace;
   font-size: 2cm;
@@ -97,7 +104,7 @@ label {
 }
 
 /* Q&A ///////////////////////////////////////////////////////////////*/
-.question {
+/* .question {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -116,7 +123,12 @@ label {
   margin-right: 6px;
   color: black;
   cursor: pointer;
+} */
+
+#QandA {
+  margin:200px;
 }
+
 input[name="rating"] {
   /* display:none; */
   opacity: 15%;
