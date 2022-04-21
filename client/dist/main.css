@@ -34,7 +34,8 @@ body {
     overflow-y:auto;
 }
 .individualReview_container {
-  border-bottom: solid;
+    white-space: pre-line;
+    border-bottom: solid;
   margin-bottom: 15px;
 }
 .reviewsCount {
