@@ -1,5 +1,5 @@
 .windowWrap {
-  width: 600px;
+  width: 350px;
   background-color: #f6f6f6;
   padding: 20px 100px;
   border-radius: 5px;
@@ -48,4 +48,25 @@
   border-radius: 5px;
   margin-right: 6px;
   margin-bottom: 6px;
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question .right {
+  display: flex;
+}
+
+.question h3 {
+  margin: auto;
+}
+
+.question .right .right_item {
+  padding-right: 4px;
+  margin-right: 6px;
+  color: black;
+  cursor: pointer;
 }

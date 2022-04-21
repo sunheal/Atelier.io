@@ -29,6 +29,7 @@ class QuestionCard extends React.Component {
       },
       preViewImgList: [],
     };
+    // console.log(this.state.question);
   }
 
   onSeeMoreAnswersClick = () => {
@@ -45,8 +46,8 @@ class QuestionCard extends React.Component {
   };
 
   onVote = () => {
-    // console.log('props', this.props);
-    // console.log('question', this.state.question);
+    console.log('line 48 props:', this.props);
+    console.log('question', this.state.question);
     let { question } = this.state;
     if (this.props.question_helpfulness !== question.question_helpfulness) {
       return;
