@@ -24,21 +24,23 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getAllProducts();
-        this.getProductInfo(this.state.productID);
+      this.getAllProducts();
+      this.getProductInfo(this.state.productID);
 
     }
 
     getAllProducts() {
-       return axios.get('/products/')
-            .then((result) => {
-                this.setState({
-                    allProducts: result.data
-                })
-            })
-            .catch((error) => {
-                console.log('Error fetching all products details in App', error);
-            });
+      return axios.get('/products/')
+        .then((result) => {
+          this.setState({
+            allProducts: result.data
+          })
+          console.log("allProducts:", result.data);
+        })
+
+        .catch((error) => {
+          console.log('Error fetching all products details in App', error);
+        });
     }
 
     getProductInfo(id) {
@@ -99,10 +101,9 @@ class App extends React.Component {
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
                 <Overview />
-
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
-                 <QandA productID={this.state.productID}/>
-               {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />} 
+                <QandA productID={this.state.productID}/>
+                {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
             </div>
         )
     }

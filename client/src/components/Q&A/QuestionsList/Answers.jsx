@@ -24,21 +24,27 @@ class Answers extends React.Component {
   }
 
   onVote = (index) => {
-    const tempAnswersArray = [...this.props.answersArray];
-    const { answersArray } = this.state;
-    if (
-      Object.values(this.props.answersArray)[index].helpfulness !==
-      answersArray[index].helpfulness
-    ) {
+    console.log("line27:", this.props);
+    console.log("lien28:", this.state.answersArray);
+    let tempAnswersArray = [...this.props.answersArray];
+    let { answersArray } = this.state;
+    if (Object.values(this.props.answersArray)[index].helpfulness !== answersArray[index].helpfulness) {
       return;
     }
 
-    answersArray[index].helpfulness++;
+    answersArray = {
+      ...answersArray,
+      helpfulness: answersArray[index].helpfulness += 1,
+    };
+
+    // answersArray[index].helpfulness++;
+
     voteAnswerHelpfulness(answersArray[index].id);
     this.setState({
       answersArray,
     });
   };
+
 
   onReport = (index) => {
     let { reportState, answersArray } = this.state;
@@ -89,8 +95,8 @@ class Answers extends React.Component {
                       <img
                         onClick={() => this.pop(photo)}
                         key={index}
-                        width="100"
-                        height="68"
+                        width="120"
+                        height="100"
                         src={photo}
                       ></img>
                     );

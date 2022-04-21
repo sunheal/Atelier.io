@@ -16,7 +16,10 @@ class QuestionsList extends Component {
       questions: { product_id: "", results: [] },
       id: "",
       currentQuestions: [],
+      // showMoreQuestions:false,
+      // tempQuestions:Object.values(this.props.questions).slice(0,2)
     };
+    console.log("line22 this.state:", this.state)
   }
 
   componentDidMount() {
@@ -44,7 +47,7 @@ class QuestionsList extends Component {
     this.setState({
       currentQuestions
     })
-    // console.log(currentQuestions);
+    console.log("line49 current Questions:", currentQuestions);
   };
 
   render() {
@@ -56,7 +59,11 @@ class QuestionsList extends Component {
         {this.state.currentQuestions.map((item) => {
           return <QuestionCard {...item} key={item.question_id} />;
         })}
+
+
       </div>
+
+      // <QuestionCard ></QuestionCard>
     );
   }
 }
