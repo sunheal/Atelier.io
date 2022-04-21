@@ -64,13 +64,11 @@ class RR_app extends React.Component {
         if(this.state.reviews === this.props.reviews) {
             temp = [];
         }else {
-            console.log('hhfeh')
             temp = this.state.reviews.slice();
         }
         filtered = this.props.reviews.filter(review => review.rating === num);
         console.log(filtered, temp, ' otttttt')
         temp= temp.concat(filtered);
-        console.log(temp, 'after it ')
         this.setState({
             reviews : temp
         }, ()=> console.log(this.state.reviews,'after adding')

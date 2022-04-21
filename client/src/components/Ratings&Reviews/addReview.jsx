@@ -207,14 +207,14 @@ class AddReview extends React.Component {
                       type="radio"
                       name="rating"
                       value={ratingVal}
-                      key={ratingVal}
+                    //   key={ratingVal}
                       onClick={this.onRatingChange}
                       required
                     />
                     <FaStar
                       className="star"
                       size="20"
-                      key={ratingVal}
+                    //   key={ratingVal}
                       color={ratingVal <= this.state.rating ? "gold" : "white"}
                     />
                   </a>
