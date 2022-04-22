@@ -18,6 +18,13 @@ body {
   background-color: #f6f6f6;
 }
 
+nav{
+    text-align: center;
+    margin-bottom: 10px;
+}
+a{
+    margin: 15px;
+}
 /* .moreReview {
   margin: 5%;
 }
