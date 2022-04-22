@@ -6,10 +6,11 @@ class PreviewImages extends React.Component {
     this.state = {
       current: 0,
       length: 4,
-      image: {}
+      image: null
     };
     this.prevSlide = this.prevSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
+    this.handleImageClicked= this.handleImageClicked.bind(this);
   }
 
   prevSlide() {
@@ -39,7 +40,12 @@ class PreviewImages extends React.Component {
   }
 
   handleImageClicked(e) {
-    let images;
+    var target = e.target.src;
+    console.log('target', target)
+    this.setState({
+      image: target
+    })
+
   }
 
 
@@ -65,7 +71,7 @@ class PreviewImages extends React.Component {
           <button className="image-carousel-button  carousel-button-left" onClick={this.prevSlide} >&#10094;</button>
           {images.map((photo, i) => (
             <div key={i} className="image-carousel-slide" >
-                <img className='carousel-image' src={photo.thumbnail_url} alt="Image lost :(" />
+                <img className='carousel-image' src={photo.thumbnail_url} alt="Image lost :(" onClick={this.handleImageClicked} />
             </div>
           ))}
           <button className="image-carousel-button carousel-button-right" onClick={this.nextSlide} >&#10095;</button>

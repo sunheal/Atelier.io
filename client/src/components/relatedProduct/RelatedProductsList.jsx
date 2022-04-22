@@ -63,9 +63,13 @@ class RelatedProductsList extends React.Component {
           <div className="list-header">
             <h2 className="list-title">YOU MAY ALSO LIKE</h2>
           </div>
-          <div className="carousel-container">Loading...</div>
+          <div className="message-container">
+            <div className="message">
+              Loading...
+            </div>
+          </div>
         </div>
-        );
+      );
     }
 
     if (relatedProductsIDs.length === 0) {
@@ -74,9 +78,13 @@ class RelatedProductsList extends React.Component {
           <div className="list-header">
             <h2 className="list-title">YOU MAY ALSO LIKE</h2>
           </div>
-          <div className="carousel-container">Sorry. No related products found.</div>
+          <div className="message-container">
+            <div className="message">
+              Sorry. No related products found.
+            </div>
+          </div>
         </div>
-        );
+      );
     }
 
     return (

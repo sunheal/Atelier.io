@@ -14,8 +14,8 @@
   border-color: rgba(71, 128, 179, 0.893);
   border-style: dotted;
   border-width: 0.1em;
-  margin: 10px 16%;
-  max-width: 1189px;
+  padding: 0 105px;
+  width: 100%;
 }
 
 .list-header {
@@ -24,6 +24,20 @@
 
 .list-title {
   margin: 0;
+}
+
+.message-container{
+  /* border-color: rgba(179, 96, 71, 0.893); */
+  /* border-style: dotted; */
+  /* border-width: 0.1em; */
+  height: 346px;
+  position: relative;
+}
+
+.message{
+  position: absolute;
+  top: 47%;
+  left: 40%;
 }
 
 /* ------ Carousel ------ */
@@ -35,7 +49,6 @@
 }
 
 .carousel-slider {
-  /* --items-per-screen: 4; */
   width: 95%;
   display: flex;
   flex-grow: 1;
@@ -52,7 +65,7 @@
   width: 40px;
   cursor: pointer;
   font-size: 5rem;
-  color: rgb(174, 171, 171);
+  color: rgb(63, 63, 63);
   transition: background-color 150ms ease-in-out;
 }
 
@@ -99,16 +112,8 @@ padding-left: .25rem;
   font-size: 3rem;
 }
 
-.carousel-slider {
-  margin-left: 2px;
-}
-
 
 /* ------ ProductCard ------ */
-
-/* .productCard {
-  position: relative;
-} */
 
 .productCard {
   min-width: 280px;
@@ -123,7 +128,6 @@ padding-left: .25rem;
 }
 
 button.action-btn {
-  /* position: absolute; */
   display: block;
   z-index: 1;
 }

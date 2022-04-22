@@ -70,12 +70,10 @@ class ProductCard extends React.Component {
   }
 
   getProductRatings() {
-    // console.log('product id', this.props.productInfo.id)
     axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
       .then((response) => {
         // check if there is a rating
         var ratings = response.data.ratings;
-        // console.log('ratings', ratings)
         if (Object.keys(ratings).length > 0) {
           var total = 0;
           var amount = 0;
