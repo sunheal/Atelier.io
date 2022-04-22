@@ -11,7 +11,6 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 64620,
       selectedStyle: {},
       selectedSKU: '',
       selectedSize: '',

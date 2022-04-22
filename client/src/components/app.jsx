@@ -25,7 +25,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-      this.getAllProducts();
+    //   this.getAllProducts();
       this.getProductInfo(this.state.productID);
 
     }
