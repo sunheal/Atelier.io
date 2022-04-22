@@ -5,7 +5,9 @@ const ImageGallery = (props) => {
   let displayStyle;
   if (props.selectedStyle) {
     if (Object.keys(props.selectedStyle).length === 0) {
-      displayStyle = props.styles[0];
+      if (props.productStyle.results) {
+        displayStyle = props.productStyle.results[0];
+      }
     } else {
       displayStyle = props.selectedStyle;
     }

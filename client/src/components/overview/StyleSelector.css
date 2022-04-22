@@ -61,7 +61,7 @@ input[type="checkbox"] {
 
 :checked + .label-style:before {
   content: "✓";
-  color: rgb(85, 84, 84);
+  color: grey;
   font-size: 24px;
   background-color: transparent;
   transform: scale(1);

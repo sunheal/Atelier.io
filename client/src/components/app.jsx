@@ -10,7 +10,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64624,
+            productID: 64623,
+            productInfo: {},
             allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
@@ -47,6 +48,7 @@ class App extends React.Component {
         axios.get(`/products/${id}`)
         .then((result) => {
             var allPromises = [];
+            allPromises.push(axios.get(`/products/${id}`));
             allPromises.push(axios.get(`/products/${id}/styles`));
             allPromises.push(axios.get(`/products/${id}/related`));
             allPromises.push(axios.get(`/reviews/meta`, { params: { product_id: id } }));
@@ -59,14 +61,15 @@ class App extends React.Component {
         })
         .then((allPromisesData) => {
             this.setState({
-                productStyle: allPromisesData[0].data,
-                relatedProductsIDs: [... new Set(allPromisesData[1].data)],
-                meta: allPromisesData[2].data,
-                reviews: allPromisesData[3].data,
-                questions: allPromisesData[4].data
+                productInfo: allPromisesData[0].data,
+                productStyle: allPromisesData[1].data,
+                relatedProductsIDs: [... new Set(allPromisesData[2].data)],
+                meta: allPromisesData[3].data,
+                reviews: allPromisesData[4].data,
+                questions: allPromisesData[5].data
             })
 
-            return [... new Set(allPromisesData[1].data)];
+            return [... new Set(allPromisesData[2].data)];
         })
         .then((relatedIDs) => {
             var arrayOfPromises = [];
@@ -89,18 +92,15 @@ class App extends React.Component {
     updateProduct(e) {
         var id = e.target;
         console.log('clicked product = ', id)
-        // this.setState({
-        //     productID: id
-        // })
     }
 
 
     render() {
-        const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;
+        const { productID, productInfo, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;
         return (
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
-                <Overview />
+                <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
                 <QandA productID={this.state.productID}/>
                 {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
