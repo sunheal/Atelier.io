@@ -1,17 +1,9 @@
 import React from "react";
 import ReviewListView from "./reviewListView.jsx";
-import axios from "axios";
 import AddReview from './/addReview.jsx';
-// import Modal from 'react-modal';
+import "../Ratings&Reviews/rr.css";
 
-// import config from "../../../../config.js";
-// import DefaultReviews from "./DefaultReviews.js";
-// import productsAPI from '../../../../server/api/products.js';
 
-// const host = ' https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
-// const headers = {
-//   'Authorization' : `${config.TOKEN}`
-// };
 
 class ReviewList extends React.Component{
 

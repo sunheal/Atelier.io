@@ -1,8 +1,8 @@
 import React from "react";
 import Stars from "../Shared/Stars.jsx";
 import ReviewList from "./reviewList.jsx";
-import axios from "axios";
 import BarChart from "./breakdowns.jsx";
+import "../Ratings&Reviews/rr.css";
 
 
 
@@ -82,7 +82,7 @@ class RR_app extends React.Component {
     render() {
         return (
             <div className="ReviewContainer">
-                <h1>Ratings &amp; Reviews</h1>
+                <h1 id='RR_app'>Ratings &amp; Reviews</h1>
                 <div className="leftOfRR">
                 {Object.keys(this.props.meta).length !== 0 ? <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > : null}
                 {Object.keys(this.props.meta).length !== 0 ? <BarChart ratings={this.state.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta} filter={this.filter}/> : null}

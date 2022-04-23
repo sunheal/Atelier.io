@@ -1,8 +1,6 @@
 import React from 'react';
-import "../Ratings&Reviews/rr.css";
 
-
-const Stars = (props) => {
+const StarsOW = (props) => {
   const percent = props.rating / 5 * 100;
 
   const containerStyle = {
@@ -10,7 +8,7 @@ const Stars = (props) => {
   }
 
   const starStyle = {
-    'position': 'absolute',
+    // 'position': 'absolute',
     'left': '0',
     'fontSize': 'large',
     'backgroundImage': `-webkit-linear-gradient(0deg, gold ${percent}%, transparent ${percent}% 100%)`,
@@ -39,4 +37,4 @@ const Stars = (props) => {
   }
 }
 
-export default Stars;
+export default StarsOW;

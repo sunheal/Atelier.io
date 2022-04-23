@@ -1,6 +1,8 @@
 import React from "react";
 import Stars from "../Shared/Stars.jsx";
 import HelpfulAndReport from "./Helpful&Report.jsx";
+import "../Ratings&Reviews/rr.css";
+
 
 const ReviewListView = ({ reviews }) => {
     return (

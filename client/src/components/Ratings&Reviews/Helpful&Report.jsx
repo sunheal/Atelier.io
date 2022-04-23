@@ -1,4 +1,5 @@
 import React from 'react';
+import "../Ratings&Reviews/rr.css";
 
 class HelpfulAndReport extends React.Component {
     constructor(props) {

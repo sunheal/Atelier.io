@@ -1,4 +1,6 @@
-import React from "react"
+import React from "react";
+import "../Ratings&Reviews/rr.css";
+
 
 
   class BarChart extends React.Component {
