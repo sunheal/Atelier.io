@@ -12,7 +12,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64624,
+            productID: 64623,
+            productInfo: {},
             allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
@@ -28,10 +29,9 @@ class App extends React.Component {
     componentDidMount() {
         this.getAllProducts();
         this.getProductInfo(this.state.productID);
-
     }
 
-    getAllProducts() {
+ getAllProducts() {
         return axios.get('/products/')
             .then((result) => {
                 this.setState({
@@ -100,6 +100,7 @@ class App extends React.Component {
     }
 
 
+
     render() {
         const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, recommend, rating, ratings, count } = this.state;
         return (
@@ -107,7 +108,7 @@ class App extends React.Component {
                 <p id="logo"> Good Deals Only </p>
                <Navbar scroll={this.scrollTo.bind(this)}/>
 
-                <Overview />
+                <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
                 <QandA productID={this.state.productID} />
                 {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}

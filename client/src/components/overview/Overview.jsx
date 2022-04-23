@@ -11,9 +11,6 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 64624,
-      information: {},
-      styles: [],
       selectedStyle: {},
       selectedSKU: '',
       selectedSize: '',
@@ -28,10 +25,7 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    let id = this.state.id;
-    this.getProductInformation(id);
-    this.getProductStyles(id);
-    this.getProductRatings(id);
+    this.getProductRatings(this.props.productID);
   }
 
   componentDidUpdate() {
@@ -39,42 +33,25 @@ class Overview extends React.Component {
     this.showSlides(slideIndex);
   }
 
-  getProductInformation = (id) => {
-    axios.get(`/products/${id}`)
-      .then((res) => {
-        const information = res.data;
-        this.setState({ information });
-      })
-      .catch((err) => {
-        console.error('getProductInformation', err);
-      })
-  }
-
-  getProductStyles = (id) => {
-    axios.get(`/products/${id}/styles`)
-      .then((res) => {
-        const styles = res.data.results;
-        this.setState({ styles });
-      })
-      .catch((err) => {
-        console.error('getProductStyles', err);
-      })
-  }
-
-  getProductReviews = (id) => {
-    aixos.get(`/reviews/?sort='newest'&product_id=${id}`)
-  }
-
   getProductRatings = (id) => {
     axios.get(`/reviews/meta/?product_id=${id}`)
       .then((res) => {
-        const reviewsCount = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
-        const ratings = ((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / reviewsCount).toFixed(1);
-        this.setState({ ratings, reviewsCount });
+        const ratingsObj = res.data.ratings;
+          let totalRatings = 0;
+          let reviewsCount = 0;
+          for (let key in ratingsObj) {
+            totalRatings += (parseInt(key) * parseInt(ratingsObj[key]));
+            reviewsCount += parseInt(ratingsObj[key]) || 0;
+          }
+          let ratings = (totalRatings / reviewsCount).toFixed(1) || 0;
+          this.setState({ ratings, reviewsCount });
       })
       .catch((err) => {
         console.error('getProductRatings', err);
       })
+    // const reviewsCount = Number(this.props.meta?.ratings['1']) + Number(this.props.meta.ratings['2']) + Number(this.props.meta.ratings['3']) + Number(this.props.meta.ratings['4']) + Number(this.props.meta.ratings['5']);
+    // const ratings = ((Number(this.props.meta.ratings['1']) * 1 + Number(this.props.meta.ratings['2']) * 2 + Number(this.props.meta.ratings['3']) * 3 + Number(this.props.meta.ratings['4']) * 4 + Number(this.props.meta.ratings['5']) * 5) / reviewsCount).toFixed(1);
+    // this.setState({ ratings, reviewsCount });
   }
 
   onStyleClick = (e) => {
@@ -82,7 +59,7 @@ class Overview extends React.Component {
     for (let checkbox of checkboxes) {
       checkbox.checked = false;
     }
-    const styles = [...this.state.styles];
+    const styles = [...this.props.productStyle.results];
     const selectedCheckbox = e.target;
     selectedCheckbox.checked = true;
     const selectedStyle = styles[selectedCheckbox.id];
@@ -120,8 +97,6 @@ class Overview extends React.Component {
       const sizeAlert = document.getElementsByClassName('sizeAlert');
       sizeAlert[0].removeAttribute('hidden');
       const sizeDropdown = document.getElementById('sizeDropdown');
-      // const sizeSelection = Object.keys(selectedStyle.skus).length || 1;
-      // sizeDropdown.setAttribute('size', `${sizeSelection}`);
       sizeDropdown.setAttribute('size', `3`);
     }
   }
@@ -175,17 +150,25 @@ class Overview extends React.Component {
     return (
       <div id="overview" className="container1">
         <div className="container1-1">
-          <ImageGallery styles={this.state.styles} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} />
-          <br></br>
+          <ImageGallery productStyle={this.props.productStyle} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} />
         </div>
         <div className="container1-2">
-          <ProductInformation information={this.state.information} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
-          <StyleSelector styles={this.state.styles} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
+        <div className="container1-2-1">
+          <ProductInformation information={this.props.productInfo} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
+          <br></br>
+          <br></br>
+        </div>
+        <div className="container1-2-2">
+          <StyleSelector productStyle={this.props.productStyle} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
           <br></br>
           <br></br>
           <br></br>
+          <br></br>
+        </div>
+        <div className="container1-2-3">
           <AddToCart selectedStyle={this.state.selectedStyle} selectedSKU = {this.state.selectedSKU} maxQuantity = {this.state.maxQuantity} selectedQuantity={this.state.selectedQuantity} selectedSKU={this.state.selectedSKU} onSizeChange={this.onSizeChange} onQuantityChange={this.onQuantityChange} onAddToCartClick={this.onAddToCartClick} />
           <br></br>
+        </div>
         </div>
       </div>
     );
