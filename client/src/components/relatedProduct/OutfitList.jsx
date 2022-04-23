@@ -55,7 +55,7 @@ class OutfitList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 345;
+    var newPosition = this.state.currentPosition - 326;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -64,7 +64,7 @@ class OutfitList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 345;
+    var newPosition = this.state.currentPosition + 326;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,

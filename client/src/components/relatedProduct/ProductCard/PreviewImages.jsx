@@ -1,4 +1,5 @@
 import React from 'react';
+import PreviewImagesCarousel from './PreviewImagesCarousel.jsx';
 
 class PreviewImages extends React.Component {
   constructor(props) {
@@ -6,11 +7,11 @@ class PreviewImages extends React.Component {
     this.state = {
       current: 0,
       length: 4,
-      image: null
+      imageChange: false
     };
     this.prevSlide = this.prevSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
-    this.handleImageClicked= this.handleImageClicked.bind(this);
+    this.handleImageClicked = this.handleImageClicked.bind(this);
   }
 
   prevSlide() {
@@ -41,17 +42,15 @@ class PreviewImages extends React.Component {
 
   handleImageClicked(e) {
     var target = e.target.src;
-    console.log('target', target)
+    console.log('target', this.state.current)
     this.setState({
-      image: target
+      imageChange: true
     })
 
   }
 
-
-
   render() {
-    const { current, length } = this.state;
+    const { current, length, imageChange } = this.state;
     const { currentStyle, productID } = this.props;
 
     let images;
@@ -64,62 +63,18 @@ class PreviewImages extends React.Component {
     return (
       <div className="previewImage-container">
         <div className="previewImage">
-        <img className='product-image' src={images[0].thumbnail_url} alt="Image lost :(" />
+          <img className='product-image' src={images[current].thumbnail_url} alt="Image lost :(" />
         </div>
-
-        <div className="image-carousel-row">
-          <button className="image-carousel-button  carousel-button-left" onClick={this.prevSlide} >&#10094;</button>
-          {images.map((photo, i) => (
-            <div key={i} className="image-carousel-slide" >
-                <img className='carousel-image' src={photo.thumbnail_url} alt="Image lost :(" onClick={this.handleImageClicked} />
-            </div>
-          ))}
-          <button className="image-carousel-button carousel-button-right" onClick={this.nextSlide} >&#10095;</button>
-        </div>
-
+        <PreviewImagesCarousel images={images} prevSlide={this.prevSlide} nextSlide={this.nextSlide} handleImageClicked={this.handleImageClicked} />
       </div>
     )
   }
-
-  // render() {
-  //   const { current, length } = this.state;
-  //   const { currentStyle, productID } = this.props;
-
-  //   let images;
-  //   if (this.props.currentStyle.photos.length > 4) {
-  //     images = this.props.currentStyle.photos.slice(0, 4);
-  //   } else {
-  //     images = this.props.currentStyle.photos;
-  //   }
-
-  //   return (
-  //       <div className="image-carousel">
-  //         <button className="image-carousel-button  carousel-button-left" onClick={this.prevSlide} >&#10094;</button>
-  //         {images.map((photo, i) => (
-  //           <div key={i} className="image-carousel-slide" >
-  //             {/* <img className="product-image" src={photo.thumbnail_url} alt="Image lost :(" /> */}
-  //             {i === current && (
-  //               <img src={photo.thumbnail_url} alt="Image lost :(" className='product-image' />
-  //             )}
-  //           </div>
-  //         ))}
-  //         <button className="image-carousel-button carousel-button-right" onClick={this.nextSlide} >&#10095;</button>
-  //       </div>
-  //   )
-  // }
-
 }
 
 // const PreviewImages = (props) => {
 //   return (
-//   <div className="image-carousel">
-//     <button className="image-carousel-button  carousel-button-left" onClick={props.onPrevClick}>&#10094;</button>
-//       {images.map((photo, i) => (
-//         <div key={i} className="image-carousel-slide" hidden="hidden">
-//           <img className="product-image" src={photo.thumbnail_url} alt="Image lost :(" />
-//         </div>
-//       ))}
-//     <button className="image-carousel-button carousel-button-right" onClick={props.onNextClick}>&#10095;</button>
+//   <div className="preview-image">
+//     <img className="product-image" src={props.currentStyle.photos[0].thumbnail_url} alt="Image lost :(" />
 //   </div>
 //   )
 // };

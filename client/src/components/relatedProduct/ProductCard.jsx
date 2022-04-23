@@ -98,7 +98,7 @@ class ProductCard extends React.Component {
 
   handleProductCard(e) {
     var id = this.props.productInfo.id;
-    // console.log('clicked product = ', this.props.productInfo)
+    console.log('clicked product = ', this.props.productInfo)
     // this.props.updateProduct(id);
   }
 
