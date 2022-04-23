@@ -11,8 +11,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64626,
-            allProducts: [],
+            productID: 64623,
+            productInfo: {},
             selectedProductInfo: {},
             productStyle: {},
             relatedProductsIDs: null,
@@ -98,4 +98,3 @@ class App extends React.Component {
 }
 
 export default App;
-
