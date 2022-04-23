@@ -147,6 +147,7 @@ body {
   border-bottom: thick;
   border-style: double;
   border-bottom-color: black;
+  box-shadow: 0 10px 20px 0 rgb(155, 148, 130);
 }
 
 /* Fading animation */
