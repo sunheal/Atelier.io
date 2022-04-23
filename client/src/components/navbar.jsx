@@ -5,21 +5,21 @@ const Navbar = (props) => {
     const handleLocate = (event) => {
         let str = event.target.innerHTML;
         if (str === 'Reviews') {
-            let loc = document.getElementsByClassName('ReviewContainer')
+            let loc = document.getElementsByclassNameName('ReviewContainer')
             props.scroll(loc);
         }
     }
 
     return (
 
-        <div id="navbar" >
+        // <div id="navbar" >
             <nav>
-                <a>Home</a>
-                <a>Q&amp;A</a>
-                <a>Related Product</a>
-                <a onClick={handleLocate}>Reviews</a>
+                <a className='navbar'>Home</a>
+                <a className='navbar'>Q&amp;A</a>
+                <a className='navbar'>Related Product</a>
+                <a className='navbar' onClick={handleLocate}>Reviews</a>
             </nav>
-        </div>
+        // </div>
     )
 }
 
