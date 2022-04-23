@@ -13,10 +13,9 @@ class App extends React.Component {
         this.state = {
             productID: 64623,
             productInfo: {},
-            allProducts: [],
             selectedProductInfo: {},
             productStyle: {},
-            relatedProductsIDs: [],
+            relatedProductsIDs: null,
             relatedProductsInfo: [],
             meta: {},
             reviews: {},
@@ -31,19 +30,7 @@ class App extends React.Component {
 
     }
 
-    getAllProducts() {
-      return axios.get('/products/')
-        .then((result) => {
-          this.setState({
-            allProducts: result.data
-          })
-          console.log("allProducts:", result.data);
-        })
 
-        .catch((error) => {
-          console.log('Error fetching all products details in App', error);
-        });
-    }
 
     getProductInfo(id) {
         axios.get(`/products/${id}`)
@@ -95,11 +82,10 @@ class App extends React.Component {
         console.log('clicked product = ', id)
     }
 
-
     render() {
         const { productID, productInfo, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;
         return (
-            <div className="app">
+            <div className="app" >
                 <p id="logo"> Good Deals Only </p>
                 <Navbar />
                 <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />

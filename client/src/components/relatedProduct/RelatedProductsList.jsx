@@ -23,7 +23,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 45;
+    var newPosition = this.state.currentPosition - 326;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -32,7 +32,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 45;
+    var newPosition = this.state.currentPosition + 326;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
@@ -57,30 +57,49 @@ class RelatedProductsList extends React.Component {
     const { showModal, comparisionArray, currentPosition, positionIndex } = this.state;
     const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo, updateProduct } = this.props;
 
-    if (relatedProductsInfo.length === 0) {
+    if (!relatedProductsIDs) {
       return (
         <div id="relatedProductsList" className="list-container">
           <div className="list-header">
-            <h3 className="list-title">RELATED PRODUCTS</h3>
+            <h2 className="list-title">YOU MAY ALSO LIKE</h2>
           </div>
-          <div>Loading...</div>
+          <div className="message-container">
+            <div className="message">
+              Loading...
+            </div>
+          </div>
         </div>
-        );
+      );
+    }
+
+    if (relatedProductsIDs.length === 0) {
+      return (
+        <div id="relatedProductsList" className="list-container">
+          <div className="list-header">
+            <h2 className="list-title">YOU MAY ALSO LIKE</h2>
+          </div>
+          <div className="message-container">
+            <div className="message">
+              Sorry. No related products found.
+            </div>
+          </div>
+        </div>
+      );
     }
 
     return (
       <div id="relatedProductsList" className="list-container">
         <div className="list-header">
-          <h3 className="list-title">RELATED PRODUCTS</h3>
+          <h2 className="list-title">YOU MAY ALSO LIKE</h2>
         </div>
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
-          <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}%)` }}>
+          <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
             {relatedProductsInfo.map(productInfo => (
-              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} onClick={updateProduct} />
+              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProduct={updateProduct} />
             ))}
           </div>
-          {positionIndex === relatedProductsIDs.length - 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
+          {relatedProductsIDs.length > 4 && positionIndex < (relatedProductsIDs.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
         </div>
         {showModal ? <Modal onClose={this.closeModal} comparisionArray={comparisionArray} /> : null}
       </div>

@@ -16,12 +16,14 @@ class OutfitList extends React.Component {
       addOutfit: false,
       outfitList: Object.keys(localStorage) || [], // save IDs
       currentPosition: 0,
-      positionIndex: 0
+      positionIndex: 0,
+      storageCount: Object.keys(localStorage).length
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
+    // this.updateStorageCount = this.updateStorageCount.bind(this);
   }
 
   addOutfit() {
@@ -35,7 +37,7 @@ class OutfitList extends React.Component {
       })
     } else {
       this.setState({
-        addOufit: true
+        addOutfit: true
       })
     }
   }
@@ -53,7 +55,7 @@ class OutfitList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 238;
+    var newPosition = this.state.currentPosition - 326;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -62,7 +64,7 @@ class OutfitList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 238;
+    var newPosition = this.state.currentPosition + 326;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
@@ -70,21 +72,28 @@ class OutfitList extends React.Component {
     });
   }
 
+  // updateStorageCount() {
+  //   var newStorageCount = Object.keys(localStorage).length;
+  //   this.setState({
+  //     storageCount: newStorageCount,
+  //     currentPosition: 0,
+  //     positionIndex: 0,
+  //   });
+  // }
+
   render() {
     const { productID, selectedProductInfo, updateProduct } = this.props;
-    const { addOutfit, outfitList, currentPosition, positionIndex } = this.state;
-    // console.log('outfitList', outfitList.length)
+    const { addOutfit, outfitList, currentPosition, positionIndex, storageCount } = this.state;
     let outfits = [];
     outfitList.map(productID => {
       var productObj = JSON.parse(localStorage.getItem(productID));
       outfits.push(productObj);
     })
-    // console.log('outfits', outfits);
 
     return (
       <div id="outfitList" className="list-container">
         <div className="list-header">
-          <h3 className="list-title">YOUR OUTFIT</h3>
+          <h2 className="list-title">YOUR OUTFIT</h2>
         </div>
         <div className="outfit-container">
           <div className="add-outfit-card" role="button" onClick={this.addOutfit}>
@@ -94,15 +103,12 @@ class OutfitList extends React.Component {
           <div className="carousel-container">
             {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
             <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-              {outfitList.length === 0 ?
-                <div>Add Your First Outfit</div>
-                : null
-              }
+              {outfitList.length === 0 ? <div>Add Your First Outfit</div> : null}
               {outfits.map(productObj => (
-                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} />
+                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} updateProduct={updateProduct} />
               ))}
             </div>
-            {positionIndex === outfitList.lenght - 3 || outfitList.length < 3 ? null : <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button>}
+            {addOutfit.length > 4 && positionIndex < (addOutfit.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
           </div>
         </div>
       </div>
