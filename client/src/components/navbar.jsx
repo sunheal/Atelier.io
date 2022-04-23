@@ -3,21 +3,19 @@ import React from "react";
 
 const Navbar = (props) => {
     const handleLocate = (event) => {
-        let str = event.target.innerHTML;
-        if (str === 'Reviews') {
-            let loc = document.getElementsByclassNameName('ReviewContainer')
-            props.scroll(loc);
+            console.log(window.location,'window')
         }
-    }
+    
 
     return (
 
         // <div id="navbar" >
             <nav>
+                <a onClick={handleLocate}> testing </a>
                 <a className='navbar'>Home</a>
-                <a className='navbar'>Q&amp;A</a>
-                <a className='navbar'>Related Product</a>
-                <a className='navbar' onClick={handleLocate}>Reviews</a>
+                <a className='navbar' href="#QandA">Q&amp;A</a>
+                <a className='navbar' href="#related_products">Related Product</a>
+                <a className='navbar' href="#RR_app">Reviews</a>
             </nav>
         // </div>
     )

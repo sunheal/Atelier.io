@@ -95,10 +95,8 @@ class App extends React.Component {
         //     productID: id
         // })
     }
-    scrollTo(location) {
-        console.log(location[0], 'app.jsx')
-        location[0].scrollIntoView({behavior: "smooth", block: "start", inline: "center"});
-        console.log('rann')
+    scrollTo() {
+        console.log(window, 'app.jsx')
     }
 
 
