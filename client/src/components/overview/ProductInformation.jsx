@@ -5,12 +5,12 @@ import './ProductInformation.css';
 const ProductInformation = (props) => {
   return (
     <div className='ProductInformation'>
-      <div className='stars-reviews'>
-        <div>
-          <StarsOW rating={props.ratings} className='stars-div'/>
-        </div>
-        <div className='reviews-div'>Read All {props.reviewsCount} Reviews</div>
-      </div>
+      {!props.reviewsCount
+        ? null
+        : <div className='stars-reviews'>
+            <StarsOW rating={props.ratings} className='stars-div'/>
+            <div className='reviews-div'><a href='#RR_app'>Read All {props.reviewsCount} Reviews</a></div>
+          </div>}
       <div className='category'>{props.information.category}</div>
       <div className='product-title'>{props.information.name}</div>
       <br></br>
