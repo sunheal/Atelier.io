@@ -1,17 +1,3 @@
-.QA_line {
-  display:inline-flex;
-  width:100%;
-  height:auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.right {
-  margin:20px;
-  float:right;
-  text-decoration: underline;
-}
 
 #window{
   position: fixed;
@@ -28,6 +14,22 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
+}
+
+
+.QA_line {
+  display:inline-flex;
+  width:100%;
+  height:auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right {
+  margin:20px;
+  float:right;
+  text-decoration: underline;
 }
 
 .windowBox {
@@ -56,4 +58,15 @@
 
 .popFormEmail {
   margin-bottom: 7px;
+}
+
+.windowWrap {
+  width: 500px;
+  background-color: #f6f6f6;
+  padding: 20px 100px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
