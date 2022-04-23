@@ -4,7 +4,8 @@ import ReactCoreImageUpload from "react-core-image-upload";
 import Window from "../Q&A/window.jsx";
 import "../Q&A/window.css";
 const config = require("../../../../config.js");
-import {addQuestion} from "../../service/index.js";
+import {addQuestion, submitUserAction} from "../../service/index.js";
+
 
 class QandA extends Component {
   constructor(props) {
@@ -25,12 +26,14 @@ class QandA extends Component {
     this.setState({
       questionForm: true,
     });
+    submitUserAction({element:'ask a question button', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
   };
 
   onClick = () => {
     this.setState({
       questionForm: false,
     });
+    submitUserAction({element:'X close window', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
   };
 
   inputChange = (e, type) => {
@@ -39,15 +42,11 @@ class QandA extends Component {
     this.setState({
       form
     });
+    submitUserAction({element:'filling question form', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    // submitUserAction({
-    //   date: new Date(),
-    //   tag: 'buttom',
-
-    // })
     let {form, question} = this.state;
     console.log(form)
     addQuestion(form).then((res) => {
@@ -58,6 +57,7 @@ class QandA extends Component {
         });
       }
     })
+    submitUserAction({element:'question submit button', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
   }
 
   render() {

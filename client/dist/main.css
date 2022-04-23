@@ -1,9 +1,11 @@
 .app {
   min-width: 1200px;
-  margin: 50px 150px;
+  margin: 50px 18%;
   font-family: 'Helvetica','Arial',sans-serif;
-  
+
 }
+
+
 
 #logo {
   font-family: "Courier New", Courier, monospace;
