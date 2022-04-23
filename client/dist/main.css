@@ -1,9 +1,12 @@
 .app {
-  min-width: 1200px;
-  margin: 50px 18%;
-  font-family: 'Helvetica','Arial',sans-serif;
+        min-width: 1200px;
+        max-width: 1300px;
+        margin: 0px auto;
+        font-family: 'Helvetica','Arial',sans-serif;
+        color: #485461;
+      }
 
-}
+
 
 
 
