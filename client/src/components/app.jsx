@@ -25,7 +25,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-    //   this.getAllProducts();
       this.getProductInfo(this.state.productID);
 
     }
@@ -83,7 +82,7 @@ class App extends React.Component {
     }
 
     render() {
-        const { productID, productInfo, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;
+        const { productID, productInfo, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;
         return (
             <div className="app" >
                 <p id="logo"> Good Deals Only </p>
