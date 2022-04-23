@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import './window.css';
 
 class Window extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div id="window" >
