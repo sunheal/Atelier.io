@@ -55,7 +55,7 @@ class RelatedProductsList extends React.Component {
 
   render() {
     const { showModal, comparisionArray, currentPosition, positionIndex } = this.state;
-    const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo, updateProduct } = this.props;
+    const { relatedProductsIDs, relatedProductsInfo, productID, productInfo, updateProductID } = this.props;
 
     if (!relatedProductsIDs) {
       return (
@@ -95,8 +95,8 @@ class RelatedProductsList extends React.Component {
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-            {relatedProductsInfo.map(productInfo => (
-              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProduct={updateProduct} />
+            {relatedProductsInfo.map(productObj => (
+              <ProductCard key={productObj.id} productInfo={productObj} productInfoOfCurrentPage={productInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProductID={updateProductID} />
             ))}
           </div>
           {relatedProductsIDs.length > 4 && positionIndex < (relatedProductsIDs.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}

@@ -28,9 +28,9 @@ class OutfitList extends React.Component {
 
   addOutfit() {
     var list = this.state.outfitList;
-    if (!this.state.addOutfit && !list.includes(this.props.selectedProductInfo.id.toString())) {
-      localStorage.setItem(this.props.selectedProductInfo.id, JSON.stringify(this.props.selectedProductInfo))
-      list.unshift(this.props.selectedProductInfo.id.toString());
+    if (!this.state.addOutfit && !list.includes(this.props.productInfo.id.toString())) {
+      localStorage.setItem(this.props.productInfo.id, JSON.stringify(this.props.productInfo))
+      list.unshift(this.props.productInfo.id.toString());
       this.setState({
         addOutfit: true,
         outfitList: list
@@ -82,7 +82,7 @@ class OutfitList extends React.Component {
   // }
 
   render() {
-    const { productID, selectedProductInfo, updateProduct } = this.props;
+    const { productID, productInfo, updateProduct } = this.props;
     const { addOutfit, outfitList, currentPosition, positionIndex, storageCount } = this.state;
     let outfits = [];
     outfitList.map(productID => {
