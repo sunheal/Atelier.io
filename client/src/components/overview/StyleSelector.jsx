@@ -3,11 +3,10 @@ import './StyleSelector.css';
 
 const StyleSelector = (props) => {
   return (
-    <div>
-      <h4>StyleSelector</h4>
+    <div className='style-selector'>
       <div id='style'>STYLE > {props.selectedStyle?.name}</div>
       <div id="selectStyle">
-        {props.styles?.map((style, index) => {
+        {props.productStyle.results?.map((style, index) => {
           return (
             <div key={index} className="styleDiv" onClick={props.onStyleClick} >
               <input type="checkbox" className="checkbox" id={index} />
