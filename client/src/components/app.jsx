@@ -5,7 +5,6 @@ import RelatedProducts from './RelatedProduct/RelatedProducts.jsx';
 import QandA from "./Q&A/QandA_app.jsx";
 import RR_app from "./Ratings&Reviews/RR_app.jsx";
 import Navbar from "./navbar.jsx";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 class App extends React.Component {
@@ -27,90 +26,85 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getAllProducts();
-        this.getProductInfo(this.state.productID);
+    //   this.getAllProducts();
+      this.getProductInfo(this.state.productID);
+
     }
 
- getAllProducts() {
-        return axios.get('/products/')
-            .then((result) => {
-                this.setState({
-                    allProducts: result.data
-                })
-                console.log("allProducts:", result.data);
-            })
+    getAllProducts() {
+      return axios.get('/products/')
+        .then((result) => {
+          this.setState({
+            allProducts: result.data
+          })
+          console.log("allProducts:", result.data);
+        })
 
-            .catch((error) => {
-                console.log('Error fetching all products details in App', error);
-            });
+        .catch((error) => {
+          console.log('Error fetching all products details in App', error);
+        });
     }
 
     getProductInfo(id) {
         axios.get(`/products/${id}`)
-            .then((result) => {
-                var allPromises = [];
-                allPromises.push(axios.get(`/products/${id}/styles`));
-                allPromises.push(axios.get(`/products/${id}/related`));
-                allPromises.push(axios.get(`/reviews/meta`, { params: { product_id: id } }));
-                allPromises.push(axios.get(`/reviews`, { params: { product_id: id, count: 5000 } }));
-                allPromises.push(axios.get(`/qa/questions`, { params: { product_id: id } }));
-                this.setState({
-                    selectedProductInfo: result.data
-                })
-                return Promise.all(allPromises);
+        .then((result) => {
+            var allPromises = [];
+            allPromises.push(axios.get(`/products/${id}`));
+            allPromises.push(axios.get(`/products/${id}/styles`));
+            allPromises.push(axios.get(`/products/${id}/related`));
+            allPromises.push(axios.get(`/reviews/meta`, { params: { product_id: id } }));
+            allPromises.push(axios.get(`/reviews`, { params: {product_id: id, count: 5000 } }));
+            allPromises.push(axios.get(`/qa/questions`, { params: {product_id: id} }));
+            this.setState({
+                selectedProductInfo: result.data
             })
-            .then((allPromisesData) => {
-                this.setState({
-                    productStyle: allPromisesData[0].data,
-                    relatedProductsIDs: [... new Set(allPromisesData[1].data)],
-                    meta: allPromisesData[2].data,
-                    reviews: allPromisesData[3].data,
-                    questions: allPromisesData[4].data
-                })
+            return Promise.all(allPromises);
+        })
+        .then((allPromisesData) => {
+            this.setState({
+                productInfo: allPromisesData[0].data,
+                productStyle: allPromisesData[1].data,
+                relatedProductsIDs: [... new Set(allPromisesData[2].data)],
+                meta: allPromisesData[3].data,
+                reviews: allPromisesData[4].data,
+                questions: allPromisesData[5].data
+            })
 
-                return [... new Set(allPromisesData[1].data)];
+            return [... new Set(allPromisesData[2].data)];
+        })
+        .then((relatedIDs) => {
+            var arrayOfPromises = [];
+            relatedIDs.forEach((relatedId) => {
+                arrayOfPromises.push(axios.get(`/products/${relatedId}`));
             })
-            .then((relatedIDs) => {
-                var arrayOfPromises = [];
-                relatedIDs.forEach((relatedId) => {
-                    arrayOfPromises.push(axios.get(`/products/${relatedId}`));
-                })
-                return Promise.all(arrayOfPromises);
+            return Promise.all(arrayOfPromises);
+        })
+        .then((arrayOfPromisesData) => {
+            var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
+            this.setState ({
+                relatedProductsInfo: relatedProductsInfo
             })
-            .then((arrayOfPromisesData) => {
-                var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
-                this.setState({
-                    relatedProductsInfo: relatedProductsInfo
-                })
-            })
-            .catch((error) => {
-                console.log('Error fetching product info in App', error);
-            });
+        })
+        .catch((error) => {
+            console.log('Error fetching product info in App', error);
+        });
     }
 
     updateProduct(e) {
         var id = e.target;
         console.log('clicked product = ', id)
-        // this.setState({
-        //     productID: id
-        // })
     }
-    scrollTo() {
-        console.log(window, 'app.jsx')
-    }
-
 
 
     render() {
-        const { productID, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, recommend, rating, ratings, count } = this.state;
+        const { productID, productInfo, allProducts, selectedProductInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions,recommend,rating, ratings, count} = this.state;
         return (
             <div className="app">
                 <p id="logo"> Good Deals Only </p>
-               <Navbar scroll={this.scrollTo.bind(this)}/>
-
+                <Navbar />
                 <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
                 <RelatedProducts productID={productID} selectedProductInfo={selectedProductInfo} productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProduct={this.updateProduct} />
-                <QandA productID={this.state.productID} />
+                <QandA productID={this.state.productID}/>
                 {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
             </div>
         )
@@ -118,3 +112,4 @@ class App extends React.Component {
 }
 
 export default App;
+
