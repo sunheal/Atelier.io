@@ -13,6 +13,7 @@ const ImageGallery = (props) => {
     }
   }
 
+  
   return (
     <div className="slideshow-container">
       {!displayStyle?.photos

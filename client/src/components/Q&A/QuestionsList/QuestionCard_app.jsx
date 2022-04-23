@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import Answers from "./Answers.jsx";
+import AnswerList from "./AnswerList.jsx";
 import {
   voteHelpfulness,
   reportRequest,
@@ -16,8 +16,8 @@ class QuestionCard extends React.Component {
     super(props);
     this.state = {
       showMoreAnswers: false,
-      tempAnswers: Object.values(this.props.answers).slice(0, 2),
-      question: this.props,
+      tempAnswers: Object.values(this.props.question.answers),
+      question: this.props.question,
       reportState: props.reported ? "Reported" : "Report",
       answerForm: false,
       imgUrlList: [],
@@ -32,29 +32,16 @@ class QuestionCard extends React.Component {
     // console.log(this.state.question);
   }
 
-  onSeeMoreAnswersClick = () => {
-    console.log(this.state.tempAnswers, this.props.answers);
-    this.setState({ tempAnswers: Object.values(this.props.answers) }, () => {
-      console.log(this.state.tempAnswers);
-    });
-  };
-
-  onCollapseAnswersClick = () => {
-    this.setState({
-      tempAnswers: Object.values(this.props.answers).slice(0, 2),
-    });
-  };
-
   onVote = () => {
-    console.log('line 48 props:', this.props);
-    console.log('question', this.state.question);
+    // console.log('line 48 props:', this.props);
     let { question } = this.state;
-    if (this.props.question_helpfulness !== question.question_helpfulness) {
+    if (this.props.question.question_helpfulness !== question.question_helpfulness) {
       return;
     }
     question = {
       ...question,
       question_helpfulness: question.question_helpfulness + 1,
+      //后面的把前面key一样的覆盖掉
     };
     voteHelpfulness(question.question_id);
     this.setState({
@@ -102,16 +89,6 @@ class QuestionCard extends React.Component {
       });
     }
   };
-
-  // getImgUrl = (file) => {
-  //   return new Promise((resolve, reject) => {
-  // const reader = new FileReader();
-  // reader.readAsDataURL(file);
-  // reader.onload = (result) => {
-  //   resolve(result);
-  // };
-  //   });
-  // };
 
   uploadMultipleImage(imgUrlArray) {
     let options = {
@@ -164,7 +141,7 @@ class QuestionCard extends React.Component {
   };
 
   render() {
-    const { question_body, answers, question_helpfulness } = this.props;
+    const { question_body, answers, question_helpfulness } = this.props.question;
     const { showMoreAnswers, tempAnswers, question, reportState, showAnswer } =
       this.state;
     const formStyle = {
@@ -189,7 +166,7 @@ class QuestionCard extends React.Component {
 
           {this.state.answerForm && (
             <Window onClick={this.onClick}>
-              <div className="windowWrap">
+              <div className="answerWindowWrap">
                 <h2 className="title">Submit an Answer</h2>
                 <div>
                   <form id="answerForm" onSubmit={this.handleSubmit}>
@@ -213,7 +190,7 @@ class QuestionCard extends React.Component {
                     {!!this.state.preViewImgList.length && (
                       <div className="imgPreviewWrap">
                         {this.state.preViewImgList.map((img) => (
-                          <img src={img}></img>
+                          <img src={img} key={img}></img>
                         ))}
                       </div>
                     )}
@@ -246,22 +223,7 @@ class QuestionCard extends React.Component {
             </Window>
           )}
         </div>
-        <Answers answersArray={tempAnswers}></Answers>
-        {tempAnswers.length <= 2 ? (
-          <button
-            style={{ margin: "10px 0" }}
-            onClick={this.onSeeMoreAnswersClick}
-          >
-            See more answers
-          </button>
-        ) : (
-          <button
-            style={{ margin: "10px 0" }}
-            onClick={this.onCollapseAnswersClick}
-          >
-            Collapse answers
-          </button>
-        )}
+        <AnswerList answersArray={tempAnswers}></AnswerList>
       </div>
     );
   }
