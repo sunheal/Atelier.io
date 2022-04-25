@@ -1,0 +1,146 @@
+/* ------ ProductCard ------ */
+
+.productCard {
+  min-width: 280px;
+  width: 280px;
+  height: 320px;
+  margin: 13px 8px;
+  border-style: groove;
+  cursor: pointer;
+  position: relative;
+
+}
+
+button.action-btn {
+  display: block;
+  z-index: 1;
+}
+
+.productCard button.action-btn::after {
+  position: absolute;
+  background: palegreen;
+}
+
+.productCard:hover {
+  /* height: 330px; */
+  box-shadow: 0 10px 20px 0 rgb(81, 79, 74);
+}
+
+.productInfo {
+  display: block;
+  height: auto;
+  margin-top: .75rem;
+  padding-left: 11%;
+}
+
+.previewImage-container {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  margin: 0 auto;
+  /* background-color: rgb(199, 198, 196); */
+}
+
+.previewImage {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.image-carousel-row {
+  z-index: 20;
+  top: 198px;
+  left: -5px;
+  opacity: 0;
+  position: absolute;
+  width: 278px;
+  height: 115px;
+  background-color: rgb(207, 177, 115);
+}
+
+.image-carousel-slide {
+  float: left;
+  width: 20%;
+  height: 70px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.image-carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  border: 0;
+  color: #eee;
+  cursor: pointer;
+}
+
+/* .productInfo-upper:hover .image-carousel-row {
+  opacity: 1;
+} */
+
+.carousel-button-left {
+  left: 0px;
+  z-index: 3;
+}
+
+.carousel-button-right {
+  right: 0px;
+  z-index: 3;
+}
+
+.productInfo-price {
+  display: flex;
+}
+
+.sale {
+  color: red;
+}
+
+.original {
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+
+
+/* ------ Action buttons ------ */
+.productInfo-upper {
+  position: relative;
+  width: 100%;
+}
+
+.action-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: gold;
+  font-size: 19px;
+  border: none;
+  background-color: transparent;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  color: rgba(255, 162, 0, 0.967);
+}
+
+.of {
+  color: rgb(31, 30, 30);
+}

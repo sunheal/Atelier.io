@@ -1,13 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard.jsx';
-
-// ONE outfit list per customer (should remain the same list regardless of which product detail page they are viewing)
-// the PRODUCTS in this list is unique to each user (should have local store)
-// BUTTON - the first card(on the left) is not a product card, should be a "+" icon AND "Add to Outfit" (always on the left as first)
-// defalut: contain no products
-// a product can only be added to an outfit ONCE
-// action Buttton 'X': remove the product from the Outfit list
+import './css/OutfitList.css';
 
 class OutfitList extends React.Component {
   constructor(props) {
@@ -28,7 +22,7 @@ class OutfitList extends React.Component {
 
   addOutfit() {
     var list = this.state.outfitList;
-    if (!this.state.addOutfit && !list.includes(this.props.productInfo.id.toString())) {
+    if (!list.includes(this.props.productInfo.id.toString())) {
       localStorage.setItem(this.props.productInfo.id, JSON.stringify(this.props.productInfo))
       list.unshift(this.props.productInfo.id.toString());
       this.setState({
@@ -82,7 +76,7 @@ class OutfitList extends React.Component {
   // }
 
   render() {
-    const { productID, productInfo, updateProduct } = this.props;
+    const { productID, productInfo, updateProductID } = this.props;
     const { addOutfit, outfitList, currentPosition, positionIndex, storageCount } = this.state;
     let outfits = [];
     outfitList.map(productID => {
@@ -103,12 +97,12 @@ class OutfitList extends React.Component {
           <div className="carousel-container">
             {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
             <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-              {outfitList.length === 0 ? <div>Add Your First Outfit</div> : null}
+              {outfitList.length === 0 ? <div className="add-outfit-message">Add Your First Outfit</div> : null}
               {outfits.map(productObj => (
-                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} updateProduct={updateProduct} />
+                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} updateProductID={updateProductID} />
               ))}
             </div>
-            {addOutfit.length > 4 && positionIndex < (addOutfit.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
+            {addOutfit.length > 3 && positionIndex < (addOutfit.length - 3) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
           </div>
         </div>
       </div>

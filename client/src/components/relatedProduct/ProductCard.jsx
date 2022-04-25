@@ -2,10 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PreviewImages from './ProductCard/PreviewImages.jsx';
 import Stars from '../Shared/Stars.jsx';
-
-// expect props.list is an array of objects
-// each card displays info for a single product
-// card itself are clickable, navigate to the detail page for that product
+import './css/ProductCard.css';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -78,9 +75,11 @@ class ProductCard extends React.Component {
   }
 
   handleClick(e) {
-    console.log('className? = ', e.target.className)
+    // console.log('className? = ', e.target.className)
     if (e.target.className === 'action-btn') {
       this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
+    } else if (e.target.className === 'action-btn of') {
+      return;
     } else {
       var id = this.props.productInfo.id;
       this.props.updateProductID(id);

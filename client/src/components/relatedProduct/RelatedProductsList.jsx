@@ -2,10 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard.jsx';
 import Modal from './Modal.jsx';
-
-// related products are same for every customer(display associated with the current product)
-// realted products list are the same each time load
-// action button - star icon => open modal window comparing the DETAILS of products (current page product vs selected product from the list)
+import './css/RelatedProductStyle.css';
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
@@ -23,7 +20,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 326;
+    var newPosition = this.state.currentPosition - 345;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -32,12 +29,19 @@ class RelatedProductsList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 326;
+    var newPosition = this.state.currentPosition + 345;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
       positionIndex: newIndex,
     });
+  }
+
+  resetPosition () {
+    this.setState({
+      currentPosition: 0,
+      positionIndex: 0
+    })
   }
 
   updateModal(currentProductInfo, relatedProductInfo) {
