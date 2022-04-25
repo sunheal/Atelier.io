@@ -1,14 +1,14 @@
 /* ------ ProductCard ------ */
 
 .productCard {
-  min-width: 280px;
-  width: 280px;
+  min-width: 283px;
+  /* width: 280px; */
   height: 320px;
   margin: 13px 8px;
   border-style: groove;
+  border-width: 3px;
   cursor: pointer;
   position: relative;
-
 }
 
 button.action-btn {

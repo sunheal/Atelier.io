@@ -20,7 +20,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 345;
+    var newPosition = this.state.currentPosition - 299;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -29,7 +29,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 345;
+    var newPosition = this.state.currentPosition + 299;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
