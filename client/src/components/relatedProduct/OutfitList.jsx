@@ -10,14 +10,12 @@ class OutfitList extends React.Component {
       addOutfit: false,
       outfitList: Object.keys(localStorage) || [], // save IDs
       currentPosition: 0,
-      positionIndex: 0,
-      storageCount: Object.keys(localStorage).length
+      positionIndex: 0
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
-    // this.updateStorageCount = this.updateStorageCount.bind(this);
   }
 
   addOutfit() {
@@ -49,7 +47,7 @@ class OutfitList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 326;
+    var newPosition = this.state.currentPosition - 300;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -58,7 +56,7 @@ class OutfitList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 326;
+    var newPosition = this.state.currentPosition + 300;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
@@ -66,18 +64,9 @@ class OutfitList extends React.Component {
     });
   }
 
-  // updateStorageCount() {
-  //   var newStorageCount = Object.keys(localStorage).length;
-  //   this.setState({
-  //     storageCount: newStorageCount,
-  //     currentPosition: 0,
-  //     positionIndex: 0,
-  //   });
-  // }
-
   render() {
     const { productID, productInfo, updateProductID } = this.props;
-    const { addOutfit, outfitList, currentPosition, positionIndex, storageCount } = this.state;
+    const { addOutfit, outfitList, currentPosition, positionIndex } = this.state;
     let outfits = [];
     outfitList.map(productID => {
       var productObj = JSON.parse(localStorage.getItem(productID));
@@ -102,7 +91,7 @@ class OutfitList extends React.Component {
                 <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} updateProductID={updateProductID} />
               ))}
             </div>
-            {addOutfit.length > 3 && positionIndex < (addOutfit.length - 3) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
+            {outfitList.length > 3 && positionIndex < (outfitList.length - 3) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
           </div>
         </div>
       </div>

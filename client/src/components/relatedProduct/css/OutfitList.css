@@ -5,7 +5,8 @@
   justify-content: center;
   align-items: center;
 }
-.add-outfit-message{
+
+.add-outfit-message {
   margin: 0px auto;
 }
 
@@ -18,6 +19,7 @@
   border-style: groove;
   text-align: center;
   display: grid;
+  border-width: 3px;
   align-items: center;
   cursor: pointer;
 }
@@ -28,4 +30,14 @@
 
 .plus-icon {
   font-size: 3rem;
+}
+
+#outfitList .left-handle {
+  left: 7px;
+  top: 13px;
+}
+
+#outfitList .right-handle {
+  right: 14px;
+  top: 13px;
 }
