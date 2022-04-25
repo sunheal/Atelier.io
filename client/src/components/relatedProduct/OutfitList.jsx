@@ -16,6 +16,7 @@ class OutfitList extends React.Component {
     this.removeOutfit = this.removeOutfit.bind(this);
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
+    // this.resetPosition = this.resetPosition.bind(this);
   }
 
   addOutfit() {
@@ -25,7 +26,9 @@ class OutfitList extends React.Component {
       list.unshift(this.props.productInfo.id.toString());
       this.setState({
         addOutfit: true,
-        outfitList: list
+        outfitList: list,
+        currentPosition: 0,
+        positionIndex: 0
       })
     } else {
       this.setState({
@@ -47,7 +50,7 @@ class OutfitList extends React.Component {
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 300;
+    var newPosition = this.state.currentPosition - 299;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -56,13 +59,21 @@ class OutfitList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 300;
+    var newPosition = this.state.currentPosition + 299;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
       positionIndex: newIndex,
     });
   }
+
+  // resetPosition() {
+  //   this.setState({
+  //     currentPosition: 0,
+  //     positionIndex: 0
+  //   })
+  // }
+
 
   render() {
     const { productID, productInfo, updateProductID } = this.props;

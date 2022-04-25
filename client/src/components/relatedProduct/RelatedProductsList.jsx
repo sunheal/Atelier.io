@@ -17,10 +17,11 @@ class RelatedProductsList extends React.Component {
     this.moveRight = this.moveRight.bind(this);
     this.updateModal = this.updateModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.resetPosition = this.resetPosition.bind(this);
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 299;
+    var newPosition = this.state.currentPosition - 300;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -29,7 +30,7 @@ class RelatedProductsList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 299;
+    var newPosition = this.state.currentPosition + 300;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
@@ -101,7 +102,7 @@ class RelatedProductsList extends React.Component {
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
           {/* <div className="carousel-slider"> */}
             {relatedProductsInfo.map(productObj => (
-              <ProductCard key={productObj.id} productInfo={productObj} productInfoOfCurrentPage={productInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProductID={updateProductID} />
+              <ProductCard key={productObj.id} productInfo={productObj} productInfoOfCurrentPage={productInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProductID={updateProductID} resetPosition={this.resetPosition} />
             ))}
           </div>
           {relatedProductsIDs.length > 4 && positionIndex < (relatedProductsIDs.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}

@@ -83,12 +83,13 @@ class ProductCard extends React.Component {
     } else {
       var id = this.props.productInfo.id;
       this.props.updateProductID(id);
+      this.props.resetPosition();
     }
   }
 
   render() {
     const { productRating, defaultStyle, productStyle } = this.state;
-    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProductID } = this.props;
+    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProductID, resetPosition } = this.props;
     return (
       <div className="productCard" id={productInfo.id} onClick={this.handleClick}>
         <div className="productInfo-upper">
