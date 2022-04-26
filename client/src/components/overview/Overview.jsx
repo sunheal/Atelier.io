@@ -49,9 +49,6 @@ class Overview extends React.Component {
       .catch((err) => {
         console.error('getProductRatings', err);
       })
-    // const reviewsCount = Number(this.props.meta?.ratings['1']) + Number(this.props.meta.ratings['2']) + Number(this.props.meta.ratings['3']) + Number(this.props.meta.ratings['4']) + Number(this.props.meta.ratings['5']);
-    // const ratings = ((Number(this.props.meta.ratings['1']) * 1 + Number(this.props.meta.ratings['2']) * 2 + Number(this.props.meta.ratings['3']) * 3 + Number(this.props.meta.ratings['4']) * 4 + Number(this.props.meta.ratings['5']) * 5) / reviewsCount).toFixed(1);
-    // this.setState({ ratings, reviewsCount });
   }
 
   onStyleClick = (e) => {
@@ -154,7 +151,7 @@ class Overview extends React.Component {
         </div>
         <div className="container1-2">
         <div className="container1-2-1">
-          <ProductInformation information={this.props.productInfo} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
+          <ProductInformation information={this.props.productInfo} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} selectedStyle={this.state.selectedStyle}/>
           <br></br>
           <br></br>
         </div>
