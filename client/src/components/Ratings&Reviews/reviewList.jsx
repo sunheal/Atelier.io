@@ -29,6 +29,7 @@ class ReviewList extends React.Component{
                 currentReview : this.props.reviews,
                 whatShowing: this.props.reviews.slice(0,2)
             })
+            // {elemnent: 'review breakdown', widget:'Rating and Reviews', Date}
         }
     }
 

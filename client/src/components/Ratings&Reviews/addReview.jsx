@@ -166,10 +166,12 @@ class AddReview extends React.Component {
         // toSend.product_id = this.props.id;
         // console.log(toSend, 'send to post review');
        if(this.verify(toSend)) {
+           console.log(this.verify(toSend),'yesss')
            axios
                .post("/reviews", toSend)
                .then((res) => console.log("successed", res))
                .catch((err) => console.log(err));
+                this.props.onShowModal();
        }else {
            window.alert('no')
        };

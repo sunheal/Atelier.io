@@ -2,10 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PreviewImages from './ProductCard/PreviewImages.jsx';
 import Stars from '../Shared/Stars.jsx';
-
-// expect props.list is an array of objects
-// each card displays info for a single product
-// card itself are clickable, navigate to the detail page for that product
+import './css/ProductCard.css';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -22,28 +19,13 @@ class ProductCard extends React.Component {
       },
       productRating: null
     };
-    this.handleModalClick = this.handleModalClick.bind(this);
-    this.handleProductCard = this.handleProductCard.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.getProductStyle();
     this.getProductRatings();
-    // this.getProductStyleAndRatings();
   }
-
-  // getProductStyleAndRatings() {
-  //   axios.get(`/products/${this.props.productInfo.id}/styles`)
-  //   .then(response => {
-  //     var results = response.data.results;
-  //     console.log('styles results',results)
-  //     return axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
-  //   })
-  //   .then(response => {
-  //     var ratings = response.data.ratings;
-  //     console.log('ratings', ratings)
-  //   })
-  // }
 
   getProductStyle() {
     axios.get(`/products/${this.props.productInfo.id}/styles`)
@@ -92,24 +74,27 @@ class ProductCard extends React.Component {
       })
   }
 
-  handleModalClick(e) {
-    this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
-  }
-
-  handleProductCard(e) {
-    var id = this.props.productInfo.id;
-    console.log('clicked product = ', this.props.productInfo)
-    // this.props.updateProduct(id);
+  handleClick(e) {
+    if (e.target.className === 'action-btn') {
+      this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
+    } else if (e.target.className === 'action-btn of') {
+      this.props.resetPosition();
+      return;
+    } else {
+      var id = this.props.productInfo.id;
+      this.props.updateProductID(id);
+      this.props.resetPosition();
+    }
   }
 
   render() {
-    const { productRating, defaultStyle, productStyle} = this.state;
-    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProduct } = this.props;
+    const { productRating, defaultStyle, productStyle } = this.state;
+    const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProductID, resetPosition } = this.props;
     return (
-      <div className="productCard" id={productInfo.id} onClick={this.handleProductCard}>
+      <div className="productCard" onClick={this.handleClick}>
         <div className="productInfo-upper">
-          {action === 'relatedProducts' ? <button className="action-btn" onClick={this.handleModalClick}>{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
-          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id}/>
+          {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
+          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id} />
         </div>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>

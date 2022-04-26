@@ -1,0 +1,43 @@
+/* ------ Outfit List ------ */
+.outfit-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-outfit-message {
+  margin: 0px auto;
+}
+
+.add-outfit-card {
+  min-width: 280px;
+  width: 280px;
+  height: 320px;
+  margin: 13px 8px;
+  padding: .25rem;
+  border-style: groove;
+  text-align: center;
+  display: grid;
+  border-width: 3px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-outfit-card:hover {
+  box-shadow: 0 10px 20px 0 rgb(81, 79, 74);
+}
+
+.plus-icon {
+  font-size: 3rem;
+}
+
+#outfitList .left-handle {
+  left: 8px;
+  top: 13px;
+}
+
+#outfitList .right-handle {
+  right: 16px;
+  top: 13px;
+}

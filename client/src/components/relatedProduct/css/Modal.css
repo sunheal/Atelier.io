@@ -1,0 +1,56 @@
+/* ------ Modal ------ */
+table {
+  background-color: white;
+  padding: 20px 20px;
+}
+
+caption {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 15px;
+  background: white;
+}
+
+thead{
+  position: sticky  ;
+}
+
+thead th {
+  border-bottom: solid;
+  color: #333;
+  padding: 0px 10px 5px;
+}
+
+tbody td {
+  padding: 5px 0px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.characteristics {
+  padding: 0px 20px;
+}
+
+#modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.comparision {
+  position: relative;
+}
