@@ -100,7 +100,6 @@ class RelatedProductsList extends React.Component {
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-          {/* <div className="carousel-slider"> */}
             {relatedProductsInfo.map(productObj => (
               <ProductCard key={productObj.id} productInfo={productObj} productInfoOfCurrentPage={productInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProductID={updateProductID} resetPosition={this.resetPosition} />
             ))}
