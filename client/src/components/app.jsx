@@ -11,11 +11,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-<<<<<<< HEAD
-            productID: 64622,
-=======
             productID: 64628,
->>>>>>> 4ff6f1ea42f795c696face24ded3dcdae9d2c277
             productInfo: {},
             productStyle: {},
             relatedProductsIDs: null,
