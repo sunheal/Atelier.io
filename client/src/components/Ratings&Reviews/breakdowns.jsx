@@ -7,15 +7,28 @@ import "../Ratings&Reviews/rr.css";
       constructor(props) {
         super(props);
         this.state = {
-            totalRating: 0,
+            num: 0,
+            nums: []
         }
         this.onFilterChange = this.onFilterChange.bind(this);
     }
     onFilterChange(event) {
         let temp = event.target[Object.keys(event.target)[1]]
         console.log(Object.keys(temp)[6], 'coming from barchart to change reviews filter')
-        console.log(temp.value)
-        this.props.filter(temp.value);
+        if(this.state.nums.includes(temp.value)){
+            return ;
+        }else {
+            this.setState({
+                nums : this.state.nums.concat(temp.value),
+                num: temp.value
+            },
+            ()=> {   
+                console.log(temp.value);
+                this.props.filter(this.state.num) 
+            }
+            )
+        };
+       
     }
 
 
