@@ -2,10 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard.jsx';
 import Modal from './Modal.jsx';
-
-// related products are same for every customer(display associated with the current product)
-// realted products list are the same each time load
-// action button - star icon => open modal window comparing the DETAILS of products (current page product vs selected product from the list)
+import './css/RelatedProductStyle.css';
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
@@ -20,10 +17,11 @@ class RelatedProductsList extends React.Component {
     this.moveRight = this.moveRight.bind(this);
     this.updateModal = this.updateModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.resetPosition = this.resetPosition.bind(this);
   }
 
   moveRight() {
-    var newPosition = this.state.currentPosition - 326;
+    var newPosition = this.state.currentPosition - 300;
     var newIndex = this.state.positionIndex + 1;
     this.setState({
       currentPosition: newPosition,
@@ -32,12 +30,19 @@ class RelatedProductsList extends React.Component {
   }
 
   moveLeft() {
-    var newPosition = this.state.currentPosition + 326;
+    var newPosition = this.state.currentPosition + 300;
     var newIndex = this.state.positionIndex - 1;
     this.setState({
       currentPosition: newPosition,
       positionIndex: newIndex,
     });
+  }
+
+  resetPosition () {
+    this.setState({
+      currentPosition: 0,
+      positionIndex: 0
+    })
   }
 
   updateModal(currentProductInfo, relatedProductInfo) {
@@ -55,7 +60,7 @@ class RelatedProductsList extends React.Component {
 
   render() {
     const { showModal, comparisionArray, currentPosition, positionIndex } = this.state;
-    const { relatedProductsIDs, relatedProductsInfo, productID, selectedProductInfo, updateProduct } = this.props;
+    const { relatedProductsIDs, relatedProductsInfo, productID, productInfo, updateProductID } = this.props;
 
     if (!relatedProductsIDs) {
       return (
@@ -95,8 +100,9 @@ class RelatedProductsList extends React.Component {
         <div className="carousel-container">
           {positionIndex === 0 ? null : <button className="handles left-handle" onClick={this.moveLeft} >&#8249;</button>}
           <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
-            {relatedProductsInfo.map(productInfo => (
-              <ProductCard key={productInfo.id} productInfo={productInfo} productInfoOfCurrentPage={selectedProductInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProduct={updateProduct} />
+          {/* <div className="carousel-slider"> */}
+            {relatedProductsInfo.map(productObj => (
+              <ProductCard key={productObj.id} productInfo={productObj} productInfoOfCurrentPage={productInfo} action={'relatedProducts'} updateModal={this.updateModal} updateProductID={updateProductID} resetPosition={this.resetPosition} />
             ))}
           </div>
           {relatedProductsIDs.length > 4 && positionIndex < (relatedProductsIDs.length - 4) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}
