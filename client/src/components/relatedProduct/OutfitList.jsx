@@ -16,7 +16,7 @@ class OutfitList extends React.Component {
     this.removeOutfit = this.removeOutfit.bind(this);
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
-    // this.resetPosition = this.resetPosition.bind(this);
+    this.resetPosition = this.resetPosition.bind(this);
   }
 
   addOutfit() {
@@ -67,12 +67,12 @@ class OutfitList extends React.Component {
     });
   }
 
-  // resetPosition() {
-  //   this.setState({
-  //     currentPosition: 0,
-  //     positionIndex: 0
-  //   })
-  // }
+  resetPosition() {
+    this.setState({
+      currentPosition: 0,
+      positionIndex: 0
+    })
+  }
 
 
   render() {
@@ -99,7 +99,7 @@ class OutfitList extends React.Component {
             <div className="carousel-slider" style={{ transform: `translateX(${currentPosition}px)` }}>
               {outfitList.length === 0 ? <div className="add-outfit-message">Add Your First Outfit</div> : null}
               {outfits.map(productObj => (
-                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} updateProductID={updateProductID} />
+                <ProductCard key={productObj.id} productID={productObj.id} productInfo={productObj} removeOutfit={this.removeOutfit} updateProductID={updateProductID} resetPosition={this.resetPosition} />
               ))}
             </div>
             {outfitList.length > 3 && positionIndex < (outfitList.length - 3) ? <button className="handles right-handle" onClick={this.moveRight} >&#x203A;</button> : null}

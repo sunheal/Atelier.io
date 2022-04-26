@@ -68,7 +68,7 @@ class App extends React.Component {
     }
 
     updateProductID(id) {
-        console.log('pass in here = ', id)
+        console.log('update product id = ', id)
         this.setState({
             productID: id
         }, () => {

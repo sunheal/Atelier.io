@@ -91,9 +91,10 @@ button.action-btn {
   cursor: pointer;
 }
 
-/* .productInfo-upper:hover .image-carousel-row {
+.productInfo-upper:hover .image-carousel-row {
   opacity: 1;
-} */
+  z-index: 15;
+}
 
 .carousel-button-left {
   left: 0px;
