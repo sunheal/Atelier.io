@@ -100,7 +100,7 @@ class App extends React.Component {
         const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
         return (
             <div className="app" >
-                <p id="logo"> Good Deals Only </p>
+                <h1 id="logo"> Good Deals Only </h1>
                 <Navbar />
                 <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
                 <RelatedProducts
