@@ -1,6 +1,6 @@
 import React from 'react';
 import StarsOW from '../Shared/StarsOW.jsx'
-import './ProductInformation.css';
+import '../overview/ProductInformation.css';
 
 const ProductInformation = (props) => {
   return (
