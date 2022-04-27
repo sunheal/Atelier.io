@@ -17,7 +17,7 @@ const ProductInformation = (props) => {
       {!props.selectedStyle?.sale_price
         ? <div className='product-price'>$ {props.information.default_price}</div>
         : <div>
-            <div className='product-price' style={{'text-decoration': 'line-through'}}>$ {props.information.default_price}</div>
+            <div className='product-price' style={{'textDecoration': 'line-through'}}>$ {props.information.default_price}</div>
             <div className='sale-price'>$ {props.selectedStyle?.sale_price}</div>
           </div>}
       <br></br>

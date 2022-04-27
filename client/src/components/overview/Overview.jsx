@@ -20,7 +20,8 @@ class Overview extends React.Component {
       reviewsCount: '',
       slideIndex: 0,
       thumbnailPos: 0,
-      thumbnailIndex: 0
+      thumbnailIndex: 0,
+      galleryExpanded: false
     }
   }
 
@@ -143,11 +144,23 @@ class Overview extends React.Component {
     let thumbnailIndex = this.state.thumbnailIndex + 1;
     this.setState({thumbnailPos, thumbnailIndex});
   }
+
+  toggleGalleryExpand = (e) => {
+    let galleryExpanded = this.state.galleryExpanded;
+    this.setState({galleryExpanded: !galleryExpanded});
+  }
+
+  toggleZoom = (e) => {
+    const expandedImage = document.getElementsByClassName('expanded-image');
+    const slideIndex = this.state.slideIndex;
+    expandedImage[slideIndex].classList.toggle('zoomed');
+  }
+
   render() {
     return (
       <div id="overview" className="container1">
         <div className="container1-1">
-          <ImageGallery productStyle={this.props.productStyle} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} />
+          <ImageGallery productStyle={this.props.productStyle} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} galleryExpanded={this.state.galleryExpanded} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} toggleGalleryExpand={this.toggleGalleryExpand} toggleZoom={this.toggleZoom} />
         </div>
         <div className="container1-2">
         <div className="container1-2-1">
