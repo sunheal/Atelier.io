@@ -1,5 +1,6 @@
 import React from 'react';
 
+// future enhancement
 const PreviewImagesCarousel = (props) => {
   return (
     <div className="image-carousel-row">
