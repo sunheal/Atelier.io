@@ -4,72 +4,98 @@ import ReactCoreImageUpload from "react-core-image-upload";
 import Window from "../Q&A/window.jsx";
 import "../Q&A/window.css";
 const config = require("../../../../config.js");
-import {addQuestion, submitUserAction} from "../../service/index.js";
-
+import { addQuestion, submitUserAction } from "../../service/index.js";
+import { sendAction } from "../../utils/tracker.js";
 
 class QandA extends Component {
   constructor(props) {
     super(props);
+    console.log(props.productID, '============')
     this.state = {
       product_id: props.productID,
       questionForm: false,
       form: {
-        body:"",
-        name:"",
-        email:"",
-        product_id: props.productID
+        body: "",
+        name: "",
+        email: "",
+        product_id: props.productID,
       },
     };
+  }
+
+static getDerivedStateFromProps(props, state){
+    return {
+      product_id:props.productID
+    }
   }
 
   ask = () => {
     this.setState({
       questionForm: true,
     });
-    submitUserAction({element:'ask a question button', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
+
+    sendAction({
+      element: "ask a question button",
+      widget: "QandA_app/Q&A",
+    });
   };
 
   onClick = () => {
     this.setState({
       questionForm: false,
     });
-    submitUserAction({element:'X close window', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
+    submitUserAction({
+      element: "X close window",
+      widget: "QandA_app/Q&A",
+      time: new Date().toLocaleString(),
+    });
   };
 
   inputChange = (e, type) => {
-    const {form} = this.state;
+    const { form } = this.state;
     form[type] = e.target.value;
     this.setState({
-      form
+      form,
     });
-    submitUserAction({element:'filling question form', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
+
+    submitUserAction({
+      element: "filling question form",
+      widget: "QandA_app/Q&A",
+    });
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    let {form, question} = this.state;
-    console.log(form)
+    let { form, question } = this.state;
+    console.log(form);
     addQuestion(form).then((res) => {
-      console.log(res)
-      if(res.status === 201) {
+      console.log(res);
+      if (res.status === 201) {
         this.setState({
-          questionForm: false
+          questionForm: false,
         });
       }
-    })
-    submitUserAction({element:'question submit button', widget:'QandA_app/Q&A', time: new Date().toLocaleString()})
-  }
+    });
+    submitUserAction({
+      element: "question submit button",
+      widget: "QandA_app/Q&A",
+      time: new Date().toLocaleString(),
+    });
+  };
 
   render() {
     return (
-      <div id="QandA" style={{ minWidth: "1200px", margin: "0 auto" }}>
+      <div
+        id="QandA"
+        style={{ minWidth: "1200px", margin: "0 auto" }}
+      >
         <div className="QA_line">
           <h2 className="left">Questions & Answers</h2>
           <button className="right" onClick={() => this.ask()}>
             Ask a Question
           </button>
         </div>
-        <QuestionsList product_id = {this.state.product_id} />
+        <QuestionsList product_id={this.state.product_id} />
 
         {this.state.questionForm && (
           <Window onClick={this.onClick}>
@@ -83,11 +109,10 @@ class QandA extends Component {
                     type="text"
                     required
                     value={this.state.form.body}
-                    onChange={(e)=> this.inputChange(e, "body")}
+                    onChange={(e) => this.inputChange(e, "body")}
                     name="body"
                   ></textarea>
                   <br></br>
-
 
                   <label className="form">Nickname:</label>
                   <input
@@ -107,7 +132,7 @@ class QandA extends Component {
                     placeholder="Email"
                     required
                     value={this.state.form.email}
-                    onChange={(e)=> this.inputChange(e, "email")}
+                    onChange={(e) => this.inputChange(e, "email")}
                     name="email"
                   ></input>
                   <br></br>
