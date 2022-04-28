@@ -12,8 +12,9 @@ class RR_app extends React.Component {
         this.state = {
             rating: 0,
             count: 0,
-            ratings: 0,
-            recommend: 0,
+            ratings: {},
+            recommended: this.props.meta.recommended,
+            recommend:0,
             filtering: [],
             reviews: this.props.reviews
         }
@@ -23,9 +24,23 @@ class RR_app extends React.Component {
         this.getRating();
     }
 
+    componentDidUpdate(prevProps) {
+       if(this.props.reviews !== prevProps.reviews) {
+           this.setState({
+                reviews : this.props.reviews
+           })
+       }
+       if(this.props.meta !== prevProps.meta) {
+           this.setState({
+               ratings : this.props.meta.ratings,
+               recommended: this.props.meta.recommended
+           },()=> this.getRating())
+       }
+    }
+
     getRating() {
-        let resObj = this.props.meta.ratings;
-        let recObj = this.props.meta.recommended;
+        let resObj = this.state.ratings;
+        let recObj = this.state.recommended;
         // console.log(resObj, recObj, 'afafafaegg4g4')
         if(Object.keys(recObj).length === 0) {
             this.setState({
@@ -64,11 +79,9 @@ class RR_app extends React.Component {
         if(this.state.reviews === this.props.reviews) {
             temp = [];
         }else {
-            // console.log('hhfeh')
             temp = this.state.reviews.slice();
         }
         filtered = this.props.reviews.filter(review => review.rating === num);
-        // console.log(filtered, temp, ' otttttt')
         temp= temp.concat(filtered);
         // console.log(temp, 'after it ')
         this.setState({
@@ -85,7 +98,7 @@ class RR_app extends React.Component {
                 <h1 id='RR_app'>Ratings &amp; Reviews</h1>
                 <div className="leftOfRR">
                 {Object.keys(this.props.meta).length !== 0 ? <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > : null}
-                {Object.keys(this.props.meta).length !== 0 ? <BarChart ratings={this.state.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta} filter={this.filter}/> : null}
+                {Object.keys(this.props.meta).length !== 0 ? <BarChart ratings={this.props.meta.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta} filter={this.filter}/> : null}
                 </div>
                 <div className="rightOfRR">
                 {Object.keys(this.state.reviews).length === 0 ? null : <ReviewList id={this.props.id} reviews={this.state.reviews} />}

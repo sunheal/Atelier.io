@@ -78,14 +78,16 @@ class App extends React.Component {
 
     render() {
         const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, recommend, rating, ratings, count } = this.state;
+        {console.log(meta, reviews,'meta')};
         return (
             <div className="app" >
-                <p id="logo"> Good Deals Only </p>
+                <p data-testid="header" id="logo"> Good Deals Only </p>
                 <Navbar />
                 <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
                 <RelatedProducts productID={productID} productInfo={productInfo}  productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProductID={this.updateProductID} />
                 <QandA productID={this.state.productID} />
-                {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
+                {Object.keys(meta).length === 0 || Object.keys(reviews).length === 0? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
+                {/* <RR_app id={productID} meta={meta} reviews={reviews.results} /> */}
             </div>
         )
     }
