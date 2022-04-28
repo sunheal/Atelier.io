@@ -2,7 +2,6 @@ import React from "react";
 import Stars from "../Shared/Stars.jsx";
 import HelpfulAndReport from "./Helpful&Report.jsx";
 import "../Ratings&Reviews/rr.css";
-import Window from "../Q&A/window.jsx";
 
 
 const ReviewListView = ({ reviews }) => {
