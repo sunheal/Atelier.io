@@ -11,6 +11,7 @@
 
 .question {
   height:36px;
+  width: 100%;
 }
 
 #answerForm label{
@@ -69,4 +70,9 @@
   margin-right: 6px;
   color: black;
   cursor: pointer;
+}
+
+.question .right .right_item:last-child {
+  padding-right: 0;
+  margin-right: 0;
 }

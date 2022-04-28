@@ -1,8 +1,8 @@
 import React from "react";
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, cleanup, screen, waitFor } from '@testing-library/react';
 import RelatedProducts from './RelatedProducts.jsx';
-
+afterEach(cleanup);
 describe('RelatedProducts', () => {
   it('should have "RELATED PRODUCTS" and "YOUR OUTFIT" title', () => {
     const productInfo = {

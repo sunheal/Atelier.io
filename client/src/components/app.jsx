@@ -80,7 +80,7 @@ class App extends React.Component {
         const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, recommend, rating, ratings, count } = this.state;
         return (
             <div className="app" >
-                <p id="logo"> Good Deals Only </p>
+                <p data-testid="header" id="logo"> Good Deals Only </p>
                 <Navbar />
                 <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
                 <RelatedProducts productID={productID} productInfo={productInfo}  productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProductID={this.updateProductID} />
