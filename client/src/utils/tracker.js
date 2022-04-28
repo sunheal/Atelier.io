@@ -22,6 +22,7 @@ tracker.on("*", (event, eventHistory) => {
 //     data,
 //   });
 // };
+
 export const sendAction = (data) => {
   tracker.trackEvent({
     type: "any",
