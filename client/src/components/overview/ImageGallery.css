@@ -15,13 +15,38 @@ body {
   margin-right: auto;
   max-height: 600px;
 }
+
+.expanded-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+}
+
+.expanded-image:hover {
+  cursor: zoom-in;
+}
+
+.zoomed {
+  transform: scale(2.5);
+  cursor: move;
+}
+
+.zoomed:hover {
+  cursor: zoom-out;
+}
+
 .slideshow-container {
-  /* max-width: 500px; */
   width: 800px;
   height: 600px;
   position: relative;
   margin: auto;
   overflow: hidden;
+}
+
+.expanded-container {
+  width: 1200px;
+  z-index: 10;
 }
 
  /* Next & previous buttons */
@@ -54,6 +79,13 @@ body {
 .prev:hover,
 .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.expand {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
 }
 
 .thumbnail-container {
@@ -159,7 +191,7 @@ body {
 }
 @-webkit-keyframes fade {
   from {
-    opacity: .4
+    opacity: 0.4
   }
   to {
     opacity: 1
@@ -167,7 +199,7 @@ body {
 }
 @keyframes fade {
   from {
-    opacity: .4
+    opacity: 0.4
   }
   to {
     opacity: 1

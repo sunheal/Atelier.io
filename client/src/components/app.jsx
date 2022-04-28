@@ -11,7 +11,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64628,
+            productID: 64622,
             productInfo: {},
             productStyle: {},
             relatedProductsIDs: null,
@@ -77,8 +77,7 @@ class App extends React.Component {
     }
 
     render() {
-        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, recommend, rating, ratings, count } = this.state;
-        {console.log(meta, reviews,'meta')};
+        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews} = this.state;
         return (
             <div className="app" >
                 <p data-testid="header" id="logo"> Good Deals Only </p>

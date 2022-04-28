@@ -8,10 +8,6 @@
   gap: 5px;
 }
 
-/* .stars-div {
-  vertical-align: bottom;
-} */
-
 .reviews-div {
   align-self: flex-end;
 }
@@ -29,4 +25,9 @@
 .product-price {
   font-size: 20px;
   color: gray;
+}
+
+.sale-price {
+  font-size: 20px;
+  color: red;
 }
