@@ -13,27 +13,32 @@ const ImageGallery = (props) => {
     }
   }
 
-  
   return (
-    <div className="slideshow-container">
+    // <div className="slideshow-container">
+    <div className={`slideshow-container ${props.galleryExpanded ? 'expanded-container' : null}`}>
       {!displayStyle?.photos
         ? <div>loading...</div>
         : displayStyle.photos.map((photoObj, index) => {
             return (
-              <div className="mySlides fade" key={index}>
-              <img className="styleImage" src={photoObj.url}   ></img>
+              // <div className="mySlides fade" key={index}>
+              <div className={`mySlides ${props.galleryExpanded ? null : 'fade'}`} key={index}>
+              <img className={`styleImage ${props.galleryExpanded ? 'expanded-image' : null}`} onClick={props.galleryExpanded ? props.toggleZoom : null} onMouseOver={props.zoomed ? props.followMousePosition : null} src={photoObj.url} ></img>
               </div>
             );
           })
       }
-      <a className="prev" onClick={props.onPrevClick} >&#10094;</a>
-      <a className="next" onClick={props.onNextClick} >&#10095;</a>
+      {props.zoomed
+        ? null
+        : <>
+          <a className="prev" onClick={props.onPrevClick} >&#10094;</a>
+          <a className="next" onClick={props.onNextClick} >&#10095;</a>
 
+          <a className="expand" onClick={props.toggleGalleryExpand}>&#8633;</a>
+          </>}
       {!displayStyle?.photos
         ? <div>loading...</div>
         : <div className="thumbnail-container">
             {props.thumbnailIndex === 0? null : <a className="up" onClick={props.onUpClick}> &#65087;</a>}
-            {/* <a className="up" onClick={props.onUpClick}>&#65087;</a> */}
               <div className="thumbnail-sliderbar" >
                 {!displayStyle?.photos
                     ? <div>loading...</div>
