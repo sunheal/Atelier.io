@@ -1,5 +1,6 @@
 import React from 'react';
 import "../Ratings&Reviews/rr.css";
+import { useState, useEffect } from 'react';
 
 
 const Stars = (props) => {

@@ -2,7 +2,6 @@ import React from "react";
 import Stars from "../Shared/Stars.jsx";
 import HelpfulAndReport from "./Helpful&Report.jsx";
 import "../Ratings&Reviews/rr.css";
-import Window from "../Q&A/window.jsx";
 
 
 const ReviewListView = ({ reviews }) => {
@@ -12,7 +11,7 @@ const ReviewListView = ({ reviews }) => {
                 return (
                     <div className="individualReview_container" key={index}>
                         <div className="starContainer" >
-                            <div className="indiStar"> <Stars rating={review.rating} /> </div>
+                            <div className="indiStar"> {review.rating ? <Stars rating={review.rating} /> : null } </div> 
                             <div className="userAndPostdate"> {review.reviewer_name}, {review.date.slice(0, 10)}</div>
                             <div className="spaceBetweenRev" > </div>
                         </div>
