@@ -162,7 +162,7 @@ class Overview extends React.Component {
 
   followMousePosition = (e) => {
     const zoomedImage = document.getElementsByClassName('zoomed');
-    console.log(e);
+    console.log(e.offsetX);
     zoomedImage[0].addEventListener('mousemove', (e) => {
       zoomedImage[0].style.backgroundPositionX = -e.offsetX + 'px';
       zoomedImage[0].style.backgroundPositionY = -e.offsetY + 'px';
