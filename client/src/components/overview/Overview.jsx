@@ -131,8 +131,11 @@ class Overview extends React.Component {
 
   onThumbnailClick = (e) => {
     const slideIndex = e.target.id;
+    const zoomed = this.state.zoomed;
     this.setState({slideIndex});
-    this.setState({zoomed: false});
+    if (zoomed) {
+      this.removeZoom();
+    }
   }
 
   onUpClick = (e) => {
@@ -160,13 +163,18 @@ class Overview extends React.Component {
     this.setState({zoomed: !zoomed});
   }
 
+  removeZoom = () => {
+    const zoomedImage = document.querySelector('.zoomed');
+    zoomedImage.classList.remove('zoomed');
+    this.setState({zoomed: false});
+  }
+
   followMousePosition = (e) => {
-    const zoomedImage = document.getElementsByClassName('zoomed');
-    console.log(e.offsetX);
-    zoomedImage[0].addEventListener('mousemove', (e) => {
-      zoomedImage[0].style.backgroundPositionX = -e.offsetX + 'px';
-      zoomedImage[0].style.backgroundPositionY = -e.offsetY + 'px';
-    });
+    const expandedContainer = document.querySelector('.myslide');
+    const zoomedImage = document.querySelector('.zoomed');
+    // console.log(e.nativeEvent);
+    zoomedImage.style.left = e.nativeEvent.offsetX / 1200 * 100 + '%';
+    zoomedImage.style.top = e.nativeEvent.offsetY / 600 * 100 + '%';
   }
 
   render() {
