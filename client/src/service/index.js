@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3111";
+const baseUrl = "http://204.236.166.55:3111/";
 
 export const getQAList = (product_id) => {
   const url = `${baseUrl}/qa/questions?product_id=${product_id}`;
