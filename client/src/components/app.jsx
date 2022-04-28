@@ -11,7 +11,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64628,
+            productID: 64622,
             productInfo: {},
             productStyle: {},
             relatedProductsIDs: null,
@@ -115,7 +115,8 @@ class App extends React.Component {
                     addOutfit={this.addOutfit}
                 />
                 <QandA productID={this.state.productID} />
-                {Object.keys(meta).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
+                {Object.keys(meta).length === 0 || Object.keys(reviews).length === 0? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
+                {/* <RR_app id={productID} meta={meta} reviews={reviews.results} /> */}
             </div>
         )
     }

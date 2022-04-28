@@ -20,7 +20,9 @@ class Overview extends React.Component {
       reviewsCount: '',
       slideIndex: 0,
       thumbnailPos: 0,
-      thumbnailIndex: 0
+      thumbnailIndex: 0,
+      galleryExpanded: false,
+      zoomed: false
     }
   }
 
@@ -49,9 +51,6 @@ class Overview extends React.Component {
       .catch((err) => {
         console.error('getProductRatings', err);
       })
-    // const reviewsCount = Number(this.props.meta?.ratings['1']) + Number(this.props.meta.ratings['2']) + Number(this.props.meta.ratings['3']) + Number(this.props.meta.ratings['4']) + Number(this.props.meta.ratings['5']);
-    // const ratings = ((Number(this.props.meta.ratings['1']) * 1 + Number(this.props.meta.ratings['2']) * 2 + Number(this.props.meta.ratings['3']) * 3 + Number(this.props.meta.ratings['4']) * 4 + Number(this.props.meta.ratings['5']) * 5) / reviewsCount).toFixed(1);
-    // this.setState({ ratings, reviewsCount });
   }
 
   onStyleClick = (e) => {
@@ -133,6 +132,7 @@ class Overview extends React.Component {
   onThumbnailClick = (e) => {
     const slideIndex = e.target.id;
     this.setState({slideIndex});
+    this.setState({zoomed: false});
   }
 
   onUpClick = (e) => {
@@ -146,15 +146,38 @@ class Overview extends React.Component {
     let thumbnailIndex = this.state.thumbnailIndex + 1;
     this.setState({thumbnailPos, thumbnailIndex});
   }
+
+  toggleGalleryExpand = (e) => {
+    let galleryExpanded = this.state.galleryExpanded;
+    this.setState({galleryExpanded: !galleryExpanded});
+  }
+
+  toggleZoom = (e) => {
+    const zoomed = this.state.zoomed;
+    const expandedImage = document.getElementsByClassName('expanded-image');
+    const slideIndex = this.state.slideIndex;
+    expandedImage[slideIndex].classList.toggle('zoomed');
+    this.setState({zoomed: !zoomed});
+  }
+
+  followMousePosition = (e) => {
+    const zoomedImage = document.getElementsByClassName('zoomed');
+    console.log(e);
+    zoomedImage[0].addEventListener('mousemove', (e) => {
+      zoomedImage[0].style.backgroundPositionX = -e.offsetX + 'px';
+      zoomedImage[0].style.backgroundPositionY = -e.offsetY + 'px';
+    });
+  }
+
   render() {
     return (
       <div id="overview" className="container1">
         <div className="container1-1">
-          <ImageGallery productStyle={this.props.productStyle} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} />
+          <ImageGallery productStyle={this.props.productStyle} selectedStyle={this.state.selectedStyle} thumbnailIndex={this.state.thumbnailIndex} thumbnailPos={this.state.thumbnailPos} galleryExpanded={this.state.galleryExpanded} zoomed={this.state.zoomed} onPrevClick={this.onPrevClick} onNextClick={this.onNextClick} onThumbnailClick={this.onThumbnailClick} onUpClick={this.onUpClick} onDownClick={this.onDownClick} toggleGalleryExpand={this.toggleGalleryExpand} toggleZoom={this.toggleZoom} followMousePosition={this.followMousePosition} />
         </div>
         <div className="container1-2">
         <div className="container1-2-1">
-          <ProductInformation information={this.props.productInfo} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} />
+          <ProductInformation information={this.props.productInfo} ratings={this.state.ratings} reviewsCount={this.state.reviewsCount} selectedStyle={this.state.selectedStyle}/>
           <br></br>
           <br></br>
         </div>

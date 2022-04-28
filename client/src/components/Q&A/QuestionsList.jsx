@@ -23,16 +23,24 @@ class QuestionsList extends Component {
   }
 
   componentDidMount() {
-    getQAList(this.props.product_id).then((res) => {
-      // console.log(res.data, '+++++++++++++++++++++++')
+
+  }
+
+  _getQAList(product_id) {
+    getQAList(product_id).then((res) => {
       const tempData = res.data.results.filter((item) => !item.reported);
-      // console.log(tempData)
       this.setState({
         questions: res.data,
         id: res.data.product_id,
         currentQuestions: res.data.results.slice(0, 2),
       });
     });
+  }
+
+  componentDidUpdate(){
+    if(this.props.product_id != this.state.questions.product_id){
+      this._getQAList(this.props.product_id)
+    }
   }
 
   showQuestionStatus = () => {

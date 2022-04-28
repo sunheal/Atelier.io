@@ -1,9 +1,9 @@
 import React from "react";
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, cleanup, screen, waitFor } from '@testing-library/react';
 import ProductInformation from './ProductInformation.jsx';
 import regeneratorRuntime from "regenerator-runtime";
-
+afterEach(cleanup);
 
 describe('ProductInformation', () => {
   it('should have "ProductInformation" Title', () => {
