@@ -3,6 +3,7 @@ import axios from 'axios';
 import PreviewImages from './ProductCard/PreviewImages.jsx';
 import Stars from '../Shared/Stars.jsx';
 import './css/ProductCard.css';
+import { sendAction } from '../../utils/tracker.js';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -77,13 +78,25 @@ class ProductCard extends React.Component {
   handleClick(e) {
     if (e.target.className === 'action-btn') {
       this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
+      sendAction({
+        element: "Star button compare products",
+        widget: "Related Products"
+      })
     } else if (e.target.className === 'action-btn of') {
       this.props.resetPosition();
+      sendAction({
+        element: "X button remove outfit",
+        widget: "Related Products"
+      })
       return;
     } else {
       var id = this.props.productInfo.id;
       this.props.updateProductID(id);
       this.props.resetPosition();
+      sendAction({
+        element: "Product card div view product detail",
+        widget: "Related Products"
+      })
     }
   }
 
