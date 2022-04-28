@@ -37,7 +37,6 @@ static getDerivedStateFromProps(props, state){
     sendAction({
       element: "ask a question button",
       widget: "QandA_app/Q&A",
-      time: new Date().toLocaleString(),
     });
   };
 
@@ -48,6 +47,7 @@ static getDerivedStateFromProps(props, state){
     submitUserAction({
       element: "X close window",
       widget: "QandA_app/Q&A",
+      time: new Date().toLocaleString(),
     });
   };
 
