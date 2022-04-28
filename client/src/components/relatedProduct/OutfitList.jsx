@@ -7,8 +7,6 @@ class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addOutfit: false,
-      outfitList: Object.keys(localStorage) || [], // save IDs
       currentPosition: 0,
       positionIndex: 0
     };
@@ -20,33 +18,20 @@ class OutfitList extends React.Component {
   }
 
   addOutfit() {
-    var list = this.state.outfitList;
-    if (!list.includes(this.props.productInfo.id.toString())) {
-      localStorage.setItem(this.props.productInfo.id, JSON.stringify(this.props.productInfo))
-      list.unshift(this.props.productInfo.id.toString());
-      this.setState({
-        addOutfit: true,
-        outfitList: list,
-        currentPosition: 0,
-        positionIndex: 0
-      })
-    } else {
-      this.setState({
-        addOutfit: true
-      })
-    }
+    this.props.addOutfit();
+    this.setState({
+      currentPosition: 0,
+      positionIndex: 0
+    })
   }
 
   removeOutfit(e) {
     var id = e.target.id;
-    var list = this.state.outfitList;
+    var list = this.props.outfitList;
     var index = list.indexOf(id);
     list.splice(index, 1);
     localStorage.removeItem(id);
-    this.setState({
-      addOutfit: false,
-      outfitList: list
-    })
+    this.props.updateOutfitList(list);
   }
 
   moveRight() {
@@ -76,8 +61,9 @@ class OutfitList extends React.Component {
 
 
   render() {
-    const { productID, productInfo, updateProductID } = this.props;
-    const { addOutfit, outfitList, currentPosition, positionIndex } = this.state;
+    const { productID, productInfo, updateProductID, outfitList} = this.props;
+    const { addOutfit, currentPosition, positionIndex } = this.state;
+
     let outfits = [];
     outfitList.map(productID => {
       var productObj = JSON.parse(localStorage.getItem(productID));
