@@ -14,7 +14,7 @@ class BarChart extends React.Component {
     }
     onFilterChange(event) {
         let temp = event.target[Object.keys(event.target)[1]]
-        console.log(Object.keys(temp)[6], 'coming from barchart to change reviews filter')
+        // console.log(Object.keys(temp)[6], 'coming from barchart to change reviews filter')
         if (this.state.nums.includes(temp.value)) {
             return;
         } else {
@@ -23,7 +23,7 @@ class BarChart extends React.Component {
                 num: temp.value
             },
                 () => {
-                    console.log(temp.value);
+                    // console.log(temp.value);
                     this.props.filter(this.state.num)
                 }
             )
@@ -41,7 +41,7 @@ class BarChart extends React.Component {
                     {Object.keys(this.props.ratings).length === 0 ? null : [...Array(5)].map((bar, index) => {
                         const order = 5 - (index);
                         // console.log(this.props.ratings)
-                        console.log(((this.props.ratings[order] / this.props.count) * 100));
+                        // console.log(((this.props.ratings[order] / this.props.count) * 100));
                         return (
                             !isNaN(this.props.ratings[order]) && this.props.count?
                                 <svg height='30' width="300" key={order}>
