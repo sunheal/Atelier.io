@@ -107,7 +107,7 @@ class ProductCard extends React.Component {
       <div className="productCard" onClick={this.handleClick}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
-          <PreviewImages currentStyle={defaultStyle} productID={productInfo.id} />
+          <PreviewImages currentStyle={defaultStyle} productInfo={productInfo} />
         </div>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
