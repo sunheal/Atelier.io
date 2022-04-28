@@ -19,8 +19,11 @@ class App extends React.Component {
             meta: {},
             reviews: {},
             questions: {},
+            outfitList: Object.keys(localStorage) || [], // save IDs
         }
         this.updateProductID = this.updateProductID.bind(this);
+        this.updateOutfitList = this.updateOutfitList.bind(this);
+        this.addOutfit = this.addOutfit.bind(this);
     }
 
     componentDidMount() {
@@ -76,15 +79,41 @@ class App extends React.Component {
         })
     }
 
+    updateOutfitList(list) {
+        this.setState({
+            outfitList: list
+        })
+    }
+
+    addOutfit() {
+        var list = this.state.outfitList;
+        if (!list.includes(this.state.productInfo.id.toString())) {
+            localStorage.setItem(this.state.productInfo.id, JSON.stringify(this.state.productInfo))
+            list.unshift(this.state.productInfo.id.toString());
+            this.setState({
+                outfitList: list
+            })
+        }
+    }
+
     render() {
-        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, recommend, rating, ratings, count } = this.state;
-        {console.log(meta, reviews,'meta')};
+        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
         return (
             <div className="app" >
-                <p data-testid="header" id="logo"> Good Deals Only </p>
+                <h1 id="logo"> Good Deals Only </h1>
                 <Navbar />
                 <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
-                <RelatedProducts productID={productID} productInfo={productInfo}  productStyle={productStyle} relatedProductsIDs={relatedProductsIDs} relatedProductsInfo={relatedProductsInfo} updateProductID={this.updateProductID} />
+                <RelatedProducts
+                    productID={productID}
+                    productInfo={productInfo}
+                    productStyle={productStyle}
+                    relatedProductsIDs={relatedProductsIDs}
+                    relatedProductsInfo={relatedProductsInfo}
+                    updateProductID={this.updateProductID}
+                    outfitList={outfitList}
+                    updateOutfitList={this.updateOutfitList}
+                    addOutfit={this.addOutfit}
+                />
                 <QandA productID={this.state.productID} />
                 {Object.keys(meta).length === 0 || Object.keys(reviews).length === 0? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
                 {/* <RR_app id={productID} meta={meta} reviews={reviews.results} /> */}
