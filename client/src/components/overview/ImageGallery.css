@@ -21,6 +21,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   object-fit: cover;
+  /* position: relative; */
+  /* position: absolute; */
 }
 
 .expanded-image:hover {
@@ -29,7 +31,7 @@ body {
 
 .zoomed {
   transform: scale(2.5);
-  cursor: move;
+  position: absolute;
 }
 
 .zoomed:hover {
@@ -42,6 +44,8 @@ body {
   position: relative;
   margin: auto;
   overflow: hidden;
+  background-color: #EEEEEE;
+  z-index: 5;
 }
 
 .expanded-container {
