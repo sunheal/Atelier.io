@@ -142,6 +142,7 @@ class App extends React.Component {
                     productStyle={productStyle}
                     ratings={ratings}
                     reviewsCount={reviewsCount}
+                    addOutfit={this.addOutfit}
                 />
                 <RelatedProducts
                     productID={productID}

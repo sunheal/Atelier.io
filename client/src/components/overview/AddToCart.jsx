@@ -44,7 +44,7 @@ const AddToCart = (props) => {
       <br></br>
       <div className='addToBag-star'>
         <button id="addToBagButton" onClick={props.onAddToCartClick}>ADD TO BAG +</button>
-        <button id="starButton">&#9734;</button>
+        <button id="starButton" onClick={props.addOutfit} >&#9734;</button>
       </div>
     </div>
   );

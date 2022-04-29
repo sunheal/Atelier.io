@@ -85,10 +85,6 @@ class Overview extends React.Component {
   }
 
   onStyleClick = (e) => {
-    // const checkboxes = document.getElementsByClassName("checkbox");
-    // for (let checkbox of checkboxes) {
-    //   checkbox.checked = false;
-    // }
     this.removeSelected();
     const styles = [...this.props.productStyle.results];
     const selectedCheckbox = e.target;
@@ -239,18 +235,32 @@ class Overview extends React.Component {
             selectedStyle={this.state.selectedStyle}
           />
           <br></br>
-          <br></br>
+          {/* <br></br> */}
         </div>
         <div className="container1-2-2">
-          <StyleSelector productStyle={this.props.productStyle} selectedStyle={this.state.selectedStyle} onStyleClick={this.onStyleClick} />
+          <StyleSelector
+            productStyle={this.props.productStyle}
+            selectedStyle={this.state.selectedStyle}
+            onStyleClick={this.onStyleClick}
+          />
           <br></br>
           <br></br>
           <br></br>
-          <br></br>
+          {/* <br></br> */}
         </div>
         <div className="container1-2-3">
-          <AddToCart selectedStyle={this.state.selectedStyle} selectedSKU = {this.state.selectedSKU} maxQuantity = {this.state.maxQuantity} selectedQuantity={this.state.selectedQuantity} selectedSKU={this.state.selectedSKU} onSizeChange={this.onSizeChange} onQuantityChange={this.onQuantityChange} onAddToCartClick={this.onAddToCartClick} />
-          <br></br>
+          <AddToCart
+            selectedStyle={this.state.selectedStyle}
+            selectedSKU={this.state.selectedSKU}
+            maxQuantity={this.state.maxQuantity}
+            selectedQuantity={this.state.selectedQuantity}
+            selectedSKU={this.state.selectedSKU}
+            onSizeChange={this.onSizeChange}
+            onQuantityChange={this.onQuantityChange}
+            onAddToCartClick={this.onAddToCartClick}
+            addOutfit={this.props.addOutfit}
+          />
+          {/* <br></br> */}
         </div>
         </div>
       </div>
