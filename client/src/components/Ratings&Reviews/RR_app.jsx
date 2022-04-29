@@ -12,7 +12,7 @@ class RR_app extends React.Component {
         this.state = {
             rating: 0,
             count: 0,
-            ratings: {},
+            ratings: this.props.meta.ratings,
             recommended: this.props.meta.recommended,
             recommend:0,
             filtering: [],

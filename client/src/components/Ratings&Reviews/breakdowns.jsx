@@ -14,7 +14,6 @@ class BarChart extends React.Component {
     }
     onFilterChange(event) {
         let temp = event.target[Object.keys(event.target)[1]]
-        // console.log(Object.keys(temp)[6], 'coming from barchart to change reviews filter')
         if (this.state.nums.includes(temp.value)) {
             return;
         } else {
@@ -40,20 +39,17 @@ class BarChart extends React.Component {
                 <div className="starBreakDown_RR">
                     {Object.keys(this.props.ratings).length === 0 ? null : [...Array(5)].map((bar, index) => {
                         const order = 5 - (index);
-                        // console.log(this.props.ratings)
-                        // console.log(((this.props.ratings[order] / this.props.count) * 100));
                         return (
-                            !isNaN(this.props.ratings[order]) && this.props.count?
+
                                 <svg height='30' width="300" key={order}>
                                     <text className="name-label" x="0" y="15">{order} Stars</text>
                                     <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />
-                                    <rect className='green' width={((this.props.ratings[order] / this.props.count) * 100).toString()} height='10' x='90' y='5' fill="green" value={order} onClick={this.onFilterChange} />
+                                    <rect className='green' width={(!isNaN(this.props.ratings[order]) && this.props.count) ? ((this.props.ratings[order] / this.props.count) * 100).toString() : '0'} height='10' x='90' y='5' fill="green" value={order} onClick={this.onFilterChange} />
                                 </svg>
-                                :
-                                <svg height='30' width="300" key={order}>
-                                    <text className="name-label" x="0" y="15">{order} Stars</text>
-                                    <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />
-                                </svg>
+                                // <svg height='30' width="300" key={order}>
+                                //     <text className="name-label" x="0" y="15">{order} Stars</text>
+                                //     <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />
+                                // </svg>
                         )
                     })}
                 </div>

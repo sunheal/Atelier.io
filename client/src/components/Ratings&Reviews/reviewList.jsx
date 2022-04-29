@@ -2,6 +2,7 @@ import React from "react";
 import ReviewListView from "./reviewListView.jsx";
 import AddReview from './/addReview.jsx';
 import "../Ratings&Reviews/rr.css";
+import { sendAction } from "../../utils/tracker.js";
 
 
 
@@ -36,7 +37,11 @@ class ReviewList extends React.Component{
     onShowModal() {
         this.setState ({
             showModal : !this.state.showModal
-        })
+        });
+        sendAction({
+            element: "submit reviews",
+            widget: "Reviews",
+        });
     }
     getReviewinfo() {
       this.setState({
@@ -73,6 +78,10 @@ class ReviewList extends React.Component{
         this.setState({
             whatShowing: sorted,
         })
+        sendAction({
+            element: "sort reviews",
+            widget: "Reviews",
+        })
     }
     appendReview() {
         const adding = 2;
@@ -91,6 +100,10 @@ class ReviewList extends React.Component{
                 whatShowing : appending
             })
         }
+        sendAction({
+            element: "append 2 more reviews",
+            widget: "Reviews",
+        })
     }
 
 
