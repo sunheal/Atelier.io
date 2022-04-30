@@ -8,29 +8,29 @@ import Navbar from "./navbar.jsx";
 
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            productID: 64623,
-            productStyle: {},
-            relatedProductsIDs: null,
-            relatedProductsInfo: [],
-            meta: {},
-            reviews: {},
-            questions: {},
-            outfitList: Object.keys(localStorage) || [], // save IDs
-            // ↓↓↓↓↓ Overview States ↓↓↓↓↓
-            productInfo: {},
-            // ↑↑↑↑↑ Overview States ↑↑↑↑↑
-        }
-        this.updateProductID = this.updateProductID.bind(this);
-        this.updateOutfitList = this.updateOutfitList.bind(this);
-        this.addOutfit = this.addOutfit.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      productID: 64622,
+      productStyle: {},
+      relatedProductsIDs: null,
+      relatedProductsInfo: [],
+      meta: {},
+      reviews: {},
+      questions: {},
+      outfitList: Object.keys(localStorage) || [], // save IDs
+      productInfo: {},
 
-    componentDidMount() {
-        this.getProductInfo(this.state.productID);
-    }
+    };
+    this.updateProductID = this.updateProductID.bind(this);
+    this.updateOutfitList = this.updateOutfitList.bind(this);
+    this.addOutfit = this.addOutfit.bind(this);
+  }
+
+  componentDidMount() {
+    this.getProductInfo(this.state.productID);
+
+  }
 
     getProductInfo(id) {
         var allPromises = [];
