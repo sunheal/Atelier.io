@@ -20,13 +20,13 @@ const PreviewImagesCarousel = (props) => {
   // )
   return (
     <div className="image-carousel-row">
-      <button className="prev" onClick={props.prev}>&#10094;</button>
+      <button className="image-prev" onClick={props.prev}>&#10094;</button>
       {images.map((photo, i) => (
         <div key={i} className="image-carousel-image image-slide" >
           <img className='carousel-image' src={photo} alt="Image lost :(" onClick={props.updateImage}/>
         </div>
       ))}
-      <button className="next" onClick={props.next} >&#10095;</button>
+      <button className="image-next" onClick={props.next} >&#10095;</button>
     </div>
   )
 };
