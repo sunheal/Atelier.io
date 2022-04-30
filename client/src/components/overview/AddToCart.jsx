@@ -17,7 +17,7 @@ const AddToCart = (props) => {
       <div className="size-quantity">
         <div id="size">
           <select id="sizeDropdown" value={props.selectedSKU} onChange={props.onSizeChange} >
-            <option value="SELECT SIZE" hidden="hidden">SELECT SIZE</option>
+            <option value="- SELECT SIZE -" hidden="hidden">- SELECT SIZE -</option>
             {Object.keys(props.selectedStyle?.skus || {}).map((sku, index) => {
               return (
                 <option key={index} value={sku}>{props.selectedStyle.skus[sku].size}</option>
