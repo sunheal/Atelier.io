@@ -7,7 +7,7 @@ class Window extends Component {
       <div id="window" >
         <div className="windowBox">
           <div className="close" onClick={() => this.props.onClick()}>X</div>
-          {this.props.children}
+          {this.props.children}  
         </div>
       </div>
     );
