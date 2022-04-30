@@ -7,10 +7,11 @@ const config = require("../../../../config.js");
 import { addQuestion, submitUserAction } from "../../service/index.js";
 import { sendAction } from "../../utils/tracker.js";
 
+
 class QandA extends Component {
   constructor(props) {
     super(props);
-    console.log(props.productID, '============')
+    // console.log(props.productID, '============')
     this.state = {
       product_id: props.productID,
       questionForm: false,
@@ -57,25 +58,23 @@ static getDerivedStateFromProps(props, state){
     this.setState({
       form,
     });
-
-    submitUserAction({
-      element: "filling question form",
-      widget: "QandA_app/Q&A",
-    });
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
     let { form, question } = this.state;
-    console.log(form);
+    // console.log(form);
     addQuestion(form).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status === 201) {
+        this.refs.questionListRef.getQAList()
         this.setState({
           questionForm: false,
         });
       }
     });
+    console.log(this.refs);
+
     submitUserAction({
       element: "question submit button",
       widget: "QandA_app/Q&A",
@@ -95,7 +94,7 @@ static getDerivedStateFromProps(props, state){
             Ask a Question
           </button>
         </div>
-        <QuestionsList product_id={this.state.product_id} />
+        <QuestionsList ref= 'questionListRef' product_id={this.state.product_id} />
 
         {this.state.questionForm && (
           <Window onClick={this.onClick}>

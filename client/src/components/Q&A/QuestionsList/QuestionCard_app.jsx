@@ -130,8 +130,11 @@ class QuestionCard extends React.Component {
     }
     photos = tempPhotos.map((item) => item.data.data.image.url);
     form.photos = photos;
+
     addAnswer(question.question_id, form).then((res) => {
       if (res.status === 201) {
+        this.props.getQAList()
+
         this.setState({
           answerForm: false,
         });
