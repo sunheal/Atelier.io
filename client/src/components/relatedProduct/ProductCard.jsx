@@ -19,9 +19,12 @@ class ProductCard extends React.Component {
           }
         ]
       },
-      productRating: null
+      productRating: null,
+      displayImage: null,
+      slideIndex: 1
     };
     this.handleClick = this.handleClick.bind(this);
+    this.updateDisplayImage = this.updateDisplayImage.bind(this);
   }
 
   componentDidMount() {
@@ -45,7 +48,8 @@ class ProductCard extends React.Component {
         }
         this.setState({
           productStyle: result.data,
-          defaultStyle: defaultStyle
+          defaultStyle: defaultStyle,
+          displayImage: defaultStyle.photos[0].thumbnail_url
         })
       })
       .catch((error) => {
@@ -67,7 +71,7 @@ class ProductCard extends React.Component {
           }
           var average = total / amount;
           this.setState({
-            productRating: average.toFixed(2)
+            productRating: average.toFixed(1)
           })
         }
       })
@@ -101,15 +105,52 @@ class ProductCard extends React.Component {
     }
   }
 
+  updateDisplayImage (url) {
+    this.setState({
+      displayImage: url
+    })
+  }
+
+  showSlides (slideIndex) {
+    const slides = document.getElementsByClassName('image-slide');
+    if (slides.length > 0) {
+      slides.forEach(slide => slide.style.display = 'none');
+      slides[slideIndex].style.display = 'block';
+    }
+  }
+
+  onPrevClick (e) {
+    event.stopPropagation();
+    let slideIndex = this.state.slideIndex - 1;
+    const slides = document.getElementsByClassName('image-slide');
+    console.log('slides prev ===', this.state.slideIndex)
+    // if (slideIndex < 0) {
+    //   slideIndex = slides.length - 1;
+    // };
+    // this.setState({slideIndex});
+  }
+
+  onNextClick (e) {
+    event.stopPropagation();
+    let slideIndex = this.state.slideIndex + 1;
+    const slides = document.getElementsByClassName('image-slide');
+    console.log('slides next ===', this.state.slideIndex)
+
+    // if (slideIndex > slides.length - 1) {
+    //   slideIndex = 0;
+    // };
+    // this.setState({slideIndex});
+  }
+
   render() {
-    const { productRating, defaultStyle, productStyle } = this.state;
+    const { productRating, defaultStyle, productStyle, displayImage } = this.state;
     const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProductID, resetPosition } = this.props;
     return (
       <div className="productCard" onClick={this.handleClick}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
-          <PreviewImages currentStyle={defaultStyle} productInfo={productInfo} />
-          <PreviewImagesCarousel productStyles={productStyle.results} defaultStyle={defaultStyle}/>
+          <PreviewImages displayImage={displayImage} productInfo={productInfo} />
+          {/* {displayImage === null ? null : <PreviewImagesCarousel prev={this.onPrevClick} next={this.onNextClick} productStyles={productStyle.results} defaultStyle={defaultStyle} updateImage={this.updateDisplayImage}/>} */}
         </div>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
