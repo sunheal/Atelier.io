@@ -12,7 +12,6 @@ class App extends React.Component {
         super(props);
         this.state = {
             productID: 64622,
-            productInfo: {},
             productStyle: {},
             relatedProductsIDs: null,
             relatedProductsInfo: [],
@@ -20,6 +19,11 @@ class App extends React.Component {
             reviews: {},
             questions: {},
             outfitList: Object.keys(localStorage) || [], // save IDs
+            // ↓↓↓↓↓ Overview States ↓↓↓↓↓
+            productInfo: {},
+            ratings: '',
+            reviewsCount: '',
+            // ↑↑↑↑↑ Overview States ↑↑↑↑↑
         }
         this.updateProductID = this.updateProductID.bind(this);
         this.updateOutfitList = this.updateOutfitList.bind(this);
@@ -28,7 +32,15 @@ class App extends React.Component {
 
     componentDidMount() {
         this.getProductInfo(this.state.productID);
+        this.getProductRatings(this.state.productID);
     }
+
+    // componentDidUpdate(prevState) {
+    //     if (this.state.productID !== prevState.productID) {
+    //         this.getProductInfo(this.state.productID);
+    //         this.getProductRatings(this.state.productID);
+    //     }
+    // }
 
     getProductInfo(id) {
         var allPromises = [];
@@ -72,10 +84,12 @@ class App extends React.Component {
 
     updateProductID(id) {
         console.log('update product id = ', id)
+        // this.setState({ productID: id });
         this.setState({
             productID: id
         }, () => {
             this.getProductInfo(this.state.productID);
+            this.getProductRatings(this.state.productID);
         })
     }
 
@@ -96,13 +110,40 @@ class App extends React.Component {
         }
     }
 
+    // ↓↓↓↓↓↓↓↓↓↓ Overview Functions ↓↓↓↓↓↓↓↓↓↓
+    getProductRatings = (id) => {
+        axios.get(`/reviews/meta/?product_id=${id}`)
+          .then((res) => {
+            const ratingsObj = res.data.ratings;
+              let totalRatings = 0;
+              let reviewsCount = 0;
+              for (let key in ratingsObj) {
+                totalRatings += (parseInt(key) * parseInt(ratingsObj[key]));
+                reviewsCount += parseInt(ratingsObj[key]) || 0;
+              }
+              let ratings = (totalRatings / reviewsCount).toFixed(1) || 0;
+              this.setState({ ratings, reviewsCount });
+          })
+          .catch((err) => {
+            console.error('getProductRatings', err);
+          })
+      }
+    // ↑↑↑↑↑↑↑↑↑↑ Overview Functions ↑↑↑↑↑↑↑↑↑↑
+
     render() {
-        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
+        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList, ratings, reviewsCount } = this.state;
         return (
             <div className="app" >
                 <h1 id="logo"> Good Deals Only </h1>
                 <Navbar />
-                <Overview productID={productID} productInfo={productInfo} productStyle={productStyle} meta={meta} />
+                <Overview
+                    productID={productID}
+                    productInfo={productInfo}
+                    productStyle={productStyle}
+                    ratings={ratings}
+                    reviewsCount={reviewsCount}
+                    addOutfit={this.addOutfit}
+                />
                 <RelatedProducts
                     productID={productID}
                     productInfo={productInfo}
