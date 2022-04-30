@@ -26,9 +26,15 @@ class QuestionsList extends Component {
 
   }
 
-  _getQAList(product_id) {
+  getQAList = () => {
+    console.log('------------!!');
+    console.log(this, product_id);
+    const {product_id} = this.props;
+
     getQAList(product_id).then((res) => {
-      const tempData = res.data.results.filter((item) => !item.reported);
+      const tempData = res.data.results?.filter((item) => !item.reported);
+      const newData = res.data.results.reverse();
+      res.data.results = newData;
       this.setState({
         questions: res.data,
         id: res.data.product_id,
@@ -39,7 +45,7 @@ class QuestionsList extends Component {
 
   componentDidUpdate(){
     if(this.props.product_id != this.state.questions.product_id){
-      this._getQAList(this.props.product_id)
+      this.getQAList()
     }
   }
 
@@ -95,15 +101,15 @@ class QuestionsList extends Component {
   render() {
     const { currentQuestions, questions, showMoreQuestions } = this.state;
 
-    return (
+      return (
       <div>
         <SearchBar onSearch={this.onSearch}></SearchBar>
-        <p>
+        <p data-testid="header">
           Here are the questions for this product:
           {questions.results.length}
         </p>
         {currentQuestions.map((item) => {
-          return <QuestionCard question={item} key={item.question_id} />;
+          return <QuestionCard getQAList={this.getQAList} question={item} key={item.question_id} />;
         })}
         {questions.results.length > 2 && (
           <div>
