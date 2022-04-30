@@ -48,8 +48,6 @@ class Overview extends React.Component {
         selectedSize: '',
         selectedQuantity: '',
         maxQuantity: '',
-        // ratings: '',
-        // reviewsCount: '',
         slideIndex: 0,
         thumbnailPos: 0,
         thumbnailIndex: 0,
@@ -60,24 +58,6 @@ class Overview extends React.Component {
       this.showSlides(slideIndex);
     }
   }
-
-  // getProductRatings = (id) => {
-  //   axios.get(`/reviews/meta/?product_id=${id}`)
-  //     .then((res) => {
-  //       const ratingsObj = res.data.ratings;
-  //         let totalRatings = 0;
-  //         let reviewsCount = 0;
-  //         for (let key in ratingsObj) {
-  //           totalRatings += (parseInt(key) * parseInt(ratingsObj[key]));
-  //           reviewsCount += parseInt(ratingsObj[key]) || 0;
-  //         }
-  //         let ratings = (totalRatings / reviewsCount).toFixed(1) || 0;
-  //         this.setState({ ratings, reviewsCount });
-  //     })
-  //     .catch((err) => {
-  //       console.error('getProductRatings', err);
-  //     })
-  // }
 
   removeSelected = () => {
     const checkboxes = document.getElementsByClassName("checkbox");
@@ -98,7 +78,9 @@ class Overview extends React.Component {
       maxQuantity: '',
       selectedQuantity: '',
       selectedSize: '',
-      slideIndex: 0
+      slideIndex: 0,
+      thumbnailPos: 0,
+      thumbnailIndex: 0
     });
   }
 
