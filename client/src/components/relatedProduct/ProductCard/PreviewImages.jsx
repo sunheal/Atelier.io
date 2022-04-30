@@ -3,7 +3,7 @@ import React from 'react';
 const PreviewImages = (props) => {
   return (
   <div className="preview-image">
-    <img className="product-image" src={props.currentStyle.photos[0].thumbnail_url} alt="Image lost :(" />
+    <img className="product-image" src={props.displayImage} alt={props.productInfo.name} />
   </div>
   )
 };
