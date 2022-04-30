@@ -50,7 +50,7 @@ describe('Question Component Unit Tests', () => {
       <QuestionCard
         question={testQuestionOne}
       />
-    );
+    )
     expect(getByText(/add Answer/)).toBeInTheDocument();
   })
 })
