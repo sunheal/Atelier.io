@@ -3,6 +3,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import AdditionalProductInfo from './AdditionalProductInfo.jsx';
 import {headers, uri} from '../../../../config.js';
 import axios from 'axios';
 import './Overview.css';
@@ -16,8 +17,8 @@ class Overview extends React.Component {
       selectedSize: '',
       selectedQuantity: '',
       maxQuantity: '',
-      // ratings: '',
-      // reviewsCount: '',
+      ratings: '',
+      reviewsCount: '',
       slideIndex: 0,
       thumbnailPos: 0,
       thumbnailIndex: 0,
@@ -27,12 +28,21 @@ class Overview extends React.Component {
   }
 
   // componentDidMount() {
-  //   this.getProductRatings(this.props.productID);
+  //   const meta= this.props.meta;
+  //   const reviews = this.props.reviews;
+  //   this.getProductRatings(meta, reviews);
   // }
 
   componentDidUpdate(prevProps, prevState) {
     const slideIndex = this.state.slideIndex;
     this.showSlides(slideIndex);
+
+    // wait until props.meta and props.reviews
+    if (this.props.meta !== prevProps.meta) {
+      const meta= this.props.meta;
+      const reviews = this.props.reviews;
+      this.getProductRatings(meta, reviews);
+    }
 
     // new product click
     if (this.props.productID !== prevProps.productID) {
@@ -46,8 +56,6 @@ class Overview extends React.Component {
         selectedSize: '',
         selectedQuantity: '',
         maxQuantity: '',
-        // ratings: '',
-        // reviewsCount: '',
         slideIndex: 0,
         thumbnailPos: 0,
         thumbnailIndex: 0,
@@ -59,23 +67,18 @@ class Overview extends React.Component {
     }
   }
 
-  // getProductRatings = (id) => {
-  //   axios.get(`/reviews/meta/?product_id=${id}`)
-  //     .then((res) => {
-  //       const ratingsObj = res.data.ratings;
-  //         let totalRatings = 0;
-  //         let reviewsCount = 0;
-  //         for (let key in ratingsObj) {
-  //           totalRatings += (parseInt(key) * parseInt(ratingsObj[key]));
-  //           reviewsCount += parseInt(ratingsObj[key]) || 0;
-  //         }
-  //         let ratings = (totalRatings / reviewsCount).toFixed(1) || 0;
-  //         this.setState({ ratings, reviewsCount });
-  //     })
-  //     .catch((err) => {
-  //       console.error('getProductRatings', err);
-  //     })
-  // }
+  getProductRatings = (meta, reviews) => {
+    const ratingsObj = meta.ratings;
+    const reviewsCount = reviews.results?.length;
+    let totalRatings = 0;
+    let ratingCount = 0;
+    for (let key in ratingsObj) {
+      totalRatings += (parseInt(key) * parseInt(ratingsObj[key]));
+      ratingCount += parseInt(ratingsObj[key]) || 0;
+    }
+    let ratings = (totalRatings / ratingCount).toFixed(1) || 0;
+    this.setState({ ratings, reviewsCount });
+  }
 
   removeSelected = () => {
     const checkboxes = document.getElementsByClassName("checkbox");
@@ -96,7 +99,9 @@ class Overview extends React.Component {
       maxQuantity: '',
       selectedQuantity: '',
       selectedSize: '',
-      slideIndex: 0
+      slideIndex: 0,
+      thumbnailPos: 0,
+      thumbnailIndex: 0
     });
   }
 
@@ -207,62 +212,71 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div id="overview" className="container1">
-        <div className="container1-1">
-          <ImageGallery
-            productStyle={this.props.productStyle}
-            selectedStyle={this.state.selectedStyle}
-            thumbnailIndex={this.state.thumbnailIndex}
-            thumbnailPos={this.state.thumbnailPos}
-            galleryExpanded={this.state.galleryExpanded}
-            zoomed={this.state.zoomed}
-            onPrevClick={this.onPrevClick}
-            onNextClick={this.onNextClick}
-            onThumbnailClick={this.onThumbnailClick}
-            onUpClick={this.onUpClick}
-            onDownClick={this.onDownClick}
-            toggleGalleryExpand={this.toggleGalleryExpand}
-            toggleZoom={this.toggleZoom}
-            followMousePosition={this.followMousePosition}
-          />
+      <div id="overview" className="container">
+        <div className="container1">
+          <div className="container1-1">
+            <ImageGallery
+              productStyle={this.props.productStyle}
+              selectedStyle={this.state.selectedStyle}
+              thumbnailIndex={this.state.thumbnailIndex}
+              thumbnailPos={this.state.thumbnailPos}
+              galleryExpanded={this.state.galleryExpanded}
+              zoomed={this.state.zoomed}
+              onPrevClick={this.onPrevClick}
+              onNextClick={this.onNextClick}
+              onThumbnailClick={this.onThumbnailClick}
+              onUpClick={this.onUpClick}
+              onDownClick={this.onDownClick}
+              toggleGalleryExpand={this.toggleGalleryExpand}
+              toggleZoom={this.toggleZoom}
+              followMousePosition={this.followMousePosition}
+            />
+          </div>
+          <div className="container1-2">
+            <div className="container1-2-1">
+              <ProductInformation
+                information={this.props.productInfo}
+                ratings={this.state.ratings}
+                reviewsCount={this.state.reviewsCount}
+                selectedStyle={this.state.selectedStyle}
+              />
+              <br></br>
+              {/* <br></br> */}
+            </div>
+            <div className="container1-2-2">
+              <StyleSelector
+                productStyle={this.props.productStyle}
+                selectedStyle={this.state.selectedStyle}
+                onStyleClick={this.onStyleClick}
+              />
+              <br></br>
+              <br></br>
+              <br></br>
+              {/* <br></br> */}
+            </div>
+            <div className="container1-2-3">
+              <AddToCart
+                selectedStyle={this.state.selectedStyle}
+                selectedSKU={this.state.selectedSKU}
+                maxQuantity={this.state.maxQuantity}
+                selectedQuantity={this.state.selectedQuantity}
+                selectedSKU={this.state.selectedSKU}
+                onSizeChange={this.onSizeChange}
+                onQuantityChange={this.onQuantityChange}
+                onAddToCartClick={this.onAddToCartClick}
+                addOutfit={this.props.addOutfit}
+              />
+              {/* <br></br> */}
+            </div>
+          </div>
         </div>
-        <div className="container1-2">
-        <div className="container1-2-1">
-          <ProductInformation
-            information={this.props.productInfo}
-            ratings={this.props.ratings}
-            reviewsCount={this.props.reviewsCount}
-            selectedStyle={this.state.selectedStyle}
-          />
-          <br></br>
-          {/* <br></br> */}
+        <br></br>
+        <div className='container2'>
+            <AdditionalProductInfo
+              productInfo={this.props.productInfo}
+            />
         </div>
-        <div className="container1-2-2">
-          <StyleSelector
-            productStyle={this.props.productStyle}
-            selectedStyle={this.state.selectedStyle}
-            onStyleClick={this.onStyleClick}
-          />
-          <br></br>
-          <br></br>
-          <br></br>
-          {/* <br></br> */}
-        </div>
-        <div className="container1-2-3">
-          <AddToCart
-            selectedStyle={this.state.selectedStyle}
-            selectedSKU={this.state.selectedSKU}
-            maxQuantity={this.state.maxQuantity}
-            selectedQuantity={this.state.selectedQuantity}
-            selectedSKU={this.state.selectedSKU}
-            onSizeChange={this.onSizeChange}
-            onQuantityChange={this.onQuantityChange}
-            onAddToCartClick={this.onAddToCartClick}
-            addOutfit={this.props.addOutfit}
-          />
-          {/* <br></br> */}
-        </div>
-        </div>
+        <br></br>
       </div>
     );
   }
