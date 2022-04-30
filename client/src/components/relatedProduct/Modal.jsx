@@ -12,7 +12,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { onClose, comparisionArray} = this.props;
+    const { onClose, comparisionArray } = this.props;
     let commonFeatures = {};
     comparisionArray[0].features.forEach(item => {
       commonFeatures[item.feature] = {
@@ -33,27 +33,29 @@ class Modal extends React.Component {
 
     return (
       <div id="modal" onClick={onClose}>
-        <table className="comparision">
-          <caption> Comparing </caption>
-          <thead>
-            <tr>
-              <th>{comparisionArray[0].name}</th>
-              <th></th>
+        <div className="modal-container">
+          <table className="comparision">
+            <caption> Comparing </caption>
+            <thead>
+              <tr>
+                <th>{comparisionArray[0].name}</th>
+                <th></th>
                 <th>{comparisionArray[1].name}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              Object.keys(commonFeatures).map((feature, index) => (
-                <tr key={index}>
-                  <td>{commonFeatures[feature].currentPage ? "\u2713" : '   '}</td>
-                  <td className="characteristics">{feature}</td>
-                  <td>{commonFeatures[feature].selected ? "\u2713" : '   '}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                Object.keys(commonFeatures).map((feature, index) => (
+                  <tr key={index}>
+                    <td>{commonFeatures[feature].currentPage ? "\u2713" : '   '}</td>
+                    <td className="characteristics">{feature}</td>
+                    <td>{commonFeatures[feature].selected ? "\u2713" : '   '}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
         <br></br>
         {/* <button onClick={onClose}> Close </button> */}
       </div>);

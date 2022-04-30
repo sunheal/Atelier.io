@@ -89,7 +89,7 @@ export default class Answer extends Component {
         {answer.photos.length != 0 && (
           <div className="answerImage" style={{ display: "flex" }}>
             {answer.photos.map((photo, index) => {
-              console.log(photo);
+              // console.log(photo);
               return (
                 <img
                   onClick={() => this.pop(photo)}
