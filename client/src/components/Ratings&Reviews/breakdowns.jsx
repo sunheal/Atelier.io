@@ -22,7 +22,7 @@ class BarChart extends React.Component {
                 num: temp.value
             },
                 () => {
-                    console.log(temp.value);
+                    // console.log(temp.value);
                     this.props.filter(this.state.num)
                 }
             )
