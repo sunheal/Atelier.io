@@ -18,11 +18,8 @@ class App extends React.Component {
       reviews: {},
       questions: {},
       outfitList: Object.keys(localStorage) || [], // save IDs
-      // ↓↓↓↓↓ Overview States ↓↓↓↓↓
       productInfo: {},
-      ratings: "",
-      reviewsCount: "",
-      // ↑↑↑↑↑ Overview States ↑↑↑↑↑
+
     };
     this.updateProductID = this.updateProductID.bind(this);
     this.updateOutfitList = this.updateOutfitList.bind(this);
@@ -31,7 +28,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getProductInfo(this.state.productID);
-    this.getProductRatings(this.state.productID);
+
   }
 
   // componentDidUpdate(prevState) {
