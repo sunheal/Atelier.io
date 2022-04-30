@@ -14,7 +14,7 @@ class RR_app extends React.Component {
             count: 0,
             ratings: this.props.meta.ratings,
             recommended: this.props.meta.recommended,
-            recommend:0,
+            recommend: 0,
             filtering: [],
             reviews: this.props.reviews
         }
@@ -25,44 +25,44 @@ class RR_app extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-       if(this.props.reviews !== prevProps.reviews) {
-           this.setState({
-                reviews : this.props.reviews
-           })
-       }
-       if(this.props.meta !== prevProps.meta) {
-           this.setState({
-               ratings : this.props.meta.ratings,
-               recommended: this.props.meta.recommended
-           },()=> this.getRating())
-       }
+        if (this.props.reviews !== prevProps.reviews) {
+            this.setState({
+                reviews: this.props.reviews
+            })
+        }
+        if (this.props.meta !== prevProps.meta) {
+            this.setState({
+                ratings: this.props.meta.ratings,
+                recommended: this.props.meta.recommended
+            }, () => this.getRating())
+        }
     }
 
     getRating() {
         let resObj = this.state.ratings;
         let recObj = this.state.recommended;
         // console.log(resObj, recObj, 'afafafaegg4g4')
-        if(Object.keys(recObj).length === 0) {
+        if (Object.keys(recObj).length === 0) {
             this.setState({
                 recommend: 0
             })
-        }else {
-            let recOnly=Number(Object.values(recObj)[1]), totalRec=0;
+        } else {
+            let recOnly = Number(Object.values(recObj)[1]), totalRec = 0;
             totalRec = recOnly + Number(Object.values(recObj)[0]);
-            recOnly = ((recOnly/totalRec) * 100).toFixed(0)
+            recOnly = ((recOnly / totalRec) * 100).toFixed(0)
             this.setState({
-                recommend : recOnly,
+                recommend: recOnly,
             })
         }
-        if(Object.keys(resObj).length === 0) {
+        if (Object.keys(resObj).length === 0) {
             this.setState({
-                rating : 0,
+                rating: 0,
                 ratings: resObj,
             })
-        }else {
+        } else {
             let total = 0, count = 0, avg = 0;
 
-            for(var keys in resObj) {
+            for (var keys in resObj) {
                 total += resObj[keys] * Number(keys)
                 count += Number(resObj[keys]);
             }
@@ -76,17 +76,17 @@ class RR_app extends React.Component {
     }
     filter(num) {
         let filtered, temp;
-        if(this.state.reviews === this.props.reviews) {
+        if (this.state.reviews === this.props.reviews) {
             temp = [];
-        }else {
+        } else {
             temp = this.state.reviews.slice();
         }
         filtered = this.props.reviews.filter(review => review.rating === num);
-        temp= temp.concat(filtered);
+        temp = temp.concat(filtered);
         // console.log(temp, 'after it ')
         this.setState({
-            reviews : temp
-        }, ()=> console.log(this.state.reviews,'after adding')
+            reviews: temp
+        }, () => console.log(this.state.reviews, 'after adding')
         )
     }
 
@@ -97,11 +97,11 @@ class RR_app extends React.Component {
             <div className="ReviewContainer">
                 <h1 id='RR_app'>Ratings &amp; Reviews</h1>
                 <div className="leftOfRR">
-                {Object.keys(this.props.meta).length !== 0 ? <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating = {this.state.rating} />  </p > : null}
-                {Object.keys(this.props.meta).length !== 0 ? <BarChart ratings={this.props.meta.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta} filter={this.filter}/> : null}
+                    {Object.keys(this.props.meta).length !== 0 ? <p className="ratingHeader_star"> {this.state.rating} &nbsp; <Stars className="avgStar" rating={this.state.rating} />  </p > : null}
+                    {Object.keys(this.props.meta).length !== 0 ? <BarChart ratings={this.props.meta.ratings} count={this.state.count} recommend={this.state.recommend} meta={this.props.meta} filter={this.filter} /> : null}
                 </div>
                 <div className="rightOfRR">
-                {Object.keys(this.state.reviews).length === 0 ? null : <ReviewList id={this.props.id} reviews={this.state.reviews} />}
+                    {Object.keys(this.state.reviews).length === 0 ? null : <ReviewList id={this.props.id} reviews={this.state.reviews} />}
                 </div>
 
             </div>

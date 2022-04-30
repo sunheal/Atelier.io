@@ -41,15 +41,15 @@ class BarChart extends React.Component {
                         const order = 5 - (index);
                         return (
 
-                                <svg height='30' width="300" key={order}>
-                                    <text className="name-label" x="0" y="15">{order} Stars</text>
-                                    <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />
-                                    <rect className='green' width={(!isNaN(this.props.ratings[order]) && this.props.count) ? ((this.props.ratings[order] / this.props.count) * 100).toString() : '0'} height='10' x='90' y='5' fill="green" value={order} onClick={this.onFilterChange} />
-                                </svg>
-                                // <svg height='30' width="300" key={order}>
-                                //     <text className="name-label" x="0" y="15">{order} Stars</text>
-                                //     <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />
-                                // </svg>
+                            <svg height='30' width="300" key={order}>
+                                <text className="name-label" x="0" y="15">{order} Stars</text>
+                                <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />
+                                <rect className='green' width={(!isNaN(this.props.ratings[order]) && this.props.count) ? ((this.props.ratings[order] / this.props.count) * 100).toString() : '0'} height='10' x='90' y='5' fill="green" value={order} onClick={this.onFilterChange} />
+                            </svg>
+                            // <svg height='30' width="300" key={order}>
+                            //     <text className="name-label" x="0" y="15">{order} Stars</text>
+                            //     <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />
+                            // </svg>
                         )
                     })}
                 </div>

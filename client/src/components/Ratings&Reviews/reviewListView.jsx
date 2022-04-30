@@ -1,10 +1,16 @@
+import {useState} from "react";
 import React from "react";
 import Stars from "../Shared/Stars.jsx";
 import HelpfulAndReport from "./Helpful&Report.jsx";
 import "../Ratings&Reviews/rr.css";
+import Window from "../Q&A/window.jsx";
+
 
 
 const ReviewListView = ({ reviews }) => {
+    const [photo, setPhoto] = useState(null);
+    const [showImgWindow, setWindow] = useState(false);
+
     return (
         <div className="bigReview_container">
             {reviews.map((review, index) => {
@@ -22,8 +28,12 @@ const ReviewListView = ({ reviews }) => {
                         <div className="spaceBetweenRev" > </div>
                         <div className="reviewPhotos"> {review.photos.map((photo,index) => {
                             return (
-                                <div className="RR_photos" key={index}>
-                                    <img src={photo.url} width='150' height='150' /> &nbsp;
+                                <div className="RR_photos" key={index}> 
+                                    <img src={photo.url} width='150' height='150' onClick={()=>{
+                                        setPhoto(event.target.src)
+                                        setWindow(true)
+                                    }
+                                }/> &nbsp;
                                 </div>
                             )
                         })
@@ -37,6 +47,11 @@ const ReviewListView = ({ reviews }) => {
                     </div>
                 )
             })}
+                    {showImgWindow && (
+          <Window onClick={()=> setWindow(false)}>
+            <img width="600" height="600" src={photo}></img>
+          </Window>
+        )}
         </div>
     )
 }
