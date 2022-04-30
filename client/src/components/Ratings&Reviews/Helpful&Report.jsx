@@ -1,5 +1,6 @@
 import React from 'react';
 import "../Ratings&Reviews/rr.css";
+import { sendAction } from "../../utils/tracker.js";
 
 class HelpfulAndReport extends React.Component {
     constructor(props) {
@@ -23,6 +24,10 @@ class HelpfulAndReport extends React.Component {
         this.setState({
             updatedReport: !(this.state.updatedReport)
         });
+        sendAction({
+            element: "reported a review",
+            widget: "Reviews",
+        })
     }
     onUpdateHelpful(event) {
         event.preventDefault();
@@ -30,6 +35,10 @@ class HelpfulAndReport extends React.Component {
         this.setState({
             helpfulEnough: true,
             updatedHelpful: updated
+        })
+        sendAction({
+            element: "supported a review",
+            widget: "Reviews",
         })
     } 
     render() {

@@ -27,4 +27,5 @@ export const sendAction = (data) => {
     type: "any",
     data,
   });
+  console.log('sent interaction')
 };
