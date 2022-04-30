@@ -11,7 +11,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productID: 64622,
+            productID: 64623,
             productStyle: {},
             relatedProductsIDs: null,
             relatedProductsInfo: [],
@@ -32,15 +32,7 @@ class App extends React.Component {
 
     componentDidMount() {
         this.getProductInfo(this.state.productID);
-        this.getProductRatings(this.state.productID);
     }
-
-    // componentDidUpdate(prevState) {
-    //     if (this.state.productID !== prevState.productID) {
-    //         this.getProductInfo(this.state.productID);
-    //         this.getProductRatings(this.state.productID);
-    //     }
-    // }
 
     getProductInfo(id) {
         var allPromises = [];
@@ -89,7 +81,6 @@ class App extends React.Component {
             productID: id
         }, () => {
             this.getProductInfo(this.state.productID);
-            this.getProductRatings(this.state.productID);
         })
     }
 
@@ -110,28 +101,8 @@ class App extends React.Component {
         }
     }
 
-    // ↓↓↓↓↓↓↓↓↓↓ Overview Functions ↓↓↓↓↓↓↓↓↓↓
-    getProductRatings = (id) => {
-        axios.get(`/reviews/meta/?product_id=${id}`)
-          .then((res) => {
-            const ratingsObj = res.data.ratings;
-              let totalRatings = 0;
-              let reviewsCount = 0;
-              for (let key in ratingsObj) {
-                totalRatings += (parseInt(key) * parseInt(ratingsObj[key]));
-                reviewsCount += parseInt(ratingsObj[key]) || 0;
-              }
-              let ratings = (totalRatings / reviewsCount).toFixed(1) || 0;
-              this.setState({ ratings, reviewsCount });
-          })
-          .catch((err) => {
-            console.error('getProductRatings', err);
-          })
-      }
-    // ↑↑↑↑↑↑↑↑↑↑ Overview Functions ↑↑↑↑↑↑↑↑↑↑
-
     render() {
-        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList, ratings, reviewsCount } = this.state;
+        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
         return (
             <div className="app" >
                 <h1 id="logo"> Good Deals Only </h1>
@@ -140,8 +111,10 @@ class App extends React.Component {
                     productID={productID}
                     productInfo={productInfo}
                     productStyle={productStyle}
-                    ratings={ratings}
-                    reviewsCount={reviewsCount}
+                    // ratings={ratings}
+                    // reviewsCount={reviewsCount}
+                    meta={meta}
+                    reviews={reviews}
                     addOutfit={this.addOutfit}
                 />
                 <RelatedProducts

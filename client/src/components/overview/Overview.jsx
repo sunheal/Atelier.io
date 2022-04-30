@@ -17,8 +17,8 @@ class Overview extends React.Component {
       selectedSize: '',
       selectedQuantity: '',
       maxQuantity: '',
-      // ratings: '',
-      // reviewsCount: '',
+      ratings: '',
+      reviewsCount: '',
       slideIndex: 0,
       thumbnailPos: 0,
       thumbnailIndex: 0,
@@ -28,13 +28,21 @@ class Overview extends React.Component {
   }
 
   // componentDidMount() {
-  //   const slideIndex = this.state.slideIndex;
-  //   this.showSlides(slideIndex);
+  //   const meta= this.props.meta;
+  //   const reviews = this.props.reviews;
+  //   this.getProductRatings(meta, reviews);
   // }
 
   componentDidUpdate(prevProps, prevState) {
     const slideIndex = this.state.slideIndex;
     this.showSlides(slideIndex);
+
+    // wait until props.meta and props.reviews
+    if (this.props.meta !== prevProps.meta) {
+      const meta= this.props.meta;
+      const reviews = this.props.reviews;
+      this.getProductRatings(meta, reviews);
+    }
 
     // new product click
     if (this.props.productID !== prevProps.productID) {
@@ -57,6 +65,19 @@ class Overview extends React.Component {
       const slideIndex = this.state.slideIndex;
       this.showSlides(slideIndex);
     }
+  }
+
+  getProductRatings = (meta, reviews) => {
+    const ratingsObj = meta.ratings;
+    const reviewsCount = reviews.results?.length;
+    let totalRatings = 0;
+    let ratingCount = 0;
+    for (let key in ratingsObj) {
+      totalRatings += (parseInt(key) * parseInt(ratingsObj[key]));
+      ratingCount += parseInt(ratingsObj[key]) || 0;
+    }
+    let ratings = (totalRatings / ratingCount).toFixed(1) || 0;
+    this.setState({ ratings, reviewsCount });
   }
 
   removeSelected = () => {
@@ -215,8 +236,8 @@ class Overview extends React.Component {
             <div className="container1-2-1">
               <ProductInformation
                 information={this.props.productInfo}
-                ratings={this.props.ratings}
-                reviewsCount={this.props.reviewsCount}
+                ratings={this.state.ratings}
+                reviewsCount={this.state.reviewsCount}
                 selectedStyle={this.state.selectedStyle}
               />
               <br></br>
