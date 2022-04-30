@@ -21,8 +21,6 @@ class App extends React.Component {
             outfitList: Object.keys(localStorage) || [], // save IDs
             // ↓↓↓↓↓ Overview States ↓↓↓↓↓
             productInfo: {},
-            ratings: '',
-            reviewsCount: '',
             // ↑↑↑↑↑ Overview States ↑↑↑↑↑
         }
         this.updateProductID = this.updateProductID.bind(this);
