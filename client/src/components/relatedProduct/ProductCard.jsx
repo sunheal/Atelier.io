@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PreviewImages from './ProductCard/PreviewImages.jsx';
+import PreviewImagesCarousel from './ProductCard/PreviewImagesCarousel.jsx';
 import Stars from '../Shared/Stars.jsx';
 import './css/ProductCard.css';
 import { sendAction } from '../../utils/tracker.js';
@@ -108,6 +109,7 @@ class ProductCard extends React.Component {
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
           <PreviewImages currentStyle={defaultStyle} productInfo={productInfo} />
+          <PreviewImagesCarousel productStyles={productStyle.results} defaultStyle={defaultStyle}/>
         </div>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
