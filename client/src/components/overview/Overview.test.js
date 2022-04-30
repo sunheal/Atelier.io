@@ -1,12 +1,12 @@
 import React from "react";
 import '@testing-library/jest-dom'
 import { render, cleanup, screen, waitFor } from '@testing-library/react';
-import ProductInformation from './ProductInformation.jsx';
+import Overview from './Overview.jsx';
 import regeneratorRuntime from "regenerator-runtime";
 afterEach(cleanup);
 
-describe('ProductInformation', () => {
-  it('should have "style" Text', () => {
+describe('Overview', () => {
+  it('should have "Overview" Title', () => {
     const information = {
       "id": 64620,
       "campus": "hr-rpp",
@@ -31,7 +31,7 @@ describe('ProductInformation', () => {
     const ratings = '3.0';
     const reviewsCount = 100;
     render(<ProductInformation information={information} ratings={ratings} reviewsCount={reviewsCount} />);
-    const styleText = screen.getByText('style');
-    expect(styleText).toBeInTheDocument();
+    const title = screen.getByText('ProductInformation');
+    expect(title).toBeInTheDocument();
   })
 });
