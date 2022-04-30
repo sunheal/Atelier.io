@@ -11,7 +11,7 @@ import { sendAction } from "../../utils/tracker.js";
 class QandA extends Component {
   constructor(props) {
     super(props);
-    console.log(props.productID, '============')
+    // console.log(props.productID, '============')
     this.state = {
       product_id: props.productID,
       questionForm: false,
@@ -63,9 +63,9 @@ static getDerivedStateFromProps(props, state){
   handleSubmit = async (event) => {
     event.preventDefault();
     let { form, question } = this.state;
-    console.log(form);
+    // console.log(form);
     addQuestion(form).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status === 201) {
         this.refs.questionListRef.getQAList()
         this.setState({

@@ -19,7 +19,7 @@ class QuestionsList extends Component {
       showMoreQuestions: true,
       // tempQuestions:Object.values(this.props.questions).slice(0,2)
     };
-    console.log("line22 this.state:", this.state);
+    // console.log("line22 this.state:", this.state);
   }
 
   componentDidMount() {

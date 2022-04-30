@@ -3,6 +3,7 @@ import ReviewListView from "./reviewListView.jsx";
 import AddReview from './/addReview.jsx';
 import "../Ratings&Reviews/rr.css";
 import { sendAction } from "../../utils/tracker.js";
+import axios from "axios";
 
 
 
@@ -20,6 +21,7 @@ class ReviewList extends React.Component{
         this.changeSort = this.changeSort.bind(this);
         this.appendReview = this.appendReview.bind(this);
         this.onShowModal = this.onShowModal.bind(this);
+        this.updateReviewAfterSubmit = this.updateReviewAfterSubmit.bind(this);
     }
     componentDidMount() {
         this.getReviewinfo();
@@ -105,7 +107,16 @@ class ReviewList extends React.Component{
             widget: "Reviews",
         })
     }
-
+    updateReviewAfterSubmit() {
+        axios.get(`/reviews`, { params: { product_id: this.props.id, count: 5000 } })
+        .then((result) => {
+            // console.log(result.data,'add reviews');
+            this.setState({
+                currentReview: result.data.results,
+                whatShowing: this.state.currentReview.slice(0,2)
+            })
+        })
+    }
 
 
     render() {
@@ -122,7 +133,7 @@ class ReviewList extends React.Component{
                         <ReviewListView reviews={this.state.whatShowing} />
                    {(this.state.currentReview.length !== this.state.whatShowing.length) ? ((this.state.currentReview.length > 2) ? <button className="moreReview" onClick={this.appendReview}> More Review </button> : null) : null}
                    <button className="addReview" onClick={this.onShowModal}> Add Review </button>
-                    <AddReview show={this.state.showModal} onShowModal={this.onShowModal} id={this.props.id}/>
+                    <AddReview show={this.state.showModal} onShowModal={this.onShowModal} id={this.props.id} updateReviewAfterSubmit={this.updateReviewAfterSubmit}/>
 
                    </div>
  }

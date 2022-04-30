@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard.jsx';
 import './css/OutfitList.css';
+import { sendAction } from '../../utils/tracker.js';
+
 
 class OutfitList extends React.Component {
   constructor(props) {
@@ -19,6 +21,10 @@ class OutfitList extends React.Component {
 
   addOutfit() {
     this.props.addOutfit();
+    sendAction({
+      element: "+ button add outfit",
+      widget: "Related Products"
+    })
     this.setState({
       currentPosition: 0,
       positionIndex: 0

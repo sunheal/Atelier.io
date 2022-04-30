@@ -1,0 +1,46 @@
+.additonalProductInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-evenly;
+  width: 1200px;
+}
+
+.sloganDescription {
+  display:block;
+  float: left;
+  width: 60%;
+  padding: 10px;
+}
+
+.slogan {
+  font-size: 23px;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: left;
+  text-decoration: double;
+  padding-left: 50px;
+  padding-right: 30px;
+}
+
+.description {
+  font-size: 18px;
+  text-align: left;
+  padding-left: 50px;
+  padding-right: 30px;
+}
+
+.features {
+  float: right;
+  width: 35%;
+  border-left: solid;
+  border-color: grey;
+}
+
+.featuresList {
+  list-style: none;
+  font-size: 20px;
+}
+
+.featureListItem {
+  padding: 5px;
+}
