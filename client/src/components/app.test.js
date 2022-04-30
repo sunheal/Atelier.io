@@ -1,18 +1,13 @@
-// import React from "react";
-// import {rest} from 'msw';
-// import {setupServer} from 'msw/node';
-
-// import '@testing-library/jest-dom'
-// import { render,fireEvent, screen, waitFor } from '@testing-library/react';
-// import App from './app.jsx';
-// import regeneratorRuntime from "regenerator-runtime";
+import React from "react";
+import {render} from '@testing-library/react';
+import App from './app.jsx';
+import "@testing-library/jest-dom/extend-expect";
 
 
 
-// describe('App', () => {
-//   it('should have "Good Deals Only" Logo',  () => {
-//     render(<App />);
-//     const logo =  screen.getByText('Good Deals Only');
-//     expect(logo).toBeInTheDocument();
-//   })
-// });
+test("header renders with correct text", () => {
+  const {getByTestId} = render(<App />);
+  const headerEl = getByTestId("header")
+
+  expect(headerEl.textContent).toBe("Good Deals Only")
+})

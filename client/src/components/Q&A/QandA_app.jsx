@@ -58,11 +58,6 @@ static getDerivedStateFromProps(props, state){
     this.setState({
       form,
     });
-
-    submitUserAction({
-      element: "filling question form",
-      widget: "QandA_app/Q&A",
-    });
   };
 
   handleSubmit = async (event) => {
@@ -72,11 +67,14 @@ static getDerivedStateFromProps(props, state){
     addQuestion(form).then((res) => {
       console.log(res);
       if (res.status === 201) {
+        this.refs.questionListRef.getQAList()
         this.setState({
           questionForm: false,
         });
       }
     });
+    console.log(this.refs);
+
     submitUserAction({
       element: "question submit button",
       widget: "QandA_app/Q&A",
@@ -96,7 +94,7 @@ static getDerivedStateFromProps(props, state){
             Ask a Question
           </button>
         </div>
-        <QuestionsList product_id={this.state.product_id} />
+        <QuestionsList ref= 'questionListRef' product_id={this.state.product_id} />
 
         {this.state.questionForm && (
           <Window onClick={this.onClick}>

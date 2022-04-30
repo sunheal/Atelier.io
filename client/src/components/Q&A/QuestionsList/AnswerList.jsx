@@ -12,8 +12,8 @@ class AnswerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      answersArray: props.answersArray,
-      tempAnswers: props.answersArray.slice(0, 2),
+      answersArray: props.answersArray.reverse(),
+      tempAnswers: props.answersArray.slice(0, 2).reverse(),
       showImgWindow: false,
       imgUrl: "",
       reportStatus: "Report",

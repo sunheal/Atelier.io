@@ -68,31 +68,4 @@ describe('ProductCard', () => {
     expect(category).toBeInTheDocument();
     // expect(price).toBeInTheDocument();
   });
-
-  // it('should show "Image lost :(" if a product doesn\'t have an image', () => {
-  //   const defaultStyle = {
-  //     "style_id": 398202,
-  //     "name": "Black Lenses & Gold Frame",
-  //     "original_price": "69.00",
-  //     "sale_price": null,
-  //     "default?": true,
-  //     "photos": [
-  //       {
-  //         "thumbnail_url": null,
-  //         "url": null
-  //       }
-  //     ],
-  //     "skus": {
-  //       "null": {
-  //         "quantity": null,
-  //         "size": null
-  //       }
-  //     }
-  //   };
-
-  //   render(<PreviewImages currentStyle={defaultStyle} productID={64621} />);
-  //   const message = screen.getByText('Image lost :(');
-  //   expect(message).toBeInTheDocument();
-  // });
-
 });
