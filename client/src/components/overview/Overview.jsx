@@ -3,6 +3,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import AdditionalProductInfo from './AdditionalProductInfo.jsx';
 import {headers, uri} from '../../../../config.js';
 import axios from 'axios';
 import './Overview.css';
@@ -27,7 +28,8 @@ class Overview extends React.Component {
   }
 
   // componentDidMount() {
-  //   this.getProductRatings(this.props.productID);
+  //   const slideIndex = this.state.slideIndex;
+  //   this.showSlides(slideIndex);
   // }
 
   componentDidUpdate(prevProps, prevState) {
@@ -207,62 +209,71 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div id="overview" className="container1">
-        <div className="container1-1">
-          <ImageGallery
-            productStyle={this.props.productStyle}
-            selectedStyle={this.state.selectedStyle}
-            thumbnailIndex={this.state.thumbnailIndex}
-            thumbnailPos={this.state.thumbnailPos}
-            galleryExpanded={this.state.galleryExpanded}
-            zoomed={this.state.zoomed}
-            onPrevClick={this.onPrevClick}
-            onNextClick={this.onNextClick}
-            onThumbnailClick={this.onThumbnailClick}
-            onUpClick={this.onUpClick}
-            onDownClick={this.onDownClick}
-            toggleGalleryExpand={this.toggleGalleryExpand}
-            toggleZoom={this.toggleZoom}
-            followMousePosition={this.followMousePosition}
-          />
+      <div id="overview" className="container">
+        <div className="container1">
+          <div className="container1-1">
+            <ImageGallery
+              productStyle={this.props.productStyle}
+              selectedStyle={this.state.selectedStyle}
+              thumbnailIndex={this.state.thumbnailIndex}
+              thumbnailPos={this.state.thumbnailPos}
+              galleryExpanded={this.state.galleryExpanded}
+              zoomed={this.state.zoomed}
+              onPrevClick={this.onPrevClick}
+              onNextClick={this.onNextClick}
+              onThumbnailClick={this.onThumbnailClick}
+              onUpClick={this.onUpClick}
+              onDownClick={this.onDownClick}
+              toggleGalleryExpand={this.toggleGalleryExpand}
+              toggleZoom={this.toggleZoom}
+              followMousePosition={this.followMousePosition}
+            />
+          </div>
+          <div className="container1-2">
+            <div className="container1-2-1">
+              <ProductInformation
+                information={this.props.productInfo}
+                ratings={this.props.ratings}
+                reviewsCount={this.props.reviewsCount}
+                selectedStyle={this.state.selectedStyle}
+              />
+              <br></br>
+              {/* <br></br> */}
+            </div>
+            <div className="container1-2-2">
+              <StyleSelector
+                productStyle={this.props.productStyle}
+                selectedStyle={this.state.selectedStyle}
+                onStyleClick={this.onStyleClick}
+              />
+              <br></br>
+              <br></br>
+              <br></br>
+              {/* <br></br> */}
+            </div>
+            <div className="container1-2-3">
+              <AddToCart
+                selectedStyle={this.state.selectedStyle}
+                selectedSKU={this.state.selectedSKU}
+                maxQuantity={this.state.maxQuantity}
+                selectedQuantity={this.state.selectedQuantity}
+                selectedSKU={this.state.selectedSKU}
+                onSizeChange={this.onSizeChange}
+                onQuantityChange={this.onQuantityChange}
+                onAddToCartClick={this.onAddToCartClick}
+                addOutfit={this.props.addOutfit}
+              />
+              {/* <br></br> */}
+            </div>
+          </div>
         </div>
-        <div className="container1-2">
-        <div className="container1-2-1">
-          <ProductInformation
-            information={this.props.productInfo}
-            ratings={this.props.ratings}
-            reviewsCount={this.props.reviewsCount}
-            selectedStyle={this.state.selectedStyle}
-          />
-          <br></br>
-          {/* <br></br> */}
+        <br></br>
+        <div className='container2'>
+            <AdditionalProductInfo
+              productInfo={this.props.productInfo}
+            />
         </div>
-        <div className="container1-2-2">
-          <StyleSelector
-            productStyle={this.props.productStyle}
-            selectedStyle={this.state.selectedStyle}
-            onStyleClick={this.onStyleClick}
-          />
-          <br></br>
-          <br></br>
-          <br></br>
-          {/* <br></br> */}
-        </div>
-        <div className="container1-2-3">
-          <AddToCart
-            selectedStyle={this.state.selectedStyle}
-            selectedSKU={this.state.selectedSKU}
-            maxQuantity={this.state.maxQuantity}
-            selectedQuantity={this.state.selectedQuantity}
-            selectedSKU={this.state.selectedSKU}
-            onSizeChange={this.onSizeChange}
-            onQuantityChange={this.onQuantityChange}
-            onAddToCartClick={this.onAddToCartClick}
-            addOutfit={this.props.addOutfit}
-          />
-          {/* <br></br> */}
-        </div>
-        </div>
+        <br></br>
       </div>
     );
   }
