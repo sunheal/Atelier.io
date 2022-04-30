@@ -108,10 +108,11 @@ class ReviewList extends React.Component{
         })
     }
     updateReviewAfterSubmit() {
-        axios.get(`/reviews`, { params: { product_id: id, count: 5000 } })
+        axios.get(`/reviews`, { params: { product_id: this.props.id, count: 5000 } })
         .then((result) => {
+            // console.log(result.data,'add reviews');
             this.setState({
-                currentReview: result.data,
+                currentReview: result.data.results,
                 whatShowing: this.state.currentReview.slice(0,2)
             })
         })
