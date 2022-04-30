@@ -22,7 +22,7 @@ class BarChart extends React.Component {
                 num: temp.value
             },
                 () => {
-                    console.log(temp.value);
+                    // console.log(temp.value);
                     this.props.filter(this.state.num)
                 }
             )
@@ -40,7 +40,7 @@ class BarChart extends React.Component {
                     {Object.keys(this.props.ratings).length === 0 ? null : [...Array(5)].map((bar, index) => {
                         const order = 5 - (index);
                         return (
-                          
+
                                 <svg height='30' width="300" key={order}>
                                     <text className="name-label" x="0" y="15">{order} Stars</text>
                                     <rect className='grey' width='100' height='10' x='90' y='5' fill="grey" opacity='0.25' />

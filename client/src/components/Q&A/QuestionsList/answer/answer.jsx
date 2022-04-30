@@ -56,14 +56,14 @@ export default class Answer extends Component {
 
   onVote = () => {
     let { answer } = this.state;
-    console.log("line23:", this.props.answer.helpfulness, answer.helpfulness);
+    // console.log("line23:", this.props.answer.helpfulness, answer.helpfulness);
     if (this.props.answer.helpfulness !== answer.helpfulness) {
       return;
     } else {
       answer.helpfulness = answer.helpfulness + 1;
     }
 
-    console.log(answer);
+    // console.log(answer);
     this.setState({
       answer,
     });
