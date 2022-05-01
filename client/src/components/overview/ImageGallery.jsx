@@ -14,7 +14,6 @@ const ImageGallery = (props) => {
   }
 
   return (
-    // <div className="slideshow-container">
     <div className={`slideshow-container ${props.galleryExpanded ? 'expanded-container' : null}`}>
       {!displayStyle?.photos
         ? <div>loading...</div>
