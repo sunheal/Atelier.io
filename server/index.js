@@ -19,8 +19,13 @@ const options = {
   },
 };
 
+//////ORIGINAL WILDCARD GET FUNCTION/////////
 app.get("/*", (req, res) => {
   // console.log(req.url);
+  // if (req.url.startsWith('/ls')) {
+  //   console.log('REQ.URL');
+  //   res.status(201).redirect('http://localhost:3111/#logo');
+  // }
   let url = `${uri}${req.url}`;
   axios
     .get(url, options)
@@ -33,6 +38,93 @@ app.get("/*", (req, res) => {
       res.send(err);
     });
 });
+//////ORIGINAL WILDCARD GET FUNCTION/////////
+
+////////////////////////////////////////
+// app.get('/products/:product_id', (req, res) => {
+//   // console.log(req.url)
+//   let url = `${uri}${req.url}`;
+//   axios
+//     .get(url, options)
+//     .then((result) => {
+//       // console.log("api data", result.data);
+//       res.status(result.status).send(result.data)
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+// app.get('/products/:product_id/styles', (req, res) => {
+//   // console.log(req.url)
+//   let url = `${uri}${req.url}`;
+//   axios
+//     .get(url, options)
+//     .then((result) => {
+//       // console.log("api data", result.data);
+//       res.status(result.status).send(result.data)
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+// app.get('/products/:product_id/related', (req, res) => {
+//   // console.log(req.url)
+//   let url = `${uri}${req.url}`;
+//   axios
+//     .get(url, options)
+//     .then((result) => {
+//       // console.log("api data", result.data);
+//       res.status(result.status).send(result.data)
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+// app.get('/reviews/meta/:product_id', (req, res) => {
+//   console.log(req.url)
+//   let url = `${uri}${req.url}`;
+//   axios
+//     .get(url, options)
+//     .then((result) => {
+//       console.log("api data", result.data);
+//       res.status(result.status).send(result.data)
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+// app.get('/reviews/:product_id', (req, res) => {
+//   console.log(req.url)
+//   let url = `${uri}${req.url}`;
+//   axios
+//     .get(url, options)
+//     .then((result) => {
+//       console.log("api data", result.data);
+//       res.status(result.status).send(result.data)
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+// app.get('/qa/questions/:product_id', (req, res) => {
+//   console.log(req.url)
+//   let url = `${uri}${req.url}`;
+//   axios
+//     .get(url, options)
+//     .then((result) => {
+//       console.log("api data", result.data);
+//       res.status(result.status).send(result.data)
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+////////////////////////////////////////
 
 app.put("/*", (req, res) => {
   let url = `${uri}${req.url}`;

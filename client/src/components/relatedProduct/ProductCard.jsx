@@ -5,6 +5,7 @@ import PreviewImagesCarousel from './ProductCard/PreviewImagesCarousel.jsx';
 import Stars from '../Shared/Stars.jsx';
 import './css/ProductCard.css';
 import { sendAction } from '../../utils/tracker.js';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -95,8 +96,8 @@ class ProductCard extends React.Component {
       })
       return;
     } else {
-      var id = this.props.productInfo.id;
-      this.props.updateProductID(id);
+      // var id = this.props.productInfo.id;
+      // this.props.updateProductID(id);
       this.props.resetPosition();
       sendAction({
         element: "Product card div view product detail",
@@ -146,6 +147,7 @@ class ProductCard extends React.Component {
     const { productRating, defaultStyle, productStyle, displayImage } = this.state;
     const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProductID, resetPosition } = this.props;
     return (
+      <Link to={`/ls/${productInfo.id}`}>
       <div className="productCard" onClick={this.handleClick}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
@@ -166,6 +168,7 @@ class ProductCard extends React.Component {
           <Stars rating={productRating} />
         </div>
       </div>
+      </Link>
     );
   }
 };
