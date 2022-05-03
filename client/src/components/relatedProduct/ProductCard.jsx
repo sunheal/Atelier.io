@@ -147,7 +147,7 @@ class ProductCard extends React.Component {
     const { productRating, defaultStyle, productStyle, displayImage } = this.state;
     const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProductID, resetPosition } = this.props;
     return (
-      <Link to={`/ls/${productInfo.id}`}>
+      <Link to={`/deal/${productInfo.id}`}>
       <div className="productCard" onClick={this.handleClick}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}

@@ -33,9 +33,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // const productID = this.props.params.productID || this.state.productID;
-    // this.setState( {productID}, () => {this.getProductInfo(this.state.productID)} );
-    this.getProductInfo(this.state.productID);
+    const productID = this.props.params.productID || this.state.productID;
+    this.setState( {productID}, () => {this.getProductInfo(this.state.productID)} );
   }
 
   componentDidUpdate(prevProps) {
@@ -49,10 +48,16 @@ class App extends React.Component {
       allPromises.push(axios.get(`/products/${id}`));
       allPromises.push(axios.get(`/products/${id}/styles`));
       allPromises.push(axios.get(`/products/${id}/related`));
-      // allPromises.push(axios.get(`/reviews/meta`, { params: { product_id: id } }));
-      allPromises.push(axios.get(`/reviews/meta/?product_id=${id}`));
-      allPromises.push(axios.get(`/reviews/?product_id=${id}&count=5000`));
-      allPromises.push(axios.get(`/qa/questions/?product_id=${id}`));
+
+///////////////////WILDCARD GET FUNCTION/////////////////////
+      // allPromises.push(axios.get(`/reviews/meta/?product_id=${id}`));
+      // allPromises.push(axios.get(`/reviews/?product_id=${id}&count=5000`));
+      // allPromises.push(axios.get(`/qa/questions/?product_id=${id}`));
+///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
+      allPromises.push(axios.get(`/reviews/meta/${id}`));
+      allPromises.push(axios.get(`/reviews/${id}`));
+      allPromises.push(axios.get(`/qa/questions/${id}`));
+///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
       Promise.all(allPromises)
           .then((allPromisesData) => {
               var filteredRelatedProductsIDs = allPromisesData[2].data.filter(id => id !== this.state.productID);
