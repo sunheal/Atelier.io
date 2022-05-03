@@ -8,29 +8,29 @@ import Navbar from "./navbar.jsx";
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      productID: 64622,
-      productStyle: {},
-      relatedProductsIDs: null,
-      relatedProductsInfo: [],
-      meta: {},
-      reviews: {},
-      questions: {},
-      outfitList: Object.keys(localStorage) || [], // save IDs
-      productInfo: {},
+    constructor(props) {
+        super(props);
+        this.state = {
+            productID: 64622,
+            productStyle: {},
+            relatedProductsIDs: null,
+            relatedProductsInfo: [],
+            meta: {},
+            reviews: {},
+            questions: {},
+            outfitList: Object.keys(localStorage) || [], // save IDs
+            productInfo: {},
 
-    };
-    this.updateProductID = this.updateProductID.bind(this);
-    this.updateOutfitList = this.updateOutfitList.bind(this);
-    this.addOutfit = this.addOutfit.bind(this);
-  }
+        };
+        this.updateProductID = this.updateProductID.bind(this);
+        this.updateOutfitList = this.updateOutfitList.bind(this);
+        this.addOutfit = this.addOutfit.bind(this);
+    }
 
-  componentDidMount() {
-    this.getProductInfo(this.state.productID);
+    componentDidMount() {
+        this.getProductInfo(this.state.productID);
 
-  }
+    }
 
     getProductInfo(id) {
         var allPromises = [];
@@ -127,7 +127,7 @@ class App extends React.Component {
                     addOutfit={this.addOutfit}
                 />
                 <QandA productID={this.state.productID} />
-                {Object.keys(meta).length === 0 || Object.keys(reviews).length === 0? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
+                {Object.keys(meta).length === 0 || Object.keys(reviews).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
                 {/* <RR_app id={productID} meta={meta} reviews={reviews.results} /> */}
             </div>
         )

@@ -32,10 +32,9 @@ class BarChart extends React.Component {
 
 
     render() {
-        // console.log(this.props, 'meta in barchart')
         return (
             <div>
-                {this.props.recommend === 0 ? <p> No Reviews </p> : <p> {this.props.recommend}% of reviews recommended this product</p>}
+                {isNaN(this.props.recommend)  ? <p> No Reviews </p> : <p> {this.props.recommend}% of reviews recommended this product</p>}
                 <div className="starBreakDown_RR">
                     {Object.keys(this.props.ratings).length === 0 ? null : [...Array(5)].map((bar, index) => {
                         const order = 5 - (index);
