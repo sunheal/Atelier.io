@@ -65,7 +65,7 @@ button.action-btn {
   display: block;
 }
 
-.image-prev , .image-next {
+button.image-prev , button.image-next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -73,25 +73,27 @@ button.action-btn {
   padding: 8px;
   margin-top: -22px;
   color: black;
-  font-size: 12px;
+  font-size: 18px;
   transition: 0.6s ease;
-  /* border-radius: 0 3px 3px 0; */
-  user-select: none;
+  border: none;
+  background-color: transparent;
   z-index: 20;
 }
 
 .image-prev {
   left: 0;
-  border-radius: 3px 0 0 3px;
+  border-radius: 0 3px 3px 0;
+
 }
 
 .image-next {
   right: 0;
   border-radius: 3px 0 0 3px;
+
 }
 
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+.image-prev:hover, .image-next:hover {
+  background-color: rgba(120, 116, 116, 0.8);
 }
 
 .image-slide {
