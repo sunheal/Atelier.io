@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const PORT = 3111;
 const config = require("../config.js");
+const compression = require('compression');
 const cors = require("cors");
 const axios = require("axios");
 
 app.use(cors());
+app.use(compression());
 app.use(express.json());
 
 app.use(express.static((__dirname = "./client/dist")));
