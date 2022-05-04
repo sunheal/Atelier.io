@@ -6,12 +6,14 @@
 
 <head>
     <title> Project Atelier</title>
-    <link rel="stylesheet" href="main.css">
+    <!-- ADDED '/' BEFORE main.css below to make res.sendFile work in server when app.get('/*') -->
+    <link rel="stylesheet" href="/main.css">
 </head>
 
 <body>
     <div id="app"> </div>
-    <script src="bundle.js"> </script>
+    <!-- ADDED '/' BEFORE bundle.js below to make res.sendFile work in server when app.get('/*') -->
+    <script src="/bundle.js"> </script>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 

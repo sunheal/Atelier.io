@@ -3,7 +3,6 @@ import '@testing-library/jest-dom'
 import { render, cleanup, screen, waitFor } from '@testing-library/react';
 import Overview from './Overview.jsx';
 import regeneratorRuntime from "regenerator-runtime";
-afterEach(cleanup);
 
 describe('Overview', () => {
   it('should have "Overview" Title', () => {
@@ -30,7 +29,7 @@ describe('Overview', () => {
     };
     const ratings = '3.0';
     const reviewsCount = 100;
-    render(<ProductInformation information={information} ratings={ratings} reviewsCount={reviewsCount} />);
+    render(<Overview information={information} ratings={ratings} reviewsCount={reviewsCount} />);
     const title = screen.getByText('ProductInformation');
     expect(title).toBeInTheDocument();
   })
