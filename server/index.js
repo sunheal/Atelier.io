@@ -118,9 +118,9 @@ app.get('/reviews/:product_id', (req, res) => {
 });
 
 app.get('/qa/questions/:product_id', (req, res) => {
-  console.log(req.url)
+  console.log(req.params)
   const { product_id } = req.params;
-  let url = `${uri}${req.url}/qa/questions/?product_id=${product_id}`;
+  let url = `${uri}/qa/questions/?product_id=${product_id}`;
   axios
     .get(url, options)
     .then((result) => {
