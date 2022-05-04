@@ -22,7 +22,7 @@ class App extends React.Component {
       relatedProductsInfo: [],
       meta: {},
       reviews: {},
-      questions: {},
+      // questions: {},
       outfitList: Object.keys(localStorage) || [], // save IDs
       productInfo: {},
 
@@ -56,7 +56,7 @@ class App extends React.Component {
 ///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
       allPromises.push(axios.get(`/reviews/meta/${id}`));
       allPromises.push(axios.get(`/reviews/${id}`));
-      allPromises.push(axios.get(`/qa/questions/${id}`));
+      // allPromises.push(axios.get(`/qa/questions/${id}`));
 ///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
       Promise.all(allPromises)
           .then((allPromisesData) => {
@@ -68,7 +68,7 @@ class App extends React.Component {
                   relatedProductsIDs: filteredRelatedProductsIDs,
                   meta: allPromisesData[3].data,
                   reviews: allPromisesData[4].data,
-                  questions: allPromisesData[5].data
+                  // questions: allPromisesData[5].data
               })
               return filteredRelatedProductsIDs;
           })
