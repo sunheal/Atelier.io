@@ -59,7 +59,8 @@ class ProductCard extends React.Component {
   }
 
   getProductRatings() {
-    axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
+    // axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
+    axios.get(`/reviews/meta/${this.props.productInfo.id}`)
       .then((response) => {
         // check if there is a rating
         var ratings = response.data.ratings;
