@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 // Add higher order components to pass down params hook useParams() to class component App
 const withRouter = (Component) => {
-  return props => <Component {...props} params={ useParams() } />;
+    return props => <Component {...props} params={useParams()} />;
 }
 
 class App extends React.Component {
@@ -33,90 +33,90 @@ class App extends React.Component {
         this.addOutfit = this.addOutfit.bind(this);
     }
 
-  componentDidMount() {
-    const productID = this.props.params.productID || this.state.productID;
-    this.setState( {productID}, () => {this.getProductInfo(this.state.productID)} );
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.params.productID !== this.props.params.productID) {
-      this.setState( {productID: this.props.params.productID}, () => {this.getProductInfo(this.state.productID)} );
+    componentDidMount() {
+        const productID = this.props.params.productID || this.state.productID;
+        this.setState({ productID }, () => { this.getProductInfo(this.state.productID) });
     }
-  }
 
-  getProductInfo(id) {
-      var allPromises = [];
-      allPromises.push(axios.get(`/products/${id}`));
-      allPromises.push(axios.get(`/products/${id}/styles`));
-      allPromises.push(axios.get(`/products/${id}/related`));
+    componentDidUpdate(prevProps) {
+        if (prevProps.params.productID !== this.props.params.productID) {
+            this.setState({ productID: this.props.params.productID }, () => { this.getProductInfo(this.state.productID) });
+        }
+    }
 
-///////////////////WILDCARD GET FUNCTION/////////////////////
-      // allPromises.push(axios.get(`/reviews/meta/?product_id=${id}`));
-      // allPromises.push(axios.get(`/reviews/?product_id=${id}&count=5000`));
-      // allPromises.push(axios.get(`/qa/questions/?product_id=${id}`));
-///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
-      allPromises.push(axios.get(`/reviews/meta/${id}`));
-      allPromises.push(axios.get(`/reviews/${id}`));
-      // allPromises.push(axios.get(`/qa/questions/${id}`));
-///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
-      Promise.all(allPromises)
-          .then((allPromisesData) => {
-              var filteredRelatedProductsIDs = allPromisesData[2].data.filter(id => id !== this.state.productID);
-              filteredRelatedProductsIDs = [...new Set(filteredRelatedProductsIDs)];
-              this.setState({
-                  productInfo: allPromisesData[0].data,
-                  productStyle: allPromisesData[1].data,
-                  relatedProductsIDs: filteredRelatedProductsIDs,
-                  meta: allPromisesData[3].data,
-                  reviews: allPromisesData[4].data,
-                  // questions: allPromisesData[5].data
-              })
-              return filteredRelatedProductsIDs;
-          })
-          .then((relatedIDs) => {
-              var arrayOfPromises = [];
-              relatedIDs.forEach((relatedId) => {
-                  arrayOfPromises.push(axios.get(`/products/${relatedId}`));
-              })
-              return Promise.all(arrayOfPromises);
-          })
-          .then((arrayOfPromisesData) => {
-              var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
-              this.setState({
-                  relatedProductsInfo: relatedProductsInfo
-              })
-          })
-          .catch((error) => {
-              console.log('Error fetching product info in App', error);
-          });
-  }
+    getProductInfo(id) {
+        var allPromises = [];
+        allPromises.push(axios.get(`/products/${id}`));
+        allPromises.push(axios.get(`/products/${id}/styles`));
+        allPromises.push(axios.get(`/products/${id}/related`));
 
-  updateProductID(id) {
-      console.log('update product id = ', id)
-      // this.setState({ productID: id });
-      this.setState({
-          productID: id
-      }, () => {
-          this.getProductInfo(this.state.productID);
-      })
-  }
+        ///////////////////WILDCARD GET FUNCTION/////////////////////
+        // allPromises.push(axios.get(`/reviews/meta/?product_id=${id}`));
+        // allPromises.push(axios.get(`/reviews/?product_id=${id}&count=5000`));
+        // allPromises.push(axios.get(`/qa/questions/?product_id=${id}`));
+        ///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
+        allPromises.push(axios.get(`/reviews/meta/${id}`));
+        allPromises.push(axios.get(`/reviews/${id}`));
+        // allPromises.push(axios.get(`/qa/questions/${id}`));
+        ///////////////////USE NON-WILDCARD GET FUNCTION/////////////////////
+        Promise.all(allPromises)
+            .then((allPromisesData) => {
+                var uniqueIDs = [...new Set(allPromisesData[2].data)];
+                var filteredRelatedProductsIDs = uniqueIDs.filter(id => id !== parseInt(this.state.productID));
+                this.setState({
+                    productInfo: allPromisesData[0].data,
+                    productStyle: allPromisesData[1].data,
+                    relatedProductsIDs: filteredRelatedProductsIDs,
+                    meta: allPromisesData[3].data,
+                    reviews: allPromisesData[4].data,
+                    // questions: allPromisesData[5].data
+                })
+                return filteredRelatedProductsIDs;
+            })
+            .then((relatedIDs) => {
+                var arrayOfPromises = [];
+                relatedIDs.forEach((relatedId) => {
+                    arrayOfPromises.push(axios.get(`/products/${relatedId}`));
+                })
+                return Promise.all(arrayOfPromises);
+            })
+            .then((arrayOfPromisesData) => {
+                var relatedProductsInfo = arrayOfPromisesData.map((product) => (product.data));
+                this.setState({
+                    relatedProductsInfo: relatedProductsInfo
+                })
+            })
+            .catch((error) => {
+                console.log('Error fetching product info in App', error);
+            });
+    }
+
+    updateProductID(id) {
+        console.log('update product id = ', id)
+        // this.setState({ productID: id });
+        this.setState({
+            productID: id
+        }, () => {
+            this.getProductInfo(this.state.productID);
+        })
+    }
 
   updateOutfitList(list) {
       this.setState({
-          outfitList: list 
+          outfitList: list
       })
   }
 
-  addOutfit() {
-      var list = this.state.outfitList;
-      if (!list.includes(this.state.productInfo.id.toString())) {
-          localStorage.setItem(this.state.productInfo.id, JSON.stringify(this.state.productInfo))
-          list.unshift(this.state.productInfo.id.toString());
-          this.setState({
-              outfitList: list
-          })
-      }
-  }
+    addOutfit() {
+        var list = this.state.outfitList;
+        if (!list.includes(this.state.productInfo.id.toString())) {
+            localStorage.setItem(this.state.productInfo.id, JSON.stringify(this.state.productInfo))
+            list.unshift(this.state.productInfo.id.toString());
+            this.setState({
+                outfitList: list
+            })
+        }
+    }
 
   render() {
       const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
