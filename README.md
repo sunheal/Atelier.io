@@ -69,6 +69,6 @@ Page performance goals:
 * Speed Index: 1.1 seconds
 * Time to Interactive: 1.7 seconds
 
-[desktop] (https://drive.google.com/file/d/1Kkge3fxtMkSS9Sm7jyem_JM7OcfnAALn/view?usp=sharing)
+![desktop](https://github.com/rpp34-fec-peru/Project-Atelier/blob/master/screenshots/Screen%20Shot%202022-05-04%20at%206.43.26%20PM.jpg)
 
 ---
