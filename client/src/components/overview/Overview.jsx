@@ -203,10 +203,10 @@ class Overview extends React.Component {
   followMousePosition = (e) => {
     const expandedContainer = document.querySelector('.myslide');
     const zoomedImage = document.querySelector('.zoomed');
-    // zoomedImage.style.left = e.nativeEvent.offsetX / 1200 * 100 + '%';
-    // zoomedImage.style.top = e.nativeEvent.offsetY / 600 * 100 + '%';
-    zoomedImage.style.left = e.nativeEvent.offsetX / zoomedImage.width * 100 + '%';
-    zoomedImage.style.top = e.nativeEvent.offsetY / zoomedImage.height * 100 + '%';
+    zoomedImage.style.left = e.nativeEvent.offsetX / 1200 * 100 + '%';
+    zoomedImage.style.top = e.nativeEvent.offsetY / 600 * 100 + '%';
+    // zoomedImage.style.left = e.nativeEvent.offsetX / zoomedImage.width * 100 + '%';
+    // zoomedImage.style.top = e.nativeEvent.offsetY / zoomedImage.height * 100 + '%';
   }
 
   render() {
@@ -240,7 +240,6 @@ class Overview extends React.Component {
                 selectedStyle={this.state.selectedStyle}
               />
               <br></br>
-              {/* <br></br> */}
             </div>
             <div className="container1-2-2">
               <StyleSelector
@@ -251,7 +250,6 @@ class Overview extends React.Component {
               <br></br>
               <br></br>
               <br></br>
-              {/* <br></br> */}
             </div>
             <div className="container1-2-3">
               <AddToCart
@@ -265,7 +263,6 @@ class Overview extends React.Component {
                 onAddToCartClick={this.onAddToCartClick}
                 addOutfit={this.props.addOutfit}
               />
-              {/* <br></br> */}
             </div>
           </div>
         </div>
