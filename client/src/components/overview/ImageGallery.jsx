@@ -14,14 +14,13 @@ const ImageGallery = (props) => {
   }
 
   return (
-    // <div className="slideshow-container">
     <div className={`slideshow-container ${props.galleryExpanded ? 'expanded-container' : null}`}>
       {!displayStyle?.photos
         ? <div>loading...</div>
         : displayStyle.photos.map((photoObj, index) => {
             return (
               <div className={`mySlides ${props.galleryExpanded ? '' : 'fade'}`} key={index} >
-              <img className={`styleImage ${props.galleryExpanded ? 'expanded-image' : null}`} onClick={props.galleryExpanded ? props.toggleZoom : null} onMouseOver={props.zoomed ? props.followMousePosition : null} src={photoObj.url} ></img>
+              <img className={`styleImage ${props.galleryExpanded ? 'expanded-image' : null}`} onClick={props.galleryExpanded ? props.toggleZoom : null} onMouseMove={props.zoomed ? props.followMousePosition : null} src={photoObj.url} ></img>
               </div>
             );
           })

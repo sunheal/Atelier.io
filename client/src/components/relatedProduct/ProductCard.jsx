@@ -5,6 +5,7 @@ import PreviewImagesCarousel from './ProductCard/PreviewImagesCarousel.jsx';
 import Stars from '../Shared/Stars.jsx';
 import './css/ProductCard.css';
 import { sendAction } from '../../utils/tracker.js';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -21,7 +22,6 @@ class ProductCard extends React.Component {
       },
       productRating: null,
       displayImage: null,
-      slideIndex: 1
     };
     this.handleClick = this.handleClick.bind(this);
     this.updateDisplayImage = this.updateDisplayImage.bind(this);
@@ -58,7 +58,7 @@ class ProductCard extends React.Component {
   }
 
   getProductRatings() {
-    axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
+    axios.get(`/reviews/meta/${this.props.productInfo.id}`)
       .then((response) => {
         // check if there is a rating
         var ratings = response.data.ratings;
@@ -81,6 +81,7 @@ class ProductCard extends React.Component {
   }
 
   handleClick(e) {
+    // console.log('clicked', e.target.className);
     if (e.target.className === 'action-btn') {
       this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
       sendAction({
@@ -94,9 +95,13 @@ class ProductCard extends React.Component {
         widget: "Related Products"
       })
       return;
+    } else if (e.target.className === 'image-prev' || e.target.className === 'image-next') {
+      return;
+    } else if (e.target.className === 'carousel-image') {
+      return;
     } else {
-      var id = this.props.productInfo.id;
-      this.props.updateProductID(id);
+      // var id = this.props.productInfo.id;
+      // this.props.updateProductID(id);
       this.props.resetPosition();
       sendAction({
         element: "Product card div view product detail",
@@ -105,41 +110,11 @@ class ProductCard extends React.Component {
     }
   }
 
-  updateDisplayImage (url) {
+  updateDisplayImage(e) {
+    let url = e.target.src;
     this.setState({
       displayImage: url
     })
-  }
-
-  showSlides (slideIndex) {
-    const slides = document.getElementsByClassName('image-slide');
-    if (slides.length > 0) {
-      slides.forEach(slide => slide.style.display = 'none');
-      slides[slideIndex].style.display = 'block';
-    }
-  }
-
-  onPrevClick (e) {
-    event.stopPropagation();
-    let slideIndex = this.state.slideIndex - 1;
-    const slides = document.getElementsByClassName('image-slide');
-    console.log('slides prev ===', this.state.slideIndex)
-    // if (slideIndex < 0) {
-    //   slideIndex = slides.length - 1;
-    // };
-    // this.setState({slideIndex});
-  }
-
-  onNextClick (e) {
-    event.stopPropagation();
-    let slideIndex = this.state.slideIndex + 1;
-    const slides = document.getElementsByClassName('image-slide');
-    console.log('slides next ===', this.state.slideIndex)
-
-    // if (slideIndex > slides.length - 1) {
-    //   slideIndex = 0;
-    // };
-    // this.setState({slideIndex});
   }
 
   render() {
@@ -150,8 +125,9 @@ class ProductCard extends React.Component {
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
           <PreviewImages displayImage={displayImage} productInfo={productInfo} />
-          {/* {displayImage === null ? null : <PreviewImagesCarousel prev={this.onPrevClick} next={this.onNextClick} productStyles={productStyle.results} defaultStyle={defaultStyle} updateImage={this.updateDisplayImage}/>} */}
+          {displayImage === null ? null : <PreviewImagesCarousel productStyles={productStyle.results} defaultStyle={defaultStyle} updateImage={this.updateDisplayImage} />}
         </div>
+      <Link to={`/deal/${productInfo.id}`} className={'navigateToProductDetail'}>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
           <div className="productInfo-name">{productInfo.name}</div>
@@ -165,6 +141,7 @@ class ProductCard extends React.Component {
           }
           <Stars rating={productRating} />
         </div>
+      </Link>
       </div>
     );
   }

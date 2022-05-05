@@ -206,8 +206,10 @@ class Overview extends React.Component {
     const expandedContainer = document.querySelector('.myslide');
     const zoomedImage = document.querySelector('.zoomed');
     // console.log(e.nativeEvent);
-    zoomedImage.style.left = e.nativeEvent.offsetX / 1200 * 100 + '%';
-    zoomedImage.style.top = e.nativeEvent.offsetY / 600 * 100 + '%';
+    // zoomedImage.style.left = e.nativeEvent.offsetX / 1200 * 100 + '%';
+    // zoomedImage.style.top = e.nativeEvent.offsetY / 600 * 100 + '%';
+    zoomedImage.style.left = e.nativeEvent.offsetX / zoomedImage.width * 100 + '%';
+    zoomedImage.style.top = e.nativeEvent.offsetY / zoomedImage.height * 100 + '%';
   }
 
   render() {

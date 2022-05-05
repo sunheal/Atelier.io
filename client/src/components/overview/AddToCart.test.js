@@ -1,12 +1,11 @@
 import React from "react";
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react';
-import ProductInformation from './ProductInformation.jsx';
+import { render, cleanup, screen, waitFor } from '@testing-library/react';
+import AddToCart from './AddToCart.jsx';
 import regeneratorRuntime from "regenerator-runtime";
 
-
-describe.only('ProductInformation', () => {
-  it('should have "ProductInformation" Title', () => {
+describe('ProductInformation', () => {
+  it('should render product name', () => {
     const information = {
       "id": 64620,
       "campus": "hr-rpp",
@@ -30,8 +29,15 @@ describe.only('ProductInformation', () => {
     };
     const ratings = '3.0';
     const reviewsCount = 100;
+    // selectedStyle={this.state.selectedStyle}
+
+    // selectedSKU={this.state.selectedSKU}
+    // maxQuantity={this.state.maxQuantity}
+    // selectedQuantity={this.state.selectedQuantity}
+    // selectedSKU={this.state.selectedSKU}
     render(<ProductInformation information={information} ratings={ratings} reviewsCount={reviewsCount} />);
-    const title = screen.getByText('ProductInformation');
-    expect(title).toBeInTheDocument();
+    const productName = screen.getByText('Camo Onesie');
+    expect(productName).toBeInTheDocument();
   })
+
 });

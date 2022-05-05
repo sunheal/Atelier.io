@@ -27,8 +27,8 @@ class QuestionsList extends Component {
   }
 
   getQAList = () => {
-    console.log('------------!!');
-    console.log(this, product_id);
+    // console.log('------------!!');
+    // console.log(this, product_id);
     const {product_id} = this.props;
 
     getQAList(product_id).then((res) => {
@@ -56,7 +56,7 @@ class QuestionsList extends Component {
   onSearch = (value) => {
     // console.log(value, "父组件");
     const { questions } = this.state;
-    console.log(questions);
+    // console.log(questions);
     const currentQuestions = questions.results.filter((item) => {
       if (item.question_body.includes(value)) {
         return item;
@@ -65,7 +65,7 @@ class QuestionsList extends Component {
     this.setState({
       currentQuestions,
     });
-    console.log("line49 current Questions:", currentQuestions);
+    // console.log("line49 current Questions:", currentQuestions);
   };
 
   onSeeMoreQuestionsClick = () => {
