@@ -39,6 +39,7 @@
   position: relative;
   display: flex;
   width: 100%;
+  /* padding: 0px 40px; */
   justify-content: center;
   overflow: hidden;
 }
@@ -47,6 +48,7 @@
   width: 95%;
   display: flex;
   flex-grow: 1;
+  /* overflow: hidden; */
 }
 
 .handles {
@@ -57,9 +59,9 @@
   /* flex-shrink: 0; */
   background-color: transparent;
   z-index: 10;
-  margin: 50px 0;
+  margin: 100px 0;
   width: 34px;
-  height: 219px;
+  height: 110px;
   padding: 0px;
   cursor: pointer;
   font-size: 5rem;

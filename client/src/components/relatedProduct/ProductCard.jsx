@@ -58,7 +58,6 @@ class ProductCard extends React.Component {
   }
 
   getProductRatings() {
-    // axios.get(`/reviews/meta`, { params: { product_id: this.props.productInfo.id } })
     axios.get(`/reviews/meta/${this.props.productInfo.id}`)
       .then((response) => {
         // check if there is a rating
@@ -82,6 +81,7 @@ class ProductCard extends React.Component {
   }
 
   handleClick(e) {
+    // console.log('clicked', e.target.className);
     if (e.target.className === 'action-btn') {
       this.props.updateModal(this.props.productInfoOfCurrentPage, this.props.productInfo);
       sendAction({
@@ -98,7 +98,6 @@ class ProductCard extends React.Component {
     } else if (e.target.className === 'image-prev' || e.target.className === 'image-next') {
       return;
     } else if (e.target.className === 'carousel-image') {
-      // console.log
       return;
     } else {
       // var id = this.props.productInfo.id;
@@ -112,7 +111,6 @@ class ProductCard extends React.Component {
   }
 
   updateDisplayImage(e) {
-    // console.log(e.target.src)
     let url = e.target.src;
     this.setState({
       displayImage: url
@@ -123,13 +121,13 @@ class ProductCard extends React.Component {
     const { productRating, defaultStyle, productStyle, displayImage } = this.state;
     const { productInfo, productInfoOfCurrentPage, action, removeOutfit, updateModal, updateProductID, resetPosition } = this.props;
     return (
-      <Link to={`/deal/${productInfo.id}`}>
       <div className="productCard" onClick={this.handleClick}>
         <div className="productInfo-upper">
           {action === 'relatedProducts' ? <button className="action-btn">{"\u2606"}</button> : <button className="action-btn of" id={productInfo.id} onClick={removeOutfit}> X </button>}
           <PreviewImages displayImage={displayImage} productInfo={productInfo} />
           {displayImage === null ? null : <PreviewImagesCarousel productStyles={productStyle.results} defaultStyle={defaultStyle} updateImage={this.updateDisplayImage} />}
         </div>
+      <Link to={`/deal/${productInfo.id}`} className={'navigateToProductDetail'}>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
           <div className="productInfo-name">{productInfo.name}</div>
@@ -143,8 +141,8 @@ class ProductCard extends React.Component {
           }
           <Stars rating={productRating} />
         </div>
-      </div>
       </Link>
+      </div>
     );
   }
 };
