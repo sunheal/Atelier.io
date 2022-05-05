@@ -11,8 +11,8 @@
 }
 
 .add-outfit-card {
-  min-width: 280px;
-  width: 280px;
+  min-width: 280px;;
+  width: 280px;;
   height: 320px;
   margin: 13px 8px;
   padding: .25rem;
@@ -33,11 +33,12 @@
 }
 
 #outfitList .left-handle {
-  left: 8px;
+  left: 10px;
   top: 13px;
 }
 
 #outfitList .right-handle {
-  right: 16px;
+  right: 8px;
   top: 13px;
 }
+
