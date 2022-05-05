@@ -127,7 +127,7 @@ class ProductCard extends React.Component {
           <PreviewImages displayImage={displayImage} productInfo={productInfo} />
           {displayImage === null ? null : <PreviewImagesCarousel productStyles={productStyle.results} defaultStyle={defaultStyle} updateImage={this.updateDisplayImage} />}
         </div>
-      <Link to={`/deal/${productInfo.id}`} className={'navigateToProductDetail'}>
+      <Link to={`/goodies/${productInfo.id}`} className={'navigateToProductDetail'}>
         <div className="productInfo">
           <div className="productInfo-category">{productInfo.category}</div>
           <div className="productInfo-name">{productInfo.name}</div>

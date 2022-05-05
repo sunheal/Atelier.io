@@ -13,7 +13,7 @@ const withRouter = (Component) => {
 }
 
 class App extends React.Component {
-    
+
   constructor(props) {
     super(props);
     this.state = {
@@ -122,7 +122,7 @@ class App extends React.Component {
       const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
       return (
           <div className="app" >
-              <h1 id="logo"> Good Deals Only </h1>
+              <h1 id="logo"> What's Goooood? </h1>
               <Navbar />
               <Overview
                   productID={productID}

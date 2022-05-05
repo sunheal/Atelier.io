@@ -1,6 +1,5 @@
 import { Tracker } from "react-tracker";
 import { submitUserAction } from "../service/index.js";
-console.log(Tracker);
 const tracker = new Tracker();
 
 tracker.on("*", (event, eventHistory) => {
