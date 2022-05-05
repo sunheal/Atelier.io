@@ -13,18 +13,19 @@ const withRouter = (Component) => {
 }
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            productID: 64623,
-            productStyle: {},
-            relatedProductsIDs: null,
-            relatedProductsInfo: [],
-            meta: {},
-            reviews: {},
-            // questions: {},
-            outfitList: Object.keys(localStorage) || [], // save IDs
-            productInfo: {},
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      productID: 64623,
+      productStyle: {},
+      relatedProductsIDs: null,
+      relatedProductsInfo: [],
+      meta: {},
+      reviews: {},
+      // questions: {},
+      outfitList: Object.keys(localStorage) || [], // save IDs
+      productInfo: {},
 
         };
         this.updateProductID = this.updateProductID.bind(this);
@@ -100,11 +101,11 @@ class App extends React.Component {
         })
     }
 
-    updateOutfitList(list) {
-        this.setState({
-            outfitList: list
-        })
-    }
+  updateOutfitList(list) {
+      this.setState({
+          outfitList: list
+      })
+  }
 
     addOutfit() {
         var list = this.state.outfitList;
@@ -117,39 +118,39 @@ class App extends React.Component {
         }
     }
 
-    render() {
-        const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
-        return (
-            <div className="app" >
-                <h1 id="logo"> Good Deals Only </h1>
-                <Navbar />
-                <Overview
-                    productID={productID}
-                    productInfo={productInfo}
-                    productStyle={productStyle}
-                    // ratings={ratings}
-                    // reviewsCount={reviewsCount}
-                    meta={meta}
-                    reviews={reviews}
-                    addOutfit={this.addOutfit}
-                />
-                <RelatedProducts
-                    productID={productID}
-                    productInfo={productInfo}
-                    productStyle={productStyle}
-                    relatedProductsIDs={relatedProductsIDs}
-                    relatedProductsInfo={relatedProductsInfo}
-                    updateProductID={this.updateProductID}
-                    outfitList={outfitList}
-                    updateOutfitList={this.updateOutfitList}
-                    addOutfit={this.addOutfit}
-                />
-                <QandA productID={this.state.productID} />
-                {Object.keys(meta).length === 0 || Object.keys(reviews).length === 0 ? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
-                {/* <RR_app id={productID} meta={meta} reviews={reviews.results} /> */}
-            </div>
-        )
-    }
+  render() {
+      const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
+      return (
+          <div className="app" >
+              <h1 id="logo"> What's Goooood? </h1>
+              <Navbar />
+              <Overview
+                  productID={productID}
+                  productInfo={productInfo}
+                  productStyle={productStyle}
+                  // ratings={ratings}
+                  // reviewsCount={reviewsCount}
+                  meta={meta}
+                  reviews={reviews}
+                  addOutfit={this.addOutfit}
+              />
+              <RelatedProducts
+                  productID={productID}
+                  productInfo={productInfo}
+                  productStyle={productStyle}
+                  relatedProductsIDs={relatedProductsIDs}
+                  relatedProductsInfo={relatedProductsInfo}
+                  updateProductID={this.updateProductID}
+                  outfitList={outfitList}
+                  updateOutfitList={this.updateOutfitList}
+                  addOutfit={this.addOutfit}
+              />
+              <QandA productID={this.state.productID} />
+              {Object.keys(meta).length === 0 || Object.keys(reviews).length === 0? null : <RR_app id={productID} meta={meta} reviews={reviews.results} />}
+              {/* <RR_app id={productID} meta={meta} reviews={reviews.results} /> */}
+          </div>
+      )
+  }
 }
 
 export default withRouter(App);

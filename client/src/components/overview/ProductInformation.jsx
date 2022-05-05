@@ -21,7 +21,6 @@ const ProductInformation = (props) => {
             <div className='sale-price'>$ {props.selectedStyle?.sale_price}</div>
           </div>}
       <br></br>
-      {/* <div>Product Overview: {props.information.description}</div> */}
     </div>
   );
 }

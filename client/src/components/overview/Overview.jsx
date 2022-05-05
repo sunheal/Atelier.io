@@ -27,12 +27,6 @@ class Overview extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   const meta= this.props.meta;
-  //   const reviews = this.props.reviews;
-  //   this.getProductRatings(meta, reviews);
-  // }
-
   componentDidUpdate(prevProps, prevState) {
     const slideIndex = this.state.slideIndex;
     this.showSlides(slideIndex);
@@ -131,6 +125,10 @@ class Overview extends React.Component {
       const sizeDropdown = document.getElementById('sizeDropdown');
       sizeDropdown.setAttribute('size', `3`);
     }
+    const sku_id = this.state.selectedSKU;
+    if (sku_id.length > 0) {
+      axios.post('/cart', {sku_id});
+    }
   }
 
   showSlides = (slideIndex) => {
@@ -205,11 +203,10 @@ class Overview extends React.Component {
   followMousePosition = (e) => {
     const expandedContainer = document.querySelector('.myslide');
     const zoomedImage = document.querySelector('.zoomed');
-    // console.log(e.nativeEvent);
-    // zoomedImage.style.left = e.nativeEvent.offsetX / 1200 * 100 + '%';
-    // zoomedImage.style.top = e.nativeEvent.offsetY / 600 * 100 + '%';
-    zoomedImage.style.left = e.nativeEvent.offsetX / zoomedImage.width * 100 + '%';
-    zoomedImage.style.top = e.nativeEvent.offsetY / zoomedImage.height * 100 + '%';
+    zoomedImage.style.left = e.nativeEvent.offsetX / 1200 * 100 + '%';
+    zoomedImage.style.top = e.nativeEvent.offsetY / 600 * 100 + '%';
+    // zoomedImage.style.left = e.nativeEvent.offsetX / zoomedImage.width * 100 + '%';
+    // zoomedImage.style.top = e.nativeEvent.offsetY / zoomedImage.height * 100 + '%';
   }
 
   render() {
@@ -243,7 +240,6 @@ class Overview extends React.Component {
                 selectedStyle={this.state.selectedStyle}
               />
               <br></br>
-              {/* <br></br> */}
             </div>
             <div className="container1-2-2">
               <StyleSelector
@@ -254,7 +250,6 @@ class Overview extends React.Component {
               <br></br>
               <br></br>
               <br></br>
-              {/* <br></br> */}
             </div>
             <div className="container1-2-3">
               <AddToCart
@@ -268,7 +263,6 @@ class Overview extends React.Component {
                 onAddToCartClick={this.onAddToCartClick}
                 addOutfit={this.props.addOutfit}
               />
-              {/* <br></br> */}
             </div>
           </div>
         </div>
