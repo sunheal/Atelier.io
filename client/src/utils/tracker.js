@@ -11,18 +11,6 @@ tracker.on("*", (event, eventHistory) => {
   submitUserAction(data);
 });
 
-/**
- *
- * @param {string} type event type
- * @param {any} data
- */
-// export const sendAction = (type, data) => {
-//   tracker.trackEvent({
-//     type,
-//     data,
-//   });
-// };
-
 export const sendAction = (data) => {
   tracker.trackEvent({
     type: "any",
