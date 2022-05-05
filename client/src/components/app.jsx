@@ -13,6 +13,7 @@ const withRouter = (Component) => {
 }
 
 class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,11 +27,11 @@ class App extends React.Component {
       outfitList: Object.keys(localStorage) || [], // save IDs
       productInfo: {},
 
-    };
-    this.updateProductID = this.updateProductID.bind(this);
-    this.updateOutfitList = this.updateOutfitList.bind(this);
-    this.addOutfit = this.addOutfit.bind(this);
-  }
+        };
+        this.updateProductID = this.updateProductID.bind(this);
+        this.updateOutfitList = this.updateOutfitList.bind(this);
+        this.addOutfit = this.addOutfit.bind(this);
+    }
 
   componentDidMount() {
     const productID = this.props.params.productID || this.state.productID;
@@ -102,7 +103,7 @@ class App extends React.Component {
 
   updateOutfitList(list) {
       this.setState({
-          outfitList: list
+          outfitList: list 
       })
   }
 
@@ -121,7 +122,7 @@ class App extends React.Component {
       const { productID, productInfo, productStyle, relatedProductsIDs, relatedProductsInfo, meta, reviews, questions, outfitList } = this.state;
       return (
           <div className="app" >
-              <h1 id="logo"> Good Deals Only </h1>
+              <h1 id="logo"> What's Goooood? </h1>
               <Navbar />
               <Overview
                   productID={productID}

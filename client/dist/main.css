@@ -5,6 +5,7 @@
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 18px;
   color: #485461;
+  /* color: #637081; */
 }
 
 #logo {
@@ -12,8 +13,12 @@
   font-size: 2cm;
   font-weight: bold;
   text-align: center;
-  color: rgb(108, 122, 228);
-  text-shadow: 2px 2px #ff0000;
+  /* color: rgb(108, 122, 228); */
+  /* color: linear-gradient(315deg, #637081 0%, #7c98b3 74%); */
+  color: #637081;
+
+  text-shadow:linear-gradient(315deg, #637081 0%, #7c98b3 74%);
+  /* text-shadow: 2px 2px #ff0000; */
 }
 
 body {
