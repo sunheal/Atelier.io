@@ -33,6 +33,11 @@ button.action-btn {
   padding-left: 11%;
 }
 
+.navigateToProductDetail {
+  color: #485461;
+  text-decoration: none;
+}
+
 
 /* ------ productInfo-upper ------ */
 

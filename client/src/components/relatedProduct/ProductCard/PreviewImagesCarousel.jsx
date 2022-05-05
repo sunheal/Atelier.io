@@ -3,7 +3,6 @@ import React from 'react';
 // future enhancement
 
 class PreviewImagesCarousel extends React.Component {
-  // const PreviewImagesCarousel = (props) => {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,13 +38,16 @@ class PreviewImagesCarousel extends React.Component {
     if (this.props.defaultStyle.photos[0].thumbnail_url) {
       for (var i = 0; i < 4; i++) {
         if (!this.props.defaultStyle.photos[i]) {
-          images.push(this.props.productStyles[1].photos[0].thumbnail_url);
+          for (var j = 0; j < this.props.productStyles[1].photos.length; j++) {
+            if (!images.includes(this.props.productStyles[1].photos[j].thumbnail_url)) {
+              images.push(this.props.productStyles[1].photos[j].thumbnail_url);
+            }
+          }
         } else {
           images.push(this.props.defaultStyle.photos[i].thumbnail_url);
         }
       }
     }
-
     return (
       <div className="image-carousel-row" >
         <button className="image-prev" onClick={this.onPrevClick}>&#10094;</button>
