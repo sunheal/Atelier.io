@@ -25,6 +25,9 @@ Our application allows the user to click through products and styles to add to t
 1) Product Overview
 * The Overview module is top-most module on the Product Detail page.
 * This component will guide the customer through selecting a specific style and size to add to their cart.
+
+![Overview](https://github.com/rpp34-fec-peru/Project-Atelier/blob/master/screenshots/Overview%20Screenshot.png)
+
 2) Related Product
 *
 *
