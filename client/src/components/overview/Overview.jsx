@@ -161,6 +161,7 @@ class Overview extends React.Component {
   }
 
   onThumbnailClick = (e) => {
+    console.log(e.target);
     const slideIndex = e.target.id;
     const zoomed = this.state.zoomed;
     this.setState({slideIndex});

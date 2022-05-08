@@ -9,5 +9,5 @@ test("header renders with correct text", () => {
   const {getByTestId} = render(<App />);
   const headerEl = getByTestId("header")
 
-  expect(headerEl.textContent).toBe("Good Deals Only")
+  expect(headerEl.textContent).toBe("What's Goooood?")
 })

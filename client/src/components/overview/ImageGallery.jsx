@@ -42,7 +42,7 @@ const ImageGallery = (props) => {
                     ? <div>loading...</div>
                     : displayStyle.photos.map((photoObj, index) => {
                         return (
-                          <div className="thumbnail-div" key={index} onClick={props.onThumbnailClick} style={{ transform: `translateY(${props.thumbnailPos}%)` }}>
+                          <div className="thumbnail-div" key={index} id={index} onClick={props.onThumbnailClick} style={{ transform: `translateY(${props.thumbnailPos}%)` }}>
                           <img className="thumbnail-img" src={photoObj.thumbnail_url} id={index}></img>
                           </div>
                         );
