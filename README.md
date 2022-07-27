@@ -1,4 +1,4 @@
-# Project Atelier | Hack Reactor Front-end Capstone
+# Atelier.io | Front-end e-commerce web app 
 
 ***Table of Contents***
 * Team Members
