@@ -8,10 +8,6 @@
 ---
 **Team Members**
 
-*Hack Reactor Cohort - RPP34*
-
-Group Name - Peru
-
 * Alan Li - Product Overview Module
 * Nicole Qi - Questions & Answers Module
 * Kyle Kang - Ratings & Reviews Module
